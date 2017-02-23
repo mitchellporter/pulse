@@ -19,6 +19,14 @@
 		C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C356E45B1E5E5AC700E215CF /* Assets.xcassets */; };
 		C356E45F1E5E5AC700E215CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */; };
 		C356E46A1E5E5AC700E215CF /* PulseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4691E5E5AC700E215CF /* PulseTests.swift */; };
+		C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C356E4B01E5F64C800E215CF /* Pulse.xcdatamodeld */; };
+		C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */; };
+		C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */; };
+		C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */; };
+		C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */; };
+		C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4BB1E5F681A00E215CF /* PulseType.swift */; };
+		C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */; };
+		C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +63,14 @@
 		C356E4651E5E5AC700E215CF /* PulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356E4691E5E5AC700E215CF /* PulseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTests.swift; sourceTree = "<group>"; };
 		C356E46B1E5E5AC700E215CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C356E4B11E5F64C800E215CF /* Pulse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Pulse.xcdatamodel; sourceTree = "<group>"; };
+		C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataClass.swift"; path = "Core Data/Task+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Task+CoreDataProperties.swift"; path = "Core Data/Task+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataClass.swift"; path = "Core Data/User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "User+CoreDataProperties.swift"; path = "Core Data/User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C356E4BB1E5F681A00E215CF /* PulseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PulseType.swift; path = "Core Data/PulseType.swift"; sourceTree = "<group>"; };
+		C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "Core Data/Item+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "Core Data/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.production.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.production.xcconfig"; sourceTree = "<group>"; };
 		CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.local.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.local.xcconfig"; sourceTree = "<group>"; };
 		D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -128,6 +144,7 @@
 		C356E4531E5E5AC700E215CF /* Pulse */ = {
 			isa = PBXGroup;
 			children = (
+				C356E4AF1E5F64A700E215CF /* Core Data */,
 				C356E4541E5E5AC700E215CF /* AppDelegate.swift */,
 				C1629A8F1E5F65CE00EC91B0 /* TaskState.swift */,
 				C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */,
@@ -149,6 +166,21 @@
 				C356E46B1E5E5AC700E215CF /* Info.plist */,
 			);
 			path = PulseTests;
+			sourceTree = "<group>";
+		};
+		C356E4AF1E5F64A700E215CF /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */,
+				C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */,
+				C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */,
+				C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */,
+				C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */,
+				C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */,
+				C356E4B01E5F64C800E215CF /* Pulse.xcdatamodeld */,
+				C356E4BB1E5F681A00E215CF /* PulseType.swift */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 		C5CAE4F9547689B8F87766FB /* Frameworks */ = {
@@ -365,7 +397,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C356E4571E5E5AC700E215CF /* ViewController.swift in Sources */,
+				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
+				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
+				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
+				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
+				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,
+				C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */,
+				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,
 				C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */,
 				C1629A901E5F65CE00EC91B0 /* TaskState.swift in Sources */,
@@ -950,6 +990,20 @@
 			defaultConfigurationName = "App Store";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		C356E4B01E5F64C800E215CF /* Pulse.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C356E4B11E5F64C800E215CF /* Pulse.xcdatamodel */,
+			);
+			currentVersion = C356E4B11E5F64C800E215CF /* Pulse.xcdatamodel */;
+			name = Pulse.xcdatamodeld;
+			path = "Core Data/Pulse.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C356E4491E5E5AC700E215CF /* Project object */;
 }
