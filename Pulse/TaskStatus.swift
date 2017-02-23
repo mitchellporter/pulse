@@ -1,5 +1,5 @@
 //
-//  TaskState.swift
+//  TaskStatus.swift
 //  Pulse
 //
 //  Created by Design First Apps on 2/23/17.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum TaskState: Int {
-    case new
+enum TaskStatus: String {
+    case pending
     case needsUpdate
     case updated
     case due
-    case inProgress
+    case inProgress = "in_progress"
     case completed
 }
