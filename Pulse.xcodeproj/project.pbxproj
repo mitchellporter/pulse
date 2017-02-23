@@ -26,6 +26,7 @@
 		C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4BB1E5F681A00E215CF /* PulseType.swift */; };
 		C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */; };
 		C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */; };
+		C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4C41E5F758C00E215CF /* PulseAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		C356E4BB1E5F681A00E215CF /* PulseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PulseType.swift; path = "Core Data/PulseType.swift"; sourceTree = "<group>"; };
 		C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataClass.swift"; path = "Core Data/Item+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Item+CoreDataProperties.swift"; path = "Core Data/Item+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C356E4C41E5F758C00E215CF /* PulseAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PulseAPI.swift; path = Networking/PulseAPI.swift; sourceTree = "<group>"; };
 		C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.production.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.production.xcconfig"; sourceTree = "<group>"; };
 		CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.local.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.local.xcconfig"; sourceTree = "<group>"; };
 		D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		C356E4531E5E5AC700E215CF /* Pulse */ = {
 			isa = PBXGroup;
 			children = (
+				C356E4C31E5F757A00E215CF /* Networking */,
 				C356E4AF1E5F64A700E215CF /* Core Data */,
 				C356E4541E5E5AC700E215CF /* AppDelegate.swift */,
 				C1629A8F1E5F65CE00EC91B0 /* TaskState.swift */,
@@ -178,6 +181,14 @@
 				C356E4BB1E5F681A00E215CF /* PulseType.swift */,
 			);
 			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		C356E4C31E5F757A00E215CF /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				C356E4C41E5F758C00E215CF /* PulseAPI.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		C5CAE4F9547689B8F87766FB /* Frameworks */ = {
@@ -396,6 +407,7 @@
 			files = (
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C356E4571E5E5AC700E215CF /* ViewController.swift in Sources */,
+				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
