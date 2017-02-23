@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="l6Y-1H-bwV">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Task View Controller-->
+        <scene sceneID="ffb-IG-ZlZ">
+            <objects>
+                <viewController id="l6Y-1H-bwV" customClass="CreateTaskViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zQx-fw-L6p"/>
+                        <viewControllerLayoutGuide type="bottom" id="LDo-3b-2Gx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EBg-BZ-Ck0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="QD5-57-c55" kind="show" identifier="date" id="RPe-OS-Gry"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lFW-d2-VGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-689" y="110"/>
+        </scene>
+        <!--Create Task Date View Controller-->
+        <scene sceneID="6yU-W8-KdJ">
+            <objects>
+                <viewController id="QD5-57-c55" customClass="CreateTaskDateViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jvi-Wa-bil"/>
+                        <viewControllerLayoutGuide type="bottom" id="mAq-VR-iOw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="uW0-3G-l65">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="4rw-ai-A9X" kind="show" identifier="assign" id="CbG-YA-Ma2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HrL-R1-vyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="231" y="109"/>
+        </scene>
+        <!--Create Task Assign View Controller-->
+        <scene sceneID="DMe-Hs-qdO">
+            <objects>
+                <viewController id="4rw-ai-A9X" customClass="CreateTaskAssignViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lcX-wL-o5b"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qz7-bi-w5P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rz6-vP-Ov9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="cO5-8q-fZy" kind="show" identifier="updates" id="zQP-fT-eXs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cJX-gn-FhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1150" y="109"/>
+        </scene>
+        <!--Create Task Updates View Controller-->
+        <scene sceneID="SQC-bp-nhR">
+            <objects>
+                <viewController id="cO5-8q-fZy" customClass="CreateTaskUpdatesViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7M7-0h-a61"/>
+                        <viewControllerLayoutGuide type="bottom" id="JSL-IT-IGr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="28L-RG-Kh0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="JKF-gX-jdR" kind="show" identifier="review" id="gwN-O0-pqC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KdJ-s3-0HD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2076" y="108"/>
+        </scene>
+        <!--Create Task Review View Controller-->
+        <scene sceneID="Php-cc-Jor">
+            <objects>
+                <viewController id="JKF-gX-jdR" customClass="CreateTaskReviewViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Bk-aU-dWd"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pu4-KE-cj7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6kn-68-bWt">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ymg-az-vMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2959" y="109"/>
+        </scene>
+    </scenes>
+</document>
