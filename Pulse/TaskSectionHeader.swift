@@ -63,8 +63,6 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         case .completed:
             self.title = "TASKS COMPLETED"
             self.markerColor = UIColor.white
-        default:
-            self.title = ""
         }
     }
     

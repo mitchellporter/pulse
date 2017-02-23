@@ -39,8 +39,6 @@ class TaskCell: UITableViewCell {
             return UIColor("FFFFFF")
         case .completed:
             return UIColor("FFFFFF")
-        default:
-            return UIColor("FFFFFF")
         }
     }
     
@@ -103,9 +101,6 @@ class TaskCell: UITableViewCell {
             self.badge.alpha = 0
         case .completed:
             self.badge.alpha = 0
-        default:
-            self.badge.alpha = 0
-            break
         }
     }
     

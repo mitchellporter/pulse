@@ -12,6 +12,7 @@ protocol CalendarDelegate: class {
     func dateSelected(date: Date?)
 }
 
+@IBDesignable
 class CalendarPicker: UIView, UIInputViewAudioFeedback {
     
     private(set) var view: UIView!
