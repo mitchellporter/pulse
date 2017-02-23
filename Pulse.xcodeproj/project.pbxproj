@@ -1,0 +1,939 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		19BA1953E6BA977046D9D9D7 /* Pods_Pulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642ABEEF6F9A9E7577030BAF /* Pods_Pulse.framework */; };
+		4F5D8C59254209F7064F6748 /* Pods_PulseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0AA27FC1A0CDA00D0CC6FFC /* Pods_PulseTests.framework */; };
+		C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4541E5E5AC700E215CF /* AppDelegate.swift */; };
+		C356E4571E5E5AC700E215CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4561E5E5AC700E215CF /* ViewController.swift */; };
+		C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C356E4581E5E5AC700E215CF /* Main.storyboard */; };
+		C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C356E45B1E5E5AC700E215CF /* Assets.xcassets */; };
+		C356E45F1E5E5AC700E215CF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */; };
+		C356E46A1E5E5AC700E215CF /* PulseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4691E5E5AC700E215CF /* PulseTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C356E4661E5E5AC700E215CF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C356E4491E5E5AC700E215CF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C356E4501E5E5AC700E215CF;
+			remoteInfo = Pulse;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1AD098FC1C8774D78F2C15B5 /* Pods-Pulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.release.xcconfig"; sourceTree = "<group>"; };
+		22EB6EAC2C092E4EB21409AC /* Pods-PulseTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.release.xcconfig"; sourceTree = "<group>"; };
+		2ADC8528A2061116A0DB3806 /* Pods-PulseTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.beta.xcconfig"; sourceTree = "<group>"; };
+		2DC0A8A94D9A36B527CDF315 /* Pods-PulseTests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.app store.xcconfig"; sourceTree = "<group>"; };
+		4CEB9EEE513F1EE621126873 /* Pods-PulseTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.debug.xcconfig"; sourceTree = "<group>"; };
+		642ABEEF6F9A9E7577030BAF /* Pods_Pulse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pulse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F7A72D97BDA05B27204B17D /* Pods-PulseTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.staging.xcconfig"; sourceTree = "<group>"; };
+		7F91BFCFE8C1C83B1CDCB955 /* Pods-Pulse.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.beta.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.beta.xcconfig"; sourceTree = "<group>"; };
+		B0AED16B1455F81351B2DD3A /* Pods-PulseTests.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.local.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.local.xcconfig"; sourceTree = "<group>"; };
+		C356E4511E5E5AC700E215CF /* Pulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C356E4541E5E5AC700E215CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C356E4561E5E5AC700E215CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C356E4591E5E5AC700E215CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C356E45B1E5E5AC700E215CF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C356E45E1E5E5AC700E215CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		C356E4601E5E5AC700E215CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C356E4651E5E5AC700E215CF /* PulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C356E4691E5E5AC700E215CF /* PulseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTests.swift; sourceTree = "<group>"; };
+		C356E46B1E5E5AC700E215CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.production.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.production.xcconfig"; sourceTree = "<group>"; };
+		CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.local.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.local.xcconfig"; sourceTree = "<group>"; };
+		D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.production.xcconfig"; sourceTree = "<group>"; };
+		EEAB773F152D679309D9156E /* Pods-Pulse.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.staging.xcconfig"; sourceTree = "<group>"; };
+		F0AA27FC1A0CDA00D0CC6FFC /* Pods_PulseTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PulseTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3FA4F62BFA221A8EDC4ED2E /* Pods-Pulse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.debug.xcconfig"; sourceTree = "<group>"; };
+		F67322735BD25BB6E6F29BAC /* Pods-Pulse.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.app store.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.app store.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C356E44E1E5E5AC700E215CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19BA1953E6BA977046D9D9D7 /* Pods_Pulse.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C356E4621E5E5AC700E215CF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5D8C59254209F7064F6748 /* Pods_PulseTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AAF8398B59055D7C649A4699 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F3FA4F62BFA221A8EDC4ED2E /* Pods-Pulse.debug.xcconfig */,
+				1AD098FC1C8774D78F2C15B5 /* Pods-Pulse.release.xcconfig */,
+				4CEB9EEE513F1EE621126873 /* Pods-PulseTests.debug.xcconfig */,
+				22EB6EAC2C092E4EB21409AC /* Pods-PulseTests.release.xcconfig */,
+				CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */,
+				EEAB773F152D679309D9156E /* Pods-Pulse.staging.xcconfig */,
+				C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */,
+				F67322735BD25BB6E6F29BAC /* Pods-Pulse.app store.xcconfig */,
+				7F91BFCFE8C1C83B1CDCB955 /* Pods-Pulse.beta.xcconfig */,
+				B0AED16B1455F81351B2DD3A /* Pods-PulseTests.local.xcconfig */,
+				6F7A72D97BDA05B27204B17D /* Pods-PulseTests.staging.xcconfig */,
+				D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */,
+				2DC0A8A94D9A36B527CDF315 /* Pods-PulseTests.app store.xcconfig */,
+				2ADC8528A2061116A0DB3806 /* Pods-PulseTests.beta.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C356E4481E5E5AC700E215CF = {
+			isa = PBXGroup;
+			children = (
+				C356E4531E5E5AC700E215CF /* Pulse */,
+				C356E4681E5E5AC700E215CF /* PulseTests */,
+				C356E4521E5E5AC700E215CF /* Products */,
+				AAF8398B59055D7C649A4699 /* Pods */,
+				C5CAE4F9547689B8F87766FB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C356E4521E5E5AC700E215CF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C356E4511E5E5AC700E215CF /* Pulse.app */,
+				C356E4651E5E5AC700E215CF /* PulseTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C356E4531E5E5AC700E215CF /* Pulse */ = {
+			isa = PBXGroup;
+			children = (
+				C356E4541E5E5AC700E215CF /* AppDelegate.swift */,
+				C356E4561E5E5AC700E215CF /* ViewController.swift */,
+				C356E4581E5E5AC700E215CF /* Main.storyboard */,
+				C356E45B1E5E5AC700E215CF /* Assets.xcassets */,
+				C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */,
+				C356E4601E5E5AC700E215CF /* Info.plist */,
+			);
+			path = Pulse;
+			sourceTree = "<group>";
+		};
+		C356E4681E5E5AC700E215CF /* PulseTests */ = {
+			isa = PBXGroup;
+			children = (
+				C356E4691E5E5AC700E215CF /* PulseTests.swift */,
+				C356E46B1E5E5AC700E215CF /* Info.plist */,
+			);
+			path = PulseTests;
+			sourceTree = "<group>";
+		};
+		C5CAE4F9547689B8F87766FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				642ABEEF6F9A9E7577030BAF /* Pods_Pulse.framework */,
+				F0AA27FC1A0CDA00D0CC6FFC /* Pods_PulseTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C356E4501E5E5AC700E215CF /* Pulse */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C356E46E1E5E5AC700E215CF /* Build configuration list for PBXNativeTarget "Pulse" */;
+			buildPhases = (
+				116A46153B1FA2F87B84FFDA /* [CP] Check Pods Manifest.lock */,
+				C356E44D1E5E5AC700E215CF /* Sources */,
+				C356E44E1E5E5AC700E215CF /* Frameworks */,
+				C356E44F1E5E5AC700E215CF /* Resources */,
+				17F883A83FDF5F03B7ABAB84 /* [CP] Embed Pods Frameworks */,
+				5B92594D8DFF0190E2D06C47 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Pulse;
+			productName = Pulse;
+			productReference = C356E4511E5E5AC700E215CF /* Pulse.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C356E4641E5E5AC700E215CF /* PulseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C356E4711E5E5AC700E215CF /* Build configuration list for PBXNativeTarget "PulseTests" */;
+			buildPhases = (
+				0E92DED31E8A531D9964A9DB /* [CP] Check Pods Manifest.lock */,
+				C356E4611E5E5AC700E215CF /* Sources */,
+				C356E4621E5E5AC700E215CF /* Frameworks */,
+				C356E4631E5E5AC700E215CF /* Resources */,
+				31520C5B2575F8AFC5B208A7 /* [CP] Embed Pods Frameworks */,
+				9A8277112F3757A5515BE40D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C356E4671E5E5AC700E215CF /* PBXTargetDependency */,
+			);
+			name = PulseTests;
+			productName = PulseTests;
+			productReference = C356E4651E5E5AC700E215CF /* PulseTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C356E4491E5E5AC700E215CF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Mentor Ventures, Inc.";
+				TargetAttributes = {
+					C356E4501E5E5AC700E215CF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = DJA66YV6UA;
+						ProvisioningStyle = Manual;
+					};
+					C356E4641E5E5AC700E215CF = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = DJA66YV6UA;
+						ProvisioningStyle = Automatic;
+						TestTargetID = C356E4501E5E5AC700E215CF;
+					};
+				};
+			};
+			buildConfigurationList = C356E44C1E5E5AC700E215CF /* Build configuration list for PBXProject "Pulse" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C356E4481E5E5AC700E215CF;
+			productRefGroup = C356E4521E5E5AC700E215CF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C356E4501E5E5AC700E215CF /* Pulse */,
+				C356E4641E5E5AC700E215CF /* PulseTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C356E44F1E5E5AC700E215CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C356E45F1E5E5AC700E215CF /* LaunchScreen.storyboard in Resources */,
+				C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */,
+				C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C356E4631E5E5AC700E215CF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E92DED31E8A531D9964A9DB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		116A46153B1FA2F87B84FFDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		17F883A83FDF5F03B7ABAB84 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pulse/Pods-Pulse-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		31520C5B2575F8AFC5B208A7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5B92594D8DFF0190E2D06C47 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Pulse/Pods-Pulse-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9A8277112F3757A5515BE40D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C356E44D1E5E5AC700E215CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C356E4571E5E5AC700E215CF /* ViewController.swift in Sources */,
+				C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C356E4611E5E5AC700E215CF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C356E46A1E5E5AC700E215CF /* PulseTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C356E4671E5E5AC700E215CF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C356E4501E5E5AC700E215CF /* Pulse */;
+			targetProxy = C356E4661E5E5AC700E215CF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C356E4581E5E5AC700E215CF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C356E4591E5E5AC700E215CF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C356E45E1E5E5AC700E215CF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C356E46C1E5E5AC700E215CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C356E46D1E5E5AC700E215CF /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store";
+		};
+		C356E46F1E5E5AC700E215CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F3FA4F62BFA221A8EDC4ED2E /* Pods-Pulse.debug.xcconfig */;
+			buildSettings = {
+				APP_DISPLAY_NAME = "Pulse Debug";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.pulse.debug;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3830ffea-cf61-4c94-bc2c-dd099b389b6a";
+				PROVISIONING_PROFILE_SPECIFIER = "Pulse Debug Profile";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		C356E4701E5E5AC700E215CF /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F67322735BD25BB6E6F29BAC /* Pods-Pulse.app store.xcconfig */;
+			buildSettings = {
+				APP_DISPLAY_NAME = Pulse;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.pulse;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a34346ad-1672-4c60-a8ac-92ff033d78a4";
+				PROVISIONING_PROFILE_SPECIFIER = "Pulse App Store Profile";
+				SWIFT_VERSION = 3.0;
+			};
+			name = "App Store";
+		};
+		C356E4721E5E5AC700E215CF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CEB9EEE513F1EE621126873 /* Pods-PulseTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = PulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.PulseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/Pulse";
+			};
+			name = Debug;
+		};
+		C356E4731E5E5AC700E215CF /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DC0A8A94D9A36B527CDF315 /* Pods-PulseTests.app store.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = PulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.PulseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/Pulse";
+			};
+			name = "App Store";
+		};
+		C356E4741E5E5E3600E215CF /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		C356E4751E5E5E3600E215CF /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EEAB773F152D679309D9156E /* Pods-Pulse.staging.xcconfig */;
+			buildSettings = {
+				APP_DISPLAY_NAME = "Pulse Staging";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.pulse.staging;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "e9f9b7aa-1a97-4650-946f-ce934951442f";
+				PROVISIONING_PROFILE_SPECIFIER = "Pulse Staging Profile";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Staging;
+		};
+		C356E4761E5E5E3600E215CF /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F7A72D97BDA05B27204B17D /* Pods-PulseTests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = PulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.PulseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/Pulse";
+			};
+			name = Staging;
+		};
+		C356E4771E5E5E3D00E215CF /* Local */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Local;
+		};
+		C356E4781E5E5E3D00E215CF /* Local */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */;
+			buildSettings = {
+				APP_DISPLAY_NAME = "Pulse Local";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.pulse.local;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "206c4510-f749-48f7-ac96-ba3e40d8fbcf";
+				PROVISIONING_PROFILE_SPECIFIER = "Pulse Local Profile";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Local;
+		};
+		C356E4791E5E5E3D00E215CF /* Local */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B0AED16B1455F81351B2DD3A /* Pods-PulseTests.local.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = PulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.PulseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/Pulse";
+			};
+			name = Local;
+		};
+		C356E47A1E5E5E4800E215CF /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Production;
+		};
+		C356E47B1E5E5E4800E215CF /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */;
+			buildSettings = {
+				APP_DISPLAY_NAME = "Pulse Production";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.pulse.production;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "a1dcc75f-fcad-4d76-8ee0-a9b5345f497b";
+				PROVISIONING_PROFILE_SPECIFIER = "Pulse Production Profile";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Production;
+		};
+		C356E47C1E5E5E4800E215CF /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = PulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.PulseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/Pulse";
+			};
+			name = Production;
+		};
+		C356E47D1E5E5E5100E215CF /* Beta */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Beta;
+		};
+		C356E47E1E5E5E5100E215CF /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F91BFCFE8C1C83B1CDCB955 /* Pods-Pulse.beta.xcconfig */;
+			buildSettings = {
+				APP_DISPLAY_NAME = "Pulse Beta";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = Pulse/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.pulse.beta;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "364e48fa-fa2c-4952-b1bd-34d0315f1afc";
+				PROVISIONING_PROFILE_SPECIFIER = "Pulse Beta Profile";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Beta;
+		};
+		C356E47F1E5E5E5100E215CF /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ADC8528A2061116A0DB3806 /* Pods-PulseTests.beta.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = DJA66YV6UA;
+				INFOPLIST_FILE = PulseTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.PulseTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pulse.app/Pulse";
+			};
+			name = Beta;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C356E44C1E5E5AC700E215CF /* Build configuration list for PBXProject "Pulse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C356E46C1E5E5AC700E215CF /* Debug */,
+				C356E4771E5E5E3D00E215CF /* Local */,
+				C356E4741E5E5E3600E215CF /* Staging */,
+				C356E47A1E5E5E4800E215CF /* Production */,
+				C356E46D1E5E5AC700E215CF /* App Store */,
+				C356E47D1E5E5E5100E215CF /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "App Store";
+		};
+		C356E46E1E5E5AC700E215CF /* Build configuration list for PBXNativeTarget "Pulse" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C356E46F1E5E5AC700E215CF /* Debug */,
+				C356E4781E5E5E3D00E215CF /* Local */,
+				C356E4751E5E5E3600E215CF /* Staging */,
+				C356E47B1E5E5E4800E215CF /* Production */,
+				C356E4701E5E5AC700E215CF /* App Store */,
+				C356E47E1E5E5E5100E215CF /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "App Store";
+		};
+		C356E4711E5E5AC700E215CF /* Build configuration list for PBXNativeTarget "PulseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C356E4721E5E5AC700E215CF /* Debug */,
+				C356E4791E5E5E3D00E215CF /* Local */,
+				C356E4761E5E5E3600E215CF /* Staging */,
+				C356E47C1E5E5E4800E215CF /* Production */,
+				C356E4731E5E5AC700E215CF /* App Store */,
+				C356E47F1E5E5E5100E215CF /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = "App Store";
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C356E4491E5E5AC700E215CF /* Project object */;
+}

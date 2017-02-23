@@ -1,0 +1,31 @@
+PODS:
+  - Crashlytics (3.8.3):
+    - Fabric (~> 1.6.3)
+  - Device (2.0.1)
+  - Fabric (1.6.11)
+  - KeychainAccess (3.0.1)
+  - KGHitTestingViews (0.9.5)
+  - Nuke (5.0.1)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Device
+  - Fabric
+  - KeychainAccess
+  - KGHitTestingViews
+  - Nuke
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Device: 7dd12a4fc8a72a90211f2c9ac8975a728322a148
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
+  KGHitTestingViews: 34a1c05a3ec0778ca8c46fadf994c9292c56f374
+  Nuke: d47030a761bdd0f7589a734a90819d71eda2500d
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: f15198d7d8d5a3da7f7f20d64a7048bbddf35221
+
+COCOAPODS: 1.0.1

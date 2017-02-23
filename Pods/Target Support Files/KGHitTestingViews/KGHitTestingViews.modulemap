@@ -1,0 +1,6 @@
+framework module KGHitTestingViews {
+  umbrella header "KGHitTestingViews-umbrella.h"
+
+  export *
+  module * { export * }
+}
