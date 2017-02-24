@@ -76,10 +76,7 @@ extension Task: PulseType {
         task.status = status
         task.update_day = update_day
         task.dueDate = dueDate
-        
-        // TODO: Set completion percentage
-        // task.completionPercentage = completionPercentage
-        
+        task.completionPercentage = completionPercentage
         
         if let assigneesJSON = json["assignees"] as? [[String: AnyObject]] {
             assigneesJSON.forEach({ assigneeJSON in
