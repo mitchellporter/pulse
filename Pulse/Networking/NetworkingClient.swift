@@ -48,6 +48,8 @@ class NetworkingClient: NSObject {
             }
         }
         
+        print(request.url)
+        
         self.session.dataTask(with: request as URLRequest) { (data, response, error) in
             if let error = error {
                 self.handleNetworkFailure(error: error, success: success, failure: failure)
