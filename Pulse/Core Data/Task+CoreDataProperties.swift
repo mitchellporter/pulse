@@ -17,13 +17,14 @@ extension Task {
     }
 
     @NSManaged public var objectId: String
-    @NSManaged public var createdAt: NSDate?
-    @NSManaged public var updatedAt: NSDate?
+    @NSManaged public var createdAt: Date?
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var title: String
-    @NSManaged public var dueDate: NSDate?
+    @NSManaged public var completionPercentage: Float
+    @NSManaged public var dueDate: Date?
     @NSManaged public var update_day: String
     @NSManaged public var status: String
-    @NSManaged public var assigner: User
+    @NSManaged public var assigner: User?
     @NSManaged public var assignees: NSSet
     @NSManaged public var items: NSSet
 
