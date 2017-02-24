@@ -95,8 +95,6 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks"
         case .getTasksCreatedByUser:
             return "/api/\(PulseAPI.apiVersion)/tasks/"
-        case .createTask:
-            return "/api/\(PulseAPI.apiVersion)/tasks/"
         case let .editTask(taskId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .finishTask(taskId):
