@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum WeekDay {
+enum WeekDay: String {
     case monday
     case wednesday
     case friday
@@ -51,7 +51,7 @@ enum PulseAPI {
     case finishTaskItem(taskId: String, itemId: String) //
     
     // Team members
-    case getTeamMembers(teamId: String)
+    case getTeamMembers(teamId: String, offset: Int)
 }
 
 extension PulseAPI {
@@ -105,8 +105,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .finishTaskItem(taskId, itemId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
-        case let .getTeamMembers(teamId):
-            return "/api/\(PulseAPI.apiVersion)/team/\(teamId)/members/"
+        case let .getTeamMembers(teamId, _):
+            return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
         }
     }
 }
@@ -130,20 +130,38 @@ extension PulseAPI {
 }
 
 extension PulseAPI {
-    var parameters: [String: AnyHashable]? {
+    var parameters: [String: AnyObject]? {
         switch self {
         case let .getTasksCreatedByUser(assignerId, offset):
             return [
-                "assigner": assignerId,
-                "offset": offset,
-                "limit": 25
+                "assigner": assignerId as AnyObject,
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
             ]
         case let .getTasksAssignedToUser(assigneeId, offset):
             return [
-                "assignee": assigneeId,
-                "offset": offset,
-                "limit": 25
+                "assignee": assigneeId as AnyObject,
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
             ]
+        case let .createTask(title, items, assignees, dueDate, updateDay):
+            var params = [
+                "title": title as AnyObject,
+                "items": items as AnyObject,
+                "assignees": assignees as AnyObject,
+                "update_day": updateDay.rawValue as AnyObject
+            ] as [String : AnyObject]
+            if let dueDate = dueDate {
+                params["due_date"] = dueDate.timeIntervalSince1970 as AnyObject
+            }
+            return params as [String : AnyObject]
+            
+        case let .getTeamMembers(_, offset):
+            return [
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
+            ]
+            
                default: return nil
         }
     }
