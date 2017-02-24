@@ -11,6 +11,9 @@ import UIKit
 class ViewTaskViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var backButton: Button!
+    @IBOutlet weak var updateButton: Button!
+    @IBOutlet weak var doneButton: Button!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,22 @@ class ViewTaskViewController: UIViewController {
         self.tableView.estimatedRowHeight = 70
         
         self.tableView.dataSource = self
+    }
+    
+    @IBAction func updateButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        if self.navigationController != nil {
+            _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 }
