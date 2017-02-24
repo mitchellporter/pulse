@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-MR-OKd" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-MR-OKd" customClass="Button" customModule="Pulse" customModuleProvider="target">
                         <rect key="frame" x="18" y="24" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="6lW-vH-4gy"/>
@@ -53,6 +53,10 @@
                     <constraint firstItem="bqT-1i-Q0S" firstAttribute="leading" secondItem="hdy-MR-OKd" secondAttribute="trailing" constant="18" id="pwY-oP-u2d"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="button" destination="hdy-MR-OKd" id="BwH-jb-uI6"/>
+                <outlet property="label" destination="bqT-1i-Q0S" id="2t0-0D-00I"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

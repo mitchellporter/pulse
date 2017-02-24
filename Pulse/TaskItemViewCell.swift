@@ -15,16 +15,16 @@ protocol TaskItemCellDelegate: class {
 protocol TaskItemCell: class {
     weak var delegate: TaskItemCellDelegate? { get set }
     func load(item: Item)
+    var state: CellState { get set }
+}
+enum CellState: Int {
+    case selected
+    case unselected
 }
 
 class TaskItemViewCell: UITableViewCell, TaskItemCell {
     
     weak var delegate: TaskItemCellDelegate?
-    
-    enum CellState: Int {
-        case selected
-        case unselected
-    }
     
     @IBOutlet weak var button: Button!
     @IBOutlet weak var label: UILabel!

@@ -24,7 +24,7 @@ class TaskViewController: UIViewController {
     
     var tableViewDatasource: TaskViewControllerDatasource = TaskViewControllerDatasource()
     var fetchedResultsController: NSFetchedResultsController<Task>!
-    private var modeSelected: ViewMode = .myTasks {
+    fileprivate var modeSelected: ViewMode = .myTasks {
         didSet {
             if oldValue != self.modeSelected {
                 self.updateView(mode: self.modeSelected)
@@ -112,7 +112,8 @@ class TaskViewController: UIViewController {
 extension TaskViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "viewTask", sender: nil)
+        let segueID: String = self.modeSelected == .myTasks ? "viewTask" : "editTask"
+        self.performSegue(withIdentifier: segueID, sender: nil)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
