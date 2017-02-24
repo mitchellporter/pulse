@@ -28,8 +28,8 @@ class ViewTaskViewController: UIViewController {
     
 
     private func setupTableView() {
-        let cell: UINib = UINib(nibName: "TaskItemCell", bundle: nil)
-        self.tableView.register(cell, forCellReuseIdentifier: "itemCell")
+        let cell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
+        self.tableView.register(cell, forCellReuseIdentifier: "itemViewCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
         
@@ -61,8 +61,8 @@ extension ViewTaskViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: TaskItemCell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as? TaskItemCell else {
-            return tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath)
+        guard let cell: TaskItemCell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as? TaskItemVIewCell else {
+            return tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath)
         }
         
         return cell

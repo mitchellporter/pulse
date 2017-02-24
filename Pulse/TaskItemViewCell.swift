@@ -8,7 +8,18 @@
 
 import UIKit
 
-class TaskItemCell: UITableViewCell {
+protocol TaskItemCellDelegate: class {
+    func taskUpdated(item: Item)
+}
+
+protocol TaskItemCell: class {
+    weak var delegate: TaskItemCellDelegate? { get set }
+    func load(item: Item)
+}
+
+class TaskItemViewCell: UITableViewCell, TaskItemCell {
+    
+    weak var delegate: TaskItemCellDelegate?
     
     enum CellState: Int {
         case selected

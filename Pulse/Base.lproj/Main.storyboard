@@ -267,10 +267,10 @@
             </objects>
             <point key="canvasLocation" x="889" y="643"/>
         </scene>
-        <!--View Controller-->
+        <!--Edit Task View Controller-->
         <scene sceneID="RY4-gd-FXm">
             <objects>
-                <viewController id="8rE-5M-G2m" sceneMemberID="viewController">
+                <viewController id="8rE-5M-G2m" customClass="EditTaskViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Dyh-re-5iA"/>
                         <viewControllerLayoutGuide type="bottom" id="lKk-eQ-ple"/>
