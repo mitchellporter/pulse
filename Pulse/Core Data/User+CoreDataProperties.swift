@@ -24,6 +24,7 @@ extension User {
     @NSManaged public var position: String
     @NSManaged public var createdTasks: NSSet
     @NSManaged public var receivedTasks: NSSet
+    @NSManaged public var team: Team?
 
 }
 

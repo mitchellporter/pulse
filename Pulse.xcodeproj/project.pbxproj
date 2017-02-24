@@ -12,6 +12,9 @@
 		C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */; };
 		C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */; };
 		C1629A901E5F65CE00EC91B0 /* TaskState.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A8F1E5F65CE00EC91B0 /* TaskState.swift */; };
+		C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */; };
+		C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */; };
+		C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */; };
 		C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4541E5E5AC700E215CF /* AppDelegate.swift */; };
 		C356E4571E5E5AC700E215CF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4561E5E5AC700E215CF /* ViewController.swift */; };
 		C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C356E4581E5E5AC700E215CF /* Main.storyboard */; };
@@ -55,6 +58,9 @@
 		C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		C1629A8F1E5F65CE00EC91B0 /* TaskState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskState.swift; sourceTree = "<group>"; };
+		C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamService.swift; path = Networking/Services/TeamService.swift; sourceTree = "<group>"; };
+		C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataClass.swift"; path = "Core Data/Team+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataProperties.swift"; path = "Core Data/Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C356E4511E5E5AC700E215CF /* Pulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356E4541E5E5AC700E215CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C356E4561E5E5AC700E215CF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -177,6 +183,8 @@
 		C356E4AF1E5F64A700E215CF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */,
+				C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */,
 				C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */,
 				C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */,
 				C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */,
@@ -204,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				C356E4C71E5FC52600E215CF /* TaskService.swift */,
+				C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -422,11 +431,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C356E4571E5E5AC700E215CF /* ViewController.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
+				C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
 				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,
@@ -436,6 +447,7 @@
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,
 				C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,
+				C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */,
 				C1629A901E5F65CE00EC91B0 /* TaskState.swift in Sources */,
 				C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */,
 			);
