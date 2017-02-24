@@ -11,6 +11,7 @@ import UIKit
 class ViewTaskViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var bottomMenu: UIView!
     @IBOutlet weak var backButton: Button!
     @IBOutlet weak var updateButton: Button!
     @IBOutlet weak var doneButton: Button!
