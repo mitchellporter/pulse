@@ -21,4 +21,5 @@ extension Item {
     @NSManaged public var updatedAt: Date?
     @NSManaged public var text: String
     @NSManaged public var task: Task
+    @NSManaged public var completed: Bool
 }

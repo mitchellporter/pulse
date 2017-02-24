@@ -20,16 +20,16 @@ class TaskItemCell: UITableViewCell {
 
     var state: CellState = .unselected {
         didSet {
-            self.change(state: self.state)
+            self.update(state: self.state)
         }
     }
     
     func load(item: Item) {
-        // Set state
+        self.state = item.completed == true ? .selected : .unselected
         self.label.text = item.text
     }
     
-    private func change(state: CellState) {
+    private func update(state: CellState) {
         self.button.borderColor = state == .selected ? UIColor("") : UIColor.white
         let image: UIImage? = state == .selected ? #imageLiteral(resourceName: "GreenCheck") : nil
         self.button.setImage(image, for: .normal)
