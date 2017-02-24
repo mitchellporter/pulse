@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum WeekDay {
+enum WeekDay: String {
     case monday
     case wednesday
     case friday
@@ -130,20 +130,33 @@ extension PulseAPI {
 }
 
 extension PulseAPI {
-    var parameters: [String: AnyHashable]? {
+    var parameters: [String: AnyObject]? {
         switch self {
         case let .getTasksCreatedByUser(assignerId, offset):
             return [
-                "assigner": assignerId,
-                "offset": offset,
-                "limit": 25
+                "assigner": assignerId as AnyObject,
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
             ]
         case let .getTasksAssignedToUser(assigneeId, offset):
             return [
-                "assignee": assigneeId,
-                "offset": offset,
-                "limit": 25
+                "assignee": assigneeId as AnyObject,
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
             ]
+//        case createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDay: WeekDay) //
+
+        case let .createTask(title, items, assignees, dueDate, updateDay):
+            var params = [
+                "title": title as AnyObject,
+                "items": items as AnyObject,
+                "assignees": assignees as AnyObject,
+                "update_day": updateDay.rawValue as AnyObject
+            ] as [String : AnyObject]
+            if let dueDate = dueDate {
+                params["due_date"] = dueDate.timeIntervalSince1970 as AnyObject
+            }
+            return params as [String : AnyObject]
                default: return nil
         }
     }

@@ -14,6 +14,17 @@ public class Item: NSManagedObject {
 
 }
 
+enum ItemStatus: String {
+    case inProgress = "in_progress"
+    case completed
+}
+
+extension Item {
+    var itemStatus: ItemStatus {
+        return ItemStatus(rawValue: self.status)!
+    }
+}
+
 extension Item: PulseType {
     typealias T = Item
     
