@@ -134,91 +134,19 @@ extension PulseAPI {
 extension PulseAPI {
     var parameters: [String: AnyHashable]? {
         switch self {
-        case let .Login(username, password):
+        case let .getTasksCreatedByUser(assignerId, offset):
             return [
-                "username": username,
-                "password": password
-            ]
-        case let .Signup(username, password):
-            return [
-                "username": username,
-                "password": password
-            ]
-        case let .CreateProject(name, color, nil):
-            return [
-                "name": name ,
-                "color": color
-            ]
-        case let .CreateProject(name, color, dueDate?):
-            return [
-                "name": name,
-                "color": color,
-                "due_date": dueDate
-            ]
-        case let .GetProjects(offset):
-            return [
+                "assigner": assignerId,
                 "offset": offset,
                 "limit": 25
             ]
-        case let .CreateTask(_, assigneeId, title, details, dueDate, reward, progressUpdateFrequency):
-            var params: [String: AnyHashable] = [
+        case let .getTasksAssignedToUser(assigneeId, offset):
+            return [
                 "assignee": assigneeId,
-                "title": title,
-                "details": details,
-                ]
-            if let dueDate = dueDate {
-                params["due_date"] = dueDate
-            }
-            
-            if let reward = reward {
-                params["reward"] = reward
-            }
-            
-            if let progressUpdateFrequency = progressUpdateFrequency {
-                params["progress_update_frequency"] = progressUpdateFrequency
-            }
-            return params
-        case let .GetTasks(_, offset):
-            return [
                 "offset": offset,
                 "limit": 25
             ]
-        case let .GetTasksCreatedByUser(userId, offset):
-            return [
-                "assigner": userId,
-                "offset": offset,
-                "limit": 25
-            ]
-        case let .GetTasksAssignedToUser(userId, offset):
-            return [
-                "assignee": userId,
-                "offset": offset,
-                "limit": 25
-            ]
-        case let .CreateProjectChatMessage(_, text):
-            return [
-                "text": text
-            ]
-        case let .CreateTaskChatMessage(_, text):
-            return [
-                "text": text
-            ]
-        case let .GetTeamMembers(_, offset):
-            return [
-                "offset": offset,
-                "limit": 25
-            ]
-        case let .GetProjectChatMessages(_, offset):
-            return [
-                "offset": offset,
-                "limit": 25
-            ]
-        case let .GetTaskChatMessages(_, offset):
-            return [
-                "offset": offset,
-                "limit": 25
-            ]
-        default: return nil
+               default: return nil
         }
     }
 }
