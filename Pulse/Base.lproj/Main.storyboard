@@ -134,7 +134,7 @@
                                 <rect key="frame" x="0.0" y="602" width="375" height="65"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="zHL-eR-TPi">
-                                        <rect key="frame" x="34.5" y="17" width="306" height="30"/>
+                                        <rect key="frame" x="35" y="17" width="306" height="30"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Piz-7U-zZe" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="133" height="30"/>
