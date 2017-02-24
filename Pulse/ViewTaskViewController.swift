@@ -61,7 +61,7 @@ extension ViewTaskViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: TaskItemCell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as? TaskItemVIewCell else {
+        guard let cell: TaskItemViewCell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as? TaskItemViewCell else {
             return tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath)
         }
         
