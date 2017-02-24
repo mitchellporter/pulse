@@ -14,12 +14,16 @@ public class Task: NSManagedObject {
 
 }
 
+enum TaskStatus: String {
+    case pending
+    case needsUpdate
+    case updated
+    case due
+    case inProgress = "in_progress"
+    case completed
+}
+
 extension Task {
-    enum TaskStatus: String {
-        case pending
-        case inProgress = "in_progress"
-        case completed
-    }
     
     var taskStatus: TaskStatus {
         return TaskStatus(rawValue: self.status)!

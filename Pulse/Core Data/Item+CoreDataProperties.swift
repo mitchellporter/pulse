@@ -22,4 +22,5 @@ extension Item {
     @NSManaged public var status: String
     @NSManaged public var text: String
     @NSManaged public var task: Task
+    @NSManaged public var completed: Bool
 }
