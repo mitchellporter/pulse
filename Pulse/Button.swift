@@ -23,13 +23,18 @@ class Button: KGHitTestingButton {
     
     override func prepareForInterfaceBuilder() {
         
-        
+        //
         
     }
     
+    @IBInspectable var bounces: Bool = true
+    
     override var adjustsImageWhenHighlighted: Bool {
         get {
-            return false
+            if self.bounces {
+                return false
+            }
+            return super.adjustsImageWhenHighlighted
         }
         set {
             super.adjustsImageWhenHighlighted = newValue
@@ -60,6 +65,7 @@ class Button: KGHitTestingButton {
     }
     
     func animatePress() {
+        if !self.bounces { return }
         let ninetyPercent = CATransform3DMakeScale(0.9, 0.9, 1)
         UIView.animate(withDuration: 0.2, animations: {
             self.layer.transform = ninetyPercent
@@ -67,6 +73,7 @@ class Button: KGHitTestingButton {
     }
     
     func animateRelease() {
+        if !self.bounces { return }
         let oneHundredFivePercent = CATransform3DMakeScale(1.05, 1.05, 1)
         let ninetyFivePercent = CATransform3DMakeScale(0.95, 0.95, 1)
         UIView.animate(withDuration: 0.1, delay: 0.0, options: .allowUserInteraction, animations: {

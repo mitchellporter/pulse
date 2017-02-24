@@ -58,4 +58,8 @@ class TaskViewController: UIViewController {
     @IBAction func createdTasksPressed(_ sender: UIButton) {
         self.modeSelected = .createdTasks
     }
+    
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "create", sender: nil)
+    }
 }

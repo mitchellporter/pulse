@@ -81,6 +81,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JeC-a9-5zz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.066666666666666666" green="0.10196078431372549" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -104,6 +107,7 @@
                         <outlet property="tableView" destination="pIK-f4-jja" id="jum-as-bh1"/>
                         <segue destination="Pzw-db-Dix" kind="show" identifier="viewTask" id="XVE-wZ-co4"/>
                         <segue destination="8rE-5M-G2m" kind="show" identifier="editTask" id="JlE-aY-mzx"/>
+                        <segue destination="G4V-dw-zpV" kind="show" identifier="create" id="Fyo-YP-oKR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -148,6 +152,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eDT-Oz-DM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2929" y="-117"/>
+        </scene>
+        <!--CreateTask-->
+        <scene sceneID="ISZ-al-XBx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateTask" id="G4V-dw-zpV" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wq9-l2-cPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="643"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="RY4-gd-FXm">
