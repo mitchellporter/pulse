@@ -51,7 +51,7 @@ enum PulseAPI {
     case finishTaskItem(taskId: String, itemId: String) //
     
     // Team members
-    case getTeamMembers(teamId: String)
+    case getTeamMembers(teamId: String, offset: Int)
 }
 
 extension PulseAPI {
@@ -105,8 +105,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .finishTaskItem(taskId, itemId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
-        case let .getTeamMembers(teamId):
-            return "/api/\(PulseAPI.apiVersion)/team/\(teamId)/members/"
+        case let .getTeamMembers(teamId, _):
+            return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
         }
     }
 }
@@ -144,8 +144,6 @@ extension PulseAPI {
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject
             ]
-//        case createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDay: WeekDay) //
-
         case let .createTask(title, items, assignees, dueDate, updateDay):
             var params = [
                 "title": title as AnyObject,
@@ -157,6 +155,13 @@ extension PulseAPI {
                 params["due_date"] = dueDate.timeIntervalSince1970 as AnyObject
             }
             return params as [String : AnyObject]
+            
+        case let .getTeamMembers(_, offset):
+            return [
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
+            ]
+            
                default: return nil
         }
     }

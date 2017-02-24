@@ -12,8 +12,8 @@ import SwiftyJSON
 typealias UsersSuccessCompletion = (_ users: [User]) -> Void
 
 struct TeamService {
-    static func getTeamMembers(teamId: String, success: @escaping UsersSuccessCompletion, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .getTeamMembers(teamId: teamId), success: { (data) in
+    static func getTeamMembers(teamId: String, offset: Int, success: @escaping UsersSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getTeamMembers(teamId: teamId, offset: offset), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let usersJSON = json["team_members"].arrayObject {
