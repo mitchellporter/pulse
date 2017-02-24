@@ -35,7 +35,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.setupTableView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,7 +65,10 @@ class TaskViewController: UIViewController {
         self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
         let cell: UINib = UINib(nibName: "TaskCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "taskCell")
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 70
         
+        self.tableView.delegate = self
         self.tableView.dataSource = self.tableViewDatasource
     }
     
@@ -103,6 +106,14 @@ class TaskViewController: UIViewController {
         _ = self.fetchedResultsController.object(at: indexPath)
         // Setup cell
     }
+}
+
+extension TaskViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "viewTask", sender: nil)
+    }
+    
 }
 
 extension TaskViewController: NSFetchedResultsControllerDelegate {

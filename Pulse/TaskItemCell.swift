@@ -30,7 +30,7 @@ class TaskItemCell: UITableViewCell {
     }
     
     private func update(state: CellState) {
-        self.button.borderColor = state == .selected ? UIColor("") : UIColor.white
+        self.button.borderColor = state == .selected ? UIColor("2CB585") : UIColor.white
         let image: UIImage? = state == .selected ? #imageLiteral(resourceName: "GreenCheck") : nil
         self.button.setImage(image, for: .normal)
     }
