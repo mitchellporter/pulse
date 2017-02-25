@@ -13,6 +13,15 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomMenu: UIView!
     @IBOutlet weak var backButton: Button!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var updateButton: Button!
+    @IBOutlet weak var cancelButton: Button!
+    
+    fileprivate var editingTask: Bool = false {
+        didSet {
+            self.editTask()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +59,20 @@ class EditTaskViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    private func editTask() {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.backButton.alpha = self.editingTask ? 0 : 1
+            self.cancelButton.alpha = self.editingTask ? 1 : 0
+            self.titleLabel.alpha = self.editingTask ? 1 : 0
+            self.updateButton.alpha = self.editingTask ? 1 : 0
+        })
+    }
+    
+    @IBAction func cencelButtonPressed(_ sender: UIButton) {
+        self.view.endEditing(true)
+        self.editingTask = false
+    }
 }
 
 extension EditTaskViewController: UITableViewDataSource {
@@ -75,7 +98,7 @@ extension EditTaskViewController: UITableViewDataSource {
 
 extension EditTaskViewController: TaskItemCellDelegate {
     
-    func taskUpdated(item: Item) {
-        
+    func taskUpdated(item: String) {
+        self.editingTask = true
     }
 }

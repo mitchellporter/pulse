@@ -46,13 +46,8 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
         })
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        
-        self.textView.resignFirstResponder()
-    }
-    
     @IBAction func buttonPressed(_ sender: UIButton) {
         self.textView.becomeFirstResponder()
+        self.delegate?.taskUpdated(item: "")
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TaskItemCellDelegate: class {
-    func taskUpdated(item: Item)
+    func taskUpdated(item: String)
 }
 
 protocol TaskItemCell: class {
