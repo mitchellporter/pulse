@@ -12,12 +12,15 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
     
     @IBOutlet weak var button: Button!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var textView: UITextView!
     
     weak var delegate: TaskItemCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        self.textView.contentInset = UIEdgeInsets.zero
     }
     
     var state: CellState = .unselected {
@@ -28,7 +31,7 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
 
     func load(item: Item) {
         self.state = item.completed == true ? .selected : .unselected
-        self.label.text = item.text
+        self.textView.text = item.text
     }
     
     private func update(state: CellState) {
@@ -39,7 +42,17 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
         let image: UIImage? = state == .selected ? #imageLiteral(resourceName: "GreenCheck") : #imageLiteral(resourceName: "Combined Shape")
         self.button.setImage(image, for: .normal)
         UIView.animate(withDuration: 0.1, animations: {
-            self.label.alpha = state == .selected ? 0.34 : 1.0
+            self.textView.alpha = state == .selected ? 0.34 : 1.0
         })
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.textView.resignFirstResponder()
+    }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        self.textView.becomeFirstResponder()
     }
 }

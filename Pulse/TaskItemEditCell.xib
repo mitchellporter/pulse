@@ -35,28 +35,44 @@
                                 <real key="value" value="14"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="buttonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WOY-N6-1Q5"/>
+                        </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-1i-Q0S">
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-1i-Q0S">
                         <rect key="frame" x="64" y="20" width="293" height="88.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-dZ-QRz">
+                        <rect key="frame" x="60" y="13" width="299" height="96"/>
+                        <color key="backgroundColor" red="0.066666666669999999" green="0.1019607843" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <color key="backgroundColor" red="0.066666666666666666" green="0.10196078431372549" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="bqT-1i-Q0S" secondAttribute="bottom" constant="20" id="1n8-hr-jKY"/>
                     <constraint firstItem="hdy-MR-OKd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="8Zs-u2-HEb"/>
+                    <constraint firstAttribute="bottom" secondItem="hhf-dZ-QRz" secondAttribute="bottom" constant="20" id="Gos-7s-A2r"/>
                     <constraint firstItem="bqT-1i-Q0S" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Tpu-Sm-6RU"/>
+                    <constraint firstItem="hhf-dZ-QRz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="YXn-5x-H2Q"/>
                     <constraint firstAttribute="trailing" secondItem="bqT-1i-Q0S" secondAttribute="trailing" constant="18" id="cSx-r5-TVh"/>
+                    <constraint firstAttribute="trailing" secondItem="hhf-dZ-QRz" secondAttribute="trailing" constant="16" id="fi0-lh-Sj5"/>
                     <constraint firstItem="hdy-MR-OKd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="ibd-Wp-JSa"/>
+                    <constraint firstItem="hhf-dZ-QRz" firstAttribute="leading" secondItem="hdy-MR-OKd" secondAttribute="trailing" constant="14" id="pOs-Ra-9FF"/>
                     <constraint firstItem="bqT-1i-Q0S" firstAttribute="leading" secondItem="hdy-MR-OKd" secondAttribute="trailing" constant="18" id="pwY-oP-u2d"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="button" destination="hdy-MR-OKd" id="BwH-jb-uI6"/>
                 <outlet property="label" destination="bqT-1i-Q0S" id="2t0-0D-00I"/>
+                <outlet property="textView" destination="hhf-dZ-QRz" id="RwE-Lv-iHU"/>
             </connections>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
         </tableViewCell>
     </objects>
     <resources>
