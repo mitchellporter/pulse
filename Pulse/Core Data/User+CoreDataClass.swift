@@ -14,6 +14,12 @@ public class User: NSManagedObject {
 
 }
 
+extension User {
+    func currentUserId() -> String {
+        return "586ecdc0213f22d94db5ef7f"
+    }
+}
+
 extension User: PulseType {
     typealias T = User
     
