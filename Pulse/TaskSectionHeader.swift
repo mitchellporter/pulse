@@ -48,15 +48,6 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         case .pending:
             self.title = "NEW"
             self.markerColor = UIColor("FF5E5B")
-        case .needsUpdate:
-            self.title = "STATUS UPDATE REQUIRED"
-            self.markerColor = UIColor("F8C01C")
-        case .updated:
-            self.title = "UPDATED STATUS"
-            self.markerColor = UIColor("1AB17C")
-        case .due:
-            self.title = "TASKS DUE"
-            self.markerColor = UIColor("FFD800")
         case .inProgress:
             self.title = "TASKS IN PROGRESS"
             self.markerColor = UIColor("3EAEFF")

@@ -23,7 +23,6 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var createdTasksButton: Button!
     
     var tableViewDatasource: TaskViewControllerDatasource = TaskViewControllerDatasource()
-    var fetchedResultsController: NSFetchedResultsController<Task>!
     private var modeSelected: ViewMode = .myTasks {
         didSet {
             if oldValue != self.modeSelected {
@@ -35,24 +34,12 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        let predicate = NSPredicate(format: "assignee.objectId == %@", User.currentUser()!.objectId)
-//        self.fetchedResultsController.fetchRequest.predicate = predicate
-//        
-//        do {
-//            try self.fetchedResultsController.performFetch()
-//            self.tableView.reloadData()
-//        } catch {
-//            print("fetched results controller error: \(error)")
-//        }
-        
         self.setupCoreData()
         self.setupTableView()
         
         do {
-            print("objects before fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
             try self.tableViewDatasource.fetchedResultsController.performFetch()
-            print("objects after fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
-                            self.tableView.reloadData()
+            self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
         }
@@ -62,9 +49,7 @@ class TaskViewController: UIViewController {
             CoreDataStack.shared.saveContext()
             
             do {
-                print("objects before fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
                 try self.tableViewDatasource.fetchedResultsController.performFetch()
-                print("objects after fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
                 self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
@@ -110,12 +95,10 @@ class TaskViewController: UIViewController {
         request.sortDescriptors = [sort]
         
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
-        fetchedResultsController.delegate = self
-        self.fetchedResultsController = fetchedResultsController
         self.tableViewDatasource.fetchedResultsController = fetchedResultsController
         
         // TODO
-        self.updatePredicate(for: "")
+//        self.updatePredicate(for: "")
     }
     
     private func updatePredicate(for type: String) {
@@ -137,7 +120,7 @@ class TaskViewController: UIViewController {
     }
     
     func configure(cell: TaskCell, at indexPath: IndexPath) {
-        let task = self.fetchedResultsController.object(at: indexPath)
+        let task = self.tableViewDatasource.fetchedResultsController.object(at: indexPath)
         cell.load(task: task)
     }
 }
@@ -149,6 +132,7 @@ extension TaskViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        print("section: \(section)")
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
 //        header.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: tableView.frame.width, height: 30))
         header.load(status: .inProgress)
@@ -159,60 +143,4 @@ extension TaskViewController: UITableViewDelegate {
         return 30
     }
     
-}
-
-extension TaskViewController: NSFetchedResultsControllerDelegate {
-    
-    /*
-     Assume self has a property 'tableView' -- as is the case for an instance of a UITableViewController
-     subclass -- and a method configureCell:atIndexPath: which updates the contents of a given cell
-     with information from a managed object at the given index path in the fetched results controller.
-     */
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//        switch(type) {
-//        case .insert:
-//            self.tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-//            break
-//            
-//        case .delete:
-//            self.tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-//            break
-//        default:
-//            break
-//        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        let tableView: UITableView = self.tableView
-        guard let indexPath: IndexPath = indexPath else { return }
-        switch(type) {
-            
-        case .insert:
-//            tableView.insertRows(at: [indexPath], with: .fade)
-            break
-            
-        case .delete:
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-            break
-            
-        case .update:
-//            guard let cell = self.tableView.cellForRow(at: indexPath) as? TaskCell else { break }
-//            self.configure(cell: cell, at: indexPath)
-            break
-            
-        case .move:
-//            self.tableView.deleteRows(at: [indexPath], with: .fade)
-//            self.tableView.insertRows(at: [indexPath], with: .fade)
-            break
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.endUpdates()
-    }
 }

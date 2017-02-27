@@ -15,36 +15,22 @@ class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
     var dataType: Int = 0 {
         didSet {
             if oldValue != self.dataType {
-                
-//                self.setupCoreData()
             }
         }
     }
     
-    override init() {
-        super.init()
-        
-//        self.setupCoreData()
-    }
-    
-    private func setupCoreData() {
-        let request: NSFetchRequest<Task> = Task.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        request.sortDescriptors = [sort]
-        
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType), sectionNameKeyPath: "status", cacheName: nil)
-        // TODO
-        self.updatePredicate(for: "")
-    }
-    
     private func updatePredicate(for type: String) {
-        // TODO
         let predicate = NSPredicate(format: "ANY projects.objectId == ")
         self.fetchedResultsController.fetchRequest.predicate = predicate
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,9 +42,6 @@ class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
         guard let cell: TaskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as? TaskCell else {
             return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
         }
-        
-        
-        
         return cell
     }
 
