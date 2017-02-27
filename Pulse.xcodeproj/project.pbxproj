@@ -32,6 +32,10 @@
 		C1B86B241E60B51000A3182A /* TaskItemEditCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B86B221E60B51000A3182A /* TaskItemEditCell.xib */; };
 		C1B86B261E60C0FA00A3182A /* ViewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B251E60C0FA00A3182A /* ViewTaskViewController.swift */; };
 		C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B271E60E85200A3182A /* EditTaskViewController.swift */; };
+		C1B993221E64B20600A404C9 /* CreateTaskItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993201E64B20600A404C9 /* CreateTaskItemCell.swift */; };
+		C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993241E64B90100A404C9 /* CreateTaskItemCell.xib */; };
+		C1B993281E64CD1F00A404C9 /* CreateTaskAddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993261E64CD1F00A404C9 /* CreateTaskAddItemCell.swift */; };
+		C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */; };
 		C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */; };
 		C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DA11791E5FA85300AF752E /* CreateTask.storyboard */; };
 		C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */; };
@@ -134,6 +138,10 @@
 		C1B86B221E60B51000A3182A /* TaskItemEditCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemEditCell.xib; sourceTree = "<group>"; };
 		C1B86B251E60C0FA00A3182A /* ViewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewTaskViewController.swift; sourceTree = "<group>"; };
 		C1B86B271E60E85200A3182A /* EditTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditTaskViewController.swift; sourceTree = "<group>"; };
+		C1B993201E64B20600A404C9 /* CreateTaskItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskItemCell.swift; sourceTree = "<group>"; };
+		C1B993241E64B90100A404C9 /* CreateTaskItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskItemCell.xib; sourceTree = "<group>"; };
+		C1B993261E64CD1F00A404C9 /* CreateTaskAddItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskAddItemCell.swift; sourceTree = "<group>"; };
+		C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskAddItemCell.xib; sourceTree = "<group>"; };
 		C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C1DA11791E5FA85300AF752E /* CreateTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTask.storyboard; sourceTree = "<group>"; };
 		C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -279,9 +287,21 @@
 			path = UIAdditions;
 			sourceTree = "<group>";
 		};
+		C1B9931F1E64B1E000A404C9 /* CreateTaskViews */ = {
+			isa = PBXGroup;
+			children = (
+				C1B993201E64B20600A404C9 /* CreateTaskItemCell.swift */,
+				C1B993241E64B90100A404C9 /* CreateTaskItemCell.xib */,
+				C1B993261E64CD1F00A404C9 /* CreateTaskAddItemCell.swift */,
+				C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */,
+			);
+			name = CreateTaskViews;
+			sourceTree = "<group>";
+		};
 		C1DA11781E5FA7C100AF752E /* CreateTask */ = {
 			isa = PBXGroup;
 			children = (
+				C1B9931F1E64B1E000A404C9 /* CreateTaskViews */,
 				C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */,
 				C1DA117D1E5FA9BB00AF752E /* CreateTaskDateViewController.swift */,
 				C1DA117F1E5FA9C900AF752E /* CreateTaskAssignViewController.swift */,
@@ -572,10 +592,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1B86B241E60B51000A3182A /* TaskItemEditCell.xib in Resources */,
+				C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */,
 				C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */,
 				C356E45F1E5E5AC700E215CF /* LaunchScreen.storyboard in Resources */,
 				C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */,
 				C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */,
+				C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */,
 				C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */,
 				C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */,
 			);
@@ -715,6 +737,7 @@
 				C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
 				C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */,
+				C1B993221E64B20600A404C9 /* CreateTaskItemCell.swift in Sources */,
 				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
@@ -729,6 +752,7 @@
 				C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */,
 				C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */,
 				C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */,
+				C1B993281E64CD1F00A404C9 /* CreateTaskAddItemCell.swift in Sources */,
 				C19B74221E5F9337002D9352 /* TaskViewController.swift in Sources */,
 				C1629A9A1E5F715E00EC91B0 /* TaskSectionHeader.swift in Sources */,
 				C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */,

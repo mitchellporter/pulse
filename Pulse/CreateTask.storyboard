@@ -58,27 +58,36 @@
                                     <action selector="nextButtonPressed:" destination="l6Y-1H-bwV" eventType="touchUpInside" id="gcj-z0-Ik0"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aKi-Xp-DmC">
+                                <rect key="frame" x="0.0" y="48" width="375" height="619"/>
+                                <color key="backgroundColor" red="0.10196078431372549" green="0.69411764705882351" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.10196078431372549" green="0.69411764705882351" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="LDo-3b-2Gx" firstAttribute="top" secondItem="aKi-Xp-DmC" secondAttribute="bottom" id="1Ms-cT-RHN"/>
+                            <constraint firstAttribute="trailing" secondItem="aKi-Xp-DmC" secondAttribute="trailing" id="29r-QV-XBO"/>
                             <constraint firstItem="nnk-ci-BO1" firstAttribute="centerX" secondItem="EBg-BZ-Ck0" secondAttribute="centerX" id="7gX-rv-fnj"/>
                             <constraint firstItem="cg4-cO-fOJ" firstAttribute="top" secondItem="zQx-fw-L6p" secondAttribute="bottom" constant="24" id="7r8-Kr-RNz"/>
                             <constraint firstAttribute="trailing" secondItem="P2c-Dv-hiN" secondAttribute="trailing" constant="13" id="FBe-wH-Xhx"/>
                             <constraint firstItem="P2c-Dv-hiN" firstAttribute="top" secondItem="zQx-fw-L6p" secondAttribute="bottom" constant="20" id="Hnt-3Q-3vZ"/>
+                            <constraint firstItem="aKi-Xp-DmC" firstAttribute="top" secondItem="P2c-Dv-hiN" secondAttribute="bottom" id="SZh-PG-nYj"/>
                             <constraint firstItem="cg4-cO-fOJ" firstAttribute="leading" secondItem="EBg-BZ-Ck0" secondAttribute="leading" constant="18" id="eLo-dS-SS3"/>
                             <constraint firstItem="nnk-ci-BO1" firstAttribute="top" secondItem="zQx-fw-L6p" secondAttribute="bottom" constant="25" id="n8y-JJ-RXl"/>
+                            <constraint firstItem="aKi-Xp-DmC" firstAttribute="leading" secondItem="EBg-BZ-Ck0" secondAttribute="leading" id="rPx-dw-Hqw"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="cg4-cO-fOJ" id="9Cr-e3-LbC"/>
                         <outlet property="nextButton" destination="P2c-Dv-hiN" id="MbA-cC-P5T"/>
+                        <outlet property="tableView" destination="aKi-Xp-DmC" id="yx1-tK-yfh"/>
                         <segue destination="QD5-57-c55" kind="show" identifier="date" id="RPe-OS-Gry"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFW-d2-VGT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-689" y="110"/>
+            <point key="canvasLocation" x="-690.39999999999998" y="109.29535232383809"/>
         </scene>
         <!--Create Task Date View Controller-->
         <scene sceneID="6yU-W8-KdJ">
