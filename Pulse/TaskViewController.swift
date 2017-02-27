@@ -34,13 +34,44 @@ class TaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        let predicate = NSPredicate(format: "assignee.objectId == %@", User.currentUser()!.objectId)
+//        self.fetchedResultsController.fetchRequest.predicate = predicate
+//        
+//        do {
+//            try self.fetchedResultsController.performFetch()
+//            self.tableView.reloadData()
+//        } catch {
+//            print("fetched results controller error: \(error)")
+//        }
+        
+        self.setupCoreData()
         self.setupTableView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        
+        do {
+            print("objects before fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
+            try self.tableViewDatasource.fetchedResultsController.performFetch()
+            print("objects after fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
+            //                self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        TaskService.getTasksAssignedToUser(assigneeId: User.currentUserId(), offset: 0, success: { (tasks) in
+            
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                print("objects before fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
+                try self.tableViewDatasource.fetchedResultsController.performFetch()
+                print("objects after fetch: \(self.tableViewDatasource.fetchedResultsController.fetchedObjects?.count ?? 0)")
+//                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
     
     private func updateView(mode: ViewMode) {
@@ -77,18 +108,20 @@ class TaskViewController: UIViewController {
         let request: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sort]
-        let fetchedResultsController: NSFetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType), sectionNameKeyPath: nil, cacheName: nil)
+        
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
         fetchedResultsController.delegate = self
         self.fetchedResultsController = fetchedResultsController
         self.tableViewDatasource.fetchedResultsController = fetchedResultsController
+        
         // TODO
         self.updatePredicate(for: "")
     }
     
     private func updatePredicate(for type: String) {
         // TODO
-        let predicate = NSPredicate(format: "ANY projects.objectId == ")
-        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
+//        let predicate = NSPredicate(format: "ANY projects.objectId == %@")
+//        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
     }
 
     @IBAction func myTasksPressed(_ sender: UIButton) {

@@ -40,6 +40,9 @@ extension Item: PulseType {
     // TODO: Implement
     static func from(json: [String : AnyObject], context: NSManagedObjectContext) -> Item {
         let description = NSEntityDescription.entity(forEntityName: "Item", in: context)!
+        
+        
+        
         return Item(entity: description, insertInto: context)
     }
 }

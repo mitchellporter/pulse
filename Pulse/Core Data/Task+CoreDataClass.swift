@@ -34,7 +34,7 @@ extension Task: PulseType {
     typealias T = Task
     
     static func createFetchRequest<T>() -> NSFetchRequest<T> {
-        return NSFetchRequest(entityName: "Task")
+        return NSFetchRequest<T>(entityName: "Task")
     }
     
     // TODO: Implement
