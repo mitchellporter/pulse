@@ -32,7 +32,7 @@ class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sort]
         
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType), sectionNameKeyPath: nil, cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType), sectionNameKeyPath: "status", cacheName: nil)
         // TODO
         self.updatePredicate(for: "")
     }
@@ -44,11 +44,12 @@ class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultsController.sections?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
