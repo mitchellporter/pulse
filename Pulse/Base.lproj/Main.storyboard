@@ -322,7 +322,7 @@
                                                     <constraint firstAttribute="width" constant="133" id="hAn-2T-QD0"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                                <state key="normal" title="TASK IS DONE">
+                                                <state key="normal" title="EDIT DETAILS">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
