@@ -26,6 +26,31 @@ class UpdatesController: UIViewController {
         // Predicate ???
 //        let predicate = NSPredicate(format: "sender.id == %@ OR ANY receivers.id == %@", User.currentUserId(), User.currentUserId())
 //        self.fetchedResultsController.fetchRequest.predicate = predicate
+        
+        self.fetchUpdates()
+    }
+    
+    func fetchUpdates() {
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        UpdateService.getUpdates(offset: 0, success: { (tasks) in
+            
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
 }
 
