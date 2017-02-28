@@ -64,10 +64,9 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
         
         UIDevice.current.playInputClick()
     }
-    
+    // FADE LEFT ARROW BUTTON TO 0.24 ALPHA and disable when month is current.
     
     @IBOutlet weak var monthLabelButton: UIButton!
-    @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var backArrowButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -149,7 +148,7 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
         formatter.dateFormat = "MMMM"
         self.monthLabelButton.setTitle(formatter.string(from: self.currentDate), for: .normal)
         formatter.dateFormat = "YYYY"
-        self.yearLabel.text = formatter.string(from: self.currentDate)
+//        self.yearLabel.text = formatter.string(from: self.currentDate)
     }
     
     func setSelected(date: Date) {
