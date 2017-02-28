@@ -72,7 +72,7 @@ extension User: PulseType {
         if let assignedTasksJSON = json["received_tasks"] as? [[String: AnyObject]] {
             assignedTasksJSON.forEach({ assignedTaskJSON in
                 let task = Task.from(json: assignedTaskJSON, context: context) as Task
-                user.addToAssignedTasks(task)
+                user.addToReceivedTasks(task)
             })
         }
         
