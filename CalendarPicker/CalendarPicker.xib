@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarPicker" customModule="DateWork" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CalendarPicker" customModule="CalendarPicker" customModuleProvider="target">
             <connections>
                 <outlet property="arrowButton" destination="n9p-6X-t9i" id="wwS-6O-zUh"/>
                 <outlet property="backArrowButton" destination="3at-7J-Tof" id="hWt-1u-qn1"/>
@@ -110,7 +109,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.28627450980000002" green="0.30980392159999998" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="0.22134524828767124" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="BmA-lf-7gc" firstAttribute="leading" secondItem="dfH-sp-xla" secondAttribute="leading" id="6SQ-fV-wpI"/>
                         <constraint firstItem="BmA-lf-7gc" firstAttribute="top" secondItem="dfH-sp-xla" secondAttribute="top" id="CCf-IJ-cwO"/>
@@ -130,7 +129,7 @@
                             </constraints>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                             <state key="normal" title="&quot;&quot;">
-                                <color key="titleColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <state key="highlighted" title="November">
                                 <color key="titleColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -146,7 +145,7 @@
                                 <constraint firstAttribute="height" constant="50" id="TYg-iu-TGK"/>
                                 <constraint firstAttribute="width" constant="50" id="snp-Su-beT"/>
                             </constraints>
-                            <state key="normal" image="IconNextArrow">
+                            <state key="normal" image="RightArrow">
                                 <color key="titleColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -156,7 +155,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;&quot;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4i-9a-5BK">
                             <rect key="frame" x="181" y="62" width="14" height="17"/>
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                            <color key="textColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3at-7J-Tof">
@@ -165,7 +164,7 @@
                                 <constraint firstAttribute="width" constant="50" id="1t8-iF-DcL"/>
                                 <constraint firstAttribute="height" constant="50" id="CyU-9W-S5Q"/>
                             </constraints>
-                            <state key="normal" image="IconPreviousArrow">
+                            <state key="normal" image="LeftArrow">
                                 <color key="titleColor" red="0.30196078430000001" green="0.30196078430000001" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                             <connections>
@@ -173,7 +172,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="1" alpha="0.21711793664383561" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="5FL-0a-2tI" firstAttribute="centerY" secondItem="zJg-Ph-wLf" secondAttribute="centerY" constant="-8" id="11N-GT-kSQ"/>
                         <constraint firstAttribute="height" constant="105" id="5AU-V6-bv1"/>
@@ -187,7 +186,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="dfH-sp-xla" firstAttribute="width" secondItem="LrN-K5-D0n" secondAttribute="width" id="EWC-a0-6SP"/>
                 <constraint firstItem="LrN-K5-D0n" firstAttribute="top" secondItem="dfH-sp-xla" secondAttribute="bottom" id="Mpf-AF-Q31"/>
@@ -206,7 +205,7 @@
         </view>
     </objects>
     <resources>
-        <image name="IconNextArrow" width="12" height="16"/>
-        <image name="IconPreviousArrow" width="12" height="16"/>
+        <image name="LeftArrow" width="12" height="16"/>
+        <image name="RightArrow" width="12" height="16"/>
     </resources>
 </document>

@@ -38,6 +38,7 @@
 		C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */; };
 		C1B9932C1E660CE100A404C9 /* CreateTaskAssignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */; };
 		C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */; };
+		C1B9932F1E6623E100A404C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1B9932E1E6623E100A404C9 /* Assets.xcassets */; };
 		C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */; };
 		C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DA11791E5FA85300AF752E /* CreateTask.storyboard */; };
 		C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */; };
@@ -146,6 +147,7 @@
 		C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskAddItemCell.xib; sourceTree = "<group>"; };
 		C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskAssignCell.swift; sourceTree = "<group>"; };
 		C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskAssignCell.xib; sourceTree = "<group>"; };
+		C1B9932E1E6623E100A404C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C1DA11791E5FA85300AF752E /* CreateTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTask.storyboard; sourceTree = "<group>"; };
 		C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				C1629AB51E5F8ED100EC91B0 /* DateCell.xib */,
 				C1629AA21E5F8E1B00EC91B0 /* CalendarPicker.h */,
 				C1629AA31E5F8E1B00EC91B0 /* Info.plist */,
+				C1B9932E1E6623E100A404C9 /* Assets.xcassets */,
 			);
 			path = CalendarPicker;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1629AB71E5F8ED100EC91B0 /* CalendarPicker.xib in Resources */,
+				C1B9932F1E6623E100A404C9 /* Assets.xcassets in Resources */,
 				C1629ABA1E5F8ED100EC91B0 /* DateCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

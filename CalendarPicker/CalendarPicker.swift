@@ -50,7 +50,7 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
     }
     
     private func loadViewFromNib() -> UIView {
-        
+        self.backgroundColor = UIColor.clear
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "CalendarPicker", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil)[0] as! UIView
@@ -82,7 +82,8 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
             self.delegate?.dateSelected(date: self.selectedDate)
         }
     }
-    private let circle = UIImageView(image: UIImage(named: "HighlightOval"))
+    
+    private let circle: UIImageView = UIImageView()
     
     var enableInputClicksWhenVisible: Bool {
         return true
@@ -95,11 +96,15 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
     }
     
     private func setupAppearance() {
+        let bundle: Bundle = Bundle(for: type(of: self))
+        let image = UIImage(named: "HighlightOval", in: bundle, compatibleWith: nil)
+        self.circle.image = image
         self.updateMonth(newDate: self.currentDate)
     }
     
     private func setupCollectionView() {
-        let dateCell = UINib(nibName: "DateCell", bundle: nil)
+        let bundle: Bundle = Bundle(for: type(of: self))
+        let dateCell = UINib(nibName: "DateCell", bundle: bundle)
         self.collectionView.register(dateCell, forCellWithReuseIdentifier: "dateCell")
         self.collectionViewlayout.itemSize = CGSize(width: self.collectionView.bounds.width/7, height: self.collectionView.bounds.height/5)
     }
@@ -114,7 +119,8 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
         for i in 0...6 {
             guard let updatedWeekdayDate = calendar.date(byAdding: .weekday, value: (-weekdayComponent + 1 + i), to: today) else { return }
             let dayString = formatter.string(from: updatedWeekdayDate)
-            self.dayLabels[i].text = dayString
+            let upperDayString = dayString.uppercased()
+            self.dayLabels[i].text = upperDayString
         }
     }
     
@@ -177,7 +183,8 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
             self.circle.removeFromSuperview()
         } else {
             self.selectedDate = date
-            cell.addSubview(self.circle)
+            cell.insertSubview(self.circle, belowSubview: cell.dateLabel)
+//            cell.addSubview(self.circle)
             self.circle.frame.size = CGSize(width: cell.bounds.width*0.7169, height: cell.bounds.width*0.7169)
             self.circle.center = CGPoint(x: cell.bounds.midX, y: cell.bounds.midY)
             

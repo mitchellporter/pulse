@@ -8,12 +8,18 @@
 
 import UIKit
 
+protocol CreateTaskAssignCellDelegate: class {
+    func selectedAssignCell(_ cell: CreateTaskAssignCell)
+}
+
 class CreateTaskAssignCell: UITableViewCell {
     
     @IBOutlet weak var avatarView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var addButton: Button!
+    
+    weak var delegate: CreateTaskAssignCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +38,12 @@ class CreateTaskAssignCell: UITableViewCell {
     
     func load() {
         
+    }
+    
+    private func selectUser() {
+        
+        
+        self.delegate?.selectedAssignCell(self)
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
