@@ -21,7 +21,8 @@ class CreateTaskAddItemCell: UITableViewCell {
     @IBOutlet weak var addButton: Button!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var newItemTextView: UITextView!
-    
+    let descriptionColor: UIColor = UIColor(white: 1.0, alpha: 0.68)
+    let addItemColor: UIColor = UIColor(white: 1.0, alpha: 0.56)
     weak var delegate: CreateTaskAddItemCellDelegate?
 
     override func awakeFromNib() {
@@ -32,7 +33,8 @@ class CreateTaskAddItemCell: UITableViewCell {
     fileprivate func addItem() {
         if self.newItemTextView.text != kCreateTaskAddItemPlaceHolder && self.newItemTextView.text != "" {
             self.delegate?.addItemCell(self, addNew: newItemTextView.text)
-            newItemTextView.text = kCreateTaskAddItemPlaceHolder
+            self.newItemTextView.text = kCreateTaskAddItemPlaceHolder
+            self.newItemTextView.textColor = addItemColor
         } else {
             self.newItemTextView.becomeFirstResponder()
         }
@@ -74,6 +76,7 @@ extension CreateTaskAddItemCell: UITextViewDelegate {
         if textView.text == kCreateTaskDescriptionPlaceholder || textView.text == kCreateTaskAddItemPlaceHolder {
             if text != "" {
                 textView.text = ""
+                textView.textColor = UIColor.white
             }
         }
         return true
@@ -83,8 +86,10 @@ extension CreateTaskAddItemCell: UITextViewDelegate {
         if textView.text == "" {
             if textView == self.textView {
                 textView.text = kCreateTaskDescriptionPlaceholder
+                textView.textColor = descriptionColor
             } else if textView == self.newItemTextView {
                 textView.text = kCreateTaskAddItemPlaceHolder
+                textView.textColor = addItemColor
             }
         }
         

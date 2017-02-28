@@ -43,11 +43,11 @@
                             <action selector="addButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="0MO-iD-UdF"/>
                         </connections>
                     </button>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.68000000000000005" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Give this person a quick high level overview of what you need done." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-lO-BxZ">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Give this person a quick high level overview of what you need done." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-lO-BxZ">
                         <rect key="frame" x="20" y="8" width="337" height="64"/>
                         <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" white="1" alpha="0.68129280821917804" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                         <connections>
