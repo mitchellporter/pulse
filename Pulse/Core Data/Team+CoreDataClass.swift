@@ -33,11 +33,11 @@ extension Team: PulseType {
         
         var createdAt: Date?
         var updatedAt: Date?
-        if let createdAtTime = json["created_at"] as? Double {
-            createdAt = Date(timeIntervalSince1970: createdAtTime)
+        if let createdAtTime = json["created_at"] as? String {
+            createdAt = Date.from(createdAtTime)
         }
-        if let updatedAtTime = json["updated_at"] as? Double {
-            updatedAt = Date(timeIntervalSince1970: updatedAtTime)
+        if let updatedAtTime = json["updated_at"] as? String {
+            updatedAt = Date.from(updatedAtTime)
         }
         
         let domain = json["domain"] as! String
