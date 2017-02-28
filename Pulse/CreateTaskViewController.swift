@@ -52,8 +52,8 @@ class CreateTaskViewController: UIViewController {
         self.tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
     }
     
-    fileprivate func addNewItem() {
-        self.items.insert("", at: 0)
+    fileprivate func addNew(item: String) {
+        self.items.insert(item, at: 0)
         self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
     }
     
@@ -64,10 +64,6 @@ class CreateTaskViewController: UIViewController {
     
     fileprivate func update(item: String, at indexPath: IndexPath) {
         self.items[indexPath.row - 1] = item
-    }
-    
-    @IBAction func addItemButtonPressed(_ sender: UIButton) {
-        self.addNewItem()
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -99,9 +95,9 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate, 
         let cell: CreateTaskItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateItemCell", for: indexPath) as! CreateTaskItemCell
         cell.load(text: self.items[indexPath.row - 1], at: indexPath)
         cell.delegate = self
-        if indexPath.row == 1 && self.items[0] == "" {
-            cell.textView.becomeFirstResponder()
-        }
+//        if indexPath.row == 1 && self.items[0] == "" {
+//            cell.textView.becomeFirstResponder()
+//        }
         return cell
     }
     
@@ -116,10 +112,14 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate, 
     }
     
     func addItemCellPressed() {
-        self.addNewItem()
+        
     }
     
-    func addItemCell(_ cell: CreateTaskAddItemCell, didUpdate text: String) {
+    func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String) {
         //
+    }
+    
+    func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String) {
+        self.addNew(item: item)
     }
 }
