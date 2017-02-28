@@ -246,13 +246,13 @@
 			name = TaskViews;
 			sourceTree = "<group>";
 		};
-		C1629A981E5F713200EC91B0 /* Utilities */ = {
+		C1629A981E5F713200EC91B0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */,
 				C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */,
 			);
-			name = Utilities;
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		C1629AA11E5F8E1B00EC91B0 /* CalendarPicker */ = {
@@ -323,7 +323,7 @@
 				C356E4C31E5F757A00E215CF /* Networking */,
 				C356E4AF1E5F64A700E215CF /* Core Data */,
 				C356E4541E5E5AC700E215CF /* AppDelegate.swift */,
-				C1629A981E5F713200EC91B0 /* Utilities */,
+				C1629A981E5F713200EC91B0 /* Utils */,
 				C1629A971E5F712600EC91B0 /* TaskViews */,
 				C1DA11781E5FA7C100AF752E /* CreateTask */,
 				C19B74211E5F9337002D9352 /* TaskViewController.swift */,
