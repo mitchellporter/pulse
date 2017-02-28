@@ -31,6 +31,7 @@
         <relationship name="assignees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="receivedTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="assigner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="task" inverseEntity="Item" syncable="YES"/>
+        <relationship name="updates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" inverseName="task" inverseEntity="Update" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="objectId"/>
@@ -54,6 +55,24 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="Update" representedClassName="Update" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="receivers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="sentUpdates" inverseEntity="User" syncable="YES"/>
+        <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="requestedUpdates" inverseEntity="User" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="updates" inverseEntity="Task" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="objectId"/>
+            </compoundIndex>
+        </compoundIndexes>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="objectId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="avatarURL" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -63,6 +82,8 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="createdTasks" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assigner" inverseEntity="Task" syncable="YES"/>
         <relationship name="receivedTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignees" inverseEntity="Task" syncable="YES"/>
+        <relationship name="requestedUpdates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" inverseName="sender" inverseEntity="Update" syncable="YES"/>
+        <relationship name="sentUpdates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" inverseName="receivers" inverseEntity="Update" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="members" inverseEntity="Team" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -77,8 +98,9 @@
     </entity>
     <elements>
         <element name="Item" positionX="-9" positionY="144" width="128" height="150"/>
-        <element name="Task" positionX="-54" positionY="36" width="128" height="210"/>
+        <element name="Task" positionX="-54" positionY="36" width="128" height="225"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="180"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Update" positionX="-27" positionY="144" width="128" height="135"/>
     </elements>
 </model>
