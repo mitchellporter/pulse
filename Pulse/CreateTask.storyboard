@@ -243,8 +243,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IAe-ie-jbu">
-                                <rect key="frame" x="0.0" y="150" width="375" height="517"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IAe-ie-jbu">
+                                <rect key="frame" x="0.0" y="120" width="375" height="547"/>
                                 <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                         </subviews>
@@ -260,13 +260,15 @@
                             <constraint firstItem="3hX-uo-gFw" firstAttribute="centerX" secondItem="rz6-vP-Ov9" secondAttribute="centerX" id="hX5-af-jXh"/>
                             <constraint firstItem="FXb-5h-ou9" firstAttribute="top" secondItem="lcX-wL-o5b" secondAttribute="bottom" constant="20" id="jmQ-KT-CN0"/>
                             <constraint firstItem="ISY-wA-ZMU" firstAttribute="top" secondItem="lcX-wL-o5b" secondAttribute="bottom" constant="24" id="vsh-6H-rTp"/>
-                            <constraint firstItem="IAe-ie-jbu" firstAttribute="top" secondItem="3hX-uo-gFw" secondAttribute="bottom" constant="30" id="w5p-TB-N5o"/>
+                            <constraint firstItem="IAe-ie-jbu" firstAttribute="top" secondItem="3hX-uo-gFw" secondAttribute="bottom" id="w5p-TB-N5o"/>
                             <constraint firstItem="0Dk-S1-VPv" firstAttribute="centerX" secondItem="rz6-vP-Ov9" secondAttribute="centerX" id="xqQ-Gr-vdy"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="assignDescriptionLabel" destination="3hX-uo-gFw" id="gSi-Kw-01t"/>
                         <outlet property="backButton" destination="ISY-wA-ZMU" id="BJY-Fh-UpQ"/>
                         <outlet property="nextButton" destination="FXb-5h-ou9" id="eik-7h-sua"/>
+                        <outlet property="tableView" destination="IAe-ie-jbu" id="nfq-5r-Tfv"/>
                         <segue destination="cO5-8q-fZy" kind="show" identifier="updates" id="zQP-fT-eXs"/>
                     </connections>
                 </viewController>
