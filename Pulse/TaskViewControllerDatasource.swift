@@ -19,11 +19,6 @@ class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
         }
     }
     
-    private func updatePredicate(for type: String) {
-        let predicate = NSPredicate(format: "ANY projects.objectId == ")
-        self.fetchedResultsController.fetchRequest.predicate = predicate
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 0
     }
@@ -44,5 +39,4 @@ class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
         }
         return cell
     }
-
 }

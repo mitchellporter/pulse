@@ -36,27 +36,7 @@ class TaskViewController: UIViewController {
         
         self.setupCoreData()
         self.setupTableView()
-        
-        do {
-            try self.tableViewDatasource.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
-        } catch {
-            print("fetched results controller error: \(error)")
-        }
-        
-        TaskService.getTasksAssignedToUser(assigneeId: User.currentUserId(), offset: 0, success: { (tasks) in
-            
-            CoreDataStack.shared.saveContext()
-            
-            do {
-                try self.tableViewDatasource.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
+        self.fetchMyTasks()
     }
     
     private func updateView(mode: ViewMode) {
@@ -66,14 +46,16 @@ class TaskViewController: UIViewController {
             self.createdTasksButton.alpha = 0.3
             
             self.tableViewDatasource.dataType = mode.rawValue
-            // 
-            self.tableView.reloadData()
+            
+            self.fetchMyTasks()
+            
         case .createdTasks:
             self.createdTasksButton.alpha = 1
             self.myTasksButton.alpha = 0.3
             
             self.tableViewDatasource.dataType = mode.rawValue
-//            self.tableView.reloadData()
+            
+            self.fetchTasksCreated()
         }
     }
     
@@ -93,18 +75,68 @@ class TaskViewController: UIViewController {
         let request: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sort]
-        
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
         self.tableViewDatasource.fetchedResultsController = fetchedResultsController
-        
-        // TODO
-//        self.updatePredicate(for: "")
     }
     
-    private func updatePredicate(for type: String) {
-        // TODO
-//        let predicate = NSPredicate(format: "ANY projects.objectId == %@")
-//        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
+    private func fetchMyTasks() {
+        // TODO: Set the predicate
+        let predicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
+        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
+        
+        // Hit core data
+        do {
+            try self.tableViewDatasource.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        // Hit the network
+        TaskService.getTasksAssignedToUser(assigneeId: User.currentUserId(), offset: 0, success: { (tasks) in
+            
+            CoreDataStack.shared.saveContext()
+            
+            // Hit core data again
+            do {
+                try self.tableViewDatasource.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
+    }
+    
+    private func fetchTasksCreated() {
+        // TODO: Set the predicate
+        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
+        
+        // Hit core data
+        do {
+            try self.tableViewDatasource.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        // Hit the network
+        TaskService.getTasksCreatedByUser(assignerId: User.currentUserId(), offset: 0, success: { (tasks) in
+            
+            CoreDataStack.shared.saveContext()
+            
+            // Hit core data again
+            do {
+                try self.tableViewDatasource.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
 
     @IBAction func myTasksPressed(_ sender: UIButton) {
