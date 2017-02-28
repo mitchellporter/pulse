@@ -473,7 +473,7 @@
                                     <action selector="nextButtonPressed:" destination="JKF-gX-jdR" eventType="touchUpInside" id="ehH-F2-XOh"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3L0-rl-Tba">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3L0-rl-Tba">
                                 <rect key="frame" x="0.0" y="48" width="375" height="619"/>
                                 <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
@@ -495,6 +495,7 @@
                     <connections>
                         <outlet property="backButton" destination="evV-so-fPa" id="243-jm-Ejm"/>
                         <outlet property="nextButton" destination="vVc-GP-tI2" id="DNq-7a-xsM"/>
+                        <outlet property="tableView" destination="3L0-rl-Tba" id="7r1-AT-mk3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymg-az-vMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
