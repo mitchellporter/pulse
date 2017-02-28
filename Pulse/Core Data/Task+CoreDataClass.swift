@@ -46,11 +46,11 @@ extension Task: PulseType {
         
         var createdAt: Date?
         var updatedAt: Date?
-        if let createdAtTime = json["created_at"] as? Double {
-            createdAt = Date(timeIntervalSince1970: createdAtTime)
+        if let createdAtTime = json["created_at"] as? String {
+            createdAt = Date.from(createdAtTime)
         }
-        if let updatedAtTime = json["updated_at"] as? Double {
-            updatedAt = Date(timeIntervalSince1970: updatedAtTime)
+        if let updatedAtTime = json["updated_at"] as? String {
+            updatedAt = Date.from(updatedAtTime)
         }
         
         let title = json["title"] as! String
@@ -59,8 +59,8 @@ extension Task: PulseType {
         let completionPercentage = json["completion_percentage"] as? Float ?? 0.0
         
         var dueDate: Date?
-        if let dueDateTime = json["due_date"] as? Double {
-            dueDate = Date(timeIntervalSince1970: dueDateTime)
+        if let dueDateTime = json["due_date"] as? String {
+            dueDate = Date.from(dueDateTime)
         }
         
         var assigner: User?
@@ -96,3 +96,4 @@ extension Task: PulseType {
         return task
     }
 }
+
