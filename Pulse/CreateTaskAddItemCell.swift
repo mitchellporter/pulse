@@ -93,7 +93,7 @@ extension CreateTaskAddItemCell: UITextViewDelegate {
             let stringSize = string.size(attributes: [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)])
             if self.addItemHeight != textView.contentSize.height {
                 self.addItemHeight = textView.frame.height
-                self.delegate?.cellNeedsResize(self)
+//                self.delegate?.cellNeedsResize(self)
             }
         }
         
