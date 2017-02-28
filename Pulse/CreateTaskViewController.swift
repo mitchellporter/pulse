@@ -14,6 +14,7 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
+    let tableViewTopInset: CGFloat = 32
     var taskDescription: String = "" {
         didSet {
             self.toggleNextButton()
@@ -26,16 +27,36 @@ class CreateTaskViewController: UIViewController {
 
         self.setupTableView()
         self.setupAppearance()
+        self.setupObserver()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.removeObserver()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.adjustForKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.adjustForKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func adjustForKeyboard(notification: NSNotification) {
+        let userInfo = notification.userInfo!
+        guard let keyboardEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect) else { return }
+        
+        let bottomOffset: CGFloat = keyboardEndFrame.origin.y == UIScreen.main.bounds.height ? 0 : keyboardEndFrame.height
+        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: bottomOffset, right: 0)
     }
     
     private func setupAppearance() {
         self.toggleNextButton()
-        let frame: CGRect = CGRect(x: 0, y: 48, width: UIScreen.main.bounds.width, height: 32)
+        let frame: CGRect = CGRect(x: 0, y: 48, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
         topGradient.colors = [UIColor("1AB17CFF").cgColor, UIColor("1AB17C00").cgColor]
@@ -54,7 +75,7 @@ class CreateTaskViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        self.tableView.contentInset = UIEdgeInsets(top: 32, left: 0, bottom: 0, right: 0)
+        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
     }
     
     fileprivate func addNew(item: String) {
