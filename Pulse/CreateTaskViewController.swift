@@ -145,7 +145,7 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension CreateTaskViewController: CreateTaskItemCellDelegate, CreateTaskAddItemCellDelegate {
+extension CreateTaskViewController: CreateTaskItemCellDelegate, CreateTaskAddItemCellDelegate, CreateTaskCellDelegate {
     
     func taskItem(cell: CreateTaskItemCell, didUpdate text: String) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { print("No index path for selected cell"); return }
@@ -163,5 +163,10 @@ extension CreateTaskViewController: CreateTaskItemCellDelegate, CreateTaskAddIte
     
     func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String) {
         self.addNew(item: item)
+    }
+    
+    func cellNeedsResize(_ cell: UITableViewCell) {
+        guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
+        self.tableView.reloadRows(at: [indexPath], with: .middle)
     }
 }

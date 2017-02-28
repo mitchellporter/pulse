@@ -8,7 +8,11 @@
 
 import UIKit
 
-protocol CreateTaskItemCellDelegate: class {
+protocol CreateTaskCellDelegate: class {
+    func cellNeedsResize(_ cell: UITableViewCell)
+}
+
+protocol CreateTaskItemCellDelegate: class, CreateTaskCellDelegate {
     
     func taskItem(cell: CreateTaskItemCell, didUpdate text: String)
     func taskItem(cell: CreateTaskItemCell, remove item: String)

@@ -11,7 +11,7 @@ import UIKit
 let kCreateTaskDescriptionPlaceholder: String = "Give this person a quick high level overview of what you need done."
 let kCreateTaskAddItemPlaceHolder: String = "Add Tasks"
 
-protocol CreateTaskAddItemCellDelegate: class {
+protocol CreateTaskAddItemCellDelegate: CreateTaskCellDelegate {
     func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String)
     func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String)
 }
@@ -23,6 +23,7 @@ class CreateTaskAddItemCell: UITableViewCell {
     @IBOutlet weak var newItemTextView: UITextView!
     let descriptionColor: UIColor = UIColor(white: 1.0, alpha: 0.68)
     let addItemColor: UIColor = UIColor(white: 1.0, alpha: 0.56)
+    var addItemHeight: CGFloat = 0
     weak var delegate: CreateTaskAddItemCellDelegate?
 
     override func awakeFromNib() {
@@ -48,6 +49,10 @@ class CreateTaskAddItemCell: UITableViewCell {
 extension CreateTaskAddItemCell: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == self.newItemTextView {
+            self.addItemHeight = textView.frame.height
+        }
+        
         DispatchQueue.main.async {
             if textView.text == kCreateTaskDescriptionPlaceholder || textView.text == kCreateTaskAddItemPlaceHolder {
                 textView.selectedRange = NSMakeRange(0, 0)
@@ -83,6 +88,15 @@ extension CreateTaskAddItemCell: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        if textView == self.newItemTextView {
+            let string: NSString = self.newItemTextView.text as NSString
+            let stringSize = string.size(attributes: [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)])
+            if self.addItemHeight != textView.contentSize.height {
+                self.addItemHeight = textView.frame.height
+                self.delegate?.cellNeedsResize(self)
+            }
+        }
+        
         if textView.text == "" {
             if textView == self.textView {
                 textView.text = kCreateTaskDescriptionPlaceholder
