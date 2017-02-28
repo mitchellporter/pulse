@@ -11,9 +11,6 @@
 		4F5D8C59254209F7064F6748 /* Pods_PulseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0AA27FC1A0CDA00D0CC6FFC /* Pods_PulseTests.framework */; };
 		C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */; };
 		C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */; };
-		C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */; };
-		C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */; };
-		C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */; };
 		C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */; };
 		C1629A9A1E5F715E00EC91B0 /* TaskSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A991E5F715E00EC91B0 /* TaskSectionHeader.swift */; };
 		C1629AA41E5F8E1B00EC91B0 /* CalendarPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = C1629AA21E5F8E1B00EC91B0 /* CalendarPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -42,6 +39,9 @@
 		C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11811E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift */; };
 		C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11831E5FA9EB00AF752E /* CreateTaskReviewViewController.swift */; };
 		C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11851E5FC03500AF752E /* TaskViewControllerDatasource.swift */; };
+		C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */; };
+		C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */; };
+		C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */; };
 		C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4541E5E5AC700E215CF /* AppDelegate.swift */; };
 		C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C356E4581E5E5AC700E215CF /* Main.storyboard */; };
 		C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C356E45B1E5E5AC700E215CF /* Assets.xcassets */; };
@@ -59,6 +59,7 @@
 		C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4C71E5FC52600E215CF /* TaskService.swift */; };
 		C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4C91E5FC5D700E215CF /* NetworkingClient.swift */; };
 		C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */; };
+		C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,9 +113,6 @@
 		B0AED16B1455F81351B2DD3A /* Pods-PulseTests.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.local.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.local.xcconfig"; sourceTree = "<group>"; };
 		C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
-		C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamService.swift; path = Networking/Services/TeamService.swift; sourceTree = "<group>"; };
-		C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataClass.swift"; path = "Core Data/Team+CoreDataClass.swift"; sourceTree = "<group>"; };
-		C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataProperties.swift"; path = "Core Data/Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		C1629A991E5F715E00EC91B0 /* TaskSectionHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskSectionHeader.swift; sourceTree = "<group>"; };
 		C1629AA01E5F8E1B00EC91B0 /* CalendarPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalendarPicker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +141,9 @@
 		C1DA11811E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskUpdatesViewController.swift; sourceTree = "<group>"; };
 		C1DA11831E5FA9EB00AF752E /* CreateTaskReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskReviewViewController.swift; sourceTree = "<group>"; };
 		C1DA11851E5FC03500AF752E /* TaskViewControllerDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewControllerDatasource.swift; sourceTree = "<group>"; };
+		C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamService.swift; path = Networking/Services/TeamService.swift; sourceTree = "<group>"; };
+		C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataClass.swift"; path = "Core Data/Team+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataProperties.swift"; path = "Core Data/Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C356E4511E5E5AC700E215CF /* Pulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C356E4541E5E5AC700E215CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C356E4591E5E5AC700E215CF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 		C356E4C71E5FC52600E215CF /* TaskService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TaskService.swift; path = Networking/Services/TaskService.swift; sourceTree = "<group>"; };
 		C356E4C91E5FC5D700E215CF /* NetworkingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingClient.swift; path = Networking/NetworkingClient.swift; sourceTree = "<group>"; };
 		C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = "Core Data/CoreDataStack.swift"; sourceTree = "<group>"; };
+		C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Utils/DateExtensions.swift; sourceTree = "<group>"; };
 		C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.production.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.production.xcconfig"; sourceTree = "<group>"; };
 		CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.local.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.local.xcconfig"; sourceTree = "<group>"; };
 		D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */,
+				C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -706,6 +709,7 @@
 				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
+				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
