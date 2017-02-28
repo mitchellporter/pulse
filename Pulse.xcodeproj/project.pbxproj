@@ -39,6 +39,10 @@
 		C1B9932C1E660CE100A404C9 /* CreateTaskAssignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */; };
 		C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */; };
 		C1B9932F1E6623E100A404C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C1B9932E1E6623E100A404C9 /* Assets.xcassets */; };
+		C1B993321E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993301E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift */; };
+		C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993311E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib */; };
+		C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993341E66368500A404C9 /* CreateTaskReviewItemCell.swift */; };
+		C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993351E66368500A404C9 /* CreateTaskReviewItemCell.xib */; };
 		C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */; };
 		C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DA11791E5FA85300AF752E /* CreateTask.storyboard */; };
 		C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */; };
@@ -149,6 +153,10 @@
 		C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskAssignCell.swift; sourceTree = "<group>"; };
 		C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskAssignCell.xib; sourceTree = "<group>"; };
 		C1B9932E1E6623E100A404C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1B993301E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskReviewDescriptionCell.swift; sourceTree = "<group>"; };
+		C1B993311E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskReviewDescriptionCell.xib; sourceTree = "<group>"; };
+		C1B993341E66368500A404C9 /* CreateTaskReviewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskReviewItemCell.swift; sourceTree = "<group>"; };
+		C1B993351E66368500A404C9 /* CreateTaskReviewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskReviewItemCell.xib; sourceTree = "<group>"; };
 		C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C1DA11791E5FA85300AF752E /* CreateTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTask.storyboard; sourceTree = "<group>"; };
 		C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +314,10 @@
 				C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */,
 				C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */,
 				C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */,
+				C1B993301E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift */,
+				C1B993311E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib */,
+				C1B993341E66368500A404C9 /* CreateTaskReviewItemCell.swift */,
+				C1B993351E66368500A404C9 /* CreateTaskReviewItemCell.xib */,
 			);
 			name = CreateTaskViews;
 			sourceTree = "<group>";
@@ -613,7 +625,9 @@
 				C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */,
 				C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */,
 				C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */,
+				C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */,
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
+				C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,12 +771,14 @@
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
 				C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */,
+				C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */,
 				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,
 				C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */,
 				C19B74241E5F9491002D9352 /* Button.swift in Sources */,
 				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,
 				C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */,
+				C1B993321E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,
 				C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */,
 				C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */,
