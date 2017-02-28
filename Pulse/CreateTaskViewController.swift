@@ -13,9 +13,13 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
     
-    var items: [String] = [String]()
+    var taskDescription: String = "" {
+        didSet {
+            self.toggleNextButton()
+        }
+    }
+    var taskItems: [String] = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +34,7 @@ class CreateTaskViewController: UIViewController {
     }
     
     private func setupAppearance() {
+        self.toggleNextButton()
         let frame: CGRect = CGRect(x: 0, y: 48, width: UIScreen.main.bounds.width, height: 32)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
@@ -53,17 +58,27 @@ class CreateTaskViewController: UIViewController {
     }
     
     fileprivate func addNew(item: String) {
-        self.items.insert(item, at: 0)
+        self.taskItems.insert(item, at: 0)
         self.tableView.insertRows(at: [IndexPath(row: 1, section: 0)], with: .fade)
     }
     
     fileprivate func removeItem(at indexPath: IndexPath) {
-        self.items.remove(at: indexPath.row - 1)
+        self.taskItems.remove(at: indexPath.row - 1)
         self.tableView.deleteRows(at: [indexPath], with: .fade)
     }
     
     fileprivate func update(item: String, at indexPath: IndexPath) {
-        self.items[indexPath.row - 1] = item
+        self.taskItems[indexPath.row - 1] = item
+    }
+    
+    private func toggleNextButton() {
+        UIView.animate(withDuration: 0.1, animations: {
+            if self.taskDescription != "" && self.taskDescription != kCreateTaskDescriptionPlaceholder {
+                self.nextButton.alpha = 1
+            } else {
+                self.nextButton.alpha = 0
+            }
+        })
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -75,15 +90,17 @@ class CreateTaskViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
+        // Pass the current description and items forward.
+        
         self.performSegue(withIdentifier: "date", sender: nil)
     }
 
 }
 
-extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate, CreateTaskItemCellDelegate, CreateTaskAddItemCellDelegate {
+extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items.count + 1
+        return self.taskItems.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -93,13 +110,21 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate, 
             return cell
         }
         let cell: CreateTaskItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateItemCell", for: indexPath) as! CreateTaskItemCell
-        cell.load(text: self.items[indexPath.row - 1], at: indexPath)
+        cell.load(text: self.taskItems[indexPath.row - 1], at: indexPath)
         cell.delegate = self
-//        if indexPath.row == 1 && self.items[0] == "" {
-//            cell.textView.becomeFirstResponder()
-//        }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.row == 0 {
+            return false
+        }
+        
+        return true
+    }
+}
+
+extension CreateTaskViewController: CreateTaskItemCellDelegate, CreateTaskAddItemCellDelegate {
     
     func taskItem(cell: CreateTaskItemCell, didUpdate text: String) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { print("No index path for selected cell"); return }
@@ -111,12 +136,8 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate, 
         self.removeItem(at: indexPath)
     }
     
-    func addItemCellPressed() {
-        
-    }
-    
     func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String) {
-        //
+        self.taskDescription = text
     }
     
     func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String) {

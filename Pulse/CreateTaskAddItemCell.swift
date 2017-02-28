@@ -8,6 +8,9 @@
 
 import UIKit
 
+let kCreateTaskDescriptionPlaceholder: String = "Give this person a quick high level overview of what you need done."
+let kCreateTaskAddItemPlaceHolder: String = "Add Tasks"
+
 protocol CreateTaskAddItemCellDelegate: class {
     func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String)
     func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String)
@@ -18,8 +21,7 @@ class CreateTaskAddItemCell: UITableViewCell {
     @IBOutlet weak var addButton: Button!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var newItemTextView: UITextView!
-    let kdescriptionPlaceholder: String = "Give this person a quick high level overview of what you need done."
-    let kAddItemPlaceHolder: String = "Add Tasks"
+    
     weak var delegate: CreateTaskAddItemCellDelegate?
 
     override func awakeFromNib() {
@@ -28,9 +30,9 @@ class CreateTaskAddItemCell: UITableViewCell {
     }
     
     fileprivate func addItem() {
-        if self.newItemTextView.text != kAddItemPlaceHolder && self.newItemTextView.text != "" {
+        if self.newItemTextView.text != kCreateTaskAddItemPlaceHolder && self.newItemTextView.text != "" {
             self.delegate?.addItemCell(self, addNew: newItemTextView.text)
-            newItemTextView.text = self.kAddItemPlaceHolder
+            newItemTextView.text = kCreateTaskAddItemPlaceHolder
         } else {
             self.newItemTextView.becomeFirstResponder()
         }
@@ -43,20 +45,57 @@ class CreateTaskAddItemCell: UITableViewCell {
 
 extension CreateTaskAddItemCell: UITextViewDelegate {
     
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            if textView.text == kCreateTaskDescriptionPlaceholder || textView.text == kCreateTaskAddItemPlaceHolder {
+                textView.selectedRange = NSMakeRange(0, 0)
+            }
+        }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        let zeroRange: NSRange = NSMakeRange(0, 0)
+        if textView.text == kCreateTaskDescriptionPlaceholder || textView.text == kCreateTaskAddItemPlaceHolder {
+            if (textView.selectedRange.location != zeroRange.location) || (textView.selectedRange.length != zeroRange.length) {
+                textView.selectedRange = zeroRange
+            }
+        }
+    }
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            textView.resignFirstResponder()
             if textView == self.newItemTextView {
                 self.addItem()
             }
+            textView.resignFirstResponder()
             return false
+        }
+        
+        if textView.text == kCreateTaskDescriptionPlaceholder || textView.text == kCreateTaskAddItemPlaceHolder {
+            if text != "" {
+                textView.text = ""
+            }
         }
         return true
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        if textView.text == "" {
+            if textView == self.textView {
+                textView.text = kCreateTaskDescriptionPlaceholder
+            } else if textView == self.newItemTextView {
+                textView.text = kCreateTaskAddItemPlaceHolder
+            }
+        }
+        
         if textView == self.textView {
             self.delegate?.addItemCell(self, didUpdateDescription: self.textView.text)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == self.newItemTextView && textView.text == "" {
+            textView.text = kCreateTaskAddItemPlaceHolder
         }
     }
 }
