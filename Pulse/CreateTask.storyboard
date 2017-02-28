@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -281,15 +282,96 @@
                                     <action selector="nextButtonPressed:" destination="cO5-8q-fZy" eventType="touchUpInside" id="hmZ-Lv-bjF"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bug-Wn-mJ4" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                <rect key="frame" x="43" y="294.5" width="289" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="289" id="3Kl-F9-e3p"/>
+                                    <constraint firstAttribute="height" constant="58" id="raI-MC-ihS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Every Monday">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1h1-7y-hQF" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                <rect key="frame" x="42.5" y="394.5" width="289" height="58"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Every Wednesday">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icl-Ie-jbA" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                <rect key="frame" x="42.5" y="493" width="289" height="58"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <state key="normal" title="Every Friday">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck4-mz-l6S">
+                                <rect key="frame" x="25" y="80" width="325" height="95.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="325" id="6aR-tB-nHU"/>
+                                </constraints>
+                                <string key="text">Should we send you task updates so you always know how much of this task has been done?
+</string>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="NNB-Cp-EYl" firstAttribute="leading" secondItem="28L-RG-Kh0" secondAttribute="leading" constant="15" id="1TT-ZP-dI7"/>
+                            <constraint firstItem="Bug-Wn-mJ4" firstAttribute="centerX" secondItem="28L-RG-Kh0" secondAttribute="centerX" id="373-P0-4jv"/>
                             <constraint firstItem="NNB-Cp-EYl" firstAttribute="top" secondItem="7M7-0h-a61" secondAttribute="bottom" constant="24" id="4H1-x7-1b8"/>
+                            <constraint firstItem="1h1-7y-hQF" firstAttribute="centerX" secondItem="Bug-Wn-mJ4" secondAttribute="centerX" id="9jr-EF-orw"/>
                             <constraint firstItem="jiB-gP-R2G" firstAttribute="top" secondItem="7M7-0h-a61" secondAttribute="bottom" constant="20" id="DJX-wE-MXF"/>
+                            <constraint firstItem="ck4-mz-l6S" firstAttribute="centerX" secondItem="28L-RG-Kh0" secondAttribute="centerX" id="PsJ-Rh-Jxj"/>
+                            <constraint firstItem="1h1-7y-hQF" firstAttribute="centerY" secondItem="28L-RG-Kh0" secondAttribute="centerY" multiplier="1.27" id="Pyt-e3-SUP"/>
+                            <constraint firstItem="Icl-Ie-jbA" firstAttribute="width" secondItem="Bug-Wn-mJ4" secondAttribute="width" id="TdP-VD-kE2"/>
                             <constraint firstItem="x7Z-F2-5WK" firstAttribute="top" secondItem="7M7-0h-a61" secondAttribute="bottom" constant="25" id="TkB-rq-hUa"/>
+                            <constraint firstItem="Icl-Ie-jbA" firstAttribute="centerX" secondItem="Bug-Wn-mJ4" secondAttribute="centerX" id="WV6-VD-AUu"/>
+                            <constraint firstItem="ck4-mz-l6S" firstAttribute="top" secondItem="7M7-0h-a61" secondAttribute="bottom" constant="80" id="XSm-Sk-Pw9"/>
+                            <constraint firstItem="1h1-7y-hQF" firstAttribute="width" secondItem="Bug-Wn-mJ4" secondAttribute="width" id="bNC-8b-sbI"/>
+                            <constraint firstItem="Icl-Ie-jbA" firstAttribute="height" secondItem="Bug-Wn-mJ4" secondAttribute="height" id="dBD-np-UZj"/>
+                            <constraint firstItem="1h1-7y-hQF" firstAttribute="height" secondItem="Bug-Wn-mJ4" secondAttribute="height" id="pVS-b2-EVG"/>
+                            <constraint firstItem="Icl-Ie-jbA" firstAttribute="centerY" secondItem="28L-RG-Kh0" secondAttribute="centerY" multiplier="1.565" id="rWe-Tm-OSA"/>
                             <constraint firstItem="x7Z-F2-5WK" firstAttribute="centerX" secondItem="28L-RG-Kh0" secondAttribute="centerX" id="upP-g6-1KZ"/>
                             <constraint firstAttribute="trailing" secondItem="jiB-gP-R2G" secondAttribute="trailing" constant="13" id="v9K-4E-oF7"/>
+                            <constraint firstItem="Bug-Wn-mJ4" firstAttribute="centerY" secondItem="28L-RG-Kh0" secondAttribute="centerY" multiplier="0.97" id="x1H-wI-lpO"/>
                         </constraints>
                     </view>
                     <connections>
@@ -300,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KdJ-s3-0HD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2076" y="108"/>
+            <point key="canvasLocation" x="2076" y="107.49625187406298"/>
         </scene>
         <!--Create Task Review View Controller-->
         <scene sceneID="Php-cc-Jor">
