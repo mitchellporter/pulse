@@ -12,6 +12,7 @@ class CreateTaskAssignViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,4 +37,25 @@ class CreateTaskAssignViewController: UIViewController {
         self.performSegue(withIdentifier: "updates", sender: nil)
     }
 
+}
+
+extension CreateTaskAssignViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        
+        return cell
+    }
+}
+
+extension CreateTaskAssignViewController: CreateTaskAssignCellDelegate {
+    
+    func selectedAssignCell(_ cell: CreateTaskAssignCell) {
+        guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
+        _ = indexPath
+    }
 }
