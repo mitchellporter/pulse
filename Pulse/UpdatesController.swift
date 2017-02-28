@@ -11,7 +11,7 @@ import CoreData
 
 class UpdatesController: UIViewController {
     
-    @IBOutlet weak var tableVie: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     var fetchedResultsController: NSFetchedResultsController<Update>!
 
     override func viewDidLoad() {
@@ -21,7 +21,11 @@ class UpdatesController: UIViewController {
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sort]
         
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "sender.id", cacheName: nil)
+        
+        // Predicate ???
+//        let predicate = NSPredicate(format: "sender.id == %@ OR ANY receivers.id == %@", User.currentUserId(), User.currentUserId())
+//        self.fetchedResultsController.fetchRequest.predicate = predicate
     }
 }
 
@@ -43,8 +47,9 @@ extension UpdatesController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
-        let update = self.fetchedResultsController.object(at: indexPath)
+        _ = self.fetchedResultsController.object(at: indexPath)
         return cell
     }
 }
+
 
