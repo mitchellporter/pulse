@@ -36,6 +36,8 @@
 		C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993241E64B90100A404C9 /* CreateTaskItemCell.xib */; };
 		C1B993281E64CD1F00A404C9 /* CreateTaskAddItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993261E64CD1F00A404C9 /* CreateTaskAddItemCell.swift */; };
 		C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */; };
+		C1B9932C1E660CE100A404C9 /* CreateTaskAssignCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */; };
+		C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */; };
 		C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */; };
 		C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DA11791E5FA85300AF752E /* CreateTask.storyboard */; };
 		C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */; };
@@ -142,6 +144,8 @@
 		C1B993241E64B90100A404C9 /* CreateTaskItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskItemCell.xib; sourceTree = "<group>"; };
 		C1B993261E64CD1F00A404C9 /* CreateTaskAddItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskAddItemCell.swift; sourceTree = "<group>"; };
 		C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskAddItemCell.xib; sourceTree = "<group>"; };
+		C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskAssignCell.swift; sourceTree = "<group>"; };
+		C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskAssignCell.xib; sourceTree = "<group>"; };
 		C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C1DA11791E5FA85300AF752E /* CreateTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTask.storyboard; sourceTree = "<group>"; };
 		C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +298,8 @@
 				C1B993241E64B90100A404C9 /* CreateTaskItemCell.xib */,
 				C1B993261E64CD1F00A404C9 /* CreateTaskAddItemCell.swift */,
 				C1B993271E64CD1F00A404C9 /* CreateTaskAddItemCell.xib */,
+				C1B9932A1E660CE100A404C9 /* CreateTaskAssignCell.swift */,
+				C1B9932B1E660CE100A404C9 /* CreateTaskAssignCell.xib */,
 			);
 			name = CreateTaskViews;
 			sourceTree = "<group>";
@@ -600,6 +606,7 @@
 				C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */,
 				C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */,
 				C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */,
+				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +768,7 @@
 				C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */,
 				C1DA11801E5FA9C900AF752E /* CreateTaskAssignViewController.swift in Sources */,
 				C1B86B261E60C0FA00A3182A /* ViewTaskViewController.swift in Sources */,
+				C1B9932C1E660CE100A404C9 /* CreateTaskAssignCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
