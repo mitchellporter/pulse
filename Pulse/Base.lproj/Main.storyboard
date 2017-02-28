@@ -267,6 +267,36 @@
             </objects>
             <point key="canvasLocation" x="889" y="643"/>
         </scene>
+        <!--Updates Controller-->
+        <scene sceneID="MzM-vq-tnw">
+            <objects>
+                <viewController id="XZ7-g0-Fdz" customClass="UpdatesController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="M2G-h0-2bC"/>
+                        <viewControllerLayoutGuide type="bottom" id="SaS-7b-Mfb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="job-fU-DQq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2BZ-gn-fMm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2BZ-gn-fMm" firstAttribute="leading" secondItem="job-fU-DQq" secondAttribute="leading" id="64P-7R-Zpu"/>
+                            <constraint firstItem="SaS-7b-Mfb" firstAttribute="top" secondItem="2BZ-gn-fMm" secondAttribute="bottom" id="UEz-vG-8WC"/>
+                            <constraint firstItem="2BZ-gn-fMm" firstAttribute="top" secondItem="job-fU-DQq" secondAttribute="top" id="VQ9-UI-DGL"/>
+                            <constraint firstAttribute="trailing" secondItem="2BZ-gn-fMm" secondAttribute="trailing" id="gFf-Kg-Q5Y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8V-hF-vA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-23.199999999999999" y="855.02248875562225"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="RY4-gd-FXm">
             <objects>
