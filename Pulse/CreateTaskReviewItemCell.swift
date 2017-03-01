@@ -10,6 +10,8 @@ import UIKit
 
 class CreateTaskReviewItemCell: UITableViewCell {
     
+    @IBOutlet weak var itemLabel: UILabel!
+    
     let dot: CAShapeLayer = CAShapeLayer()
 
     override func awakeFromNib() {

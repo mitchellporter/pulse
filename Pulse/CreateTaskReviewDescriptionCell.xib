@@ -18,26 +18,26 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JbS-N5-F7t">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="JbS-N5-F7t">
                         <rect key="frame" x="20" y="2" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="2NC-D5-9qL"/>
                             <constraint firstAttribute="height" constant="34" id="9nD-bc-HS7"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-LW-vGz">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assigned to:" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-LW-vGz">
                         <rect key="frame" x="68" y="2" width="240" height="17"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffi-Je-1e1">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffi-Je-1e1">
                         <rect key="frame" x="68" y="19" width="240" height="17"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="I need you to do the new marketing pages for the website, All the marketing assets are in Dropbox. " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsG-So-HrY">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need you to do the new marketing pages for the website, All the marketing assets are in Dropbox." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsG-So-HrY">
                         <rect key="frame" x="66" y="56" width="242" height="119.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -60,7 +60,15 @@
                     <constraint firstAttribute="trailing" secondItem="IEs-LW-vGz" secondAttribute="trailing" constant="12" id="zpT-cl-wuL"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarImage" destination="JbS-N5-F7t" id="u46-Mg-DFX"/>
+                <outlet property="descriptionLabel" destination="rsG-So-HrY" id="zj4-mp-MPm"/>
+                <outlet property="dueDateLabel" destination="ffi-Je-1e1" id="s31-Y1-97D"/>
+            </connections>
             <point key="canvasLocation" x="35" y="132"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="DummyStoney" width="32" height="32"/>
+    </resources>
 </document>

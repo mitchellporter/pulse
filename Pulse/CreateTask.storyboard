@@ -141,10 +141,10 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rh6-EP-2QC" customClass="CalendarPicker" customModule="CalendarPicker">
-                                <rect key="frame" x="0.0" y="244" width="375" height="423"/>
+                                <rect key="frame" x="0.0" y="295" width="375" height="372"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="423" id="Zgf-eM-YaD"/>
+                                    <constraint firstAttribute="height" constant="372" id="Zgf-eM-YaD"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="biD-Bh-CsK">
@@ -176,6 +176,7 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="psl-HK-oOx" id="Bxc-2f-VWk"/>
+                        <outlet property="calendarPicker" destination="Rh6-EP-2QC" id="b6S-jW-MvJ"/>
                         <outlet property="nextButton" destination="6Fe-Bf-CaB" id="e2W-MG-TZF"/>
                         <segue destination="4rw-ai-A9X" kind="show" identifier="assign" id="CbG-YA-Ma2"/>
                     </connections>

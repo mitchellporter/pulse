@@ -13,11 +13,24 @@ class CreateTaskReviewViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    var taskDictionary: [CreateTaskKeys : [Any]]?
+    var tableViewTopInset: CGFloat = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupAppearance()
         self.setupTableView()
+    }
+    
+    private func setupAppearance() {
+        let frame: CGRect = CGRect(x: 0, y: (self.nextButton.frame.origin.y + self.nextButton.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+        let topGradient: CAGradientLayer = CAGradientLayer()
+        topGradient.frame = frame
+        topGradient.colors = [UIColor("1AB17CFF").cgColor, UIColor("1AB17C00").cgColor]
+        topGradient.locations = [0.0, 1.0]
+        
+        self.view.layer.addSublayer(topGradient)
     }
     
     private func setupTableView() {
@@ -28,6 +41,7 @@ class CreateTaskReviewViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 45
         self.tableView.dataSource = self
+        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
     }
     
     
@@ -47,17 +61,30 @@ class CreateTaskReviewViewController: UIViewController {
 extension CreateTaskReviewViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        if self.taskDictionary != nil {
+            guard let itemCount: Int = self.taskDictionary![.items]?.count else { return 1 }
+            return itemCount + 1
+        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! CreateTaskReviewDescriptionCell
-            
+            if self.taskDictionary != nil {
+                if let date = self.taskDictionary![.dueDate]?.first as? Date {
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "MMM dd yyyy"
+                    cell.dueDateLabel.text = formatter.string(from: date)
+                }
+                cell.descriptionLabel.text = self.taskDictionary![.description]![0] as? String
+            }
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! CreateTaskReviewItemCell
-        
+        if self.taskDictionary != nil {
+            cell.itemLabel.text = self.taskDictionary![.items]![indexPath.row - 1] as? String
+        }
         return cell
     }
     

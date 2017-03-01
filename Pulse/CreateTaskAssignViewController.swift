@@ -14,7 +14,7 @@ class CreateTaskAssignViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var assignDescriptionLabel: UILabel!
-    
+    var taskDictionary: [CreateTaskKeys : [Any]]?
     var tableViewTopInset: CGFloat = 30
     
     override func viewDidLoad() {
@@ -52,6 +52,12 @@ class CreateTaskAssignViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "updates", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dictionary = self.taskDictionary else { return }
+        guard let toVC = segue.destination as? CreateTaskUpdatesViewController else { return }
+        toVC.taskDictionary = dictionary
     }
 
 }

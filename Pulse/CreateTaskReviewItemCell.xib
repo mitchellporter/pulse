@@ -32,6 +32,9 @@
                     <constraint firstItem="C2y-fe-hgr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="t3J-g2-5xn"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="itemLabel" destination="C2y-fe-hgr" id="O3q-Tr-1Br"/>
+            </connections>
             <point key="canvasLocation" x="35" y="53.5"/>
         </tableViewCell>
     </objects>

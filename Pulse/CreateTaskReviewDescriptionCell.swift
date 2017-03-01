@@ -9,16 +9,21 @@
 import UIKit
 
 class CreateTaskReviewDescriptionCell: UITableViewCell {
+    
+    @IBOutlet weak var avatarImage: UIImageView!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.setupAppearance()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    private func setupAppearance() {
+        self.avatarImage.layer.cornerRadius = 4
+        self.avatarImage.layer.borderWidth = 2
+        self.avatarImage.layer.borderColor = UIColor.white.cgColor
     }
     
 }
