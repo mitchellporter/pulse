@@ -18,15 +18,16 @@ extension User {
 
     @NSManaged public var avatarURL: String?
     @NSManaged public var createdAt: Date?
-    @NSManaged public var name: String?
+    @NSManaged public var name: String
     @NSManaged public var objectId: String
     @NSManaged public var position: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var createdTasks: NSSet?
     @NSManaged public var receivedTasks: NSSet?
+    @NSManaged public var receivedUpdateRequests: NSSet?
     @NSManaged public var sentUpdateRequests: NSSet?
     @NSManaged public var team: Team?
-    @NSManaged public var receivedUpdateRequests: NSSet?
+    @NSManaged public var sentUpdates: NSSet?
 
 }
 
@@ -64,6 +65,23 @@ extension User {
 
 }
 
+// MARK: Generated accessors for receivedUpdateRequests
+extension User {
+
+    @objc(addReceivedUpdateRequestsObject:)
+    @NSManaged public func addToReceivedUpdateRequests(_ value: UpdateRequest)
+
+    @objc(removeReceivedUpdateRequestsObject:)
+    @NSManaged public func removeFromReceivedUpdateRequests(_ value: UpdateRequest)
+
+    @objc(addReceivedUpdateRequests:)
+    @NSManaged public func addToReceivedUpdateRequests(_ values: NSSet)
+
+    @objc(removeReceivedUpdateRequests:)
+    @NSManaged public func removeFromReceivedUpdateRequests(_ values: NSSet)
+
+}
+
 // MARK: Generated accessors for sentUpdateRequests
 extension User {
 
@@ -81,19 +99,19 @@ extension User {
 
 }
 
-// MARK: Generated accessors for receivedUpdateRequests
+// MARK: Generated accessors for sentUpdates
 extension User {
 
-    @objc(addReceivedUpdateRequestsObject:)
-    @NSManaged public func addToReceivedUpdateRequests(_ value: UpdateRequest)
+    @objc(addSentUpdatesObject:)
+    @NSManaged public func addToSentUpdates(_ value: Update)
 
-    @objc(removeReceivedUpdateRequestsObject:)
-    @NSManaged public func removeFromReceivedUpdateRequests(_ value: UpdateRequest)
+    @objc(removeSentUpdatesObject:)
+    @NSManaged public func removeFromSentUpdates(_ value: Update)
 
-    @objc(addReceivedUpdateRequests:)
-    @NSManaged public func addToReceivedUpdateRequests(_ values: NSSet)
+    @objc(addSentUpdates:)
+    @NSManaged public func addToSentUpdates(_ values: NSSet)
 
-    @objc(removeReceivedUpdateRequests:)
-    @NSManaged public func removeFromReceivedUpdateRequests(_ values: NSSet)
+    @objc(removeSentUpdates:)
+    @NSManaged public func removeFromSentUpdates(_ values: NSSet)
 
 }

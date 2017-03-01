@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 typealias UpdateRequestsSuccessCompletion = (_ updateRequests: [UpdateRequest]) -> Void
-typealias UpdatesSuccessCompletion = (_ updates: [UpdateRequest]) -> Void
+typealias UpdatesSuccessCompletion = (_ updates: [Update]) -> Void
 
 struct UpdateService {
     static func getUpdateRequests(offset: Int, success: @escaping UpdateRequestsSuccessCompletion, failure: @escaping PulseFailureCompletion) {

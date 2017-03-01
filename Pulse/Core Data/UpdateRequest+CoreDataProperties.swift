@@ -18,11 +18,12 @@ extension UpdateRequest {
 
     @NSManaged public var createdAt: Date?
     @NSManaged public var objectId: String
-    @NSManaged public var updatedAt: Date?
     @NSManaged public var senderIsCurrentUser: Bool
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var receivers: NSSet?
     @NSManaged public var sender: User?
     @NSManaged public var task: Task?
+    @NSManaged public var updates: NSSet?
 
 }
 
@@ -40,5 +41,22 @@ extension UpdateRequest {
 
     @objc(removeReceivers:)
     @NSManaged public func removeFromReceivers(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for updates
+extension UpdateRequest {
+
+    @objc(addUpdatesObject:)
+    @NSManaged public func addToUpdates(_ value: Update)
+
+    @objc(removeUpdatesObject:)
+    @NSManaged public func removeFromUpdates(_ value: Update)
+
+    @objc(addUpdates:)
+    @NSManaged public func addToUpdates(_ values: NSSet)
+
+    @objc(removeUpdates:)
+    @NSManaged public func removeFromUpdates(_ values: NSSet)
 
 }
