@@ -151,6 +151,43 @@ extension UIColor {
     }
 }
 
+extension UIColor {
+    
+    // This is a redundant implementation of withAlphaComponent:
+    //    func withAlpha(_ alpha: CGFloat) -> UIColor {
+    //        let colorString: String = self.hexString(false)
+    //        let alphaHex: String = self.alphaHex(from: Double(alpha))
+    //        return UIColor(colorString + "\(alphaHex)")
+    //    }
+    
+    
+    /**
+     Alpha value of a UIColor instance.
+     */
+    var alpha: Double {
+        get {
+            let hexValue: String = self.hexString(true)
+            let index = hexValue.index(hexValue.startIndex, offsetBy: 6)..<hexValue.endIndex
+            let stringValue: String = hexValue.characters.count == 8 ? String(hexValue[index]) : "FF"
+            let value = Double(numericValueFrom(hex: stringValue))
+            let preciseNumber: Double = Double(value/255)
+            return (preciseNumber*100).rounded() / 100
+        }
+    }
+    
+    private func numericValueFrom(hex: String) -> Int {
+        guard let value = Int(hex, radix: 16) else { return 0 }
+        return value
+    }
+    
+    private func alphaHex(from input: Double) -> String {
+        let percent = input > 1 ? 1 : input
+        let twoFiftyFive: Int = Int(percent*255)
+        let hexString: String = String(format: "%2X", twoFiftyFive)
+        return hexString
+    }
+}
+
 extension String {
     /**
      Convert argb string to rgba string.
