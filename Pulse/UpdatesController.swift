@@ -21,7 +21,8 @@ class UpdatesController: UIViewController {
         self.tableView.dataSource = self
 
         let request: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        // createdAt breaks the custom senderIsCurrentUser section key path
+        let sort = NSSortDescriptor(key: "senderIsCurrentUser", ascending: true)
         request.sortDescriptors = [sort]
         
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "senderIsCurrentUser", cacheName: nil)
@@ -70,7 +71,7 @@ extension UpdatesController: UITableViewDataSource, UITableViewDelegate {
         let sectionInfo = self.fetchedResultsController.sections![section]
         print("section name: \(sectionInfo.name)")
         print(sectionInfo)
-        return sectionInfo.name
+        return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -14,12 +14,6 @@ public class UpdateRequest: NSManagedObject {
     
 }
 
-//extension UpdateRequest {
-//    var senderIsCurrentUser: Bool {
-//        return self.sender!.objectId == User.currentUserId()
-//    }
-//}
-
 extension UpdateRequest: PulseType {
     typealias T = UpdateRequest
     
@@ -58,6 +52,7 @@ extension UpdateRequest: PulseType {
         if let senderJSON = json["sender"] as? [String: AnyObject] {
             let sender = User.from(json: senderJSON, context: context)
             update.sender = sender
+            update.senderIsCurrentUser = update.sender!.objectId == User.currentUserId()
         }
         
         if let receiversJSON = json["receivers"] as? [[String: AnyObject]] {
