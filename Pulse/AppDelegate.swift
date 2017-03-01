@@ -16,13 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        TaskService.getTasksCreatedByUser(assignerId: "586ecdc0213f22d94db5ef7f", offset: 0, success: { (tasks) in
-            
-        }) { (error, statusCode) in
-            
-        }
-        
         return true
     }
 
