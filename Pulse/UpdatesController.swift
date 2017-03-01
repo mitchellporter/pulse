@@ -21,7 +21,6 @@ class UpdatesController: UIViewController {
         self.tableView.dataSource = self
 
         let request: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
-        // createdAt breaks the custom senderIsCurrentUser section key path
         let sort = NSSortDescriptor(key: "senderIsCurrentUser", ascending: true)
         request.sortDescriptors = [sort]
         
@@ -43,7 +42,7 @@ class UpdatesController: UIViewController {
         }
         
         UpdateService.getUpdates(offset: 0, success: { (updates) in
-                        
+            
             CoreDataStack.shared.saveContext()
             
             do {
