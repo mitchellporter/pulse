@@ -63,20 +63,16 @@ class UpdatesController: UIViewController {
 extension UpdatesController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("sections: \(self.fetchedResultsController.sections?.count ?? 1)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let sectionInfo = self.fetchedResultsController.sections![section]
-        print("section name: \(sectionInfo.name)")
-        print(sectionInfo)
         return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
-        print("number of objects: \(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
     
