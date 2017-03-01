@@ -11,14 +11,14 @@ import CoreData
 
 @objc(UpdateRequest)
 public class UpdateRequest: NSManagedObject {
-
+    
 }
 
-extension UpdateRequest {
-    var senderIsCurrentUser: Bool {
-        return self.sender!.objectId == User.currentUserId()
-    }
-}
+//extension UpdateRequest {
+//    var senderIsCurrentUser: Bool {
+//        return self.sender!.objectId == User.currentUserId()
+//    }
+//}
 
 extension UpdateRequest: PulseType {
     typealias T = UpdateRequest

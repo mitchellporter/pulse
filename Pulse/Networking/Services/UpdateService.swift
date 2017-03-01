@@ -16,7 +16,7 @@ struct UpdateService {
         NetworkingClient.sharedClient.request(target: .getUpdates(offset: offset), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
-                if let updatesJSON = json["updates"].arrayObject {
+                if let updatesJSON = json["update_requests"].arrayObject {
                     var updates = [UpdateRequest]()
                     updatesJSON.forEach({ (updateJSON) in
                         let update = UpdateRequest.from(json: updateJSON as! [String : AnyObject], context: CoreDataStack.shared.context)

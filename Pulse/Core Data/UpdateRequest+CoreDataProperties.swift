@@ -22,6 +22,10 @@ extension UpdateRequest {
     @NSManaged public var receivers: NSSet?
     @NSManaged public var sender: User?
     @NSManaged public var task: Task?
+    
+    public var senderIsCurrentUser: Bool {
+        return self.sender!.objectId == User.currentUserId()
+    }
 
 }
 

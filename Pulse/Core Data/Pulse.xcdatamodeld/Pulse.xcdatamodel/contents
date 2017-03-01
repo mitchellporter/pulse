@@ -57,7 +57,7 @@
     </entity>
     <entity name="UpdateRequest" representedClassName="UpdateRequest" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="receivers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="receivedUpdateRequests" inverseEntity="User" syncable="YES"/>
         <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentUpdateRequests" inverseEntity="User" syncable="YES"/>
@@ -80,7 +80,7 @@
         <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="position" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="createdTasks" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assigner" inverseEntity="Task" syncable="YES"/>
+        <relationship name="createdTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assigner" inverseEntity="Task" syncable="YES"/>
         <relationship name="receivedTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignees" inverseEntity="Task" syncable="YES"/>
         <relationship name="receivedUpdateRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UpdateRequest" inverseName="receivers" inverseEntity="UpdateRequest" syncable="YES"/>
         <relationship name="sentUpdateRequests" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UpdateRequest" inverseName="sender" inverseEntity="UpdateRequest" syncable="YES"/>

@@ -27,7 +27,7 @@ class UpdatesController: UIViewController {
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "senderIsCurrentUser", cacheName: nil)
         
         // Predicate ???
-//        let predicate = NSPredicate(format: "sender.id == %@ OR ANY receivers.id == %@", User.currentUserId(), User.currentUserId())
+//        let predicate = NSPredicate(format: "sender.objectId == %@ OR ANY receivers.objectId == %@", User.currentUserId(), User.currentUserId())
 //        self.fetchedResultsController.fetchRequest.predicate = predicate
         
         self.fetchUpdates()
@@ -62,17 +62,20 @@ class UpdatesController: UIViewController {
 extension UpdatesController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("sections: \(self.fetchedResultsController.sections?.count ?? 0)")
+        print("sections: \(self.fetchedResultsController.sections?.count ?? 1)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
+        print("section name: \(sectionInfo.name)")
+        print(sectionInfo)
+        return sectionInfo.name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
+        print("number of objects: \(sectionInfo.numberOfObjects)")
         return sectionInfo.numberOfObjects
     }
     

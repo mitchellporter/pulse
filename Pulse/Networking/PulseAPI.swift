@@ -111,7 +111,7 @@ extension PulseAPI {
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
         case .getUpdates:
-            return "/api/\(PulseAPI.apiVersion)/updates"
+            return "/api/\(PulseAPI.apiVersion)/update_requests"
         }
     }
 }

@@ -17,11 +17,11 @@ extension Item {
     }
 
     @NSManaged public var completed: Bool
-    @NSManaged public var createdAt: NSDate?
+    @NSManaged public var createdAt: Date?
     @NSManaged public var objectId: String
     @NSManaged public var status: String
-    @NSManaged public var text: String?
-    @NSManaged public var updatedAt: NSDate?
+    @NSManaged public var text: String
+    @NSManaged public var updatedAt: Date?
     @NSManaged public var task: Task?
 
 }
