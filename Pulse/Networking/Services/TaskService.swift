@@ -55,7 +55,7 @@ struct TaskService {
                         let task = Task.from(json: taskJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
                         tasks.append(task)
                     })
-                    success(tasks)
+                   success(tasks)
                 }
             }
         }) { (error, statusCode) in

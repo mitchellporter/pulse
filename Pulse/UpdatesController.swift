@@ -16,12 +16,15 @@ class UpdatesController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
 
         let request: NSFetchRequest<Update> = Update.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sort]
         
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "sender.id", cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "senderIsCurrentUser", cacheName: nil)
         
         // Predicate ???
 //        let predicate = NSPredicate(format: "sender.id == %@ OR ANY receivers.id == %@", User.currentUserId(), User.currentUserId())
@@ -38,7 +41,9 @@ class UpdatesController: UIViewController {
             print("fetched results controller error: \(error)")
         }
         
-        UpdateService.getUpdates(offset: 0, success: { (tasks) in
+        UpdateService.getUpdates(offset: 0, success: { (updates) in
+            
+            print("fetched updates: \(updates.count)")
             
             CoreDataStack.shared.saveContext()
             
@@ -57,12 +62,13 @@ class UpdatesController: UIViewController {
 extension UpdatesController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        print("sections: \(self.fetchedResultsController.sections?.count ?? 0)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.name
+        return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,8 +77,9 @@ extension UpdatesController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
-        _ = self.fetchedResultsController.object(at: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let update = self.fetchedResultsController.object(at: indexPath)
+        cell.textLabel?.text = update.sender?.name
         return cell
     }
 }

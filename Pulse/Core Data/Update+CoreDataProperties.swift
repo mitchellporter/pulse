@@ -25,6 +25,12 @@ extension Update {
 
 }
 
+extension Update {
+    var senderIsCurrentUser: Bool {
+        return self.sender!.objectId == User.currentUserId()
+    }
+}
+
 // MARK: Generated accessors for receivers
 extension Update {
 
