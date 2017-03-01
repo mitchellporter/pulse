@@ -43,9 +43,7 @@ class UpdatesController: UIViewController {
         }
         
         UpdateService.getUpdates(offset: 0, success: { (updates) in
-            
-            print("fetched updates: \(updates.count)")
-            
+                        
             CoreDataStack.shared.saveContext()
             
             do {
