@@ -16,6 +16,9 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var updateButton: Button!
     @IBOutlet weak var cancelButton: Button!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    
+    var tableViewTopInset: CGFloat = 22
     
     fileprivate var editingTask: Bool = false {
         didSet {
@@ -26,6 +29,7 @@ class EditTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.setupAppearance()
         self.setupTableView()
     }
 
@@ -34,8 +38,25 @@ class EditTaskViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func setupAppearance() {
+        let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+        let topGradient: CAGradientLayer = CAGradientLayer()
+        topGradient.frame = frame
+        topGradient.colors = [mainBackgroundColor.withAlphaComponent(1.0).cgColor, mainBackgroundColor.withAlphaComponent(0.0).cgColor]
+        topGradient.locations = [0.0, 1.0]
+        
+        self.view.layer.addSublayer(topGradient)
+        
+        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+        self.avatarImageView.layer.borderWidth = 2
+        self.avatarImageView.layer.cornerRadius = 4
+        
+        self.view.backgroundColor = mainBackgroundColor
+        self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
+    }
     
     private func setupTableView() {
+        self.tableView.backgroundColor = self.view.backgroundColor
         let viewCell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
         let editCell: UINib = UINib(nibName: "TaskItemEditCell", bundle: nil)
         self.tableView.register(viewCell, forCellReuseIdentifier: "taskItemViewCell")
@@ -90,7 +111,7 @@ extension EditTaskViewController: UITableViewDataSource {
         
         cell.delegate = self
         cell.state = indexPath.row == 0 ? .selected : .unselected
-        
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
     }
     

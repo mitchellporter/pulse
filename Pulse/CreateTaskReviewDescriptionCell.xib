@@ -5,40 +5,20 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="200" id="KGk-i7-Jjw" customClass="CreateTaskReviewDescriptionCell" customModule="Pulse" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="142" id="KGk-i7-Jjw" customClass="CreateTaskReviewDescriptionCell" customModule="Pulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="144"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="143"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="JbS-N5-F7t">
-                        <rect key="frame" x="20" y="2" width="34" height="34"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="34" id="2NC-D5-9qL"/>
-                            <constraint firstAttribute="height" constant="34" id="9nD-bc-HS7"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Assigned to:" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEs-LW-vGz">
-                        <rect key="frame" x="68" y="2" width="240" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ffi-Je-1e1">
-                        <rect key="frame" x="68" y="19" width="240" height="17"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need you to do the new marketing pages for the website, All the marketing assets are in Dropbox." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsG-So-HrY">
-                        <rect key="frame" x="66" y="56" width="242" height="119.5"/>
+                        <rect key="frame" x="66" y="0.0" width="242" height="119.5"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
@@ -46,29 +26,16 @@
                 </subviews>
                 <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ffi-Je-1e1" secondAttribute="trailing" constant="12" id="0f0-Y7-Uwy"/>
-                    <constraint firstItem="IEs-LW-vGz" firstAttribute="bottom" secondItem="JbS-N5-F7t" secondAttribute="centerY" id="CWX-Mc-Ben"/>
                     <constraint firstAttribute="trailing" secondItem="rsG-So-HrY" secondAttribute="trailing" constant="12" id="GUO-7R-6xb"/>
-                    <constraint firstItem="ffi-Je-1e1" firstAttribute="leading" secondItem="JbS-N5-F7t" secondAttribute="trailing" constant="14" id="JcV-Jo-GIM"/>
                     <constraint firstItem="rsG-So-HrY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="66" id="MwD-sd-lJl"/>
-                    <constraint firstItem="JbS-N5-F7t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="2" id="Vo7-Tg-sxA"/>
-                    <constraint firstItem="IEs-LW-vGz" firstAttribute="leading" secondItem="JbS-N5-F7t" secondAttribute="trailing" constant="14" id="bgO-ZH-rdP"/>
+                    <constraint firstItem="rsG-So-HrY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aav-ff-O7S"/>
                     <constraint firstAttribute="bottom" secondItem="rsG-So-HrY" secondAttribute="bottom" constant="24" id="bhj-V8-z2B"/>
-                    <constraint firstItem="rsG-So-HrY" firstAttribute="top" secondItem="ffi-Je-1e1" secondAttribute="bottom" constant="20" id="dwZ-Qb-V1f"/>
-                    <constraint firstItem="ffi-Je-1e1" firstAttribute="top" secondItem="JbS-N5-F7t" secondAttribute="centerY" id="lax-Ak-UVQ"/>
-                    <constraint firstItem="JbS-N5-F7t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wAv-kb-DSx"/>
-                    <constraint firstAttribute="trailing" secondItem="IEs-LW-vGz" secondAttribute="trailing" constant="12" id="zpT-cl-wuL"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="avatarImage" destination="JbS-N5-F7t" id="u46-Mg-DFX"/>
                 <outlet property="descriptionLabel" destination="rsG-So-HrY" id="zj4-mp-MPm"/>
-                <outlet property="dueDateLabel" destination="ffi-Je-1e1" id="s31-Y1-97D"/>
             </connections>
-            <point key="canvasLocation" x="35" y="132"/>
+            <point key="canvasLocation" x="35" y="103"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="DummyStoney" width="32" height="32"/>
-    </resources>
 </document>

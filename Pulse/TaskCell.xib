@@ -73,7 +73,7 @@
                 <outlet property="descriptionLabel" destination="dXS-Av-ItM" id="B8r-MW-Ply"/>
                 <outlet property="duePercentLabel" destination="P17-NK-Kpp" id="viX-Vm-tqg"/>
             </connections>
-            <point key="canvasLocation" x="131" y="80"/>
+            <point key="canvasLocation" x="131" y="79.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -475,16 +476,55 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3L0-rl-Tba">
-                                <rect key="frame" x="0.0" y="48" width="375" height="619"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                                 <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Gt-u2-KnR">
+                                <rect key="frame" x="0.0" y="80" width="375" height="34"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="ueR-fW-8Ew">
+                                        <rect key="frame" x="20" y="0.0" width="34" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="Uqp-gq-0dc"/>
+                                            <constraint firstAttribute="width" constant="34" id="xIO-0p-ObA"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-Wq-gBW">
+                                        <rect key="frame" x="68" y="0.0" width="295" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-cG-ogZ">
+                                        <rect key="frame" x="68" y="17" width="295" height="17"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="kdj-Wq-gBW" firstAttribute="leading" secondItem="ueR-fW-8Ew" secondAttribute="trailing" constant="14" id="CEH-RA-WPv"/>
+                                    <constraint firstItem="ueR-fW-8Ew" firstAttribute="top" secondItem="2Gt-u2-KnR" secondAttribute="top" id="DOs-zY-YIQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="kdj-Wq-gBW" secondAttribute="trailing" constant="12" id="Len-dJ-P8O"/>
+                                    <constraint firstItem="DSS-cG-ogZ" firstAttribute="top" secondItem="ueR-fW-8Ew" secondAttribute="centerY" id="Vds-1p-634"/>
+                                    <constraint firstItem="DSS-cG-ogZ" firstAttribute="leading" secondItem="ueR-fW-8Ew" secondAttribute="trailing" constant="14" id="d1a-B6-FFY"/>
+                                    <constraint firstItem="ueR-fW-8Ew" firstAttribute="leading" secondItem="2Gt-u2-KnR" secondAttribute="leading" constant="20" id="frz-OY-Qqa"/>
+                                    <constraint firstAttribute="bottom" secondItem="DSS-cG-ogZ" secondAttribute="bottom" id="lAV-01-2Qy"/>
+                                    <constraint firstItem="kdj-Wq-gBW" firstAttribute="bottom" secondItem="ueR-fW-8Ew" secondAttribute="centerY" id="nw5-eZ-M17"/>
+                                    <constraint firstAttribute="trailing" secondItem="DSS-cG-ogZ" secondAttribute="trailing" constant="12" id="smH-1s-gQ2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3L0-rl-Tba" firstAttribute="top" secondItem="vVc-GP-tI2" secondAttribute="bottom" id="6S5-fi-z2t"/>
+                            <constraint firstItem="3L0-rl-Tba" firstAttribute="top" secondItem="2Gt-u2-KnR" secondAttribute="bottom" id="4mk-qC-adf"/>
                             <constraint firstAttribute="trailing" secondItem="vVc-GP-tI2" secondAttribute="trailing" constant="13" id="DcR-Qt-1pF"/>
+                            <constraint firstItem="2Gt-u2-KnR" firstAttribute="leading" secondItem="6kn-68-bWt" secondAttribute="leading" id="JW8-1l-LCz"/>
                             <constraint firstAttribute="trailing" secondItem="3L0-rl-Tba" secondAttribute="trailing" id="LHa-E4-Akl"/>
+                            <constraint firstAttribute="trailing" secondItem="2Gt-u2-KnR" secondAttribute="trailing" id="OBs-l9-Feg"/>
                             <constraint firstItem="vVc-GP-tI2" firstAttribute="top" secondItem="4Bk-aU-dWd" secondAttribute="bottom" constant="20" id="WDj-Ug-VLH"/>
+                            <constraint firstItem="2Gt-u2-KnR" firstAttribute="top" secondItem="vVc-GP-tI2" secondAttribute="bottom" constant="32" id="XyJ-wN-pfj"/>
                             <constraint firstItem="Y7v-yi-UTW" firstAttribute="top" secondItem="4Bk-aU-dWd" secondAttribute="bottom" constant="25" id="cEY-rt-gyY"/>
                             <constraint firstItem="Y7v-yi-UTW" firstAttribute="centerX" secondItem="6kn-68-bWt" secondAttribute="centerX" id="cuB-lu-pxM"/>
                             <constraint firstItem="3L0-rl-Tba" firstAttribute="leading" secondItem="6kn-68-bWt" secondAttribute="leading" id="gPY-7c-M7w"/>
@@ -494,7 +534,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="assignedLabel" destination="kdj-Wq-gBW" id="CRI-JL-FNR"/>
+                        <outlet property="avatarImageView" destination="ueR-fW-8Ew" id="4KI-wd-EH8"/>
                         <outlet property="backButton" destination="evV-so-fPa" id="243-jm-Ejm"/>
+                        <outlet property="dueDateLabel" destination="DSS-cG-ogZ" id="5yv-82-oGr"/>
                         <outlet property="nextButton" destination="vVc-GP-tI2" id="DNq-7a-xsM"/>
                         <outlet property="tableView" destination="3L0-rl-Tba" id="7r1-AT-mk3"/>
                     </connections>
@@ -507,5 +550,6 @@
     <resources>
         <image name="BackArrow" width="22" height="17"/>
         <image name="CloseX" width="17" height="15"/>
+        <image name="DummyStoney" width="32" height="32"/>
     </resources>
 </document>

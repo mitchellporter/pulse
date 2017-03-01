@@ -13,8 +13,12 @@ class CreateTaskReviewViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    
     var taskDictionary: [CreateTaskKeys : [Any]]?
-    var tableViewTopInset: CGFloat = 30
+    var tableViewTopInset: CGFloat = 16
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +28,17 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        let frame: CGRect = CGRect(x: 0, y: (self.nextButton.frame.origin.y + self.nextButton.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+        let frame: CGRect = CGRect(x: 0, y: (self.avatarImageView.superview!.frame.origin.y + self.avatarImageView.superview!.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
         topGradient.colors = [UIColor("1AB17CFF").cgColor, UIColor("1AB17C00").cgColor]
         topGradient.locations = [0.0, 1.0]
         
         self.view.layer.addSublayer(topGradient)
+        
+        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+        self.avatarImageView.layer.borderWidth = 2
+        self.avatarImageView.layer.cornerRadius = 4
     }
     
     private func setupTableView() {
@@ -44,6 +52,13 @@ class CreateTaskReviewViewController: UIViewController {
         self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
     }
     
+    private func displayTask() {
+        if let date = self.taskDictionary![.dueDate]?.first as? Date {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            self.dueDateLabel.text = formatter.string(from: date)
+        }
+    }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
@@ -72,11 +87,6 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! CreateTaskReviewDescriptionCell
             if self.taskDictionary != nil {
-                if let date = self.taskDictionary![.dueDate]?.first as? Date {
-                    let formatter = DateFormatter()
-                    formatter.dateFormat = "MMM dd yyyy"
-                    cell.dueDateLabel.text = formatter.string(from: date)
-                }
                 cell.descriptionLabel.text = self.taskDictionary![.description]![0] as? String
             }
             return cell
