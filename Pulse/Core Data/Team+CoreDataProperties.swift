@@ -2,7 +2,7 @@
 //  Team+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 2/28/17.
+//  Created by Mitchell Porter on 3/1/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 

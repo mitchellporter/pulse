@@ -12,7 +12,7 @@ import CoreData
 class UpdatesController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var fetchedResultsController: NSFetchedResultsController<Update>!
+    var fetchedResultsController: NSFetchedResultsController<UpdateRequest>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +20,7 @@ class UpdatesController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
 
-        let request: NSFetchRequest<Update> = Update.createFetchRequest()
+        let request: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         request.sortDescriptors = [sort]
         

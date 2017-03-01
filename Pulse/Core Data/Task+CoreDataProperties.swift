@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 2/28/17.
+//  Created by Mitchell Porter on 3/1/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -21,13 +21,13 @@ extension Task {
     @NSManaged public var dueDate: Date?
     @NSManaged public var objectId: String
     @NSManaged public var status: String
-    @NSManaged public var title: String
-    @NSManaged public var update_day: String
+    @NSManaged public var title: String?
+    @NSManaged public var update_day: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var assignees: NSSet?
     @NSManaged public var assigner: User?
     @NSManaged public var items: NSSet?
-    @NSManaged public var updates: NSSet?
+    @NSManaged public var updateRequests: NSSet?
 
 }
 
@@ -65,19 +65,19 @@ extension Task {
 
 }
 
-// MARK: Generated accessors for updates
+// MARK: Generated accessors for updateRequests
 extension Task {
 
-    @objc(addUpdatesObject:)
-    @NSManaged public func addToUpdates(_ value: Update)
+    @objc(addUpdateRequestsObject:)
+    @NSManaged public func addToUpdateRequests(_ value: UpdateRequest)
 
-    @objc(removeUpdatesObject:)
-    @NSManaged public func removeFromUpdates(_ value: Update)
+    @objc(removeUpdateRequestsObject:)
+    @NSManaged public func removeFromUpdateRequests(_ value: UpdateRequest)
 
-    @objc(addUpdates:)
-    @NSManaged public func addToUpdates(_ values: NSSet)
+    @objc(addUpdateRequests:)
+    @NSManaged public func addToUpdateRequests(_ values: NSSet)
 
-    @objc(removeUpdates:)
-    @NSManaged public func removeFromUpdates(_ values: NSSet)
+    @objc(removeUpdateRequests:)
+    @NSManaged public func removeFromUpdateRequests(_ values: NSSet)
 
 }

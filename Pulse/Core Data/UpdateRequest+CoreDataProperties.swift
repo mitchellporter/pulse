@@ -1,8 +1,8 @@
 //
-//  Update+CoreDataProperties.swift
+//  UpdateRequest+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 2/28/17.
+//  Created by Mitchell Porter on 3/1/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -10,10 +10,10 @@ import Foundation
 import CoreData
 
 
-extension Update {
+extension UpdateRequest {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Update> {
-        return NSFetchRequest<Update>(entityName: "Update");
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<UpdateRequest> {
+        return NSFetchRequest<UpdateRequest>(entityName: "UpdateRequest");
     }
 
     @NSManaged public var createdAt: Date?
@@ -25,14 +25,8 @@ extension Update {
 
 }
 
-extension Update {
-    var senderIsCurrentUser: Bool {
-        return self.sender!.objectId == User.currentUserId()
-    }
-}
-
 // MARK: Generated accessors for receivers
-extension Update {
+extension UpdateRequest {
 
     @objc(addReceiversObject:)
     @NSManaged public func addToReceivers(_ value: User)

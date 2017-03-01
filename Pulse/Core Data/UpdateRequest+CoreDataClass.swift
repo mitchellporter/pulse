@@ -1,24 +1,30 @@
 //
-//  Update+CoreDataClass.swift
+//  UpdateRequest+CoreDataClass.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 2/28/17.
+//  Created by Mitchell Porter on 3/1/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
 import Foundation
 import CoreData
 
-@objc(Update)
-public class Update: NSManagedObject {
+@objc(UpdateRequest)
+public class UpdateRequest: NSManagedObject {
 
 }
 
-extension Update: PulseType {
-    typealias T = Update
+extension UpdateRequest {
+    var senderIsCurrentUser: Bool {
+        return self.sender!.objectId == User.currentUserId()
+    }
+}
+
+extension UpdateRequest: PulseType {
+    typealias T = UpdateRequest
     
     static func createFetchRequest<T>() -> NSFetchRequest<T> {
-        return NSFetchRequest(entityName: "Update")
+        return NSFetchRequest(entityName: "UpdateRequest")
     }
     
     // TODO: Implement
@@ -26,7 +32,7 @@ extension Update: PulseType {
         return [String: AnyObject]()
     }
     
-    static func from(json: [String : AnyObject], context: NSManagedObjectContext) -> Update {
+    static func from(json: [String : AnyObject], context: NSManagedObjectContext) -> UpdateRequest {
         let objectId = json["_id"] as! String
         
         var createdAt: Date?
@@ -38,8 +44,8 @@ extension Update: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let description = NSEntityDescription.entity(forEntityName: "Update", in: context)!
-        let update = Update(entity: description, insertInto: context)
+        let description = NSEntityDescription.entity(forEntityName: "UpdateRequest", in: context)!
+        let update = UpdateRequest(entity: description, insertInto: context)
         update.objectId = objectId
         update.createdAt = createdAt
         update.updatedAt = updatedAt
