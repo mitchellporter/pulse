@@ -12,8 +12,8 @@ import SwiftyJSON
 typealias UpdatesSuccessCompletion = (_ updates: [UpdateRequest]) -> Void
 
 struct UpdateService {
-    static func getUpdates(offset: Int, success: @escaping UpdatesSuccessCompletion, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .getUpdates(offset: offset), success: { (data) in
+    static func getUpdateRequests(offset: Int, success: @escaping UpdatesSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getUpdateRequests(offset: offset), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let updatesJSON = json["update_requests"].arrayObject {

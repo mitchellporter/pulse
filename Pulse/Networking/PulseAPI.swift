@@ -47,7 +47,7 @@ enum PulseAPI {
     case sendTaskUpdate(taskId: String, completionPercentage: Float) //
     case finishTask(taskId: String) //
     
-    case getUpdates(offset: Int)
+    case getUpdateRequests(offset: Int)
     
     // Task Items
     case finishTaskItem(taskId: String, itemId: String) //
@@ -63,7 +63,7 @@ extension PulseAPI {
                  .getTasksAssignedToUser,
                  .getTask,
                  .getTeamMembers,
-                 .getUpdates:
+                 .getUpdateRequests:
             return .get
             
         case .editTask:
@@ -110,7 +110,7 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
-        case .getUpdates:
+        case .getUpdateRequests:
             return "/api/\(PulseAPI.apiVersion)/update_requests"
         }
     }
@@ -167,7 +167,7 @@ extension PulseAPI {
                 "limit": 25 as AnyObject
             ]
             
-        case let .getUpdates(offset):
+        case let .getUpdateRequests(offset):
             return [
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject

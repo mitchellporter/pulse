@@ -41,7 +41,7 @@ class UpdatesController: UIViewController {
             print("fetched results controller error: \(error)")
         }
         
-        UpdateService.getUpdates(offset: 0, success: { (updates) in
+        UpdateService.getUpdateRequests(offset: 0, success: { (updates) in
             
             CoreDataStack.shared.saveContext()
             
