@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TaskViewControllerDatasource: NSObject, UITableViewDataSource {
+class MyTasksViewControllerDatasource: NSObject, UITableViewDataSource {
     
     var fetchedResultsController: NSFetchedResultsController<Task>!
     var dataType: Int = 0 {

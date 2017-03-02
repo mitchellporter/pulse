@@ -13,16 +13,20 @@ class TaskViewController: UIViewController {
     
     enum ViewMode: Int {
         case myTasks
+        case updates
         case createdTasks
     }
     
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: Button!
+    @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var myTasksButton: Button!
+    @IBOutlet weak var updatesButton: Button!
     @IBOutlet weak var createdTasksButton: Button!
     
-    var tableViewDatasource: TaskViewControllerDatasource = TaskViewControllerDatasource()
+
+    private var viewControllers: [UIViewController] = [UIViewController]()
+    
     fileprivate var modeSelected: ViewMode = .myTasks {
         didSet {
             if oldValue != self.modeSelected {
@@ -33,114 +37,55 @@ class TaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+
+        self.initializeViewControllers()
+        self.updateView(mode: self.modeSelected)
+    }
+    
+    private func initializeViewControllers() {
+        let myTasks = MyTasksViewController(nibName: "MyTasksViewController", bundle: nil)
+        let updates = UpdatesViewController(nibName: "UpdatesViewController", bundle: nil)
+        let createdTasks = CreatedTasksViewController(nibName: "CreatedTasksViewController", bundle: nil)
         
-        self.setupCoreData()
-        self.setupTableView()
-        self.fetchMyTasks()
+        self.viewControllers.append(contentsOf: [myTasks, updates, createdTasks])
+    }
+    
+    private func updateContainerView(with viewController: UIViewController) {
+        self.addChildViewController(viewController)
+        
+        self.containerView.addSubview(viewController.view)
+        viewController.view.frame = self.containerView.bounds
+        viewController.didMove(toParentViewController: self)
     }
     
     private func updateView(mode: ViewMode) {
         switch mode {
         case .myTasks:
             self.myTasksButton.alpha = 1
+            self.updatesButton.alpha = 0.3
             self.createdTasksButton.alpha = 0.3
-            
-            self.tableViewDatasource.dataType = mode.rawValue
-            
-            self.fetchMyTasks()
-            
+            self.updateContainerView(with: self.viewControllers[0])
+        case .updates:
+            self.myTasksButton.alpha = 0.3
+            self.updatesButton.alpha = 1
+            self.createdTasksButton.alpha = 0.3
+
+            self.updateContainerView(with: self.viewControllers[1])
         case .createdTasks:
             self.createdTasksButton.alpha = 1
+            self.updatesButton.alpha = 0.3
             self.myTasksButton.alpha = 0.3
-            
-            self.tableViewDatasource.dataType = mode.rawValue
-            
-            self.fetchTasksCreated()
-        }
-    }
-    
-    private func setupTableView() {
-        self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
-        let cell: UINib = UINib(nibName: "TaskCell", bundle: nil)
-        self.tableView.register(cell, forCellReuseIdentifier: "taskCell")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 70
-        self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self.tableViewDatasource
-    }
-    
-    private func setupCoreData() {
-        let request: NSFetchRequest<Task> = Task.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        request.sortDescriptors = [sort]
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
-        self.tableViewDatasource.fetchedResultsController = fetchedResultsController
-    }
-    
-    private func fetchMyTasks() {
-        // TODO: Set the predicate
-        let predicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
-        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
-        
-        // Hit core data
-        do {
-            try self.tableViewDatasource.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
-        } catch {
-            print("fetched results controller error: \(error)")
-        }
-        
-        // Hit the network
-        TaskService.getTasksAssignedToUser(assigneeId: User.currentUserId(), offset: 0, success: { (tasks) in
-            
-            CoreDataStack.shared.saveContext()
-            
-            // Hit core data again
-            do {
-                try self.tableViewDatasource.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
-    }
-    
-    private func fetchTasksCreated() {
-        // TODO: Set the predicate
-        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
-        self.tableViewDatasource.fetchedResultsController.fetchRequest.predicate = predicate
-        
-        // Hit core data
-        do {
-            try self.tableViewDatasource.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
-        } catch {
-            print("fetched results controller error: \(error)")
-        }
-        
-        // Hit the network
-        TaskService.getTasksCreatedByUser(assignerId: User.currentUserId(), offset: 0, success: { (tasks) in
-            
-            CoreDataStack.shared.saveContext()
-            
-            // Hit core data again
-            do {
-                try self.tableViewDatasource.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-        }) { (error, statusCode) in
-            // TODO: Handle failure
+            self.updateContainerView(with: self.viewControllers[2])
         }
     }
 
     @IBAction func myTasksPressed(_ sender: UIButton) {
         self.modeSelected = .myTasks
+    }
+    
+    @IBAction func updatesPresssed(_ sender: UIButton!) {
+        self.modeSelected = .updates
     }
     
     @IBAction func createdTasksPressed(_ sender: UIButton) {
@@ -150,30 +95,4 @@ class TaskViewController: UIViewController {
     @IBAction func addButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "create", sender: nil)
     }
-    
-    func configure(cell: TaskCell, at indexPath: IndexPath) {
-        let task = self.tableViewDatasource.fetchedResultsController.object(at: indexPath)
-        cell.load(task: task)
-    }
-}
-
-extension TaskViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let segueID: String = self.modeSelected == .myTasks ? "viewTask" : "editTask"
-        self.performSegue(withIdentifier: segueID, sender: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        print("section: \(section)")
-        guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-//        header.frame = CGRect(origin: CGPoint.zero, size: CGSize(width: tableView.frame.width, height: 30))
-        header.load(status: .inProgress)
-        return header
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
 }
