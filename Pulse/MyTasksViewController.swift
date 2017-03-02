@@ -92,8 +92,10 @@ extension MyTasksViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: TaskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-        self.configure(cell: cell, at: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
+        let task = self.fetchedResultsController.object(at: indexPath)
+        cell.load(task: task, type: .assignee)
+        
         return cell
     }
 }

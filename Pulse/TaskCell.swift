@@ -7,7 +7,12 @@
 //
 
 import UIKit
+import Nuke
 
+enum TaskCellType {
+    case assigner
+    case assignee
+}
 
 // TODO: HANDLE THESE OPTIONALS
 class TaskCell: UITableViewCell {
@@ -25,6 +30,9 @@ class TaskCell: UITableViewCell {
             self.configureState(for: self.task!)
         }
     }
+    
+    var type: TaskCellType!
+    
     var stateColor: UIColor {
         switch self.task!.taskStatus {
         case .pending:
@@ -46,7 +54,47 @@ class TaskCell: UITableViewCell {
         
         self.setupAppearance()
     }
-
+    
+    func load(task: Task, type: TaskCellType) {
+        self.task = task
+        self.type = type
+        
+        switch self.type! {
+        case .assignee:
+            self.loadForAssignee()
+        case .assigner:
+            self.loadForAssigner()
+        }
+    }
+    
+    // TODO: Both loads are gross, fix these
+    private func loadForAssignee() {
+        
+        
+        Nuke.loadImage(with: URL(string: self.task!.assigner!.avatarURL!)!, into: self.avatar)
+        
+        // TODO: Shouldn't need bang for data
+        if let assigner = self.task!.assigner {
+            self.assignedLabel.text = "ASSIGNED BY: \(assigner.name)"
+        } else {
+            self.assignedLabel.text = "ASSIGNER WAS NIL AND IT SHOULDN'T HAVE BEEN!"
+        }
+        
+        self.duePercentLabel.text = "DUE: \(self.task!.dueDate!) | \(Int(self.task!.completionPercentage))% DONE"
+        self.descriptionLabel.text = self.task!.title
+    }
+    
+    private func loadForAssigner() {
+        
+        let assignee = self.task!.assignees?.anyObject() as! User
+        self.assignedLabel.text = "ASSIGNED TO: \(assignee.name)"
+        
+        self.duePercentLabel.text = "DUE: \(self.task!.dueDate!) | \(Int(self.task!.completionPercentage))% DONE"
+        self.descriptionLabel.text = self.task!.title
+        
+        Nuke.loadImage(with: URL(string: assignee.avatarURL!)!, into: self.avatar)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -69,16 +117,6 @@ class TaskCell: UITableViewCell {
         self.badge.alpha = 0
     }
     
-    func load(task: Task) {
-        self.task = task
-        
-        // Load Name
-        // Load Avatar
-        // Load Due date
-        // Load Progress
-        // Load Description
-    }
-    
     func configureState(for task: Task) {
         self.badge.backgroundColor = self.stateColor
         
@@ -91,5 +129,6 @@ class TaskCell: UITableViewCell {
             self.badge.alpha = 0
         }
     }
-    
 }
+
+
