@@ -26,14 +26,14 @@ class MyTasksViewController: UIViewController {
     private func setupCoreData() {
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
+        
         fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
     }
     
     private func fetchData() {
-        
-//        let predicate = NSPredicate(format: "project.objectId == %@", projectId)
-//        self.fetchedResultsController.fetchRequest.predicate = predicate
         
         // Check cache
         do {
