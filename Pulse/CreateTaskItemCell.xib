@@ -26,7 +26,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKn-kd-srS" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                        <rect key="frame" x="20" y="18.5" width="34" height="34"/>
+                        <rect key="frame" x="20" y="19" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="2vv-6e-JiW"/>
                             <constraint firstAttribute="width" constant="34" id="w18-JK-bf3"/>

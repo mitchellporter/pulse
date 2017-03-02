@@ -12,6 +12,7 @@ class CreateTaskUpdatesViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    var taskDictionary: [CreateTaskKeys : [Any]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,12 @@ class CreateTaskUpdatesViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "review", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dictionary = self.taskDictionary else { return }
+        guard let toVC = segue.destination as? CreateTaskReviewViewController else { return }
+        toVC.taskDictionary = dictionary
     }
 
 }

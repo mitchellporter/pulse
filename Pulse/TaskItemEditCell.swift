@@ -28,6 +28,12 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
             self.update(state: self.state)
         }
     }
+    
+    override var backgroundColor: UIColor? {
+        didSet {
+            self.textView.backgroundColor = self.contentView.backgroundColor
+        }
+    }
 
     func load(item: Item) {
         self.state = item.completed == true ? .selected : .unselected

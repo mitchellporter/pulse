@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum CreateTaskKeys: String {
+    case description = "description"
+    case dueDate = "dueDate"
+    case items = "items"
+    case assignees = "assignees"
+    case updateInterval = "updateInterval"
+}
+
 class CreateTaskViewController: UIViewController {
     
     @IBOutlet weak var backButton: UIButton!
@@ -115,7 +123,12 @@ class CreateTaskViewController: UIViewController {
         
         self.performSegue(withIdentifier: "date", sender: nil)
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dictionary: [CreateTaskKeys : [Any]] = [.description : [self.taskDescription], .items : self.taskItems]
+        guard let toVC = segue.destination as? CreateTaskDateViewController else { return }
+        toVC.taskDictionary = dictionary
+    }
 }
 
 extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {

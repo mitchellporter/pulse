@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol CalendarDelegate: class {
+public protocol CalendarDelegate: class {
     func dateSelected(date: Date?)
 }
 
 @IBDesignable
-class CalendarPicker: UIView, UIInputViewAudioFeedback {
+open class CalendarPicker: UIView, UIInputViewAudioFeedback {
     
     private(set) var view: UIView!
     
@@ -28,7 +28,7 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
         xibSetup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    public required init?(coder aDecoder: NSCoder) {
         // 1. setup any properties here
         
         // 2. call super.init(coder:)
@@ -59,7 +59,7 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
     }
     // End Initialization
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    open override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
        super.touchesBegan(touches, with: event)
         
         UIDevice.current.playInputClick()
@@ -73,7 +73,7 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
     @IBOutlet weak var collectionViewlayout: UICollectionViewFlowLayout!
     @IBOutlet var dayLabels: [UILabel]!
     
-    weak var delegate: CalendarDelegate?
+    open weak var delegate: CalendarDelegate?
     
     fileprivate var currentDate = Date()
     fileprivate(set) var selectedDate: Date? {
@@ -84,7 +84,7 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
     
     private let circle: UIImageView = UIImageView()
     
-    var enableInputClicksWhenVisible: Bool {
+    open var enableInputClicksWhenVisible: Bool {
         return true
     }
     
@@ -203,14 +203,14 @@ class CalendarPicker: UIView, UIInputViewAudioFeedback {
 
 extension CalendarPicker: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let dayRange = Calendar.current.range(of: .day, in: .month, for: self.currentDate) else { return 0 }
         let dayCount = dayRange.upperBound - dayRange.lowerBound
         let weekday = Calendar.current.component(.weekday, from: self.currentDate) - 1
         return dayCount + weekday
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
         
         let weekday = Calendar.current.component(.weekday, from: self.currentDate) - 1
@@ -228,7 +228,7 @@ extension CalendarPicker: UICollectionViewDataSource, UICollectionViewDelegate {
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? DateCell else { return }
         _ = Calendar.current.component(.day, from: Date())
         if cell.cellIsActive {
@@ -251,7 +251,7 @@ extension CalendarPicker: UICollectionViewDataSource, UICollectionViewDelegate {
 
 extension CalendarPicker: UITextFieldDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         textField.text = ""
         return true
     }
