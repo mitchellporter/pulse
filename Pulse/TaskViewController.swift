@@ -87,6 +87,8 @@ class TaskViewController: UIViewController {
     
     @IBAction func updatesPresssed(_ sender: UIButton!) {
         self.modeSelected = .updates
+        
+        AlertManager.presentAlert(ofType: .update, with: nil)
     }
     
     @IBAction func createdTasksPressed(_ sender: UIButton) {

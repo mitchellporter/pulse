@@ -35,6 +35,10 @@
 		C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD366F1E689F7900C5A9AA /* CreatedTasksViewController.swift */; };
 		C1AD36721E689F7900C5A9AA /* CreatedTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */; };
 		C1AD36741E68CC4E00C5A9AA /* ViewUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36731E68CC4E00C5A9AA /* ViewUpdateViewController.swift */; };
+		C1AD36791E68D44100C5A9AA /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36771E68D44100C5A9AA /* AlertManager.swift */; };
+		C1AD367A1E68D44100C5A9AA /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36781E68D44100C5A9AA /* AlertController.swift */; };
+		C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */; };
+		C1AD367F1E68D60000C5A9AA /* UpdateAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */; };
 		C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B1D1E60B4BF00A3182A /* TaskItemViewCell.swift */; };
 		C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */; };
 		C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */; };
@@ -159,6 +163,10 @@
 		C1AD366F1E689F7900C5A9AA /* CreatedTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedTasksViewController.swift; sourceTree = "<group>"; };
 		C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatedTasksViewController.xib; sourceTree = "<group>"; };
 		C1AD36731E68CC4E00C5A9AA /* ViewUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateViewController.swift; sourceTree = "<group>"; };
+		C1AD36771E68D44100C5A9AA /* AlertManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
+		C1AD36781E68D44100C5A9AA /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
+		C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
+		C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertController.swift; sourceTree = "<group>"; };
 		C1B86B1D1E60B4BF00A3182A /* TaskItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemViewCell.swift; sourceTree = "<group>"; };
 		C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemViewCell.xib; sourceTree = "<group>"; };
 		C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemEditCell.swift; sourceTree = "<group>"; };
@@ -293,6 +301,7 @@
 		C1629A981E5F713200EC91B0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				C1AD367B1E68D44500C5A9AA /* Alerts */,
 				C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */,
 				C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */,
 				C1B993381E6655C800A404C9 /* ColorConstants.swift */,
@@ -349,6 +358,17 @@
 				C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */,
 			);
 			name = TaskViewController;
+			sourceTree = "<group>";
+		};
+		C1AD367B1E68D44500C5A9AA /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				C1AD36771E68D44100C5A9AA /* AlertManager.swift */,
+				C1AD36781E68D44100C5A9AA /* AlertController.swift */,
+				C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */,
+				C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */,
+			);
+			name = Alerts;
 			sourceTree = "<group>";
 		};
 		C1B9931F1E64B1E000A404C9 /* CreateTaskViews */ = {
@@ -676,6 +696,7 @@
 				C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */,
 				C1AD36721E689F7900C5A9AA /* CreatedTasksViewController.xib in Resources */,
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
+				C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */,
 				C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */,
 				C1AD366E1E689F6C00C5A9AA /* UpdatesViewController.xib in Resources */,
 			);
@@ -807,6 +828,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
+				C1AD367A1E68D44100C5A9AA /* AlertController.swift in Sources */,
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
@@ -814,10 +836,12 @@
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */,
 				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
+				C1AD367F1E68D60000C5A9AA /* UpdateAlertController.swift in Sources */,
 				C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
 				C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */,
 				C1B993221E64B20600A404C9 /* CreateTaskItemCell.swift in Sources */,
+				C1AD36791E68D44100C5A9AA /* AlertManager.swift in Sources */,
 				C1B993391E6655C800A404C9 /* ColorConstants.swift in Sources */,
 				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,

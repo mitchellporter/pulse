@@ -1,5 +1,5 @@
 //
-//  ViewUpdateViewController.swift
+//  UpdateAlertController.swift
 //  Pulse
 //
 //  Created by Design First Apps on 3/2/17.
@@ -8,35 +8,38 @@
 
 import UIKit
 
-class ViewUpdateViewController: UIViewController {
-
+class UpdateAlertController: AlertController {
+    
+    @IBOutlet weak var alertView: UIView!
+    @IBOutlet weak var alertViewHeader: UIView!
     @IBOutlet weak var circleView: UIView!
-    @IBOutlet weak var percentCompletedLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedToLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var completedPercentageLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
     
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     
-    private var circleLineWidth: CGFloat = 22
-    private var circleFrame: CGRect = CGRect(x: 11, y: 11, width: 240, height: 240)
+    private var circleLineWidth: CGFloat = 15
+    private var circleFrame: CGRect = CGRect(x: 7.5, y: 7.5, width: 160, height: 160)
     private var percentInterval: CGFloat = 0.1
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupAppearance()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
     private func setupAppearance() {
+        self.alertView.layer.cornerRadius = 3
+        self.alertViewHeader.backgroundColor = appGreen
+        
+        
+        
         self.drawCircle()
-        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
-        self.avatarImageView.layer.borderWidth = 2
-        self.avatarImageView.layer.cornerRadius = 4
     }
     
     private func getCirclePath() -> UIBezierPath {
@@ -58,7 +61,7 @@ class ViewUpdateViewController: UIViewController {
         circleLayer.frame = self.circleFrame
         circleLayer.path = self.getCirclePath().cgPath
         circleLayer.fillColor = self.view.backgroundColor?.cgColor
-        circleLayer.strokeColor = UIColor.white.cgColor
+        circleLayer.strokeColor = UIColor("F0F0F0").cgColor
         circleLayer.lineWidth = self.circleLineWidth
         self.circleView.layer.insertSublayer(circleLayer, at: 0)
         
@@ -75,16 +78,23 @@ class ViewUpdateViewController: UIViewController {
     private func updateCircleFillbyAdding(percent: CGFloat) {
         let strokeEnd: CGFloat = self.completedCircle.strokeEnd + percent < 1 ? self.completedCircle.strokeEnd + percent : 1
         let newStrokeEnd: CGFloat = self.completedCircle.strokeEnd + percent > 0 ? ((strokeEnd * 100).rounded() / 100) : 0.0
-        self.percentCompletedLabel.text = String(Int(newStrokeEnd * 100)) + "%"
-        let colorHue: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 1.0, resultmax: 0.4, percent: false)
+        self.completedPercentageLabel.text = String(Int(newStrokeEnd * 100)) + "%"
+        let colorSaturation: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 0.0, resultmax: 0.82, percent: false)
         UIView.animate(withDuration: 0.1, animations: {
             self.completedCircle.strokeEnd = newStrokeEnd
-            self.completedCircle.strokeColor = UIColor(hue: colorHue, saturation: 0.85, brightness: 0.9, alpha: 1.0).cgColor
+            self.completedCircle.strokeColor = UIColor(hue: 0.4416, saturation: colorSaturation, brightness: 0.81, alpha: 1.0).cgColor
         })
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        self.updateCircleFillbyAdding(percent: self.percentInterval)
     }
-
+    
+    @IBAction func minusButtonPressed(_ sender: UIButton) {
+        self.updateCircleFillbyAdding(percent: -self.percentInterval)
+    }
+    
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+       AlertManager.dismissAlert()
+    }
 }
