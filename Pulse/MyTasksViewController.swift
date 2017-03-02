@@ -13,11 +13,49 @@ class MyTasksViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
+    var fetchedResultsController: NSFetchedResultsController<Task>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
+    }
+    
+    private func setupCoreData() {
+        let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+    }
+    
+    private func fetchData() {
+        
+//        let predicate = NSPredicate(format: "project.objectId == %@", projectId)
+//        self.fetchedResultsController.fetchRequest.predicate = predicate
+        
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        TaskService.getTasksAssignedToUser(assigneeId: User.currentUserId(), offset: 0, success: { (tasks) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
         
     private func setupTableView() {
@@ -40,17 +78,21 @@ class MyTasksViewController: UIViewController {
 
 extension MyTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultsController.sections?.count ?? 1
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.name
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: TaskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as? TaskCell else {
-            return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
-        }
+        let cell: TaskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         self.configure(cell: cell, at: indexPath)
         return cell
     }
@@ -76,58 +118,58 @@ extension MyTasksViewController: UITableViewDelegate {
     
 }
 
-extension MyTasksViewController: NSFetchedResultsControllerDelegate {
-    
-    /*
-     Assume self has a property 'tableView' -- as is the case for an instance of a UITableViewController
-     subclass -- and a method configureCell:atIndexPath: which updates the contents of a given cell
-     with information from a managed object at the given index path in the fetched results controller.
-     */
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch(type) {
-        case .insert:
-            self.tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-            break
-            
-        case .delete:
-            self.tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-            break
-        default:
-            break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        let tableView: UITableView = self.tableView
-        guard let indexPath: IndexPath = indexPath else { return }
-        switch(type) {
-            
-        case .insert:
-            tableView.insertRows(at: [indexPath], with: .fade)
-            break
-            
-        case .delete:
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            break
-            
-        case .update:
-            guard let cell: UITableViewCell = self.tableView.cellForRow(at: indexPath) else { break }
-            self.configure(cell: cell, at: indexPath)
-            break
-            
-        case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-            self.tableView.insertRows(at: [indexPath], with: .fade)
-            break
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.endUpdates()
-    }
-}
+//extension MyTasksViewController: NSFetchedResultsControllerDelegate {
+//    
+//    /*
+//     Assume self has a property 'tableView' -- as is the case for an instance of a UITableViewController
+//     subclass -- and a method configureCell:atIndexPath: which updates the contents of a given cell
+//     with information from a managed object at the given index path in the fetched results controller.
+//     */
+//    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.tableView.beginUpdates()
+//    }
+//    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+//        switch(type) {
+//        case .insert:
+//            self.tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+//            break
+//            
+//        case .delete:
+//            self.tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
+//            break
+//        default:
+//            break
+//        }
+//    }
+//    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//        let tableView: UITableView = self.tableView
+//        guard let indexPath: IndexPath = indexPath else { return }
+//        switch(type) {
+//            
+//        case .insert:
+//            tableView.insertRows(at: [indexPath], with: .fade)
+//            break
+//            
+//        case .delete:
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            break
+//            
+//        case .update:
+//            guard let cell: UITableViewCell = self.tableView.cellForRow(at: indexPath) else { break }
+//            self.configure(cell: cell, at: indexPath)
+//            break
+//            
+//        case .move:
+//            self.tableView.deleteRows(at: [indexPath], with: .fade)
+//            self.tableView.insertRows(at: [indexPath], with: .fade)
+//            break
+//        }
+//    }
+//    
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.tableView.endUpdates()
+//    }
+//}
