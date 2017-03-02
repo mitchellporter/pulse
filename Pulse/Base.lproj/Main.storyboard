@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWi-Oh-d3b" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="188" height="62"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="MY TASKS">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,7 +36,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-pU-dIT" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="188" y="0.0" width="187" height="62"/>
+                                        <rect key="frame" x="248" y="0.0" width="127" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="TASKS CREATED">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,24 +45,38 @@
                                             <action selector="createdTasksPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s7c-UN-dq5"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" alpha="0.29999999999999999" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-2k-txQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                        <rect key="frame" x="124" y="0.0" width="124" height="62"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <state key="normal" title="UPDATES">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="updatesPresssed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GOi-xB-YpH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.039215686274509803" green="0.062745098039215685" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="width" secondItem="9eL-nv-gE8" secondAttribute="width" multiplier="0.33" id="FGN-a9-7Hi"/>
                                     <constraint firstAttribute="height" constant="62" id="FIn-OK-oAn"/>
                                     <constraint firstItem="gWi-Oh-d3b" firstAttribute="leading" secondItem="9eL-nv-gE8" secondAttribute="leading" id="Hpk-nW-57o"/>
+                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="JDt-sx-K9c"/>
                                     <constraint firstItem="gWi-Oh-d3b" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="MgK-F2-UDr"/>
-                                    <constraint firstItem="gWi-Oh-d3b" firstAttribute="width" secondItem="9eL-nv-gE8" secondAttribute="width" multiplier="0.5" id="WGo-C5-Hgg"/>
+                                    <constraint firstItem="T3l-pU-dIT" firstAttribute="leading" secondItem="lxn-2k-txQ" secondAttribute="trailing" id="Vou-Ng-Lsy"/>
+                                    <constraint firstAttribute="bottom" secondItem="lxn-2k-txQ" secondAttribute="bottom" id="W2w-U7-HfQ"/>
+                                    <constraint firstItem="gWi-Oh-d3b" firstAttribute="width" secondItem="9eL-nv-gE8" secondAttribute="width" multiplier="0.33" id="WGo-C5-Hgg"/>
+                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="leading" secondItem="gWi-Oh-d3b" secondAttribute="trailing" id="Xr9-vh-6Tj"/>
                                     <constraint firstAttribute="bottom" secondItem="T3l-pU-dIT" secondAttribute="bottom" id="bCL-uH-3fw"/>
                                     <constraint firstAttribute="bottom" secondItem="gWi-Oh-d3b" secondAttribute="bottom" id="nUl-ez-tjd"/>
                                     <constraint firstAttribute="trailing" secondItem="T3l-pU-dIT" secondAttribute="trailing" id="r4D-Iv-mhJ"/>
-                                    <constraint firstItem="T3l-pU-dIT" firstAttribute="leading" secondItem="gWi-Oh-d3b" secondAttribute="trailing" id="voj-ud-ngD"/>
                                     <constraint firstItem="T3l-pU-dIT" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="zdl-iY-bqW"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pIK-f4-jja">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sn-MV-xn7">
                                 <rect key="frame" x="0.0" y="62" width="375" height="605"/>
-                                <color key="backgroundColor" red="0.066666666669999999" green="0.1019607843" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </tableView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JX6-Yc-b4G" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="304" y="598" width="55" height="55"/>
                                 <color key="backgroundColor" red="0.10196078431372549" green="0.69411764705882351" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -89,23 +103,24 @@
                         </subviews>
                         <color key="backgroundColor" red="0.066666666666666666" green="0.10196078431372549" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="2Sn-MV-xn7" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="bottom" id="46l-Ka-eJK"/>
+                            <constraint firstItem="2Sn-MV-xn7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="47m-iE-0D7"/>
                             <constraint firstAttribute="trailing" secondItem="JX6-Yc-b4G" secondAttribute="trailing" constant="16" id="AFM-qc-D90"/>
-                            <constraint firstItem="pIK-f4-jja" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="GLA-Ne-uUV"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pIK-f4-jja" secondAttribute="bottom" id="GSC-vl-1DT"/>
                             <constraint firstAttribute="trailing" secondItem="9eL-nv-gE8" secondAttribute="trailing" id="Iuq-xj-09e"/>
                             <constraint firstItem="9eL-nv-gE8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Oec-bD-Djh"/>
-                            <constraint firstAttribute="trailing" secondItem="pIK-f4-jja" secondAttribute="trailing" id="aZs-rs-JRE"/>
-                            <constraint firstItem="pIK-f4-jja" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="bottom" id="cF0-kl-YqA"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="2Sn-MV-xn7" secondAttribute="bottom" id="VPx-xx-TjS"/>
                             <constraint firstItem="9eL-nv-gE8" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="m8o-CD-c9b"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JX6-Yc-b4G" secondAttribute="bottom" constant="14" id="uum-V7-mo2"/>
+                            <constraint firstAttribute="trailing" secondItem="2Sn-MV-xn7" secondAttribute="trailing" id="xup-lq-Ktg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="B80-gd-LRR"/>
                     <connections>
                         <outlet property="addButton" destination="JX6-Yc-b4G" id="fjU-Jq-IWQ"/>
+                        <outlet property="containerView" destination="2Sn-MV-xn7" id="bW3-FC-RSW"/>
                         <outlet property="createdTasksButton" destination="T3l-pU-dIT" id="Rdj-XC-E0a"/>
                         <outlet property="myTasksButton" destination="gWi-Oh-d3b" id="cvS-jc-wgj"/>
-                        <outlet property="tableView" destination="pIK-f4-jja" id="jum-as-bh1"/>
+                        <outlet property="updatesButton" destination="lxn-2k-txQ" id="a9L-CH-Rp4"/>
                         <segue destination="Pzw-db-Dix" kind="show" identifier="viewTask" id="XVE-wZ-co4"/>
                         <segue destination="8rE-5M-G2m" kind="show" identifier="editTask" id="JlE-aY-mzx"/>
                         <segue destination="G4V-dw-zpV" kind="show" identifier="create" id="Fyo-YP-oKR"/>
@@ -113,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="889" y="139"/>
+            <point key="canvasLocation" x="888.79999999999995" y="138.98050974512745"/>
         </scene>
         <!--View Task View Controller-->
         <scene sceneID="nsN-La-pEf">
@@ -273,6 +288,7 @@
         <!--View Controller-->
         <scene sceneID="tZx-52-Kk6">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eDT-Oz-DM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="g3e-FS-BZ0" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OJy-me-oEA"/>
@@ -284,7 +300,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eDT-Oz-DM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2929" y="-117"/>
         </scene>
@@ -294,7 +309,7 @@
                 <viewControllerPlaceholder storyboardName="CreateTask" id="G4V-dw-zpV" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wq9-l2-cPU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="889" y="643"/>
+            <point key="canvasLocation" x="1499" y="139"/>
         </scene>
         <!--Edit Task View Controller-->
         <scene sceneID="RY4-gd-FXm">
