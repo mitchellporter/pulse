@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatedTasksViewController" customModule="Pulse" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="xEq-82-uRD" id="IAl-nE-FDr"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +18,20 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xEq-82-uRD">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="xEq-82-uRD" secondAttribute="trailing" id="Xcw-Gc-nVC"/>
+                <constraint firstItem="xEq-82-uRD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dOT-2j-4bU"/>
+                <constraint firstAttribute="bottom" secondItem="xEq-82-uRD" secondAttribute="bottom" id="yST-7K-OiM"/>
+                <constraint firstItem="xEq-82-uRD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="zKT-bP-JZG"/>
+            </constraints>
+            <point key="canvasLocation" x="35.5" y="53.5"/>
         </view>
     </objects>
 </document>

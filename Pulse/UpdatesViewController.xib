@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpdatesViewController" customModule="Pulse" customModuleProvider="target">
             <connections>
+                <outlet property="tableView" destination="5zE-JK-OXL" id="Zzy-H9-Jdm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -17,7 +18,20 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5zE-JK-OXL">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5zE-JK-OXL" secondAttribute="trailing" id="2mk-f1-PMm"/>
+                <constraint firstAttribute="bottom" secondItem="5zE-JK-OXL" secondAttribute="bottom" id="aD4-Dd-Pqp"/>
+                <constraint firstItem="5zE-JK-OXL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kyJ-pu-dDR"/>
+                <constraint firstItem="5zE-JK-OXL" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="l9K-qs-rPe"/>
+            </constraints>
+            <point key="canvasLocation" x="35.5" y="53.5"/>
         </view>
     </objects>
 </document>
