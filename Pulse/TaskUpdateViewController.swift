@@ -100,11 +100,21 @@ class TaskUpdateViewController: UIViewController {
         })
     }
     
+    private func giveFeedback() {
+        if #available(iOS 10.0, *) {
+            let mediumGenerator = UIImpactFeedbackGenerator(style: .light)
+            mediumGenerator.impactOccurred()
+            UIDevice.current.playInputClick()
+        }
+    }
+    
     @IBAction func minusButtonPressed(_ sender: UIButton) {
+        self.giveFeedback()
         self.updateCircleFillbyAdding(percent: -self.percentInterval)
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
+        self.giveFeedback()
         self.updateCircleFillbyAdding(percent: self.percentInterval)
     }
 }
