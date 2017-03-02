@@ -7,20 +7,30 @@
 //
 
 import UIKit
+import CalendarPicker
 
 class CreateTaskDateViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var calendarPicker: CalendarPicker!
+    
+    var dueDate: Date? {
+        didSet {
+            let date: Any = self.dueDate as Any
+            _ = self.taskDictionary?.updateValue([date], forKey: CreateTaskKeys.dueDate)
+        }
+    }
+    var taskDictionary: [CreateTaskKeys : [Any]]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupPicker()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupPicker() {
+        self.calendarPicker.delegate = self
     }
     
     
@@ -35,5 +45,17 @@ class CreateTaskDateViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "assign", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dictionary = self.taskDictionary else { return }
+        guard let toVC = segue.destination as? CreateTaskAssignViewController else { return }
+        toVC.taskDictionary = dictionary
+    }
+}
 
+extension CreateTaskDateViewController: CalendarDelegate {
+    
+    func dateSelected(date: Date?) {
+        self.dueDate = date
+    }
 }

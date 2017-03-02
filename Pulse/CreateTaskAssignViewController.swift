@@ -13,15 +13,32 @@ class CreateTaskAssignViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var assignDescriptionLabel: UILabel!
+    var taskDictionary: [CreateTaskKeys : [Any]]?
+    var tableViewTopInset: CGFloat = 30
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.setupAppearance()
+        self.setupTableView()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupAppearance() {
+        let frame: CGRect = CGRect(x: 0, y: (self.assignDescriptionLabel.frame.origin.y + self.assignDescriptionLabel.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+        let topGradient: CAGradientLayer = CAGradientLayer()
+        topGradient.frame = frame
+        topGradient.colors = [UIColor("1AB17CFF").cgColor, UIColor("1AB17C00").cgColor]
+        topGradient.locations = [0.0, 1.0]
+        
+        self.view.layer.addSublayer(topGradient)
+    }
+    
+    private func setupTableView() {
+        let cell: UINib = UINib(nibName: "CreateTaskAssignCell", bundle: nil)
+        self.tableView.register(cell, forCellReuseIdentifier: "assignCell")
+        self.tableView.rowHeight = 58
+        self.tableView.dataSource = self
+        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
     }
     
     
@@ -36,17 +53,23 @@ class CreateTaskAssignViewController: UIViewController {
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "updates", sender: nil)
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dictionary = self.taskDictionary else { return }
+        guard let toVC = segue.destination as? CreateTaskUpdatesViewController else { return }
+        toVC.taskDictionary = dictionary
+    }
 
 }
 
 extension CreateTaskAssignViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath)
         
         return cell
     }
