@@ -10,16 +10,54 @@ import UIKit
 import CoreData
 
 class CreatedTasksViewController: UIViewController {
-
-    
     
     @IBOutlet weak var tableView: UITableView!
+    var fetchedResultsController: NSFetchedResultsController<Task>!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
     }
+    
+    private func setupCoreData() {
+        let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+    }
+    
+    private func fetchData() {
+
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        TaskService.getTasksCreatedByUser(assignerId: User.currentUserId(), offset: 0, success: { (tasks) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+            
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
+    }
+
     
     private func setupTableView() {
         self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
@@ -41,11 +79,17 @@ class CreatedTasksViewController: UIViewController {
 
 extension CreatedTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.name
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
