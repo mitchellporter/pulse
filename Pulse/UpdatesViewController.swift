@@ -14,11 +14,14 @@ class UpdatesViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
+    var fetchedResultsController: NSFetchedResultsController<UpdateRequest>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
     }
     
     private func setupTableView() {
@@ -33,6 +36,41 @@ class UpdatesViewController: UIViewController {
         self.tableView.dataSource = self
     }
     
+    private func setupCoreData() {
+        // TODO: Implement predicate
+        let fetchRequest: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
+        let sort = NSSortDescriptor(key: "senderIsCurrentUser", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "senderIsCurrentUser", cacheName: nil)
+    }
+    
+    private func fetchData() {
+        
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        UpdateService.getUpdateRequests(offset: 0, success: { (updateRequests) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+            
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
+    }
+
+    
     func configure(cell: UITableViewCell, at indexPath: IndexPath) {
         // Setup cell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
@@ -41,11 +79,17 @@ class UpdatesViewController: UIViewController {
 
 extension UpdatesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
