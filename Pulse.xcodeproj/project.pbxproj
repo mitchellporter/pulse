@@ -34,6 +34,7 @@
 		C1AD366E1E689F6C00C5A9AA /* UpdatesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD366C1E689F6C00C5A9AA /* UpdatesViewController.xib */; };
 		C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD366F1E689F7900C5A9AA /* CreatedTasksViewController.swift */; };
 		C1AD36721E689F7900C5A9AA /* CreatedTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */; };
+		C1AD36741E68CC4E00C5A9AA /* ViewUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36731E68CC4E00C5A9AA /* ViewUpdateViewController.swift */; };
 		C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B1D1E60B4BF00A3182A /* TaskItemViewCell.swift */; };
 		C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */; };
 		C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */; };
@@ -157,6 +158,7 @@
 		C1AD366C1E689F6C00C5A9AA /* UpdatesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdatesViewController.xib; sourceTree = "<group>"; };
 		C1AD366F1E689F7900C5A9AA /* CreatedTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatedTasksViewController.swift; sourceTree = "<group>"; };
 		C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreatedTasksViewController.xib; sourceTree = "<group>"; };
+		C1AD36731E68CC4E00C5A9AA /* ViewUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateViewController.swift; sourceTree = "<group>"; };
 		C1B86B1D1E60B4BF00A3182A /* TaskItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemViewCell.swift; sourceTree = "<group>"; };
 		C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemViewCell.xib; sourceTree = "<group>"; };
 		C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemEditCell.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			isa = PBXGroup;
 			children = (
 				C16B5DDE1E678F2400F5BB58 /* TaskUpdateViewController.swift */,
+				C1AD36731E68CC4E00C5A9AA /* ViewUpdateViewController.swift */,
 				C16B5DDC1E6787D700F5BB58 /* Updates.storyboard */,
 			);
 			name = TaskUpdate;
@@ -827,6 +830,7 @@
 				C1AD366D1E689F6C00C5A9AA /* UpdatesViewController.swift in Sources */,
 				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,
+				C1AD36741E68CC4E00C5A9AA /* ViewUpdateViewController.swift in Sources */,
 				C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */,
 				C1B993321E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,
