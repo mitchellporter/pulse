@@ -17,13 +17,12 @@ class CreateTaskUpdatesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupAppearance()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupAppearance() {
+        self.view.backgroundColor = createTaskBackgroundColor
     }
-    
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
