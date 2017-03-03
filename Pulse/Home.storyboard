@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Sts-uJ-0Bl">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="wEk-Yn-olm">
+            <objects>
+                <viewController id="xo4-k2-SZh" customClass="HomeViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bop-wo-n92"/>
+                        <viewControllerLayoutGuide type="bottom" id="epU-oE-5M9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="GnC-0d-dVc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bNM-Eg-z8e">
+                                <rect key="frame" x="73" y="102" width="230" height="174"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1La-4b-2rQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                <rect key="frame" x="54.5" y="487.5" width="265" height="52"/>
+                                <color key="backgroundColor" red="0.14901960780000001" green="0.80784313730000001" blue="0.57725490199999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="265" id="exb-xX-Ecx"/>
+                                    <constraint firstAttribute="height" constant="52" id="lL5-dG-zde"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <state key="normal" title="Create a new team">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="createButtonPressed:" destination="xo4-k2-SZh" eventType="touchUpInside" id="gFf-fa-K5f"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0G-zl-lbk" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                <rect key="frame" x="55.5" y="564.5" width="265" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="TD0-5n-50N"/>
+                                    <constraint firstAttribute="width" constant="265" id="uB3-BT-RLx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="0.6485445205479452" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="0.0" alpha="0.13944777397260275" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="signInButtonPressed:" destination="xo4-k2-SZh" eventType="touchUpInside" id="msY-GL-2Wf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="b0G-zl-lbk" firstAttribute="centerY" secondItem="GnC-0d-dVc" secondAttribute="centerY" multiplier="1.77" id="Kbi-IT-8JV"/>
+                            <constraint firstItem="b0G-zl-lbk" firstAttribute="centerX" secondItem="GnC-0d-dVc" secondAttribute="centerX" id="PbX-BJ-fCQ"/>
+                            <constraint firstItem="1La-4b-2rQ" firstAttribute="centerY" secondItem="GnC-0d-dVc" secondAttribute="centerY" multiplier="1.54" id="Rb6-NJ-7lY"/>
+                            <constraint firstItem="1La-4b-2rQ" firstAttribute="centerX" secondItem="GnC-0d-dVc" secondAttribute="centerX" id="dHX-oN-oL2"/>
+                            <constraint firstItem="bNM-Eg-z8e" firstAttribute="centerX" secondItem="GnC-0d-dVc" secondAttribute="centerX" id="deK-qH-Kvz"/>
+                            <constraint firstItem="bNM-Eg-z8e" firstAttribute="centerY" secondItem="GnC-0d-dVc" secondAttribute="centerY" multiplier="0.567" id="hX0-bx-RDb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rdy-I8-Ba4"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="createbutton" destination="1La-4b-2rQ" id="GoP-N6-oAm"/>
+                        <outlet property="signInButton" destination="b0G-zl-lbk" id="Fq3-GO-irA"/>
+                        <segue destination="cAa-n2-Tay" kind="show" identifier="toLogin" id="cAn-0u-51P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="56w-GO-PeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="164.16791604197903"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="Reh-3c-dZV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="cAa-n2-Tay" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OtQ-Wn-7Ec" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="24" y="673"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="J6E-JT-lnO">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Sts-uJ-0Bl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="19C-1b-22R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xo4-k2-SZh" kind="relationship" relationship="rootViewController" id="RSV-9Z-BZb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="amS-4o-KqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="24.800000000000001" y="164.16791604197903"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="HomeLogo" width="230" height="174"/>
+    </resources>
+</document>
