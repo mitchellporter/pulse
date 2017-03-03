@@ -88,7 +88,12 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="minusButtonPressed:" destination="aSW-TG-8RG" eventType="touchUpInside" id="gY4-eZ-fS7"/>
+                                            <action selector="addButtonPressed:" destination="aSW-TG-8RG" eventType="touchDown" id="bge-NL-YJQ"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchDragExit" id="EKB-Yu-KjF"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchUpInside" id="O3g-lq-BoN"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchUpOutside" id="Ouw-My-9Qq"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchDragOutside" id="PdP-9c-gqJ"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchCancel" id="oga-uN-nM1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zzb-LA-Ht2" customClass="Button" customModule="Pulse" customModuleProvider="target">
@@ -114,7 +119,11 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="addButtonPressed:" destination="aSW-TG-8RG" eventType="touchUpInside" id="NCl-M1-SIC"/>
+                                            <action selector="addButtonPressed:" destination="aSW-TG-8RG" eventType="touchDown" id="4hZ-T1-CMq"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchUpInside" id="AQZ-xl-wRk"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchCancel" id="Lcc-60-oqN"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchDragOutside" id="ffS-9K-Tlk"/>
+                                            <action selector="addButtonReleased:" destination="aSW-TG-8RG" eventType="touchUpOutside" id="viP-hI-7CF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -162,7 +171,9 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="addButton" destination="Zzb-LA-Ht2" id="6cr-ay-vpF"/>
                         <outlet property="circleView" destination="gIt-w2-SQz" id="xEo-iq-VtD"/>
+                        <outlet property="minusButton" destination="9CQ-1k-wEJ" id="0MM-Xy-ClB"/>
                         <outlet property="percentCompletedLabel" destination="qio-lb-fwz" id="uLI-wy-xv6"/>
                     </connections>
                 </viewController>

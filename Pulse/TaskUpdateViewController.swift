@@ -14,7 +14,10 @@ class TaskUpdateViewController: UIViewController {
 
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var percentCompletedLabel: UILabel!
+    @IBOutlet weak var addButton: Button!
+    @IBOutlet weak var minusButton: Button!
     private var completedCircle: CAShapeLayer = CAShapeLayer()
+    private var circleLayer: CAShapeLayer = CAShapeLayer()
     
     private var circleLineWidth: CGFloat = 27
     private var circleFrame: CGRect = CGRect(x: 13.5, y: 13.5, width: 285, height: 285)
@@ -71,13 +74,12 @@ class TaskUpdateViewController: UIViewController {
     }
 
     private func drawCircle() {
-        let circleLayer = CAShapeLayer()
-        circleLayer.frame = self.circleFrame
-        circleLayer.path = self.getCirclePath().cgPath
-        circleLayer.fillColor = self.view.backgroundColor?.cgColor
-        circleLayer.strokeColor = UIColor.white.cgColor
-        circleLayer.lineWidth = 27
-        self.circleView.layer.insertSublayer(circleLayer, at: 0)
+        self.circleLayer.frame = self.circleFrame
+        self.circleLayer.path = self.getCirclePath().cgPath
+        self.circleLayer.fillColor = self.view.backgroundColor?.cgColor
+        self.circleLayer.strokeColor = UIColor.white.cgColor
+        self.circleLayer.lineWidth = 27
+        self.circleView.layer.insertSublayer(self.circleLayer, at: 0)
         
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
@@ -95,6 +97,7 @@ class TaskUpdateViewController: UIViewController {
         self.percentCompletedLabel.text = String(Int(newStrokeEnd * 100)) + "%"
         let colorHue: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 1.0, resultmax: 0.4, percent: false)
         UIView.animate(withDuration: 0.1, animations: {
+            self.circleLayer.strokeStart = newStrokeEnd == 0 ? 0.0 : newStrokeEnd
             self.completedCircle.strokeEnd = newStrokeEnd
             self.completedCircle.strokeColor = UIColor(hue: colorHue, saturation: 0.85, brightness: 0.9, alpha: 1.0).cgColor
         })
@@ -108,13 +111,31 @@ class TaskUpdateViewController: UIViewController {
         }
     }
     
-    @IBAction func minusButtonPressed(_ sender: UIButton) {
+    func addPercent() {
+        self.giveFeedback()
+        self.updateCircleFillbyAdding(percent: self.percentInterval)
+    }
+    
+    func removePercent() {
         self.giveFeedback()
         self.updateCircleFillbyAdding(percent: -self.percentInterval)
     }
     
+    
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        self.giveFeedback()
-        self.updateCircleFillbyAdding(percent: self.percentInterval)
+        if sender == self.addButton {
+            self.addPercent()
+        } else {
+            self.removePercent()
+        }
+        let selector = sender == self.addButton ? #selector(TaskUpdateViewController.addPercent) : #selector(TaskUpdateViewController.removePercent)
+        self.holdTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: selector, userInfo: nil, repeats: true)
     }
+    
+    @IBAction func addButtonReleased(_ sender: UIButton) {
+        self.holdTimer?.invalidate()
+        self.holdTimer = nil
+    }
+    
+    var holdTimer: Timer?
 }
