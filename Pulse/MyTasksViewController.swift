@@ -80,11 +80,6 @@ extension MyTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 1
     }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.name
-    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
@@ -109,7 +104,15 @@ extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-        header.load(status: .inProgress)
+        switch section {
+        case 0:
+            header.load(status: .pending)
+        case 1:
+            header.load(status: .inProgress)
+        case 2:
+            header.load(status: .completed)
+        default: break
+        }
         header.contentView.backgroundColor = self.tableView.backgroundColor
         return header
     }
