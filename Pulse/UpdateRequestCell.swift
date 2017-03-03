@@ -65,8 +65,6 @@ class UpdateRequestCell: UITableViewCell {
     
     // TODO: Both loads are gross, fix these
     private func loadForAssignee() {
-        print(self.updateRequest?.task)
-        print(self.updateRequest?.task?.assigner)
         Nuke.loadImage(with: URL(string: self.updateRequest!.task!.assigner!.avatarURL!)!, into: self.avatar)
         
         // TODO: Shouldn't need bang for data
@@ -81,8 +79,7 @@ class UpdateRequestCell: UITableViewCell {
     }
     
     private func loadForAssigner() {
-        print(self.updateRequest?.task)
-        print(self.updateRequest?.task?.assignees?.anyObject())
+       
         let assignee = self.updateRequest!.task!.assignees?.anyObject() as! User
         self.assignedLabel.text = "ASSIGNED TO: \(assignee.name)"
         
