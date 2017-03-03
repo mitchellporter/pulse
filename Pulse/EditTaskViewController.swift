@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EditTaskViewController: UIViewController {
     
@@ -20,6 +21,9 @@ class EditTaskViewController: UIViewController {
     
     var tableViewTopInset: CGFloat = 22
     
+    var fetchedResultsController: NSFetchedResultsController<Item>!
+    var task: Task!
+    
     fileprivate var editingTask: Bool = false {
         didSet {
             self.editTask()
@@ -31,11 +35,42 @@ class EditTaskViewController: UIViewController {
 
         self.setupAppearance()
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func setupCoreData() {
+        let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "task.objectId == %@", self.task.objectId)
+        
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+    }
+    
+    private func fetchData() {
+        
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        TaskService.getTask(taskId: self.task.objectId, success: { (task) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
     
     private func setupAppearance() {
@@ -98,20 +133,26 @@ class EditTaskViewController: UIViewController {
 
 extension EditTaskViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let identifier: String = "taskItemEditCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? TaskItemEditCell else {
-            return tableView.dequeueReusableCell(withIdentifier: "taskItemViewCell", for: indexPath)
-        }
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemEditCell
         cell.delegate = self
         cell.state = indexPath.row == 0 ? .selected : .unselected
         cell.contentView.backgroundColor = self.tableView.backgroundColor
+        
+        let item = self.fetchedResultsController.object(at: indexPath)
+        cell.load(item: item)
+        
         return cell
     }
     

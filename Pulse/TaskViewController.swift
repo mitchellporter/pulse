@@ -63,6 +63,9 @@ class TaskViewController: UIViewController {
         if let viewTaskViewController = segue.destination as? ViewTaskViewController {
             viewTaskViewController.task = sender as! Task
         }
+        if let editTaskViewController = segue.destination as? EditTaskViewController {
+            editTaskViewController.task = sender as! Task
+        }
     }
     
     private func updateView(mode: ViewMode) {

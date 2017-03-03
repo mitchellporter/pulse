@@ -100,7 +100,8 @@ extension CreatedTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-        taskVC.performSegue(withIdentifier: "editTask", sender: nil)
+        let task = self.fetchedResultsController.object(at: indexPath)
+        taskVC.performSegue(withIdentifier: "editTask", sender: task)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
