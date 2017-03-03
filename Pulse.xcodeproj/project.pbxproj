@@ -39,6 +39,9 @@
 		C1AD367A1E68D44100C5A9AA /* AlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36781E68D44100C5A9AA /* AlertController.swift */; };
 		C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */; };
 		C1AD367F1E68D60000C5A9AA /* UpdateAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */; };
+		C1AD36811E68EBF300C5A9AA /* PassiveAlert.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD36801E68EBF300C5A9AA /* PassiveAlert.xib */; };
+		C1AD36831E68EC0600C5A9AA /* PassiveAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36821E68EC0600C5A9AA /* PassiveAlert.swift */; };
+		C1AD36851E68F0DB00C5A9AA /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36841E68F0DB00C5A9AA /* Utilities.swift */; };
 		C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B1D1E60B4BF00A3182A /* TaskItemViewCell.swift */; };
 		C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */; };
 		C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */; };
@@ -167,6 +170,9 @@
 		C1AD36781E68D44100C5A9AA /* AlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertController.swift; sourceTree = "<group>"; };
 		C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertController.swift; sourceTree = "<group>"; };
+		C1AD36801E68EBF300C5A9AA /* PassiveAlert.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PassiveAlert.xib; sourceTree = "<group>"; };
+		C1AD36821E68EC0600C5A9AA /* PassiveAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassiveAlert.swift; sourceTree = "<group>"; };
+		C1AD36841E68F0DB00C5A9AA /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		C1B86B1D1E60B4BF00A3182A /* TaskItemViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemViewCell.swift; sourceTree = "<group>"; };
 		C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskItemViewCell.xib; sourceTree = "<group>"; };
 		C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskItemEditCell.swift; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 				C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */,
 				C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */,
 				C1B993381E6655C800A404C9 /* ColorConstants.swift */,
+				C1AD36841E68F0DB00C5A9AA /* Utilities.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -367,6 +374,8 @@
 				C1AD36781E68D44100C5A9AA /* AlertController.swift */,
 				C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */,
 				C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */,
+				C1AD36821E68EC0600C5A9AA /* PassiveAlert.swift */,
+				C1AD36801E68EBF300C5A9AA /* PassiveAlert.xib */,
 			);
 			name = Alerts;
 			sourceTree = "<group>";
@@ -682,6 +691,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1AD36811E68EBF300C5A9AA /* PassiveAlert.xib in Resources */,
 				C1B86B241E60B51000A3182A /* TaskItemEditCell.xib in Resources */,
 				C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */,
 				C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */,
@@ -833,6 +843,7 @@
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
+				C1AD36851E68F0DB00C5A9AA /* Utilities.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */,
 				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
@@ -867,6 +878,7 @@
 				C19B74221E5F9337002D9352 /* TaskViewController.swift in Sources */,
 				C1629A9A1E5F715E00EC91B0 /* TaskSectionHeader.swift in Sources */,
 				C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */,
+				C1AD36831E68EC0600C5A9AA /* PassiveAlert.swift in Sources */,
 				C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */,
 				C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */,
 				C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */,

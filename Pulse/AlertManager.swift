@@ -8,6 +8,14 @@
 
 import UIKit
 
+enum PassiveAlertType {
+    case due
+    case assigned
+    case completed
+    case edited
+    case update
+}
+
 public typealias AlertCompletion = ()->()
 
 class AlertManager {
@@ -23,6 +31,8 @@ class AlertManager {
     enum CustomAlertType {
         case update
     }
+    
+    private static var passiveAlert: PassiveAlert?
     
     private static var alertWindow: UIWindow?
     
@@ -74,6 +84,32 @@ class AlertManager {
     /** Call this method to dismiss the presented alert. */
     class func dismissAlert() {
         self.setupWindow()
+    }
+    
+    class func presentPassiveAlert(of type: PassiveAlertType, with data: Any) {
+        let alert: PassiveAlert = PassiveAlert(frame: CGRect(x: 0, y: -93, width: UIScreen.main.bounds.width, height: 93))
+        self.passiveAlert = alert
+        alert.load(alertType: type, with: data)
+        guard let navigationController: UINavigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController else { return }
+        navigationController.view.addSubview(alert)
+        UIView.animate(withDuration: 0.2, animations: {
+            alert.frame.origin.y = 0
+        }, completion: { _ in
+            Delay.wait(4) {
+                self.dismissPassiveAlert(alert)
+            }
+        })
+    }
+    
+    @objc class func dismissPassiveAlert(_ alert: PassiveAlert) {
+        UIView.animate(withDuration: 0.25, animations: {
+            if alert.frame.origin.y == 0 {
+                alert.frame.origin.y = -alert.frame.height
+            }
+        }, completion: { _ in
+            alert.removeFromSuperview()
+            self.passiveAlert = nil
+        })
     }
 }
 
