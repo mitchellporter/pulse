@@ -80,7 +80,13 @@ class TaskCell: UITableViewCell {
             self.assignedLabel.text = "ASSIGNER WAS NIL AND IT SHOULDN'T HAVE BEEN!"
         }
         
-        self.duePercentLabel.text = "DUE: \(self.task!.dueDate!) | \(Int(self.task!.completionPercentage))% DONE"
+        // Calculate due date label
+        let dueDate = self.task!.dueDate!
+        let now = Date()
+        let diff = dueDate.timeIntervalSince1970 - now.timeIntervalSince1970
+        let daysTillDueDate = lround(diff / 86400)
+        
+        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.task!.completionPercentage))% DONE"
         self.descriptionLabel.text = self.task!.title
     }
     
@@ -89,7 +95,13 @@ class TaskCell: UITableViewCell {
         let assignee = self.task!.assignees?.anyObject() as! User
         self.assignedLabel.text = "ASSIGNED TO: \(assignee.name)"
         
-        self.duePercentLabel.text = "DUE: \(self.task!.dueDate!) | \(Int(self.task!.completionPercentage))% DONE"
+        // Calculate due date label
+        let dueDate = self.task!.dueDate!
+        let now = Date()
+        let diff = dueDate.timeIntervalSince1970 - now.timeIntervalSince1970
+        let daysTillDueDate = Int(round(diff / 86400))
+
+        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.task!.completionPercentage))% DONE"
         self.descriptionLabel.text = self.task!.title
         
         Nuke.loadImage(with: URL(string: assignee.avatarURL!)!, into: self.avatar)
