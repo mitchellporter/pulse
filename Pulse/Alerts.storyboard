@@ -154,7 +154,12 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="minusButtonPressed:" destination="4GS-KF-ndx" eventType="touchUpInside" id="0JL-8g-adl"/>
+                                                    <action selector="addButtonPressed:" destination="4GS-KF-ndx" eventType="touchDown" id="ak7-TZ-39z"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchDragOutside" id="7n0-xM-QB6"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchDragExit" id="R3u-dq-zMS"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchCancel" id="RIH-Ht-ZJf"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchUpInside" id="f6g-48-lB3"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchUpOutside" id="hMm-SI-jQZ"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cej-gz-HRg" customClass="Button" customModule="Pulse" customModuleProvider="target">
@@ -180,7 +185,12 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="addButtonPressed:" destination="4GS-KF-ndx" eventType="touchUpInside" id="PhT-qz-Qa5"/>
+                                                    <action selector="addButtonPressed:" destination="4GS-KF-ndx" eventType="touchDown" id="HIg-G4-WN3"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchCancel" id="B8k-Qg-jrn"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchUpOutside" id="DRQ-Kb-215"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchDragOutside" id="gB5-YW-ngV"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchDragExit" id="ha6-Kw-ahb"/>
+                                                    <action selector="addButtonReleased:" destination="4GS-KF-ndx" eventType="touchUpInside" id="qsP-mG-8ay"/>
                                                 </connections>
                                             </button>
                                         </subviews>

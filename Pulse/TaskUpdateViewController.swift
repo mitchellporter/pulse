@@ -88,7 +88,7 @@ class TaskUpdateViewController: UIViewController {
         self.completedCircle.lineWidth = 27
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0
-        self.circleView.layer.insertSublayer(self.completedCircle, above: circleLayer)
+        self.circleView.layer.insertSublayer(self.completedCircle, above: self.circleLayer)
     }
     
     private func updateCircleFillbyAdding(percent: CGFloat) {

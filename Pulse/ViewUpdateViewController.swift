@@ -15,6 +15,7 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     
     private var completedCircle: CAShapeLayer = CAShapeLayer()
+    private var circleLayer: CAShapeLayer = CAShapeLayer()
     
     private var circleLineWidth: CGFloat = 22
     private var circleFrame: CGRect = CGRect(x: 11, y: 11, width: 240, height: 240)
@@ -24,6 +25,8 @@ class ViewUpdateViewController: UIViewController {
         super.viewDidLoad()
 
         self.setupAppearance()
+        
+        self.updateCircleFillbyAdding(percent: 0.4)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,13 +57,12 @@ class ViewUpdateViewController: UIViewController {
     }
     
     private func drawCircle() {
-        let circleLayer = CAShapeLayer()
-        circleLayer.frame = self.circleFrame
-        circleLayer.path = self.getCirclePath().cgPath
-        circleLayer.fillColor = self.view.backgroundColor?.cgColor
-        circleLayer.strokeColor = UIColor.white.cgColor
-        circleLayer.lineWidth = self.circleLineWidth
-        self.circleView.layer.insertSublayer(circleLayer, at: 0)
+        self.circleLayer.frame = self.circleFrame
+        self.circleLayer.path = self.getCirclePath().cgPath
+        self.circleLayer.fillColor = self.view.backgroundColor?.cgColor
+        self.circleLayer.strokeColor = UIColor.white.cgColor
+        self.circleLayer.lineWidth = self.circleLineWidth
+        self.circleView.layer.insertSublayer(self.circleLayer, at: 0)
         
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
@@ -69,7 +71,7 @@ class ViewUpdateViewController: UIViewController {
         self.completedCircle.lineWidth = self.circleLineWidth
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0
-        self.circleView.layer.insertSublayer(self.completedCircle, above: circleLayer)
+        self.circleView.layer.insertSublayer(self.completedCircle, above: self.circleLayer)
     }
     
     private func updateCircleFillbyAdding(percent: CGFloat) {
@@ -78,6 +80,7 @@ class ViewUpdateViewController: UIViewController {
         self.percentCompletedLabel.text = String(Int(newStrokeEnd * 100)) + "%"
         let colorHue: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 1.0, resultmax: 0.4, percent: false)
         UIView.animate(withDuration: 0.1, animations: {
+            self.circleLayer.strokeStart = newStrokeEnd == 0 ? 0.0 : newStrokeEnd
             self.completedCircle.strokeEnd = newStrokeEnd
             self.completedCircle.strokeColor = UIColor(hue: colorHue, saturation: 0.85, brightness: 0.9, alpha: 1.0).cgColor
         })

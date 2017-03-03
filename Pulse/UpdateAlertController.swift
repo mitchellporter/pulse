@@ -21,7 +21,9 @@ class UpdateAlertController: AlertController {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     
+    var holdTimer: Timer?
     private var completedCircle: CAShapeLayer = CAShapeLayer()
+    private var circleLayer: CAShapeLayer = CAShapeLayer()
     
     private var circleLineWidth: CGFloat = 15
     private var circleFrame: CGRect = CGRect(x: 7.5, y: 7.5, width: 160, height: 160)
@@ -57,13 +59,12 @@ class UpdateAlertController: AlertController {
     }
     
     private func drawCircle() {
-        let circleLayer = CAShapeLayer()
-        circleLayer.frame = self.circleFrame
-        circleLayer.path = self.getCirclePath().cgPath
-        circleLayer.fillColor = self.view.backgroundColor?.cgColor
-        circleLayer.strokeColor = UIColor("F0F0F0").cgColor
-        circleLayer.lineWidth = self.circleLineWidth
-        self.circleView.layer.insertSublayer(circleLayer, at: 0)
+        self.circleLayer.frame = self.circleFrame
+        self.circleLayer.path = self.getCirclePath().cgPath
+        self.circleLayer.fillColor = self.view.backgroundColor?.cgColor
+        self.circleLayer.strokeColor = UIColor("F0F0F0").cgColor
+        self.circleLayer.lineWidth = self.circleLineWidth
+        self.circleView.layer.insertSublayer(self.circleLayer, at: 0)
         
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
@@ -72,7 +73,7 @@ class UpdateAlertController: AlertController {
         self.completedCircle.lineWidth = self.circleLineWidth
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0
-        self.circleView.layer.insertSublayer(self.completedCircle, above: circleLayer)
+        self.circleView.layer.insertSublayer(self.completedCircle, above: self.circleLayer)
     }
     
     private func updateCircleFillbyAdding(percent: CGFloat) {
@@ -81,17 +82,44 @@ class UpdateAlertController: AlertController {
         self.completedPercentageLabel.text = String(Int(newStrokeEnd * 100)) + "%"
         let colorSaturation: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 0.0, resultmax: 0.82, percent: false)
         UIView.animate(withDuration: 0.1, animations: {
+            self.circleLayer.strokeStart = newStrokeEnd == 0 ? 0.0 : newStrokeEnd
             self.completedCircle.strokeEnd = newStrokeEnd
             self.completedCircle.strokeColor = UIColor(hue: 0.4416, saturation: colorSaturation, brightness: 0.81, alpha: 1.0).cgColor
         })
     }
     
-    @IBAction func addButtonPressed(_ sender: UIButton) {
+    private func giveFeedback() {
+        if #available(iOS 10.0, *) {
+            let mediumGenerator = UIImpactFeedbackGenerator(style: .light)
+            mediumGenerator.impactOccurred()
+            UIDevice.current.playInputClick()
+        }
+    }
+    
+    func addPercent() {
+        self.giveFeedback()
         self.updateCircleFillbyAdding(percent: self.percentInterval)
     }
     
-    @IBAction func minusButtonPressed(_ sender: UIButton) {
+    func removePercent() {
+        self.giveFeedback()
         self.updateCircleFillbyAdding(percent: -self.percentInterval)
+    }
+    
+    
+    @IBAction func addButtonPressed(_ sender: UIButton) {
+        if sender == self.addButton {
+            self.addPercent()
+        } else {
+            self.removePercent()
+        }
+        let selector = sender == self.addButton ? #selector(TaskUpdateViewController.addPercent) : #selector(TaskUpdateViewController.removePercent)
+        self.holdTimer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: selector, userInfo: nil, repeats: true)
+    }
+    
+    @IBAction func addButtonReleased(_ sender: UIButton) {
+        self.holdTimer?.invalidate()
+        self.holdTimer = nil
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
