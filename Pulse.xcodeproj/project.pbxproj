@@ -452,18 +452,7 @@
 		C356E4AF1E5F64A700E215CF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */,
-				C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */,
-				C32C53621E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift */,
-				C32C53631E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift */,
-				C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */,
-				C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */,
-				C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */,
-				C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */,
-				C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */,
-				C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */,
-				C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */,
-				C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */,
+				C3A398BB1E690335007E3BD8 /* Models */,
 				C356E4B01E5F64C800E215CF /* Pulse.xcdatamodeld */,
 				C356E4BB1E5F681A00E215CF /* PulseType.swift */,
 				C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */,
@@ -489,6 +478,25 @@
 				C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		C3A398BB1E690335007E3BD8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */,
+				C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */,
+				C32C53621E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift */,
+				C32C53631E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift */,
+				C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */,
+				C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */,
+				C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */,
+				C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */,
+				C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */,
+				C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */,
+				C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */,
+				C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C5CAE4F9547689B8F87766FB /* Frameworks */ = {
