@@ -113,7 +113,7 @@ extension UpdatesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-        header.load(status: .inProgress)
+//        header.load(status: .inProgress)
         header.contentView.backgroundColor = self.tableView.backgroundColor
         return header
     }

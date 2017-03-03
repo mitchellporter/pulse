@@ -106,11 +106,11 @@ extension MyTasksViewController: UITableViewDelegate {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
         switch section {
         case 0:
-            header.load(status: .pending)
+            header.load(status: .pending, type: .assignee)
         case 1:
-            header.load(status: .inProgress)
+            header.load(status: .inProgress, type: .assignee)
         case 2:
-            header.load(status: .completed)
+            header.load(status: .completed, type: .assignee)
         default: break
         }
         header.contentView.backgroundColor = self.tableView.backgroundColor

@@ -39,20 +39,20 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         }
     }
 
-    func load(status: TaskStatus) {
+    func load(status: TaskStatus, type: TaskCellType) {
         if self.titleLabel == nil || self.markerView == nil {
             self.layout()
         }
         
         switch status {
         case .pending:
-            self.title = "MY NEW TASKS"
+            self.title = type == .assigner ? "PENDING TASKS I ASSIGNED" : "MY NEW TASKS"
             self.markerColor = UIColor("FF5E5B")
         case .inProgress:
-            self.title = "MY TASKS IN PROGRESS"
+            self.title = type == .assigner ? "TASKS IN PROGRESS I ASSIGNED" : "MY TASKS IN PROGRESS"
             self.markerColor = UIColor("3EAEFF")
         case .completed:
-            self.title = "MY COMPLETED TASKS"
+            self.title = type == .assigner ? "TASKS COMPLETED I ASSIGNED" : "MY COMPLETED TASKS"
             self.markerColor = UIColor.white
         }
     }
