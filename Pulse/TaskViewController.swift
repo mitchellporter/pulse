@@ -59,6 +59,12 @@ class TaskViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let viewTaskViewController = segue.destination as? ViewTaskViewController {
+            viewTaskViewController.task = sender as! Task
+        }
+    }
+    
     private func updateView(mode: ViewMode) {
         switch mode {
         case .myTasks:

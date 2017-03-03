@@ -88,7 +88,7 @@ extension Task: PulseType {
         
         if let itemsJSON = json["items"] as? [[String: AnyObject]] {
             itemsJSON.forEach({ itemJSON in
-                let item = Item.from(json: itemJSON, context: context)
+                let item = Item.from(json: itemJSON,  context: context)
                 task.addToItems(item)
             })
         }

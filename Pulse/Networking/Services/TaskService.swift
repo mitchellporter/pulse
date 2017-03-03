@@ -62,4 +62,16 @@ struct TaskService {
             failure(error, statusCode)
         }
     }
+    
+    static func getTask(taskId: String, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getTask(taskId: taskId), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let taskJSON = json["task"].dictionaryObject {
+                    let task = Task.from(json: taskJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(task)
+                }
+            }
+        }, failure: failure)
+    }
 }

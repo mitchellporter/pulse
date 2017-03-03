@@ -473,9 +473,9 @@
 		C356E4C61E5FC50E00E215CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */,
 				C356E4C71E5FC52600E215CF /* TaskService.swift */,
 				C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */,
-				C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
