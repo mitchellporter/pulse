@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class ViewTaskViewController: UIViewController {
     
@@ -16,6 +17,17 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var updateButton: Button!
     @IBOutlet weak var doneButton: Button!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedByLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    
+    var task: Task? {
+        didSet {
+            self.updateUI()
+        }
+    }
+    
+    var status: TaskStatus?
 
     var tableViewTopInset: CGFloat = 22
     
@@ -24,11 +36,6 @@ class ViewTaskViewController: UIViewController {
 
         self.setupAppearance()
         self.setupTableView()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func setupAppearance() {
@@ -58,12 +65,74 @@ class ViewTaskViewController: UIViewController {
         self.tableView.dataSource = self
     }
     
-    @IBAction func updateButtonPressed(_ sender: UIButton) {
+    private func updateUI() {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        if let assigner: User = task.assigner {
+            self.assignedByLabel.text = "Assigned by: " + assigner.name
+            guard let url: URL = URL(string: assigner.avatarURL) else { return }
+            Nuke.loadImage(with: url, into: self.avatarImageView)
+        }
+        if let dueDate: Date = task.dueDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            self.dueDateLabel.text = formatter.string(from: dueDate)
+        }
+        self.descriptionLabel.text = task.description
         
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        self.status = status
+        
+        switch(status) {
+        case .pending:
+            self.dueDateLabel.textColor = appRed
+            self.updateButton.setTitle("DECLINE TASK", for: .normal)
+            self.doneButton.setTitle("ACCEPT TASK", for: .normal)
+            break
+        case .inProgress:
+            self.dueDateLabel.textColor = appYellow
+            self.updateButton.setTitle("GIVE UPDATE", for: .normal)
+            self.doneButton.setTitle("TASK IS DONE", for: .normal)
+            break
+        case .completed:
+            self.dueDateLabel.textColor = appGreen
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func updateButtonPressed(_ sender: UIButton) {
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                // Decline Task
+                break
+            case .inProgress:
+                // Send Update for Task
+                break
+            case .completed:
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                // Accept Task
+                break
+            case .inProgress:
+                // Mark Task as Completed
+                break
+            case .completed:
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -87,6 +156,21 @@ extension ViewTaskViewController: UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath)
         }
         cell.contentView.backgroundColor = self.tableView.backgroundColor
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                cell.button.alpha = 0
+                break
+            case .inProgress:
+                break
+            case .completed:
+                cell.state = .selected
+                cell.button.isEnabled = false
+                break
+            default:
+                break
+            }
+        }
         return cell
     }
     

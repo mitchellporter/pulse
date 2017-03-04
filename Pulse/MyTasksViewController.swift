@@ -36,6 +36,16 @@ class MyTasksViewController: UIViewController {
         // Setup cell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "viewTask" {
+            guard let task: Task = sender as? Task else { print("Error: no task"); return }
+            guard let toVC: ViewTaskViewController = segue.destination as? ViewTaskViewController else { return }
+            toVC.task = task
+        }
+    }
 }
 
 extension MyTasksViewController: UITableViewDataSource {
@@ -59,8 +69,10 @@ extension MyTasksViewController: UITableViewDataSource {
 extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell = tableView.cellForRow(at: indexPath) as? TaskCell else { return }
+        
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-        taskVC.performSegue(withIdentifier: "viewTask", sender: nil)
+        taskVC.performSegue(withIdentifier: "viewTask", sender: cell.task)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

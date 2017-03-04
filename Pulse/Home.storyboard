@@ -103,7 +103,7 @@
         <!--Navigation Controller-->
         <scene sceneID="J6E-JT-lnO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Sts-uJ-0Bl" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="Sts-uJ-0Bl" customClass="NavigationController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="19C-1b-22R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

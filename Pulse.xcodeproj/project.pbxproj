@@ -11,6 +11,8 @@
 		4F5D8C59254209F7064F6748 /* Pods_PulseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0AA27FC1A0CDA00D0CC6FFC /* Pods_PulseTests.framework */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
+		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
+		C133AF451E6A27B7008AD201 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF441E6A27B7008AD201 /* NavigationController.swift */; };
 		C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */; };
 		C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */; };
 		C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */; };
@@ -144,6 +146,8 @@
 		B0AED16B1455F81351B2DD3A /* Pods-PulseTests.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.local.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.local.xcconfig"; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
+		C133AF441E6A27B7008AD201 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -445,6 +449,8 @@
 				C356E4C31E5F757A00E215CF /* Networking */,
 				C356E4AF1E5F64A700E215CF /* Core Data */,
 				C356E4541E5E5AC700E215CF /* AppDelegate.swift */,
+				C133AF441E6A27B7008AD201 /* NavigationController.swift */,
+				C133AF421E6A24B1008AD201 /* NavigationManager.swift */,
 				C1629A981E5F713200EC91B0 /* Utils */,
 				C1629A971E5F712600EC91B0 /* TaskViews */,
 				C16B5DDB1E6787AF00F5BB58 /* TaskUpdate */,
@@ -866,6 +872,7 @@
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
 				C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */,
 				C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */,
+				C133AF451E6A27B7008AD201 /* NavigationController.swift in Sources */,
 				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,
 				C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */,
 				C19B74241E5F9491002D9352 /* Button.swift in Sources */,
@@ -873,6 +880,7 @@
 				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,
 				C1AD36741E68CC4E00C5A9AA /* ViewUpdateViewController.swift in Sources */,
+				C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */,
 				C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */,
 				C1B993321E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,
