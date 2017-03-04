@@ -93,6 +93,13 @@ extension Task: PulseType {
             })
         }
         
+        if let taskInvitationsJSON = json["invitations"] as? [[String: AnyObject]] {
+            taskInvitationsJSON.forEach({ taskInvitationJSON in
+                let taskInvitation = TaskInvitation.from(json: taskInvitationJSON,  context: context) as TaskInvitation
+                task.addToInvitations(taskInvitation)
+            })
+        }
+        
         return task
     }
 }

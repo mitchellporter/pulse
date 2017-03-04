@@ -76,6 +76,20 @@ extension User: PulseType {
             })
         }
         
+        if let sentTaskInvitationsJSON = json["sent_task_invitations"] as? [[String: AnyObject]] {
+            sentTaskInvitationsJSON.forEach({ sentTaskInvitationJSON in
+                let taskInvitation = TaskInvitation.from(json: sentTaskInvitationJSON, context: context) as TaskInvitation
+                user.addToSentTaskInvitations(taskInvitation)
+            })
+        }
+        
+        if let receivedTaskInvitationsJSON = json["received_task_invitations"] as? [[String: AnyObject]] {
+            receivedTaskInvitationsJSON.forEach({ receivedTaskInvitationJSON in
+                let taskInvitation = TaskInvitation.from(json: receivedTaskInvitationJSON, context: context) as TaskInvitation
+                user.addToReceivedTaskInvitations(taskInvitation)
+            })
+        }
+        
         return user
     }
 }
