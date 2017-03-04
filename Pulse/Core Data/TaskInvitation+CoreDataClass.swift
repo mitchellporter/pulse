@@ -13,3 +13,52 @@ import CoreData
 public class TaskInvitation: NSManagedObject {
 
 }
+
+extension TaskInvitation: PulseType {
+    typealias T = TaskInvitation
+    
+    static func createFetchRequest<T>() -> NSFetchRequest<T> {
+        return NSFetchRequest<T>(entityName: "TaskInvitation")
+    }
+    
+    // TODO: Implement
+    func toJSON() -> [String : AnyObject] {
+        return [String: AnyObject]()
+    }
+    
+    static func from(json: [String : AnyObject], context: NSManagedObjectContext) -> TaskInvitation {
+        let objectId = json["_id"] as! String
+        
+        var createdAt: Date?
+        var updatedAt: Date?
+        if let createdAtTime = json["created_at"] as? String {
+            createdAt = Date.from(createdAtTime)
+        }
+        if let updatedAtTime = json["updated_at"] as? String {
+            updatedAt = Date.from(updatedAtTime)
+        }
+        
+        let description = NSEntityDescription.entity(forEntityName: "TaskInvitation", in: context)!
+        let taskInvitation = TaskInvitation(entity: description, insertInto: context)
+        taskInvitation.objectId = objectId
+        taskInvitation.createdAt = createdAt
+        taskInvitation.updatedAt = updatedAt
+        
+        if let taskJSON = json["task"] as? [String: AnyObject] {
+            let task = Task.from(json: taskJSON, context: context) as Task
+            taskInvitation.task = task
+        }
+        
+        if let senderJSON = json["sender"] as? [String: AnyObject] {
+            let sender = User.from(json: senderJSON, context: context) as User
+            taskInvitation.sender = sender
+        }
+        
+        if let receiverJSON = json["receiver"] as? [String: AnyObject] {
+            let receiver = User.from(json: receiverJSON, context: context) as User
+            taskInvitation.receiver = receiver
+        }
+        
+        return taskInvitation
+    }
+}
