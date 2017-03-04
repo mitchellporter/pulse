@@ -113,6 +113,12 @@ class TaskCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.textLabel?.text = nil
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         

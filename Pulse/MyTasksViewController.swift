@@ -31,10 +31,10 @@ class MyTasksViewController: UIViewController {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
+//        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = predicate
+//        fetchRequest.predicate = predicate
         self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
@@ -59,8 +59,6 @@ class MyTasksViewController: UIViewController {
         } catch {
             print("fetched results controller error: \(error)")
         }
-        
-        
         
         TaskService.getMyTasks(success: {
             CoreDataStack.shared.saveContext()
@@ -98,20 +96,47 @@ class MyTasksViewController: UIViewController {
 
 extension MyTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.taskFetchedResultsController.sections?.count ?? 1
+        return self.taskFetchedResultsController.sections?.count ?? 1 + 1 // 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.taskFetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        switch section {
+        case 0:
+            return self.taskInvitationFetchedResultsController.fetchedObjects?.count ?? 0
+        case 1:
+            let sectionInfo = self.taskFetchedResultsController.sections![0]
+            return sectionInfo.numberOfObjects
+        case 2:
+            let sectionInfo = self.taskFetchedResultsController.sections![1]
+            return sectionInfo.numberOfObjects
+        default: return 0 // This should never hit
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-        let task = self.taskFetchedResultsController.object(at: indexPath)
-        cell.load(task: task, type: .assignee)
         
-        return cell
+        switch indexPath.section {
+        case 0:
+            let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
+            cell.textLabel?.text = "THIS IS AN INVITATION CELL ;)"
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
+            
+            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
+            let task = self.taskFetchedResultsController.object(at: realIndexPath)
+            cell.load(task: task, type: .assignee)
+            return cell
+        case 2:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
+            
+            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
+            let task = self.taskFetchedResultsController.object(at: realIndexPath)
+            cell.load(task: task, type: .assignee)
+            return cell
+        default: return UITableViewCell() // This should never hit
+        }
     }
 }
 
