@@ -13,31 +13,48 @@ class MyTasksViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
-    var fetchedResultsController: NSFetchedResultsController<Task>!
+    
+    var taskInvitationFetchedResultsController: NSFetchedResultsController<TaskInvitation>!
+    var taskFetchedResultsController: NSFetchedResultsController<Task>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
-        self.setupCoreData()
+        
+        self.setupTaskInvitationCoreData()
+        self.setupTaskCoreData()
         self.fetchData()
     }
     
-    private func setupCoreData() {
+    private func setupTaskInvitationCoreData() {
+        // Task invitations
+        let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
+        
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
+        self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
+    private func setupTaskCoreData() {
+        // Tasks
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         let predicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+        self.taskFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
     }
     
     private func fetchData() {
         
         // Check cache
         do {
-            try self.fetchedResultsController.performFetch()
+            try self.taskInvitationFetchedResultsController.performFetch()
+            try self.taskFetchedResultsController.performFetch()
             self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
@@ -45,11 +62,12 @@ class MyTasksViewController: UIViewController {
         
         
         
-        TaskService.getTasksAssignedToUser(assigneeId: User.currentUserId(), offset: 0, success: { (tasks) in
+        TaskService.getMyTasks(success: {
             CoreDataStack.shared.saveContext()
             
             do {
-                try self.fetchedResultsController.performFetch()
+                try self.taskInvitationFetchedResultsController.performFetch()
+                try self.taskFetchedResultsController.performFetch()
                 self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
@@ -80,17 +98,17 @@ class MyTasksViewController: UIViewController {
 
 extension MyTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
+        return self.taskFetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
+        let sectionInfo = self.taskFetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-        let task = self.fetchedResultsController.object(at: indexPath)
+        let task = self.taskFetchedResultsController.object(at: indexPath)
         cell.load(task: task, type: .assignee)
         
         return cell
@@ -101,7 +119,7 @@ extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-        let task = self.fetchedResultsController.object(at: indexPath)
+        let task = self.taskFetchedResultsController.object(at: indexPath)
         taskVC.performSegue(withIdentifier: "viewTask", sender: task)
     }
     
