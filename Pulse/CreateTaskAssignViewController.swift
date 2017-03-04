@@ -17,6 +17,14 @@ class CreateTaskAssignViewController: UIViewController {
     var taskDictionary: [CreateTaskKeys : [Any]]?
     var tableViewTopInset: CGFloat = 30
     
+    var assignees: Set = Set<String>() {
+        didSet {
+            var assigneesArray: [String] = [String]()
+            assigneesArray.append(contentsOf: self.assignees)
+            _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupAppearance()
@@ -71,8 +79,9 @@ extension CreateTaskAssignViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath) as! CreateTaskAssignCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
+        cell.delegate = self
         return cell
     }
 }
@@ -82,5 +91,11 @@ extension CreateTaskAssignViewController: CreateTaskAssignCellDelegate {
     func selectedAssignCell(_ cell: CreateTaskAssignCell) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
         _ = indexPath
+        guard let user: String = cell.user?.objectId else { return }
+        if self.assignees.contains(user) {
+            self.assignees.remove(user)
+        } else {
+            self.assignees.insert(user)
+        }
     }
 }
