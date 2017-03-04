@@ -121,7 +121,7 @@ extension PulseAPI {
         case let .getUpdates(updateRequestId, _):
             return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)/updates"
         case .getMyTasks:
-            return "/api/\(PulseAPI.apiVersion)/my_tasks"
+            return "/api/\(PulseAPI.apiVersion)/feeds/my_tasks"
         }
     }
 }
