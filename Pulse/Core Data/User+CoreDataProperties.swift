@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 3/1/17.
+//  Created by Mitchell Porter on 3/4/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -18,7 +18,7 @@ extension User {
 
     @NSManaged public var avatarURL: String?
     @NSManaged public var createdAt: Date?
-    @NSManaged public var name: String
+    @NSManaged public var name: String?
     @NSManaged public var objectId: String
     @NSManaged public var position: String?
     @NSManaged public var updatedAt: Date?
@@ -26,8 +26,10 @@ extension User {
     @NSManaged public var receivedTasks: NSSet?
     @NSManaged public var receivedUpdateRequests: NSSet?
     @NSManaged public var sentUpdateRequests: NSSet?
-    @NSManaged public var team: Team?
     @NSManaged public var sentUpdates: NSSet?
+    @NSManaged public var team: Team?
+    @NSManaged public var sentTaskInvitations: NSSet?
+    @NSManaged public var receivedTaskInvitations: NSSet?
 
 }
 
@@ -113,5 +115,39 @@ extension User {
 
     @objc(removeSentUpdates:)
     @NSManaged public func removeFromSentUpdates(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for sentTaskInvitations
+extension User {
+
+    @objc(addSentTaskInvitationsObject:)
+    @NSManaged public func addToSentTaskInvitations(_ value: TaskInvitation)
+
+    @objc(removeSentTaskInvitationsObject:)
+    @NSManaged public func removeFromSentTaskInvitations(_ value: TaskInvitation)
+
+    @objc(addSentTaskInvitations:)
+    @NSManaged public func addToSentTaskInvitations(_ values: NSSet)
+
+    @objc(removeSentTaskInvitations:)
+    @NSManaged public func removeFromSentTaskInvitations(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for receivedTaskInvitations
+extension User {
+
+    @objc(addReceivedTaskInvitationsObject:)
+    @NSManaged public func addToReceivedTaskInvitations(_ value: TaskInvitation)
+
+    @objc(removeReceivedTaskInvitationsObject:)
+    @NSManaged public func removeFromReceivedTaskInvitations(_ value: TaskInvitation)
+
+    @objc(addReceivedTaskInvitations:)
+    @NSManaged public func addToReceivedTaskInvitations(_ values: NSSet)
+
+    @objc(removeReceivedTaskInvitations:)
+    @NSManaged public func removeFromReceivedTaskInvitations(_ values: NSSet)
 
 }
