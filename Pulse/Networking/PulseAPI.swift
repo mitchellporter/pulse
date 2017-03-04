@@ -55,6 +55,9 @@ enum PulseAPI {
     
     // Team members
     case getTeamMembers(teamId: String, offset: Int)
+    
+    // Experimental
+    case getMyTasks
 }
 
 extension PulseAPI {
@@ -65,7 +68,8 @@ extension PulseAPI {
                  .getTask,
                  .getTeamMembers,
                  .getUpdateRequests,
-                 .getUpdates:
+                 .getUpdates,
+                 .getMyTasks:
             return .get
             
         case .editTask:
@@ -116,6 +120,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/update_requests"
         case let .getUpdates(updateRequestId, _):
             return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)/updates"
+        case .getMyTasks:
+            return "/api/\(PulseAPI.apiVersion)/my_tasks"
         }
     }
 }
