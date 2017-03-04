@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class CreateTaskAssignViewController: UIViewController {
 
@@ -17,10 +18,48 @@ class CreateTaskAssignViewController: UIViewController {
     var taskDictionary: [CreateTaskKeys : [Any]]?
     var tableViewTopInset: CGFloat = 30
     
+    var fetchedResultsController: NSFetchedResultsController<User>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupAppearance()
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
+    }
+    
+    private func setupCoreData() {
+        let fetchRequest: NSFetchRequest<User> = User.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        // TODO: Needs team predicate
+        
+        fetchRequest.sortDescriptors = [sort]
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+    }
+    
+    private func fetchData() {
+        
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        // TODO: Remove hardcoded team id
+        TeamService.getTeamMembers(teamId: "58b080b2356e913f3a3af182", offset: 0, success: { (teamMembers) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+            
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
     
     private func setupAppearance() {
@@ -64,12 +103,19 @@ class CreateTaskAssignViewController: UIViewController {
 
 extension CreateTaskAssignViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath) as! CreateTaskAssignCell
+        let teamMember = self.fetchedResultsController.object(at: indexPath)
+        cell.load(teamMember: teamMember)
         
         return cell
     }
