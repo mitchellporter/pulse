@@ -28,6 +28,11 @@ class MyTasksViewController: UIViewController {
         self.fetchData()
     }
     
+    // FRC Notes:
+    // An FRC's sections property is nil until you call performFetch for the first time. Then it is initialized.
+    // If an FRC doesn not provide a sectionNameKeyPath, the sections array contains 1 default section info item
+    // If an FRC does provide a sectionNameKeyPath, the sections array remains empty until you actually have data to sort and separate into sections
+    
     private func setupTaskInvitationCoreData() {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
@@ -37,6 +42,9 @@ class MyTasksViewController: UIViewController {
         fetchRequest.sortDescriptors = [sort]
 //        fetchRequest.predicate = predicate
         self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+//        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+        
     }
     
     private func setupTaskCoreData() {
@@ -48,14 +56,25 @@ class MyTasksViewController: UIViewController {
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.taskFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+        
+//        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+        
     }
     
     private func fetchData() {
+        
+//        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+//        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
         
         // Check cache
         do {
             try self.taskInvitationFetchedResultsController.performFetch()
             try self.taskFetchedResultsController.performFetch()
+            
+//            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections![0].numberOfObjects)")
+//            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+            
+            
             self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
@@ -64,9 +83,15 @@ class MyTasksViewController: UIViewController {
         TaskService.getMyTasks(success: {
             CoreDataStack.shared.saveContext()
             
+//            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+//            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+            
             do {
                 try self.taskInvitationFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
+                
+//                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+//                print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
                 
                 
 //                print("task sections: \(self.taskFetchedResultsController.sections?.count ?? 1)")
