@@ -227,6 +227,7 @@ extension MyTasksViewController: UITableViewDelegate {
                 header.load(status: .pending, type: .assignee)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
+                print(sectionInfo.name)
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             }
         case 1:
@@ -234,7 +235,8 @@ extension MyTasksViewController: UITableViewDelegate {
                 let sectionInfo = self.taskFetchedResultsController.sections![section - 1]
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             } else {
-                let sectionInfo = self.taskFetchedResultsController.sections![section - 1]
+                let sectionInfo = self.taskFetchedResultsController.sections![section]
+                print(sectionInfo.name)
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             }
         case 2:
