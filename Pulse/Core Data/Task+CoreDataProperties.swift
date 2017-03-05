@@ -21,7 +21,7 @@ extension Task {
     @NSManaged public var dueDate: Date?
     @NSManaged public var objectId: String
     @NSManaged public var status: String
-    @NSManaged public var title: String?
+    @NSManaged public var title: String
     @NSManaged public var update_day: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var assignees: NSSet?

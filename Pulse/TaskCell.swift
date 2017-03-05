@@ -75,7 +75,7 @@ class TaskCell: UITableViewCell {
         
         // TODO: Shouldn't need bang for data
         if let assigner = self.task!.assigner {
-            self.assignedLabel.text = "ASSIGNED BY: \(assigner.name)"
+            self.assignedLabel.text = "ASSIGNED BY: \(self.task!.status)"
         } else {
             self.assignedLabel.text = "ASSIGNER WAS NIL AND IT SHOULDN'T HAVE BEEN!"
         }
