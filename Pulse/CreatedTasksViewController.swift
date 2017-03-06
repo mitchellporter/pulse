@@ -263,19 +263,16 @@ extension CreatedTasksViewController: UITableViewDelegate {
                 taskVC.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
             } else {
                 let task = self.taskFetchedResultsController.object(at: indexPath)
-                print(task.objectId)
                 taskVC.performSegue(withIdentifier: "viewTask", sender: task)
             }
         } else  {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
                 let task = self.taskFetchedResultsController.object(at: realIndexPath)
-                print(task.objectId)
                 
                 taskVC.performSegue(withIdentifier: "viewTask", sender: task)
             } else {
                 let task = self.taskFetchedResultsController.object(at: indexPath)
-                print(task.objectId)
                 taskVC.performSegue(withIdentifier: "viewTask", sender: task)
             }
         }
@@ -328,9 +325,6 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
         
         switch type {
         case .insert:
-            
-            
-            
             
             if controller == self.taskInvitationFetchedResultsController {
                 self.tableView.insertSections([sectionIndex], with: .fade)

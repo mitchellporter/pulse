@@ -271,19 +271,16 @@ extension MyTasksViewController: UITableViewDelegate {
                 taskVC.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
             } else {
                 let task = self.taskFetchedResultsController.object(at: indexPath)
-                print(task.objectId)
                 taskVC.performSegue(withIdentifier: "viewTask", sender: task)
             }
         } else  {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
                 let task = self.taskFetchedResultsController.object(at: realIndexPath)
-                print(task.objectId)
 
                 taskVC.performSegue(withIdentifier: "viewTask", sender: task)
             } else {
                 let task = self.taskFetchedResultsController.object(at: indexPath)
-                print(task.objectId)
                 taskVC.performSegue(withIdentifier: "viewTask", sender: task)
             }
         }
@@ -402,7 +399,6 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
         case .update: // lots
             
             if controller == self.taskInvitationFetchedResultsController {
-                print("task invitation controller")
                 if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
                     
                     let task = self.taskFetchedResultsController.fetchedObjects!.first!
