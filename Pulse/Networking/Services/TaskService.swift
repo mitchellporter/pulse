@@ -76,9 +76,38 @@ struct TaskService {
         }, failure: failure)
     }
     
+    // TODO: Remove duplication from below functions
+    
     // Experimental
     // TODO: Don't worry about returning data right now since we'll be accessing it via core data FRC's anyway
     static func getMyTasks(success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getMyTasks, success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                // Task Invitations
+                if let taskInvitationsJSON = json["task_invitations"].arrayObject {
+                    var taskInvitations = [TaskInvitation]()
+                    taskInvitationsJSON.forEach({ (taskInvitationJSON) in
+                        let taskInvitation = TaskInvitation.from(json: taskInvitationJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        taskInvitations.append(taskInvitation)
+                    })
+                }
+                // Tasks
+                if let tasksJSON = json["tasks"].arrayObject {
+                    var tasks = [Task]()
+                    tasksJSON.forEach({ (taskJSON) in
+                        let task = Task.from(json: taskJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        tasks.append(task)
+                    })
+                }
+                success()
+            }
+        }, failure: failure)
+    }
+    
+    // Experimental
+    // TODO: Don't worry about returning data right now since we'll be accessing it via core data FRC's anyway
+    static func getTasksCreated(success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .getMyTasks, success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
