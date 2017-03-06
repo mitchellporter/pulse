@@ -9,6 +9,8 @@
 import UIKit
 import Nuke
 
+
+// TODO: Setup description cell
 class ViewTaskViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -19,7 +21,6 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var assignedByLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
     
     var task: Task? {
         didSet {
@@ -77,7 +78,6 @@ class ViewTaskViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             self.dueDateLabel.text = formatter.string(from: dueDate)
         }
-        self.descriptionLabel.text = task.description
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         self.status = status
