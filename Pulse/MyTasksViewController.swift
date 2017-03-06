@@ -263,8 +263,30 @@ extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-        let task = self.taskFetchedResultsController.object(at: indexPath)
-        taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+        
+        if indexPath.section == 0 {
+            if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
+                // TODO: Separate segue for viewing task invitation?
+                taskVC.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
+            } else {
+                let task = self.taskFetchedResultsController.object(at: indexPath)
+                print(task.objectId)
+                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+            }
+        } else  {
+            if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
+                let task = self.taskFetchedResultsController.object(at: realIndexPath)
+                print(task.objectId)
+
+                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+            } else {
+                let task = self.taskFetchedResultsController.object(at: indexPath)
+                print(task.objectId)
+                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
