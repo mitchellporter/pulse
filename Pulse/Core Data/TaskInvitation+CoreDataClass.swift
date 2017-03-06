@@ -14,6 +14,19 @@ public class TaskInvitation: NSManagedObject {
 
 }
 
+extension TaskInvitation {
+    
+    enum TaskInvitationStatus: String {
+        case pending
+        case accepted
+        case denied
+    }
+    
+    var invitationStatus: TaskInvitationStatus {
+        return TaskInvitationStatus(rawValue: self.status)!
+    }
+}
+
 extension TaskInvitation: PulseType {
     typealias T = TaskInvitation
     
@@ -38,11 +51,14 @@ extension TaskInvitation: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
+        let status = json["status"] as! String
+        
         let description = NSEntityDescription.entity(forEntityName: "TaskInvitation", in: context)!
         let taskInvitation = TaskInvitation(entity: description, insertInto: context)
         taskInvitation.objectId = objectId
         taskInvitation.createdAt = createdAt
         taskInvitation.updatedAt = updatedAt
+        taskInvitation.status = status
         
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context) as Task

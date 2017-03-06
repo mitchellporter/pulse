@@ -22,5 +22,5 @@ extension TaskInvitation {
     @NSManaged public var task: Task?
     @NSManaged public var sender: User?
     @NSManaged public var receiver: User?
-
+    @NSManaged public var status: String
 }
