@@ -50,7 +50,7 @@ class MyTasksViewController: UIViewController {
         // So the FRC delegate's "did change an object" method was getting called, but the "did change section info" was not. Because it wasn't being called, we couldn't insert an additional section...
         // so the calculated section value of 3 wasn't matching up to the total section count as a result of all my frc delegate method implementations, and the counts need to match. I fixed this by setting a sectionNameKeyPath on the task invite FRC.
         self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "objectId", cacheName: nil)
-        self.taskInvitationFetchedResultsController.delegate = self
+//        self.taskInvitationFetchedResultsController.delegate = self
 //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
         
     }
@@ -64,7 +64,7 @@ class MyTasksViewController: UIViewController {
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.taskFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
-        self.taskFetchedResultsController.delegate = self
+//        self.taskFetchedResultsController.delegate = self
         
 //        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
         
@@ -83,21 +83,35 @@ class MyTasksViewController: UIViewController {
 //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections![0].numberOfObjects)")
 //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
             
+            self.taskInvitationFetchedResultsController.delegate = self
+            self.taskFetchedResultsController.delegate = self
             
-//            self.tableView.reloadData()
+            
+            self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
         }
         
         TaskService.getMyTasks(success: {
+            
+            // If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
+            self.taskInvitationFetchedResultsController.delegate = nil
+            self.taskFetchedResultsController.delegate = nil
+
             CoreDataStack.shared.saveContext()
             
 //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
 //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
             
+           
+            
             do {
                 try self.taskInvitationFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
+                
+                self.taskInvitationFetchedResultsController.delegate = self
+                self.taskFetchedResultsController.delegate = self
+
                 
 //                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
 //                print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
@@ -110,7 +124,7 @@ class MyTasksViewController: UIViewController {
 //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
 
                 
-//                self.tableView.reloadData()
+                self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
             }
@@ -367,7 +381,12 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             
             if controller == self.taskInvitationFetchedResultsController {
                 print("task invitation controller")
-                
+                if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
+                    
+                    let task = self.taskFetchedResultsController.fetchedObjects!.first!
+                    cell.load(task: task, type: .assignee)
+                }
+
             } else if controller == self.taskFetchedResultsController {
                 
                 
