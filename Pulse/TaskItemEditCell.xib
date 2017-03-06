@@ -18,10 +18,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hdy-MR-OKd" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                        <rect key="frame" x="18" y="24" width="28" height="28"/>
+                        <rect key="frame" x="18" y="24" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="28" id="6lW-vH-4gy"/>
-                            <constraint firstAttribute="width" constant="28" id="Esi-D9-k2W"/>
+                            <constraint firstAttribute="height" constant="30" id="6lW-vH-4gy"/>
+                            <constraint firstAttribute="width" constant="30" id="Esi-D9-k2W"/>
                         </constraints>
                         <state key="normal" image="Combined Shape"/>
                         <userDefinedRuntimeAttributes>
@@ -32,7 +32,7 @@
                                 <real key="value" value="3"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="14"/>
+                                <real key="value" value="15"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -40,13 +40,13 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqT-1i-Q0S">
-                        <rect key="frame" x="64" y="20" width="293" height="88.5"/>
+                        <rect key="frame" x="66" y="20" width="291" height="88.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-dZ-QRz">
-                        <rect key="frame" x="60" y="13" width="299" height="96"/>
+                        <rect key="frame" x="62" y="13" width="297" height="96"/>
                         <color key="backgroundColor" red="0.066666666669999999" green="0.1019607843" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
