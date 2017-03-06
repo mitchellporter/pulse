@@ -109,11 +109,24 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! CreateTaskReviewItemCell
-        if self.taskDictionary != nil {
-            cell.itemLabel.text = self.items()[indexPath.row - 1]
-        }
+        cell.load(self.items()[indexPath.row - 1])
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
     }
+}
+
+extension CreateTaskReviewViewController: CreateTaskReviewItemCellDelegate {
     
+    func cellNeedsResize(_ cell: UITableViewCell) {
+        // resize
+    }
+    
+    func taskItemReview(cell: CreateTaskReviewItemCell, didUpdate text: String) {
+        guard let roughIndexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
+        let indexPath: IndexPath = IndexPath(row: roughIndexPath.row - 1, section: roughIndexPath.section)
+        _ = indexPath
+        var items = self.items()
+        items[indexPath.row] = text
+        _ = self.taskDictionary?.updateValue(items, forKey: .items)
+    }
 }
