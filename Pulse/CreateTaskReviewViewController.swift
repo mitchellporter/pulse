@@ -63,6 +63,20 @@ class CreateTaskReviewViewController: UIViewController {
         }
     }
     
+    fileprivate func description() -> String? {
+        guard let dictionary = self.taskDictionary else { print("No dictionary on review controller"); return nil }
+        guard let description = dictionary[.description] else { print("No description in dictionary"); return nil }
+        return description.first as? String
+    }
+    
+    fileprivate func items() -> [String] {
+        var itemsArray: [String] = [String]()
+        guard let dictionary = self.taskDictionary else { print("No dictionary on review controller"); return itemsArray }
+        guard let items = dictionary[.items] as? [String] else { print("No items in dictionary"); return itemsArray }
+        itemsArray = items
+        return itemsArray
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
             _ = self.navigationController?.popViewController(animated: true)
@@ -80,8 +94,7 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.taskDictionary != nil {
-            guard let itemCount: Int = self.taskDictionary![.items]?.count else { return 1 }
-            return itemCount + 1
+            return self.items().count + 1
         }
         return 1
     }
@@ -90,14 +103,14 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! CreateTaskReviewDescriptionCell
             if self.taskDictionary != nil {
-                cell.descriptionLabel.text = self.taskDictionary![.description]![0] as? String
+                cell.descriptionLabel.text = self.description()
             }
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! CreateTaskReviewItemCell
         if self.taskDictionary != nil {
-            cell.itemLabel.text = self.taskDictionary![.items]![indexPath.row - 1] as? String
+            cell.itemLabel.text = self.items()[indexPath.row - 1]
         }
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
