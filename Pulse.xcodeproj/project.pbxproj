@@ -72,6 +72,8 @@
 		C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11811E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift */; };
 		C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11831E5FA9EB00AF752E /* CreateTaskReviewViewController.swift */; };
 		C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11851E5FC03500AF752E /* TaskViewControllerDatasource.swift */; };
+		C32C53641E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C53621E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift */; };
+		C32C53651E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32C53631E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift */; };
 		C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */; };
 		C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */; };
 		C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */; };
@@ -93,6 +95,13 @@
 		C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4C91E5FC5D700E215CF /* NetworkingClient.swift */; };
 		C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */; };
 		C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */; };
+		C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */; };
+		C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */; };
+		C3A398B71E68E533007E3BD8 /* UpdateRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A398B61E68E533007E3BD8 /* UpdateRequestCell.swift */; };
+		C3A398B91E68E70C007E3BD8 /* UpdateRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */; };
+		C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */; };
+		C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */; };
+		C3DBA95F1E67920900859D4E /* Update+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +216,8 @@
 		C1DA11811E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskUpdatesViewController.swift; sourceTree = "<group>"; };
 		C1DA11831E5FA9EB00AF752E /* CreateTaskReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskReviewViewController.swift; sourceTree = "<group>"; };
 		C1DA11851E5FC03500AF752E /* TaskViewControllerDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewControllerDatasource.swift; sourceTree = "<group>"; };
+		C32C53621E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UpdateRequest+CoreDataClass.swift"; path = "Core Data/UpdateRequest+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C32C53631E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UpdateRequest+CoreDataProperties.swift"; path = "Core Data/UpdateRequest+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TeamService.swift; path = Networking/Services/TeamService.swift; sourceTree = "<group>"; };
 		C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataClass.swift"; path = "Core Data/Team+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Team+CoreDataProperties.swift"; path = "Core Data/Team+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -232,6 +243,13 @@
 		C356E4C91E5FC5D700E215CF /* NetworkingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingClient.swift; path = Networking/NetworkingClient.swift; sourceTree = "<group>"; };
 		C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = "Core Data/CoreDataStack.swift"; sourceTree = "<group>"; };
 		C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Utils/DateExtensions.swift; sourceTree = "<group>"; };
+		C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskInvitation+CoreDataClass.swift"; path = "Core Data/TaskInvitation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskInvitation+CoreDataProperties.swift"; path = "Core Data/TaskInvitation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C3A398B61E68E533007E3BD8 /* UpdateRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRequestCell.swift; sourceTree = "<group>"; };
+		C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateRequestCell.xib; sourceTree = "<group>"; };
+		C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateService.swift; path = Networking/Services/UpdateService.swift; sourceTree = "<group>"; };
+		C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Update+CoreDataClass.swift"; path = "Core Data/Update+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Update+CoreDataProperties.swift"; path = "Core Data/Update+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.production.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.production.xcconfig"; sourceTree = "<group>"; };
 		CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.local.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.local.xcconfig"; sourceTree = "<group>"; };
 		D497FF0A466E0BCFB7559A6D /* Pods-PulseTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -308,6 +326,8 @@
 				C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */,
 				C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */,
 				C1B86B221E60B51000A3182A /* TaskItemEditCell.xib */,
+				C3A398B61E68E533007E3BD8 /* UpdateRequestCell.swift */,
+				C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */,
 			);
 			name = TaskViews;
 			sourceTree = "<group>";
@@ -480,14 +500,7 @@
 		C356E4AF1E5F64A700E215CF /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
-				C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */,
-				C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */,
-				C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */,
-				C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */,
-				C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */,
-				C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */,
-				C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */,
-				C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */,
+				C3A398BB1E690335007E3BD8 /* Models */,
 				C356E4B01E5F64C800E215CF /* Pulse.xcdatamodeld */,
 				C356E4BB1E5F681A00E215CF /* PulseType.swift */,
 				C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */,
@@ -508,10 +521,32 @@
 		C356E4C61E5FC50E00E215CF /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */,
 				C356E4C71E5FC52600E215CF /* TaskService.swift */,
 				C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		C3A398BB1E690335007E3BD8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */,
+				C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */,
+				C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */,
+				C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */,
+				C32C53621E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift */,
+				C32C53631E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift */,
+				C3510B9E1E60DAFF00EEA4E0 /* Team+CoreDataClass.swift */,
+				C3510B9F1E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift */,
+				C356E4BD1E5F6C9D00E215CF /* Item+CoreDataClass.swift */,
+				C356E4BE1E5F6C9D00E215CF /* Item+CoreDataProperties.swift */,
+				C356E4B31E5F67FA00E215CF /* Task+CoreDataClass.swift */,
+				C356E4B41E5F67FA00E215CF /* Task+CoreDataProperties.swift */,
+				C356E4B51E5F67FA00E215CF /* User+CoreDataClass.swift */,
+				C356E4B61E5F67FA00E215CF /* User+CoreDataProperties.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		C5CAE4F9547689B8F87766FB /* Frameworks */ = {
@@ -716,6 +751,7 @@
 				C1AD36681E689F4A00C5A9AA /* MyTasksViewController.xib in Resources */,
 				C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */,
 				C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */,
+				C3A398B91E68E70C007E3BD8 /* UpdateRequestCell.xib in Resources */,
 				C1AD36721E689F7900C5A9AA /* CreatedTasksViewController.xib in Resources */,
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
 				C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */,
@@ -850,11 +886,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */,
 				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
 				C1AD367A1E68D44100C5A9AA /* AlertController.swift in Sources */,
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
+				C32C53641E6743A0007D93F8 /* UpdateRequest+CoreDataClass.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
 				C1AD36851E68F0DB00C5A9AA /* Utilities.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
@@ -863,6 +901,7 @@
 				C1AD367F1E68D60000C5A9AA /* UpdateAlertController.swift in Sources */,
 				C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
+				C3DBA95F1E67920900859D4E /* Update+CoreDataProperties.swift in Sources */,
 				C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */,
 				C1B993221E64B20600A404C9 /* CreateTaskItemCell.swift in Sources */,
 				C1AD36791E68D44100C5A9AA /* AlertManager.swift in Sources */,
@@ -872,6 +911,7 @@
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
 				C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */,
 				C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */,
+				C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */,
 				C133AF451E6A27B7008AD201 /* NavigationController.swift in Sources */,
 				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,
 				C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */,
@@ -898,8 +938,12 @@
 				C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */,
 				C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */,
 				C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */,
+				C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */,
 				C1DA11801E5FA9C900AF752E /* CreateTaskAssignViewController.swift in Sources */,
+				C32C53651E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift in Sources */,
 				C1B86B261E60C0FA00A3182A /* ViewTaskViewController.swift in Sources */,
+				C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */,
+				C3A398B71E68E533007E3BD8 /* UpdateRequestCell.swift in Sources */,
 				C1B9932C1E660CE100A404C9 /* CreateTaskAssignCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1689,7 +1733,7 @@
 			baseConfigurationReference = F3FA4F62BFA221A8EDC4ED2E /* Pods-Pulse.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-staging.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Debug";
@@ -1817,7 +1861,7 @@
 			baseConfigurationReference = EEAB773F152D679309D9156E /* Pods-Pulse.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-staging.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Staging";
@@ -1995,7 +2039,7 @@
 			baseConfigurationReference = C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-production.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Production";
@@ -2077,7 +2121,7 @@
 			baseConfigurationReference = 7F91BFCFE8C1C83B1CDCB955 /* Pods-Pulse.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-production.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Beta";

@@ -16,9 +16,6 @@ public class Task: NSManagedObject {
 
 enum TaskStatus: String {
     case pending = "pending"
-    case needsUpdate
-    case updated
-    case due
     case inProgress = "in_progress"
     case completed = "completed"
 }
@@ -34,7 +31,7 @@ extension Task: PulseType {
     typealias T = Task
     
     static func createFetchRequest<T>() -> NSFetchRequest<T> {
-        return NSFetchRequest(entityName: "Task")
+        return NSFetchRequest<T>(entityName: "Task")
     }
     
     // TODO: Implement
@@ -91,8 +88,15 @@ extension Task: PulseType {
         
         if let itemsJSON = json["items"] as? [[String: AnyObject]] {
             itemsJSON.forEach({ itemJSON in
-                let item = Item.from(json: itemJSON, context: context)
+                let item = Item.from(json: itemJSON,  context: context)
                 task.addToItems(item)
+            })
+        }
+        
+        if let taskInvitationsJSON = json["invitations"] as? [[String: AnyObject]] {
+            taskInvitationsJSON.forEach({ taskInvitationJSON in
+                let taskInvitation = TaskInvitation.from(json: taskInvitationJSON,  context: context) as TaskInvitation
+                task.addToInvitations(taskInvitation)
             })
         }
         

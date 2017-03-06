@@ -2,7 +2,7 @@
 //  Team+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 2/24/17.
+//  Created by Mitchell Porter on 3/1/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -16,11 +16,11 @@ extension Team {
         return NSFetchRequest<Team>(entityName: "Team");
     }
 
-    @NSManaged public var objectId: String
     @NSManaged public var createdAt: Date?
+    @NSManaged public var domain: String?
+    @NSManaged public var objectId: String
     @NSManaged public var updatedAt: Date?
-    @NSManaged public var domain: String
-    @NSManaged public var members: NSSet
+    @NSManaged public var members: NSSet?
 
 }
 

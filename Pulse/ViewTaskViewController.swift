@@ -7,8 +7,8 @@
 //
 
 import UIKit
+import CoreData
 import Nuke
-
 
 // TODO: Setup description cell
 class ViewTaskViewController: UIViewController {
@@ -32,11 +32,49 @@ class ViewTaskViewController: UIViewController {
 
     var tableViewTopInset: CGFloat = 22
     
+    var fetchedResultsController: NSFetchedResultsController<Item>!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupAppearance()
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
+    }
+    
+    private func setupCoreData() {
+        let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "task.objectId == %@", self.task!.objectId)
+        
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+    }
+    
+    private func fetchData() {
+        
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        TaskService.getTask(taskId: self.task!.objectId, success: { (task) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
     
     private func setupAppearance() {
@@ -69,8 +107,11 @@ class ViewTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            self.assignedByLabel.text = "Assigned by: " + assigner.name
-            guard let url: URL = URL(string: assigner.avatarURL) else { return }
+            print(self.task)
+            print(assigner)
+            print(assigner.name!)
+            self.assignedByLabel.text = "Assigned by: " + assigner.name!
+            guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }
         if let dueDate: Date = task.dueDate {
@@ -147,14 +188,19 @@ class ViewTaskViewController: UIViewController {
 
 extension ViewTaskViewController: UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.fetchedResultsController.sections?.count ?? 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: TaskItemViewCell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as? TaskItemViewCell else {
-            return tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath)
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
+        let item = self.fetchedResultsController.object(at: indexPath)
+        cell.load(item: item)
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         if let status = self.status {
             switch(status) {
@@ -173,5 +219,4 @@ extension ViewTaskViewController: UITableViewDataSource {
         }
         return cell
     }
-    
 }

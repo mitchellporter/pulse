@@ -1,21 +1,17 @@
 //
-//  TaskCell.swift
-//  
+//  UpdateRequestCell.swift
+//  Pulse
 //
-//  Created by Design First Apps on 2/22/17.
-//
+//  Created by Mitchell Porter on 3/2/17.
+//  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Nuke
 
-enum TaskCellType {
-    case assigner
-    case assignee
-}
-
 // TODO: HANDLE THESE OPTIONALS
-class TaskCell: UITableViewCell {
+class UpdateRequestCell: UITableViewCell {
     
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var badge: UIView!
@@ -25,16 +21,16 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var duePercentLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var task: Task? {
+    var updateRequest: UpdateRequest? {
         didSet {
-            self.configureState(for: self.task!)
+            self.configureState(for: self.updateRequest!.task!)
         }
     }
     
     var type: TaskCellType!
     
     var stateColor: UIColor {
-        switch self.task!.taskStatus {
+        switch self.updateRequest!.task!.taskStatus {
         case .pending:
             return UIColor("FF5E5B")
         case .inProgress:
@@ -47,7 +43,7 @@ class TaskCell: UITableViewCell {
     override func prepareForInterfaceBuilder() {
         
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -55,8 +51,8 @@ class TaskCell: UITableViewCell {
         self.setupAppearance()
     }
     
-    func load(task: Task, type: TaskCellType) {
-        self.task = task
+    func load(updateRequest: UpdateRequest, type: TaskCellType) {
+        self.updateRequest = updateRequest
         self.type = type
         
         switch self.type! {
@@ -69,54 +65,46 @@ class TaskCell: UITableViewCell {
     
     // TODO: Both loads are gross, fix these
     private func loadForAssignee() {
-        
-        
-        Nuke.loadImage(with: URL(string: self.task!.assigner!.avatarURL!)!, into: self.avatar)
+        Nuke.loadImage(with: URL(string: self.updateRequest!.task!.assigner!.avatarURL!)!, into: self.avatar)
         
         // TODO: Shouldn't need bang for data
-        if let assigner = self.task!.assigner {
-            self.assignedLabel.text = "ASSIGNED BY: \(self.task!.status)"
+        if let assigner = self.updateRequest!.task!.assigner {
+            self.assignedLabel.text = "ASSIGNED BY: \(assigner.name)"
         } else {
             self.assignedLabel.text = "ASSIGNER WAS NIL AND IT SHOULDN'T HAVE BEEN!"
         }
         
         // Calculate due date label
-        let dueDate = self.task!.dueDate!
+        let dueDate = self.updateRequest!.task!.dueDate!
         let now = Date()
         let diff = dueDate.timeIntervalSince1970 - now.timeIntervalSince1970
         let daysTillDueDate = lround(diff / 86400)
         
-        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.task!.completionPercentage))% DONE"
-        self.descriptionLabel.text = self.task!.title
+        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.updateRequest!.task!.completionPercentage))% DONE"
+        self.descriptionLabel.text = self.updateRequest!.task!.title
     }
     
     private func loadForAssigner() {
-        
-        let assignee = self.task!.assignees?.anyObject() as! User
+       
+        let assignee = self.updateRequest!.task!.assignees?.anyObject() as! User
         self.assignedLabel.text = "ASSIGNED TO: \(assignee.name)"
         
         // Calculate due date label
-        let dueDate = self.task!.dueDate!
+        let dueDate = self.updateRequest!.task!.dueDate!
         let now = Date()
         let diff = dueDate.timeIntervalSince1970 - now.timeIntervalSince1970
         let daysTillDueDate = Int(round(diff / 86400))
-
-        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.task!.completionPercentage))% DONE"
-        self.descriptionLabel.text = self.task!.title
+        
+        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.updateRequest!.task!.completionPercentage))% DONE"
+        self.descriptionLabel.text = self.updateRequest!.task!.title
         
         Nuke.loadImage(with: URL(string: assignee.avatarURL!)!, into: self.avatar)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
         
-        self.textLabel?.text = nil
+        // Configure the view for the selected state
     }
     
     override func layoutSubviews() {
@@ -148,5 +136,3 @@ class TaskCell: UITableViewCell {
         }
     }
 }
-
-

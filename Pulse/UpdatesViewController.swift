@@ -14,17 +14,20 @@ class UpdatesViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
+    var fetchedResultsController: NSFetchedResultsController<UpdateRequest>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
+        self.setupCoreData()
+        self.fetchData()
     }
     
     private func setupTableView() {
         self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
-        let cell: UINib = UINib(nibName: "TaskCell", bundle: nil)
-        self.tableView.register(cell, forCellReuseIdentifier: "taskCell")
+        let cell: UINib = UINib(nibName: "UpdateRequestCell", bundle: nil)
+        self.tableView.register(cell, forCellReuseIdentifier: "UpdateRequestCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
 //        self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
@@ -32,6 +35,41 @@ class UpdatesViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
+    
+    private func setupCoreData() {
+        // TODO: Implement predicate
+        let fetchRequest: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
+        let sort = NSSortDescriptor(key: "senderIsCurrentUser", ascending: true)
+        fetchRequest.sortDescriptors = [sort]
+
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "senderIsCurrentUser", cacheName: nil)
+    }
+    
+    private func fetchData() {
+        
+        // Check cache
+        do {
+            try self.fetchedResultsController.performFetch()
+            self.tableView.reloadData()
+        } catch {
+            print("fetched results controller error: \(error)")
+        }
+        
+        UpdateService.getUpdateRequests(offset: 0, success: { (updateRequests) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+            
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
+    }
+
     
     func configure(cell: UITableViewCell, at indexPath: IndexPath) {
         // Setup cell
@@ -41,18 +79,27 @@ class UpdatesViewController: UIViewController {
 
 extension UpdatesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell: TaskCell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as? TaskCell else {
-            return tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateRequestCell", for: indexPath) as! UpdateRequestCell
+        let updateRequest = self.fetchedResultsController.object(at: indexPath)
+        if indexPath.section == 0 {
+            cell.load(updateRequest: updateRequest, type: .assignee)
+        } else {
+            cell.load(updateRequest: updateRequest, type: .assigner)
         }
-        self.configure(cell: cell, at: indexPath)
         return cell
     }
 }
@@ -66,7 +113,7 @@ extension UpdatesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-        header.load(status: .inProgress)
+//        header.load(status: .inProgress)
         header.contentView.backgroundColor = self.tableView.backgroundColor
         return header
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 protocol CreateTaskAssignCellDelegate: class {
     func selectedAssignCell(_ cell: CreateTaskAssignCell)
@@ -41,6 +42,17 @@ class CreateTaskAssignCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // Same thing, diff method name :)
+    func load(teamMember: User) {
+        self.nameLabel.text = teamMember.name
+        self.positionLabel.text = teamMember.position
+        
+        guard let avatarURL = teamMember.avatarURL else { return }
+        guard let url = URL(string: avatarURL) else { return }
+        Nuke.loadImage(with: url, into: self.avatarView)
+
+    }
+
     func load(user: User) {
         self.user = user
         // setup cell
