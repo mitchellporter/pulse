@@ -41,8 +41,16 @@ class MyTasksViewController: UIViewController {
         
         fetchRequest.sortDescriptors = [sort]
 //        fetchRequest.predicate = predicate
-        self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
         
+        // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods. 
+        // Here's the specific problem I kept running into:
+        // On first run, I was making sure that we had in_progress tasks, completed tasks, and NO invites. This worked fine.
+        // I then modified the backend to make an invite, so now we needed 3 total sections with both controllers vs. just using the task controller and having 2 sections
+        // This was causing update errors because I was manually calculating the sections count for the tableview to 3, but the task invite FRC had no context of "sections" because I wasn't setting a sectionNameKeyPath on it.
+        // So the FRC delegate's "did change an object" method was getting called, but the "did change section info" was not. Because it wasn't being called, we couldn't insert an additional section...
+        // so the calculated section value of 3 wasn't matching up to the total section count as a result of all my frc delegate method implementations, and the counts need to match. I fixed this by setting a sectionNameKeyPath on the task invite FRC.
+        self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "objectId", cacheName: nil)
+        self.taskInvitationFetchedResultsController.delegate = self
 //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
         
     }
@@ -56,6 +64,7 @@ class MyTasksViewController: UIViewController {
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.taskFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+        self.taskFetchedResultsController.delegate = self
         
 //        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
         
@@ -75,7 +84,7 @@ class MyTasksViewController: UIViewController {
 //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
             
             
-            self.tableView.reloadData()
+//            self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
         }
@@ -101,7 +110,7 @@ class MyTasksViewController: UIViewController {
 //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
 
                 
-                self.tableView.reloadData()
+//                self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
             }
@@ -134,7 +143,7 @@ extension MyTasksViewController: UITableViewDataSource {
         var sectionCount = 0
         // If we have any invitations at all, increase section count by 1
         if self.taskInvitationFetchedResultsController.fetchedObjects != nil {
-            print(self.taskInvitationFetchedResultsController.fetchedObjects!.count)
+//            print(self.taskInvitationFetchedResultsController.fetchedObjects!.count)
             if (self.taskInvitationFetchedResultsController.fetchedObjects!.count != 0) {
                 sectionCount += 1
             }
@@ -252,7 +261,7 @@ extension MyTasksViewController: UITableViewDelegate {
                 header.load(status: .pending, type: .assignee)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
-                print(sectionInfo.name)
+//                print(sectionInfo.name)
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             }
         case 1:
@@ -261,7 +270,7 @@ extension MyTasksViewController: UITableViewDelegate {
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
-                print(sectionInfo.name)
+//                print(sectionInfo.name)
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             }
         case 2:
@@ -278,58 +287,110 @@ extension MyTasksViewController: UITableViewDelegate {
     
 }
 
-//extension MyTasksViewController: NSFetchedResultsControllerDelegate {
-//    
-//    /*
-//     Assume self has a property 'tableView' -- as is the case for an instance of a UITableViewController
-//     subclass -- and a method configureCell:atIndexPath: which updates the contents of a given cell
-//     with information from a managed object at the given index path in the fetched results controller.
-//     */
-//    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.beginUpdates()
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//        switch(type) {
-//        case .insert:
-//            self.tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-//            break
-//            
-//        case .delete:
-//            self.tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-//            break
-//        default:
-//            break
-//        }
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//        let tableView: UITableView = self.tableView
-//        guard let indexPath: IndexPath = indexPath else { return }
-//        switch(type) {
-//            
-//        case .insert:
-//            tableView.insertRows(at: [indexPath], with: .fade)
-//            break
-//            
-//        case .delete:
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-//            break
-//            
-//        case .update:
-//            guard let cell: UITableViewCell = self.tableView.cellForRow(at: indexPath) else { break }
-//            self.configure(cell: cell, at: indexPath)
-//            break
-//            
-//        case .move:
-//            self.tableView.deleteRows(at: [indexPath], with: .fade)
-//            self.tableView.insertRows(at: [indexPath], with: .fade)
-//            break
-//        }
-//    }
-//    
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.endUpdates()
-//    }
-//}
+extension MyTasksViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        
+        // If the controller is the invitation controller, then just use the section Index like normal
+        
+        
+        switch type {
+        case .insert:
+            
+            
+            
+            
+            if controller == self.taskInvitationFetchedResultsController {
+                self.tableView.insertSections([sectionIndex], with: .fade)
+            } else if controller == self.taskFetchedResultsController {
+//                print("section index: \(sectionIndex)")
+//                print("section info: \(sectionInfo.name)")
+//                self.tableView.insertSections([sectionIndex], with: .fade)
+                
+                var realSectionIndex: Int
+                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                    realSectionIndex = sectionIndex + 1
+                } else {
+                    realSectionIndex = sectionIndex
+                }
+
+                self.tableView.insertSections([realSectionIndex], with: .fade)
+            }
+        case .delete:
+            self.tableView.deleteSections([sectionIndex], with: .fade)
+        case .move:
+            break
+        case .update:
+            break
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert: // a few
+            
+            if controller == self.taskInvitationFetchedResultsController {
+                self.tableView.insertRows(at: [newIndexPath!], with: .fade)
+            } else if controller == self.taskFetchedResultsController {
+                
+                var realIndexPath: IndexPath
+                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section)
+                }
+                
+                self.tableView.insertRows(at: [realIndexPath], with: .fade)
+            }
+            
+        case .delete:
+            
+            if controller == self.taskInvitationFetchedResultsController {
+                self.tableView.deleteRows(at: [indexPath!], with: .fade)
+
+            } else if controller == self.taskFetchedResultsController {
+                
+                var realIndexPath: IndexPath
+                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                self.tableView.deleteRows(at: [realIndexPath], with: .fade)
+            }
+            
+        case .update: // lots
+            
+            if controller == self.taskInvitationFetchedResultsController {
+                print("task invitation controller")
+                
+            } else if controller == self.taskFetchedResultsController {
+                
+                
+                var realIndexPath: IndexPath
+                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                
+                if let cell = self.tableView.cellForRow(at: realIndexPath) as? TaskCell {
+                    
+                    let task = anObject as! Task
+                    cell.load(task: task, type: .assignee)
+                }
+            }
+            break
+        case .move:
+            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+}
