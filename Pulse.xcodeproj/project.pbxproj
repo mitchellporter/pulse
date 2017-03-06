@@ -1733,7 +1733,7 @@
 			baseConfigurationReference = F3FA4F62BFA221A8EDC4ED2E /* Pods-Pulse.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-staging.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Debug";
@@ -1861,7 +1861,7 @@
 			baseConfigurationReference = EEAB773F152D679309D9156E /* Pods-Pulse.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-staging.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Staging";
@@ -2039,7 +2039,7 @@
 			baseConfigurationReference = C3DC731317F2148887C5F15E /* Pods-Pulse.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-production.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Production";
@@ -2121,7 +2121,7 @@
 			baseConfigurationReference = 7F91BFCFE8C1C83B1CDCB955 /* Pods-Pulse.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "pulse-api-production.herokuapp.com";
+				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Beta";
