@@ -47,11 +47,18 @@ enum PulseAPI {
     case sendTaskUpdate(taskId: String, completionPercentage: Float) //
     case finishTask(taskId: String) //
     
+    case getUpdateRequests(offset: Int)
+    case getUpdates(updateRequestId: String, offset: Int)
+    
     // Task Items
     case finishTaskItem(taskId: String, itemId: String) //
     
     // Team members
     case getTeamMembers(teamId: String, offset: Int)
+    
+    // Experimental
+    case getMyTasks
+    case getTasksCreated
 }
 
 extension PulseAPI {
@@ -60,7 +67,11 @@ extension PulseAPI {
             case .getTasksCreatedByUser,
                  .getTasksAssignedToUser,
                  .getTask,
-                 .getTeamMembers:
+                 .getTeamMembers,
+                 .getUpdateRequests,
+                 .getUpdates,
+                 .getMyTasks,
+                 .getTasksCreated:
             return .get
             
         case .editTask:
@@ -94,7 +105,7 @@ extension PulseAPI {
         case .getTasksAssignedToUser:
             return "/api/\(PulseAPI.apiVersion)/tasks"
         case .getTasksCreatedByUser:
-            return "/api/\(PulseAPI.apiVersion)/tasks/"
+            return "/api/\(PulseAPI.apiVersion)/tasks"
         case let .editTask(taskId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .finishTask(taskId):
@@ -107,6 +118,14 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
+        case .getUpdateRequests:
+            return "/api/\(PulseAPI.apiVersion)/update_requests"
+        case let .getUpdates(updateRequestId, _):
+            return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)/updates"
+        case .getMyTasks:
+            return "/api/\(PulseAPI.apiVersion)/feeds/my_tasks"
+        case .getTasksCreated:
+            return "/api/\(PulseAPI.apiVersion)/feeds/tasks_created"
         }
     }
 }
@@ -162,6 +181,16 @@ extension PulseAPI {
                 "limit": 25 as AnyObject
             ]
             
+        case let .getUpdateRequests(offset):
+            return [
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
+            ]
+        case let .getUpdates(_, offset):
+            return [
+                "offset": offset as AnyObject,
+                "limit": 25 as AnyObject
+            ]
                default: return nil
         }
     }

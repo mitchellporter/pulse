@@ -24,6 +24,7 @@ class TaskViewController: UIViewController {
     @IBOutlet weak var updatesButton: Button!
     @IBOutlet weak var createdTasksButton: Button!
     
+
     private var viewControllers: [UIViewController] = [UIViewController]()
     
     fileprivate var modeSelected: ViewMode = .myTasks {
@@ -36,6 +37,7 @@ class TaskViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
 
         self.initializeViewControllers()
         self.updateView(mode: self.modeSelected)
@@ -57,6 +59,18 @@ class TaskViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let task = sender as! Task
+        
+        if let viewTaskViewController = segue.destination as? ViewTaskViewController {
+            viewTaskViewController.task = sender as! Task
+        }
+        if let editTaskViewController = segue.destination as? EditTaskViewController {
+            editTaskViewController.task = sender as! Task
+        }
+    }
+    
     private func setupAppearance() {
         self.addButton.backgroundColor = createTaskBackgroundColor
     }
@@ -72,6 +86,7 @@ class TaskViewController: UIViewController {
             self.myTasksButton.alpha = 0.3
             self.updatesButton.alpha = 1
             self.createdTasksButton.alpha = 0.3
+
             self.updateContainerView(with: self.viewControllers[1])
         case .createdTasks:
             self.createdTasksButton.alpha = 1

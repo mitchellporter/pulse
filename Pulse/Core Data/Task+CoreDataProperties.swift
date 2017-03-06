@@ -2,7 +2,7 @@
 //  Task+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 2/23/17.
+//  Created by Mitchell Porter on 3/4/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -16,17 +16,19 @@ extension Task {
         return NSFetchRequest<Task>(entityName: "Task");
     }
 
-    @NSManaged public var objectId: String
-    @NSManaged public var createdAt: Date?
-    @NSManaged public var updatedAt: Date?
-    @NSManaged public var title: String
     @NSManaged public var completionPercentage: Float
+    @NSManaged public var createdAt: Date?
     @NSManaged public var dueDate: Date?
-    @NSManaged public var update_day: String
+    @NSManaged public var objectId: String
     @NSManaged public var status: String
+    @NSManaged public var title: String
+    @NSManaged public var update_day: String?
+    @NSManaged public var updatedAt: Date?
+    @NSManaged public var assignees: NSSet?
     @NSManaged public var assigner: User?
-    @NSManaged public var assignees: NSSet
-    @NSManaged public var items: NSSet
+    @NSManaged public var items: NSSet?
+    @NSManaged public var updateRequests: NSSet?
+    @NSManaged public var invitations: NSSet?
 
 }
 
@@ -61,5 +63,39 @@ extension Task {
 
     @objc(removeItems:)
     @NSManaged public func removeFromItems(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for updateRequests
+extension Task {
+
+    @objc(addUpdateRequestsObject:)
+    @NSManaged public func addToUpdateRequests(_ value: UpdateRequest)
+
+    @objc(removeUpdateRequestsObject:)
+    @NSManaged public func removeFromUpdateRequests(_ value: UpdateRequest)
+
+    @objc(addUpdateRequests:)
+    @NSManaged public func addToUpdateRequests(_ values: NSSet)
+
+    @objc(removeUpdateRequests:)
+    @NSManaged public func removeFromUpdateRequests(_ values: NSSet)
+
+}
+
+// MARK: Generated accessors for invitations
+extension Task {
+
+    @objc(addInvitationsObject:)
+    @NSManaged public func addToInvitations(_ value: TaskInvitation)
+
+    @objc(removeInvitationsObject:)
+    @NSManaged public func removeFromInvitations(_ value: TaskInvitation)
+
+    @objc(addInvitations:)
+    @NSManaged public func addToInvitations(_ values: NSSet)
+
+    @objc(removeInvitations:)
+    @NSManaged public func removeFromInvitations(_ values: NSSet)
 
 }

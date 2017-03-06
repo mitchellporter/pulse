@@ -14,6 +14,12 @@ public class User: NSManagedObject {
 
 }
 
+extension User {
+    static func currentUserId() -> String {
+        return "586ecdc0213f22d94db5ef7f"
+    }
+}
+
 extension User: PulseType {
     typealias T = User
     
@@ -66,7 +72,21 @@ extension User: PulseType {
         if let assignedTasksJSON = json["received_tasks"] as? [[String: AnyObject]] {
             assignedTasksJSON.forEach({ assignedTaskJSON in
                 let task = Task.from(json: assignedTaskJSON, context: context) as Task
-                user.addToAssignedTasks(task)
+                user.addToReceivedTasks(task)
+            })
+        }
+        
+        if let sentTaskInvitationsJSON = json["sent_task_invitations"] as? [[String: AnyObject]] {
+            sentTaskInvitationsJSON.forEach({ sentTaskInvitationJSON in
+                let taskInvitation = TaskInvitation.from(json: sentTaskInvitationJSON, context: context) as TaskInvitation
+                user.addToSentTaskInvitations(taskInvitation)
+            })
+        }
+        
+        if let receivedTaskInvitationsJSON = json["received_task_invitations"] as? [[String: AnyObject]] {
+            receivedTaskInvitationsJSON.forEach({ receivedTaskInvitationJSON in
+                let taskInvitation = TaskInvitation.from(json: receivedTaskInvitationJSON, context: context) as TaskInvitation
+                user.addToReceivedTaskInvitations(taskInvitation)
             })
         }
         

@@ -86,7 +86,12 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        // Create task
+        // TODO: Create real task
+        TaskService.createTask(title: "Created from iOS app", items: ["test item #1", "test item #2"], assignees: [User.currentUserId()], dueDate: nil, updateDay: .monday, success: { (task) in
+            print("task success")
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
 }
 
