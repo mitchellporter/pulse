@@ -23,12 +23,27 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let tableViewTopInset: CGFloat = 32
-    var taskDescription: String = "" {
-        didSet {
+    var taskDescription: String {
+        get {
+            guard let description: [String] = self.taskDictionary[.description] as? [String] else { return "" }
+            guard let descriptionString: String = description.first else { return "" }
+            return descriptionString
+        }
+        set {
+            _ = self.taskDictionary.updateValue([newValue], forKey: .description)
             self.toggleNextButton()
         }
     }
-    var taskItems: [String] = [String]()
+    var taskItems: [String] {
+        get {
+            guard let items: [String] = self.taskDictionary[.items] as? [String] else { return [String]() }
+            return items
+        }
+        set {
+            _ = self.taskDictionary.updateValue(newValue, forKey: .items)
+        }
+    }
+    var taskDictionary: [CreateTaskKeys : [Any]] = [CreateTaskKeys : [Any]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,9 +141,8 @@ class CreateTaskViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dictionary: [CreateTaskKeys : [Any]] = [.description : [self.taskDescription], .items : self.taskItems]
         guard let toVC = segue.destination as? CreateTaskDateViewController else { return }
-        toVC.taskDictionary = dictionary
+        toVC.taskDictionary = self.taskDictionary
     }
 }
 

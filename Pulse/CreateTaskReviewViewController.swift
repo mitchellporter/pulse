@@ -27,6 +27,18 @@ class CreateTaskReviewViewController: UIViewController {
         self.setupTableView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController || self.isBeingDismissed {
+            print("dismissing!")
+            guard let previousViewController: CreateTaskUpdatesViewController = NavigationManager.getPreviousViewController(CreateTaskUpdatesViewController.self, from: self) as? CreateTaskUpdatesViewController else { return }
+            guard let taskDictionary = self.taskDictionary else { return }
+            previousViewController.taskDictionary = taskDictionary
+        } else {
+            print("not dismissing!")
+        }
+    }
+    
     private func setupAppearance() {
         let frame: CGRect = CGRect(x: 0, y: (self.avatarImageView.superview!.frame.origin.y + self.avatarImageView.superview!.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
@@ -110,6 +122,7 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! CreateTaskReviewItemCell
         cell.load(self.items()[indexPath.row - 1])
+        cell.delegate = self
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
     }

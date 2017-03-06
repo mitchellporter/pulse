@@ -31,6 +31,18 @@ class CreateTaskAssignViewController: UIViewController {
         self.setupTableView()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController || self.isBeingDismissed {
+            print("dismissing!")
+            guard let previousViewController: CreateTaskDateViewController = NavigationManager.getPreviousViewController(CreateTaskDateViewController.self, from: self) as? CreateTaskDateViewController else { return }
+            guard let taskDictionary = self.taskDictionary else { return }
+            previousViewController.taskDictionary = taskDictionary
+        } else {
+            print("not dismissing!")
+        }
+    }
+    
     private func setupAppearance() {
         let frame: CGRect = CGRect(x: 0, y: (self.assignDescriptionLabel.frame.origin.y + self.assignDescriptionLabel.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()

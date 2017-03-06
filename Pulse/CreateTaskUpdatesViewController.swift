@@ -20,6 +20,18 @@ class CreateTaskUpdatesViewController: UIViewController {
         self.setupAppearance()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController || self.isBeingDismissed {
+            print("dismissing!")
+            guard let previousViewController: CreateTaskAssignViewController = NavigationManager.getPreviousViewController(CreateTaskAssignViewController.self, from: self) as? CreateTaskAssignViewController else { return }
+            guard let taskDictionary = self.taskDictionary else { return }
+            previousViewController.taskDictionary = taskDictionary
+        } else {
+            print("not dismissing!")
+        }
+    }
+    
     private func setupAppearance() {
         self.view.backgroundColor = createTaskBackgroundColor
     }
