@@ -18,7 +18,12 @@ class CreateTaskAssignCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var addButton: Button!
-    
+    var state: CellState = .unselected {
+        didSet {
+            self.update()
+        }
+    }
+    var user: User?
     weak var delegate: CreateTaskAssignCellDelegate?
 
     override func awakeFromNib() {
@@ -36,17 +41,23 @@ class CreateTaskAssignCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func load() {
-        
+    func load(user: User) {
+        self.user = user
+        // setup cell
+    }
+    
+    private func update() {
+        let image: UIImage? = self.state == .selected ? #imageLiteral(resourceName: "WhiteCheck") : #imageLiteral(resourceName: "AddPlusWhite")
+        self.addButton.setImage(image, for: .normal)
     }
     
     private func selectUser() {
-        
+        self.state = self.state == .selected ? .unselected : .selected
         
         self.delegate?.selectedAssignCell(self)
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        //
+        self.selectUser()
     }
 }

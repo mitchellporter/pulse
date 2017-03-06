@@ -96,7 +96,7 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
     
     private func setupAppearance() {
         let bundle: Bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "HighlightOval", in: bundle, compatibleWith: nil)
+        let image = UIImage(named: "HighlightOvalGreen", in: bundle, compatibleWith: nil)
         self.circle.image = image
         self.updateMonth(newDate: self.currentDate)
     }

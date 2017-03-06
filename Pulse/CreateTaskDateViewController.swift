@@ -26,11 +26,16 @@ class CreateTaskDateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupAppearance()
         self.setupPicker()
     }
     
     private func setupPicker() {
         self.calendarPicker.delegate = self
+    }
+    
+    private func setupAppearance() {
+        self.view.backgroundColor = createTaskBackgroundColor
     }
     
     

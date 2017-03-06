@@ -1,62 +1,47 @@
 //
-//  TaskUpdateViewController.swift
+//  UpdateAlertController.swift
 //  Pulse
 //
-//  Created by Design First Apps on 3/1/17.
+//  Created by Design First Apps on 3/2/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
 import UIKit
-import QuartzCore
-import CoreGraphics
 
-class TaskUpdateViewController: UIViewController {
-
+class UpdateAlertController: AlertController {
+    
+    @IBOutlet weak var alertView: UIView!
+    @IBOutlet weak var alertViewHeader: UIView!
     @IBOutlet weak var circleView: UIView!
-    @IBOutlet weak var percentCompletedLabel: UILabel!
-    @IBOutlet weak var addButton: Button!
-    @IBOutlet weak var minusButton: Button!
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedToLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var completedPercentageLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
+    
+    var holdTimer: Timer?
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     private var circleLayer: CAShapeLayer = CAShapeLayer()
     
-    private var circleLineWidth: CGFloat = 27
-    private var circleFrame: CGRect = CGRect(x: 13.5, y: 13.5, width: 285, height: 285)
+    private var circleLineWidth: CGFloat = 15
+    private var circleFrame: CGRect = CGRect(x: 7.5, y: 7.5, width: 160, height: 160)
     private var percentInterval: CGFloat = 0.1
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupAppearance()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        self.updateCircleFillbyAdding(percent: 0.4)
-    }
 
     private func setupAppearance() {
-        self.view.backgroundColor = mainBackgroundColor
+        self.alertView.layer.cornerRadius = 3
+        self.alertViewHeader.backgroundColor = appGreen
+        
+        
         
         self.drawCircle()
-        
-//        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100))
-//        
-//        let gradient = CAGradientLayer()
-//        gradient.frame = path.bounds
-//        gradient.colors = [UIColor.magenta.cgColor, UIColor.cyan.cgColor]
-//        
-//        let shape = CAShapeLayer()
-//        shape.path = path.cgPath
-//        shape.lineWidth = 2.0
-//        shape.strokeColor = UIColor.black.cgColor
-//        self.view.layer.addSublayer(shape)
-//        
-//        let shapeMask = CAShapeLayer()
-//        shapeMask.path = path.cgPath
-//        gradient.mask = shapeMask
-//        
-//        self.view.layer.addSublayer(gradient)
     }
     
     private func getCirclePath() -> UIBezierPath {
@@ -72,20 +57,20 @@ class TaskUpdateViewController: UIViewController {
             return result
         }
     }
-
+    
     private func drawCircle() {
         self.circleLayer.frame = self.circleFrame
         self.circleLayer.path = self.getCirclePath().cgPath
         self.circleLayer.fillColor = self.view.backgroundColor?.cgColor
-        self.circleLayer.strokeColor = UIColor.white.cgColor
-        self.circleLayer.lineWidth = 27
+        self.circleLayer.strokeColor = UIColor("F0F0F0").cgColor
+        self.circleLayer.lineWidth = self.circleLineWidth
         self.circleView.layer.insertSublayer(self.circleLayer, at: 0)
         
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
         self.completedCircle.fillColor = UIColor.clear.cgColor
         self.completedCircle.strokeColor = appGreen.cgColor
-        self.completedCircle.lineWidth = 27
+        self.completedCircle.lineWidth = self.circleLineWidth
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0
         self.circleView.layer.insertSublayer(self.completedCircle, above: self.circleLayer)
@@ -94,12 +79,12 @@ class TaskUpdateViewController: UIViewController {
     private func updateCircleFillbyAdding(percent: CGFloat) {
         let strokeEnd: CGFloat = self.completedCircle.strokeEnd + percent < 1 ? self.completedCircle.strokeEnd + percent : 1
         let newStrokeEnd: CGFloat = self.completedCircle.strokeEnd + percent > 0 ? ((strokeEnd * 100).rounded() / 100) : 0.0
-        self.percentCompletedLabel.text = String(Int(newStrokeEnd * 100)) + "%"
-        let colorHue: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 1.0, resultmax: 0.4, percent: false)
+        self.completedPercentageLabel.text = String(Int(newStrokeEnd * 100)) + "%"
+        let colorSaturation: CGFloat = self.rangeMap(inputValue: newStrokeEnd, originMin: 0.0, originMax: 1.0, resultMin: 0.0, resultmax: 0.82, percent: false)
         UIView.animate(withDuration: 0.1, animations: {
             self.circleLayer.strokeStart = newStrokeEnd == 0 ? 0.0 : newStrokeEnd
             self.completedCircle.strokeEnd = newStrokeEnd
-            self.completedCircle.strokeColor = UIColor(hue: colorHue, saturation: 0.85, brightness: 0.9, alpha: 1.0).cgColor
+            self.completedCircle.strokeColor = UIColor(hue: 0.4416, saturation: colorSaturation, brightness: 0.81, alpha: 1.0).cgColor
         })
     }
     
@@ -137,5 +122,7 @@ class TaskUpdateViewController: UIViewController {
         self.holdTimer = nil
     }
     
-    var holdTimer: Timer?
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+       AlertManager.dismissAlert()
+    }
 }

@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2V-xh-iiZ" customClass="Button" customModule="Pulse" customModuleProvider="target">
@@ -45,7 +45,7 @@
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Give this person a quick high level overview of what you need done." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-lO-BxZ">
                         <rect key="frame" x="20" y="8" width="337" height="64"/>
-                        <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" white="1" alpha="0.68129280821917804" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
@@ -56,7 +56,7 @@
                     </textView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Add Tasks" translatesAutoresizingMaskIntoConstraints="NO" id="Rt0-5Y-Ghp">
                         <rect key="frame" x="70" y="149" width="287" height="49"/>
-                        <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" white="1" alpha="0.56367722602739723" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>

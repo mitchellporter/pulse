@@ -33,8 +33,8 @@ class CreateTaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setupTableView()
         self.setupAppearance()
+        self.setupTableView()
         self.setupObserver()
     }
     
@@ -63,11 +63,12 @@ class CreateTaskViewController: UIViewController {
     }
     
     private func setupAppearance() {
+        self.view.backgroundColor = createTaskBackgroundColor
         self.toggleNextButton()
         let frame: CGRect = CGRect(x: 0, y: 48, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
-        topGradient.colors = [UIColor("1AB17CFF").cgColor, UIColor("1AB17C00").cgColor]
+        topGradient.colors = [createTaskBackgroundColor.cgColor, createTaskBackgroundColor.withAlphaComponent(0.0).cgColor]
         topGradient.locations = [0.0, 1.0]
         
         self.view.layer.addSublayer(topGradient)
@@ -82,7 +83,7 @@ class CreateTaskViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+        self.tableView.backgroundColor = self.view.backgroundColor
         self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
     }
     
@@ -141,11 +142,13 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == 0 {
             let cell: CreateTaskAddItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateAddItemCell", for: indexPath) as! CreateTaskAddItemCell
             cell.delegate = self
+            cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell
         }
         let cell: CreateTaskItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateItemCell", for: indexPath) as! CreateTaskItemCell
         cell.load(text: self.taskItems[indexPath.row - 1], at: indexPath)
         cell.delegate = self
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
     }
     

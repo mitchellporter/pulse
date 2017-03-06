@@ -164,14 +164,14 @@ extension UIColor {
     /**
      Alpha value of a UIColor instance.
      */
-    var alpha: Double {
+    var alpha: CGFloat {
         get {
             let hexValue: String = self.hexString(true)
             let index = hexValue.index(hexValue.startIndex, offsetBy: 6)..<hexValue.endIndex
             let stringValue: String = hexValue.characters.count == 8 ? String(hexValue[index]) : "FF"
             let value = Double(numericValueFrom(hex: stringValue))
             let preciseNumber: Double = Double(value/255)
-            return (preciseNumber*100).rounded() / 100
+            return CGFloat((preciseNumber*100).rounded() / 100)
         }
     }
     
