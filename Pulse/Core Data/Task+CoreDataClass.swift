@@ -15,9 +15,9 @@ public class Task: NSManagedObject {
 }
 
 enum TaskStatus: String {
-    case pending
+    case pending = "pending"
     case inProgress = "in_progress"
-    case completed
+    case completed = "completed"
 }
 
 extension Task {

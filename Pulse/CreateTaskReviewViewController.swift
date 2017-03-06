@@ -31,7 +31,7 @@ class CreateTaskReviewViewController: UIViewController {
         let frame: CGRect = CGRect(x: 0, y: (self.avatarImageView.superview!.frame.origin.y + self.avatarImageView.superview!.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
-        topGradient.colors = [UIColor("1AB17CFF").cgColor, UIColor("1AB17C00").cgColor]
+        topGradient.colors = [createTaskBackgroundColor.cgColor, createTaskBackgroundColor.withAlphaComponent(0.0).cgColor]
         topGradient.locations = [0.0, 1.0]
         
         self.view.layer.addSublayer(topGradient)
@@ -39,6 +39,8 @@ class CreateTaskReviewViewController: UIViewController {
         self.avatarImageView.layer.borderColor = UIColor.white.cgColor
         self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
+        
+        self.view.backgroundColor = createTaskBackgroundColor
     }
     
     private func setupTableView() {
@@ -49,6 +51,7 @@ class CreateTaskReviewViewController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 45
         self.tableView.dataSource = self
+        self.tableView.backgroundColor = self.view.backgroundColor
         self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
     }
     
@@ -58,6 +61,20 @@ class CreateTaskReviewViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             self.dueDateLabel.text = formatter.string(from: date)
         }
+    }
+    
+    fileprivate func description() -> String? {
+        guard let dictionary = self.taskDictionary else { print("No dictionary on review controller"); return nil }
+        guard let description = dictionary[.description] else { print("No description in dictionary"); return nil }
+        return description.first as? String
+    }
+    
+    fileprivate func items() -> [String] {
+        var itemsArray: [String] = [String]()
+        guard let dictionary = self.taskDictionary else { print("No dictionary on review controller"); return itemsArray }
+        guard let items = dictionary[.items] as? [String] else { print("No items in dictionary"); return itemsArray }
+        itemsArray = items
+        return itemsArray
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -82,8 +99,7 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.taskDictionary != nil {
-            guard let itemCount: Int = self.taskDictionary![.items]?.count else { return 1 }
-            return itemCount + 1
+            return self.items().count + 1
         }
         return 1
     }
@@ -92,14 +108,16 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! CreateTaskReviewDescriptionCell
             if self.taskDictionary != nil {
-                cell.descriptionLabel.text = self.taskDictionary![.description]![0] as? String
+                cell.descriptionLabel.text = self.description()
             }
+            cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! CreateTaskReviewItemCell
         if self.taskDictionary != nil {
-            cell.itemLabel.text = self.taskDictionary![.items]![indexPath.row - 1] as? String
+            cell.itemLabel.text = self.items()[indexPath.row - 1]
         }
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
     }
     

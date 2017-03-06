@@ -71,6 +71,10 @@ class TaskViewController: UIViewController {
         }
     }
     
+    private func setupAppearance() {
+        self.addButton.backgroundColor = createTaskBackgroundColor
+    }
+    
     private func updateView(mode: ViewMode) {
         switch mode {
         case .myTasks:

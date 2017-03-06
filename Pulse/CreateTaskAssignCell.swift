@@ -19,7 +19,12 @@ class CreateTaskAssignCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var positionLabel: UILabel!
     @IBOutlet weak var addButton: Button!
-    
+    var state: CellState = .unselected {
+        didSet {
+            self.update()
+        }
+    }
+    var user: User?
     weak var delegate: CreateTaskAssignCellDelegate?
 
     override func awakeFromNib() {
@@ -37,6 +42,7 @@ class CreateTaskAssignCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // Same thing, diff method name :)
     func load(teamMember: User) {
         self.nameLabel.text = teamMember.name
         self.positionLabel.text = teamMember.position
@@ -44,15 +50,26 @@ class CreateTaskAssignCell: UITableViewCell {
         guard let avatarURL = teamMember.avatarURL else { return }
         guard let url = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatarView)
+
+    }
+
+    func load(user: User) {
+        self.user = user
+        // setup cell
+    }
+    
+    private func update() {
+        let image: UIImage? = self.state == .selected ? #imageLiteral(resourceName: "WhiteCheck") : #imageLiteral(resourceName: "AddPlusWhite")
+        self.addButton.setImage(image, for: .normal)
     }
     
     private func selectUser() {
-        
+        self.state = self.state == .selected ? .unselected : .selected
         
         self.delegate?.selectedAssignCell(self)
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
-        //
+        self.selectUser()
     }
 }

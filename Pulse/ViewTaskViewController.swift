@@ -8,7 +8,9 @@
 
 import UIKit
 import CoreData
+import Nuke
 
+// TODO: Setup description cell
 class ViewTaskViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
@@ -17,10 +19,19 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var updateButton: Button!
     @IBOutlet weak var doneButton: Button!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedByLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    
+    var task: Task? {
+        didSet {
+            self.updateUI()
+        }
+    }
+    
+    var status: TaskStatus?
 
     var tableViewTopInset: CGFloat = 22
     
-    var task: Task!
     var fetchedResultsController: NSFetchedResultsController<Item>!
     
     override func viewDidLoad() {
@@ -35,7 +46,7 @@ class ViewTaskViewController: UIViewController {
     private func setupCoreData() {
         let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "task.objectId == %@", self.task.objectId)
+        let predicate = NSPredicate(format: "task.objectId == %@", self.task!.objectId)
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
@@ -52,7 +63,7 @@ class ViewTaskViewController: UIViewController {
             print("fetched results controller error: \(error)")
         }
         
-        TaskService.getTask(taskId: self.task.objectId, success: { (task) in
+        TaskService.getTask(taskId: self.task!.objectId, success: { (task) in
             CoreDataStack.shared.saveContext()
             
             do {
@@ -93,12 +104,76 @@ class ViewTaskViewController: UIViewController {
         self.tableView.dataSource = self
     }
     
-    @IBAction func updateButtonPressed(_ sender: UIButton) {
+    private func updateUI() {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        if let assigner: User = task.assigner {
+            print(self.task)
+            print(assigner)
+            print(assigner.name!)
+            self.assignedByLabel.text = "Assigned by: " + assigner.name!
+            guard let url: URL = URL(string: assigner.avatarURL!) else { return }
+            Nuke.loadImage(with: url, into: self.avatarImageView)
+        }
+        if let dueDate: Date = task.dueDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            self.dueDateLabel.text = formatter.string(from: dueDate)
+        }
         
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        self.status = status
+        
+        switch(status) {
+        case .pending:
+            self.dueDateLabel.textColor = appRed
+            self.updateButton.setTitle("DECLINE TASK", for: .normal)
+            self.doneButton.setTitle("ACCEPT TASK", for: .normal)
+            break
+        case .inProgress:
+            self.dueDateLabel.textColor = appYellow
+            self.updateButton.setTitle("GIVE UPDATE", for: .normal)
+            self.doneButton.setTitle("TASK IS DONE", for: .normal)
+            break
+        case .completed:
+            self.dueDateLabel.textColor = appGreen
+            break
+        default:
+            break
+        }
+    }
+    
+    @IBAction func updateButtonPressed(_ sender: UIButton) {
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                // Decline Task
+                break
+            case .inProgress:
+                // Send Update for Task
+                break
+            case .completed:
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
-        
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                // Accept Task
+                break
+            case .inProgress:
+                // Mark Task as Completed
+                break
+            case .completed:
+                break
+            default:
+                break
+            }
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -127,6 +202,21 @@ extension ViewTaskViewController: UITableViewDataSource {
         let item = self.fetchedResultsController.object(at: indexPath)
         cell.load(item: item)
         cell.contentView.backgroundColor = self.tableView.backgroundColor
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                cell.button.alpha = 0
+                break
+            case .inProgress:
+                break
+            case .completed:
+                cell.state = .selected
+                cell.button.isEnabled = false
+                break
+            default:
+                break
+            }
+        }
         return cell
     }
 }
