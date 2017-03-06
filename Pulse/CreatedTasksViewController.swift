@@ -29,10 +29,10 @@ class CreatedTasksViewController: UIViewController {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "sender.objectId == %@", User.currentUserId())
+//        let predicate = NSPredicate(format: "sender.objectId == %@", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = predicate
+//        fetchRequest.predicate = predicate
         
         // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods.
         // Here's the specific problem I kept running into:
@@ -51,7 +51,7 @@ class CreatedTasksViewController: UIViewController {
         // Tasks
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "status", ascending: false)
-        let predicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
+        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
@@ -222,7 +222,7 @@ extension CreatedTasksViewController: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
             let task = self.taskFetchedResultsController.object(at: indexPath)
-            cell.load(task: task, type: .assignee)
+            cell.load(task: task, type: .assigner)
             return cell
             
         case 1:
@@ -231,20 +231,20 @@ extension CreatedTasksViewController: UITableViewDataSource {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
                 let task = self.taskFetchedResultsController.object(at: realIndexPath)
-                cell.load(task: task, type: .assignee)
+                cell.load(task: task, type: .assigner)
                 return cell
             }
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
             let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             let task = self.taskFetchedResultsController.object(at: realIndexPath)
-            cell.load(task: task, type: .assignee)
+            cell.load(task: task, type: .assigner)
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
             let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
             let task = self.taskFetchedResultsController.object(at: realIndexPath)
-            cell.load(task: task, type: .assignee)
+            cell.load(task: task, type: .assigner)
             return cell
         default: return UITableViewCell() // This should never hit
         }
@@ -286,23 +286,23 @@ extension CreatedTasksViewController: UITableViewDelegate {
         switch section {
         case 0:
             if (self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-                header.load(status: .pending, type: .assignee)
+                header.load(status: .pending, type: .assigner)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
                 //                print(sectionInfo.name)
-                sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
+                sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assigner) : header.load(status: .completed, type: .assigner)
             }
         case 1:
             if (self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                 let sectionInfo = self.taskFetchedResultsController.sections![section - 1]
-                sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
+                sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assigner) : header.load(status: .completed, type: .assigner)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
                 //                print(sectionInfo.name)
-                sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
+                sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assigner) : header.load(status: .completed, type: .assigner)
             }
         case 2:
-            header.load(status: .completed, type: .assignee)
+            header.load(status: .completed, type: .assigner)
         default: break
         }
         header.contentView.backgroundColor = self.tableView.backgroundColor
@@ -398,7 +398,7 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
                 if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
                     
                     let task = self.taskFetchedResultsController.fetchedObjects!.first!
-                    cell.load(task: task, type: .assignee)
+                    cell.load(task: task, type: .assigner)
                 }
                 
             } else if controller == self.taskFetchedResultsController {
@@ -414,7 +414,7 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
                 if let cell = self.tableView.cellForRow(at: realIndexPath) as? TaskCell {
                     
                     let task = anObject as! Task
-                    cell.load(task: task, type: .assignee)
+                    cell.load(task: task, type: .assigner)
                 }
             }
             break

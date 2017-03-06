@@ -108,7 +108,7 @@ struct TaskService {
     // Experimental
     // TODO: Don't worry about returning data right now since we'll be accessing it via core data FRC's anyway
     static func getTasksCreated(success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .getMyTasks, success: { (data) in
+        NetworkingClient.sharedClient.request(target: .getTasksCreated, success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 // Task Invitations

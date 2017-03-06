@@ -37,10 +37,10 @@ class MyTasksViewController: UIViewController {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-//        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
+        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
-//        fetchRequest.predicate = predicate
+        fetchRequest.predicate = predicate
         
         // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods. 
         // Here's the specific problem I kept running into:
