@@ -17,12 +17,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I need you to do the new marketing pages for the website, All the marketing assets are in Dropbox." lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rsG-So-HrY">
-                        <rect key="frame" x="66" y="0.0" width="242" height="119.5"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BkI-i9-hdn" customClass="Button" customModule="Pulse" customModuleProvider="target">
                         <rect key="frame" x="18" y="0.0" width="30" height="30"/>
                         <constraints>
@@ -42,19 +36,29 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </button>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="I need you to do the new marketing pages for the website, All the marketing assets are in Dropbox." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="scY-4P-vci">
+                        <rect key="frame" x="61" y="0.0" width="247" height="119.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="7gy-FR-25H"/>
+                        </constraints>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
                 </subviews>
                 <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstItem="scY-4P-vci" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="61" id="1QM-1J-tFw"/>
                     <constraint firstItem="BkI-i9-hdn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="FVh-u9-Txf"/>
-                    <constraint firstAttribute="trailing" secondItem="rsG-So-HrY" secondAttribute="trailing" constant="12" id="GUO-7R-6xb"/>
-                    <constraint firstItem="rsG-So-HrY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="66" id="MwD-sd-lJl"/>
-                    <constraint firstItem="rsG-So-HrY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aav-ff-O7S"/>
-                    <constraint firstAttribute="bottom" secondItem="rsG-So-HrY" secondAttribute="bottom" constant="48" id="bhj-V8-z2B"/>
+                    <constraint firstAttribute="bottom" secondItem="scY-4P-vci" secondAttribute="bottom" constant="48" id="YEd-Tc-hb5"/>
                     <constraint firstItem="BkI-i9-hdn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="qaf-vM-nru"/>
+                    <constraint firstAttribute="trailing" secondItem="scY-4P-vci" secondAttribute="trailing" constant="12" id="s7h-zl-JD0"/>
+                    <constraint firstItem="scY-4P-vci" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uvP-wn-NoE"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="descriptionLabel" destination="rsG-So-HrY" id="zj4-mp-MPm"/>
+                <outlet property="descriptionLabel" destination="scY-4P-vci" id="8xS-sX-mJo"/>
             </connections>
             <point key="canvasLocation" x="35" y="103"/>
         </tableViewCell>

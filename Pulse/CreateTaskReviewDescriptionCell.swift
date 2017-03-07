@@ -10,11 +10,16 @@ import UIKit
 
 class CreateTaskReviewDescriptionCell: UITableViewCell {
     
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
+//        self.descriptionLabel.textContainer.lineFragmentPadding = 0
+    }
+    
+    func load(text: String?) {
+        self.descriptionLabel.text = text
     }
     
 }

@@ -27,8 +27,7 @@ class CreateTaskReviewItemCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.itemLabel.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.itemLabel.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        self.itemLabel.textContainer.lineFragmentPadding = 0
     }
     
     func load(_ string: String) {

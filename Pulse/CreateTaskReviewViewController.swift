@@ -120,7 +120,7 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! CreateTaskReviewDescriptionCell
             if self.taskDictionary != nil {
-                cell.descriptionLabel.text = self.description()
+                cell.load(text: self.description())
             }
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell
