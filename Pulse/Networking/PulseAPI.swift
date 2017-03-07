@@ -59,6 +59,7 @@ enum PulseAPI {
     // Experimental
     case getMyTasks
     case getTasksCreated
+    case getUpdatesFeed
 }
 
 extension PulseAPI {
@@ -71,7 +72,8 @@ extension PulseAPI {
                  .getUpdateRequests,
                  .getUpdates,
                  .getMyTasks,
-                 .getTasksCreated:
+                 .getTasksCreated,
+                 .getUpdatesFeed:
             return .get
             
         case .editTask:
@@ -126,6 +128,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/feeds/my_tasks"
         case .getTasksCreated:
             return "/api/\(PulseAPI.apiVersion)/feeds/tasks_created"
+        case .getUpdatesFeed:
+            return "/api/\(PulseAPI.apiVersion)/feeds/updates"
         }
     }
 }
