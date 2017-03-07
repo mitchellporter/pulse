@@ -19,10 +19,15 @@ class CreateTaskAssignViewController: UIViewController {
     var tableViewTopInset: CGFloat = 30
     
     var fetchedResultsController: NSFetchedResultsController<User>!
-    var assignees: Set = Set<String>() {
-        didSet {
+    var assignees: Set<String> {
+        get {
+            guard let assignees: [String] = self.taskDictionary?[.assignees] as? [String] else { return Set<String>() }
+            let set = Set<String>(assignees)
+            return set
+        }
+        set {
             var assigneesArray: [String] = [String]()
-            assigneesArray.append(contentsOf: self.assignees)
+            assigneesArray.append(contentsOf: newValue)
             _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
         }
     }
@@ -135,13 +140,15 @@ extension CreateTaskAssignViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath) as! CreateTaskAssignCell
-
+        
         let teamMember = self.fetchedResultsController.object(at: indexPath)
-        cell.load(teamMember: teamMember)
+        cell.load(teamMember)
         
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         cell.delegate = self
-
+        if self.assignees.contains(teamMember.objectId) {
+            cell.state = .selected
+        }
         return cell
     }
 }
@@ -151,7 +158,7 @@ extension CreateTaskAssignViewController: CreateTaskAssignCellDelegate {
     func selectedAssignCell(_ cell: CreateTaskAssignCell) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
         _ = indexPath
-        guard let user: String = cell.user?.objectId else { return }
+        let user: String = self.fetchedResultsController.object(at: indexPath).objectId
         if self.assignees.contains(user) {
             self.assignees.remove(user)
         } else {
