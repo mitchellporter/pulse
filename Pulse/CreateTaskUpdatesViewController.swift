@@ -68,7 +68,7 @@ class CreateTaskUpdatesViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "review", sender: nil)
+        self.performSegue(withIdentifier: "review", sender: self.taskDictionary)
     }
     
     @IBAction func dayButtonPressed(_ sender: UIButton) {
@@ -82,9 +82,8 @@ class CreateTaskUpdatesViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let dictionary = self.taskDictionary else { return }
+        guard let dictionary = sender as? [CreateTaskKeys:[Any]] else { return }
         guard let toVC = segue.destination as? CreateTaskReviewViewController else { return }
         toVC.taskDictionary = dictionary
     }
-
 }
