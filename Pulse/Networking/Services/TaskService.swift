@@ -131,4 +131,29 @@ struct TaskService {
             }
         }, failure: failure)
     }
+    
+    static func getUpdatesFeed(success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getUpdatesFeed, success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                // Update Requests
+                if let updateRequestsJSON = json["update_requests"].arrayObject {
+                    var updateRequests = [UpdateRequest]()
+                    updateRequestsJSON.forEach({ (updateRequestJSON) in
+                        let updateRequest = UpdateRequest.from(json: updateRequestJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        updateRequests.append(updateRequest)
+                    })
+                }
+                // Tasks
+                if let tasksJSON = json["tasks"].arrayObject {
+                    var tasks = [Task]()
+                    tasksJSON.forEach({ (taskJSON) in
+                        let task = Task.from(json: taskJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        tasks.append(task)
+                    })
+                }
+                success()
+            }
+        }, failure: failure)
+    }
 }
