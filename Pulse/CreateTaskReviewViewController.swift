@@ -69,6 +69,7 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     private func displayTask() {
+        self.dueDateLabel.text = ""
         guard let dictionary: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { return }
         if let date = dictionary[.dueDate]?.first as? Date {
             let formatter = DateFormatter()
