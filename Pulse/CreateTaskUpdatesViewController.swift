@@ -12,7 +12,22 @@ class CreateTaskUpdatesViewController: UIViewController {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var mondayButton: UIButton!
+    @IBOutlet weak var wednesdayButton: UIButton!
+    @IBOutlet weak var fridayButton: UIButton!
     var taskDictionary: [CreateTaskKeys : [Any]]?
+    
+    var selectedDays: Set<WeekDay> {
+        get {
+            guard let updateIntervals: [WeekDay] = self.taskDictionary?[.updateInterval] as? [WeekDay] else { return Set<WeekDay>() }
+            let set = Set<WeekDay>(updateIntervals)
+            return set
+        }
+        set {
+            let array: [WeekDay] = [WeekDay](newValue)
+            _ = self.taskDictionary?.updateValue(array, forKey: .updateInterval)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +51,14 @@ class CreateTaskUpdatesViewController: UIViewController {
         self.view.backgroundColor = createTaskBackgroundColor
     }
     
+    private func addRemoveInterval(_ interval: WeekDay) {
+        if self.selectedDays.contains(interval) {
+            self.selectedDays.remove(interval)
+        } else {
+            self.selectedDays.insert(interval)
+        }
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
             _ = self.navigationController?.popViewController(animated: true)
@@ -46,6 +69,16 @@ class CreateTaskUpdatesViewController: UIViewController {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "review", sender: nil)
+    }
+    
+    @IBAction func dayButtonPressed(_ sender: UIButton) {
+        if sender == self.mondayButton {
+            self.addRemoveInterval(.monday)
+        } else if sender == self.wednesdayButton {
+            self.addRemoveInterval(.wednesday)
+        } else if sender == self.fridayButton {
+            self.addRemoveInterval(.friday)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

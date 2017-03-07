@@ -26,8 +26,7 @@ class CreateTaskAssignViewController: UIViewController {
             return set
         }
         set {
-            var assigneesArray: [String] = [String]()
-            assigneesArray.append(contentsOf: newValue)
+            let assigneesArray: [String] = [String](newValue)
             _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
         }
     }

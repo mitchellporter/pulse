@@ -25,6 +25,7 @@ class CreateTaskReviewViewController: UIViewController {
         
         self.setupAppearance()
         self.setupTableView()
+        self.displayTask()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -68,10 +69,18 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     private func displayTask() {
-        if let date = self.taskDictionary![.dueDate]?.first as? Date {
+        guard let dictionary: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { return }
+        if let date = dictionary[.dueDate]?.first as? Date {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
-            self.dueDateLabel.text = formatter.string(from: date)
+            self.dueDateLabel.text = "Due: " + formatter.string(from: date)
+        }
+        if let updates: [WeekDay] = dictionary[.updateInterval] as? [WeekDay] {
+            if updates.first == .monday {
+                if let text: String = self.dueDateLabel.text {
+                    self.dueDateLabel.text = text + " | Notify Mon"
+                }
+            }
         }
     }
     
