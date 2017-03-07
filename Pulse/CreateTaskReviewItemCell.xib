@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Label" translatesAutoresizingMaskIntoConstraints="NO" id="OJT-p9-Kfn">
-                        <rect key="frame" x="61" y="9" width="247" height="32"/>
+                        <rect key="frame" x="61" y="0.0" width="247" height="41"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="oaC-8R-jkq"/>
@@ -31,7 +31,7 @@
                         </connections>
                     </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tgq-qO-lIG" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                        <rect key="frame" x="18" y="10" width="30" height="30"/>
+                        <rect key="frame" x="18" y="11" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="ljA-qn-sGH"/>
                             <constraint firstAttribute="width" constant="30" id="ojt-GO-AKz"/>
@@ -55,9 +55,9 @@
                     <constraint firstItem="tgq-qO-lIG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="6bl-GO-edw"/>
                     <constraint firstAttribute="trailing" secondItem="OJT-p9-Kfn" secondAttribute="trailing" constant="12" id="TVR-XN-eyY"/>
                     <constraint firstItem="OJT-p9-Kfn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="61" id="WVN-DK-Y1A"/>
-                    <constraint firstItem="tgq-qO-lIG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Yyp-W2-gEf"/>
+                    <constraint firstItem="tgq-qO-lIG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Yyp-W2-gEf"/>
                     <constraint firstAttribute="bottom" secondItem="OJT-p9-Kfn" secondAttribute="bottom" constant="15" id="kRi-fE-jfx"/>
-                    <constraint firstItem="OJT-p9-Kfn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="oas-hE-sEm"/>
+                    <constraint firstItem="OJT-p9-Kfn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="oas-hE-sEm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
