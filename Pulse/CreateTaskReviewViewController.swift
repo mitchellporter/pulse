@@ -147,7 +147,6 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        
         guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskReviewController"); return }
         self.create(task: task)
     }

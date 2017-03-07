@@ -109,8 +109,8 @@ class ViewTaskViewController: UIViewController {
         if let assigner: User = task.assigner {
             print(self.task)
             print(assigner)
-            print(assigner.name!)
-            self.assignedByLabel.text = "Assigned by: " + assigner.name!
+            print(assigner.name)
+            self.assignedByLabel.text = "Assigned by: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }

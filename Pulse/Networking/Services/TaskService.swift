@@ -14,8 +14,8 @@ typealias TasksServiceSuccess = (_ tasks: [Task]) -> ()
 typealias MyTasksSuccess = () -> ()
 
 struct TaskService {
-    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDay: WeekDay, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .createTask(title: title, items: items, assignees: assignees, dueDate: dueDate, updateDay: updateDay), success: { (data) in
+    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .createTask(title: title, items: items, assignees: assignees, dueDate: dueDate, updateDays: updateDays), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let taskJSON = json["task"].dictionaryObject {
@@ -117,6 +117,31 @@ struct TaskService {
                     taskInvitationsJSON.forEach({ (taskInvitationJSON) in
                         let taskInvitation = TaskInvitation.from(json: taskInvitationJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
                         taskInvitations.append(taskInvitation)
+                    })
+                }
+                // Tasks
+                if let tasksJSON = json["tasks"].arrayObject {
+                    var tasks = [Task]()
+                    tasksJSON.forEach({ (taskJSON) in
+                        let task = Task.from(json: taskJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        tasks.append(task)
+                    })
+                }
+                success()
+            }
+        }, failure: failure)
+    }
+    
+    static func getUpdatesFeed(success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getUpdatesFeed, success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                // Update Requests
+                if let updateRequestsJSON = json["update_requests"].arrayObject {
+                    var updateRequests = [UpdateRequest]()
+                    updateRequestsJSON.forEach({ (updateRequestJSON) in
+                        let updateRequest = UpdateRequest.from(json: updateRequestJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        updateRequests.append(updateRequest)
                     })
                 }
                 // Tasks

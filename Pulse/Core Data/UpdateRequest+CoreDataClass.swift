@@ -39,29 +39,27 @@ extension UpdateRequest: PulseType {
         }
         
         let description = NSEntityDescription.entity(forEntityName: "UpdateRequest", in: context)!
-        let update = UpdateRequest(entity: description, insertInto: context)
-        update.objectId = objectId
-        update.createdAt = createdAt
-        update.updatedAt = updatedAt
+        let updateRequest = UpdateRequest(entity: description, insertInto: context)
+        updateRequest.objectId = objectId
+        updateRequest.createdAt = createdAt
+        updateRequest.updatedAt = updatedAt
         
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context)
-            update.task = task
+            updateRequest.task = task
         }
         
         if let senderJSON = json["sender"] as? [String: AnyObject] {
             let sender = User.from(json: senderJSON, context: context)
-            update.sender = sender
-            update.senderIsCurrentUser = update.sender!.objectId == User.currentUserId()
+            updateRequest.sender = sender
+            updateRequest.senderIsCurrentUser = updateRequest.sender!.objectId == User.currentUserId()
         }
         
-        if let receiversJSON = json["receivers"] as? [[String: AnyObject]] {
-            receiversJSON.forEach({ receiverJSON in
-                let receiver = User.from(json: receiverJSON, context: context)
-                update.addToReceivers(receiver)
-            })
+        if let receiverJSON = json["receiver"] as? [String: AnyObject] {
+           let receiver = User.from(json: receiverJSON, context: context)
+            updateRequest.receiver = receiver
         }
         
-        return update
+        return updateRequest
     }
 }

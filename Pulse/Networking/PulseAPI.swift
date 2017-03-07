@@ -38,7 +38,7 @@ enum PulseAPI {
     case getTasksCreatedByUser(assignerId: String, offset: Int) //
     
     // Create task
-    case createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDay: WeekDay) //
+    case createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?) //
     case editTask(params: [String: AnyObject]) //
     
     // Task Updates
@@ -59,6 +59,7 @@ enum PulseAPI {
     // Experimental
     case getMyTasks
     case getTasksCreated
+    case getUpdatesFeed
 }
 
 extension PulseAPI {
@@ -71,7 +72,8 @@ extension PulseAPI {
                  .getUpdateRequests,
                  .getUpdates,
                  .getMyTasks,
-                 .getTasksCreated:
+                 .getTasksCreated,
+                 .getUpdatesFeed:
             return .get
             
         case .editTask:
@@ -126,6 +128,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/feeds/my_tasks"
         case .getTasksCreated:
             return "/api/\(PulseAPI.apiVersion)/feeds/tasks_created"
+        case .getUpdatesFeed:
+            return "/api/\(PulseAPI.apiVersion)/feeds/updates"
         }
     }
 }
@@ -163,18 +167,19 @@ extension PulseAPI {
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject
             ]
-        case let .createTask(title, items, assignees, dueDate, updateDay):
+        case let .createTask(title, items, assignees, dueDate, updateDays):
             var params = [
                 "title": title as AnyObject,
                 "items": items as AnyObject,
-                "assignees": assignees as AnyObject,
-                "update_day": updateDay.rawValue as AnyObject
+                "assignees": assignees as AnyObject
             ] as [String : AnyObject]
             if let dueDate = dueDate {
                 params["due_date"] = dueDate.timeIntervalSince1970 as AnyObject
             }
+            if let updateDays = updateDays {
+                params["update_days"] = updateDays.flatMap { return $0.rawValue } as AnyObject
+            }
             return params as [String : AnyObject]
-            
         case let .getTeamMembers(_, offset):
             return [
                 "offset": offset as AnyObject,
