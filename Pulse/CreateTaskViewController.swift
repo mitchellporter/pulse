@@ -23,14 +23,15 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let tableViewTopInset: CGFloat = 32
-    var taskDescription: String {
+    var taskDescription: String? {
         get {
-            guard let description: [String] = self.taskDictionary[.description] as? [String] else { return "" }
-            guard let descriptionString: String = description.first else { return "" }
+            guard let description: [String] = self.taskDictionary[.description] as? [String] else { return nil }
+            guard let descriptionString: String = description.first else { return nil }
             return descriptionString
         }
         set {
-            _ = self.taskDictionary.updateValue([newValue], forKey: .description)
+            guard let description: String = newValue else { return }
+            _ = self.taskDictionary.updateValue([description], forKey: .description)
             self.toggleNextButton()
         }
     }
@@ -160,6 +161,7 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell: CreateTaskAddItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateAddItemCell", for: indexPath) as! CreateTaskAddItemCell
+            cell.load(text: self.taskDescription)
             cell.delegate = self
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell

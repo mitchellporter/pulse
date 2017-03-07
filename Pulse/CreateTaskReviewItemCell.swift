@@ -21,7 +21,7 @@ class CreateTaskReviewItemCell: UITableViewCell {
             self.itemLabel.text = self.string
         }
     }
-    var delegate: CreateTaskReviewItemCellDelegate?
+    weak var delegate: CreateTaskReviewItemCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

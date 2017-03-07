@@ -31,6 +31,11 @@ class CreateTaskAddItemCell: UITableViewCell {
         // Initialization code
     }
     
+    func load(text: String?) {
+        guard let text: String = text else { return }
+        self.textView.text = text
+    }
+    
     fileprivate func addItem() {
         if self.newItemTextView.text != kCreateTaskAddItemPlaceHolder && self.newItemTextView.text != "" {
             self.delegate?.addItemCell(self, addNew: newItemTextView.text)
@@ -109,6 +114,10 @@ extension CreateTaskAddItemCell: UITextViewDelegate {
         
         if textView == self.textView {
             self.delegate?.addItemCell(self, didUpdateDescription: self.textView.text)
+        }
+        
+        if textView.text != kCreateTaskAddItemPlaceHolder || textView.text != kCreateTaskDescriptionPlaceholder {
+            textView.textColor = UIColor.white
         }
     }
     

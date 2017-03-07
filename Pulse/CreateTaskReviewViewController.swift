@@ -143,6 +143,7 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
             if self.taskDictionary != nil {
                 cell.load(text: self.description())
             }
+            cell.delegate = self
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell
         }
@@ -154,7 +155,7 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
     }
 }
 
-extension CreateTaskReviewViewController: CreateTaskReviewItemCellDelegate {
+extension CreateTaskReviewViewController: CreateTaskReviewItemCellDelegate, CreateTaskReviewDescriptionCellDelegate {
     
     func cellNeedsResize(_ cell: UITableViewCell) {
         // resize
@@ -167,5 +168,9 @@ extension CreateTaskReviewViewController: CreateTaskReviewItemCellDelegate {
         var items = self.items()
         items[indexPath.row] = text
         _ = self.taskDictionary?.updateValue(items, forKey: .items)
+    }
+    
+    func taskDescriptionReview(cell: CreateTaskReviewDescriptionCell, didUpdate text: String) {
+        _ = self.taskDictionary?.updateValue([text], forKey: .description)
     }
 }

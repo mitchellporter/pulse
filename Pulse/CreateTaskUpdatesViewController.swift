@@ -82,7 +82,7 @@ class CreateTaskUpdatesViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let dictionary = sender as? [CreateTaskKeys:[Any]] else { return }
+        guard let dictionary: [CreateTaskKeys : [Any]] = self.taskDictionary else { return }
         guard let toVC = segue.destination as? CreateTaskReviewViewController else { return }
         toVC.taskDictionary = dictionary
     }
