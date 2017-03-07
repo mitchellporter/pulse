@@ -28,6 +28,10 @@ class CreateTaskAssignViewController: UIViewController {
         set {
             let assigneesArray: [String] = [String](newValue)
             _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
+            let nextAlpha: CGFloat = newValue.count > 0 ? 1.0 : 0.0
+            UIView.animate(withDuration: 0.1, animations: {
+                self.nextButton.alpha = nextAlpha
+            })
         }
     }
     
@@ -94,6 +98,8 @@ class CreateTaskAssignViewController: UIViewController {
         
         self.view.layer.addSublayer(topGradient)
         self.view.backgroundColor = createTaskBackgroundColor
+        
+        self.nextButton.alpha = 0
     }
     
     private func setupTableView() {
