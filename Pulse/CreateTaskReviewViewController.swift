@@ -71,15 +71,39 @@ class CreateTaskReviewViewController: UIViewController {
     private func displayTask() {
         self.dueDateLabel.text = ""
         guard let dictionary: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { return }
-        if let date = dictionary[.dueDate]?.first as? Date {
+        if let assignees: [User] = dictionary[.assignees] as? [User] {
+            var assigneeString: String = "Assigned to:"
+            for (index, member) in assignees.enumerated() {
+                guard let name: String = member.name else { continue }
+                assigneeString = index == 0 ? "\(assigneeString) \(name)" : "\(assigneeString), \(name)"
+            }
+            self.assignedLabel.text = assigneeString
+        }
+        if let date: Date = dictionary[.dueDate]?.first as? Date {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
             self.dueDateLabel.text = "Due: " + formatter.string(from: date)
+        } else {
+            self.dueDateLabel.text = ""
         }
         if let updates: [WeekDay] = dictionary[.updateInterval] as? [WeekDay] {
-            if updates.first == .monday {
+            if updates.count > 0 {
+                var days: String = ""
+                var dayStrings: [String] = [String]()
+                if updates.contains(.monday) {
+                    dayStrings.append("Mon")
+                }
+                if updates.contains(.wednesday) {
+                    dayStrings.append("Wed")
+                }
+                if updates.contains(.friday) {
+                    dayStrings.append("Fri")
+                }
+                for (index, dayString) in dayStrings.enumerated() {
+                    days = index > 0 ? days + ", \(dayString)" : dayString
+                }
                 if let text: String = self.dueDateLabel.text {
-                    self.dueDateLabel.text = text + " | Notify Mon"
+                    self.dueDateLabel.text = dictionary[.dueDate]?.first == nil ? "Notify \(days)" : text + " | Notify \(days)"
                 }
             }
         }
@@ -102,10 +126,14 @@ class CreateTaskReviewViewController: UIViewController {
     private func create(task: [CreateTaskKeys:[Any]]) {
         guard let description: String = task[.description]?.first as? String else { return }
         guard let items: [String] = task[.items] as? [String] else { return }
-        guard let assignees: [String] = task[.assignees] as? [String] else { return }
+        guard let assignees: [User] = task[.assignees] as? [User] else { return }
+        var members: [String] = [String]()
+        for member in assignees {
+            members.append(member.objectId)
+        }
         let dueDate: Date? = task[.dueDate]?.first as? Date
         let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
-        TaskService.createTask(title: description, items: items, assignees: assignees, dueDate: dueDate, updateDay: .monday, success: { (task) in
+        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDay: .monday, success: { (task) in
             // Successfully created task
             // Do Something
         }) { (error, statusCode) in

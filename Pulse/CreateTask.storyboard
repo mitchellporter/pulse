@@ -501,13 +501,13 @@
                                             <constraint firstAttribute="width" constant="34" id="xIO-0p-ObA"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-Wq-gBW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-Wq-gBW">
                                         <rect key="frame" x="68" y="0.0" width="295" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-cG-ogZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-cG-ogZ">
                                         <rect key="frame" x="68" y="17" width="295" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -525,6 +525,7 @@
                                     <constraint firstAttribute="bottom" secondItem="DSS-cG-ogZ" secondAttribute="bottom" id="lAV-01-2Qy"/>
                                     <constraint firstItem="kdj-Wq-gBW" firstAttribute="bottom" secondItem="ueR-fW-8Ew" secondAttribute="centerY" id="nw5-eZ-M17"/>
                                     <constraint firstAttribute="trailing" secondItem="DSS-cG-ogZ" secondAttribute="trailing" constant="12" id="smH-1s-gQ2"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ueR-fW-8Ew" secondAttribute="bottom" id="y57-uu-DHv"/>
                                 </constraints>
                             </view>
                         </subviews>

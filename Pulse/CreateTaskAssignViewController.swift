@@ -19,14 +19,14 @@ class CreateTaskAssignViewController: UIViewController {
     var tableViewTopInset: CGFloat = 30
     
     var fetchedResultsController: NSFetchedResultsController<User>!
-    var assignees: Set<String> {
+    var assignees: Set<User> {
         get {
-            guard let assignees: [String] = self.taskDictionary?[.assignees] as? [String] else { return Set<String>() }
-            let set = Set<String>(assignees)
+            guard let assignees: [User] = self.taskDictionary?[.assignees] as? [User] else { return Set<User>() }
+            let set = Set<User>(assignees)
             return set
         }
         set {
-            let assigneesArray: [String] = [String](newValue)
+            let assigneesArray: [User] = [User](newValue)
             _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
             self.nextButtonToggle()
         }
@@ -155,7 +155,7 @@ extension CreateTaskAssignViewController: UITableViewDataSource {
         
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         cell.delegate = self
-        if self.assignees.contains(teamMember.objectId) {
+        if self.assignees.contains(teamMember) {
             cell.state = .selected
         }
         return cell
@@ -167,7 +167,7 @@ extension CreateTaskAssignViewController: CreateTaskAssignCellDelegate {
     func selectedAssignCell(_ cell: CreateTaskAssignCell) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
         _ = indexPath
-        let user: String = self.fetchedResultsController.object(at: indexPath).objectId
+        let user: User = self.fetchedResultsController.object(at: indexPath)
         if self.assignees.contains(user) {
             self.assignees.remove(user)
         } else {
