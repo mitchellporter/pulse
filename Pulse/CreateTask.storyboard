@@ -31,6 +31,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-cO-fOJ" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="18" y="24" width="17" height="22"/>
                                 <state key="normal" image="CloseX"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="l6Y-1H-bwV" eventType="touchUpInside" id="I1p-Kt-ewd"/>
                                 </connections>
@@ -112,6 +120,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psl-HK-oOx" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="QD5-57-c55" eventType="touchUpInside" id="R2S-57-Pdf"/>
                                 </connections>
@@ -207,6 +223,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISY-wA-ZMU" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="4rw-ai-A9X" eventType="touchUpInside" id="f0B-fX-0Pq"/>
                                 </connections>
@@ -299,6 +323,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNB-Cp-EYl" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="cO5-8q-fZy" eventType="touchUpInside" id="PJt-KS-tpy"/>
                                 </connections>
@@ -349,6 +381,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dayButtonPressed:" destination="cO5-8q-fZy" eventType="touchUpInside" id="H5b-PP-mZd"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1h1-7y-hQF" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="42.5" y="394.5" width="289" height="58"/>
@@ -367,6 +402,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dayButtonPressed:" destination="cO5-8q-fZy" eventType="touchUpInside" id="Az2-OK-2Bh"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Icl-Ie-jbA" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="42.5" y="493" width="289" height="58"/>
@@ -385,6 +423,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="dayButtonPressed:" destination="cO5-8q-fZy" eventType="touchUpInside" id="4SC-mj-J8U"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ck4-mz-l6S">
                                 <rect key="frame" x="25" y="80" width="325" height="95.5"/>
@@ -422,7 +463,10 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="NNB-Cp-EYl" id="Z3z-LO-06y"/>
+                        <outlet property="fridayButton" destination="Icl-Ie-jbA" id="BSN-nI-yeM"/>
+                        <outlet property="mondayButton" destination="Bug-Wn-mJ4" id="Vtj-d1-lSp"/>
                         <outlet property="nextButton" destination="jiB-gP-R2G" id="xtI-C0-rfW"/>
+                        <outlet property="wednesdayButton" destination="1h1-7y-hQF" id="lBs-A5-CjJ"/>
                         <segue destination="JKF-gX-jdR" kind="show" identifier="review" id="gwN-O0-pqC"/>
                     </connections>
                 </viewController>
@@ -451,6 +495,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evV-so-fPa" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="JKF-gX-jdR" eventType="touchUpInside" id="Fhm-Y8-VA7"/>
                                 </connections>
@@ -489,13 +541,13 @@
                                             <constraint firstAttribute="width" constant="34" id="xIO-0p-ObA"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-Wq-gBW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdj-Wq-gBW">
                                         <rect key="frame" x="68" y="0.0" width="295" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-cG-ogZ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DSS-cG-ogZ">
                                         <rect key="frame" x="68" y="17" width="295" height="17"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -513,6 +565,7 @@
                                     <constraint firstAttribute="bottom" secondItem="DSS-cG-ogZ" secondAttribute="bottom" id="lAV-01-2Qy"/>
                                     <constraint firstItem="kdj-Wq-gBW" firstAttribute="bottom" secondItem="ueR-fW-8Ew" secondAttribute="centerY" id="nw5-eZ-M17"/>
                                     <constraint firstAttribute="trailing" secondItem="DSS-cG-ogZ" secondAttribute="trailing" constant="12" id="smH-1s-gQ2"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ueR-fW-8Ew" secondAttribute="bottom" id="y57-uu-DHv"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -37,7 +37,7 @@ class UpdateAlertController: AlertController {
 
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3
-        self.alertViewHeader.backgroundColor = appGreen
+        self.alertViewHeader.backgroundColor = createTaskBackgroundColor
         
         
         

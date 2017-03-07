@@ -25,6 +25,16 @@ class CreateTaskReviewViewController: UIViewController {
         
         self.setupAppearance()
         self.setupTableView()
+        self.displayTask()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController || self.isBeingDismissed {
+            guard let previousViewController: CreateTaskUpdatesViewController = NavigationManager.getPreviousViewController(CreateTaskUpdatesViewController.self, from: self) as? CreateTaskUpdatesViewController else { return }
+            guard let taskDictionary = self.taskDictionary else { return }
+            previousViewController.taskDictionary = taskDictionary
+        }
     }
     
     private func setupAppearance() {
@@ -56,10 +66,43 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     private func displayTask() {
-        if let date = self.taskDictionary![.dueDate]?.first as? Date {
+        self.dueDateLabel.text = ""
+        guard let dictionary: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { return }
+        if let assignees: [User] = dictionary[.assignees] as? [User] {
+            var assigneeString: String = "Assigned to:"
+            for (index, member) in assignees.enumerated() {
+                guard let name: String = member.name else { continue }
+                assigneeString = index == 0 ? "\(assigneeString) \(name)" : "\(assigneeString), \(name)"
+            }
+            self.assignedLabel.text = assigneeString
+        }
+        if let date: Date = dictionary[.dueDate]?.first as? Date {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
-            self.dueDateLabel.text = formatter.string(from: date)
+            self.dueDateLabel.text = "Due: " + formatter.string(from: date)
+        } else {
+            self.dueDateLabel.text = ""
+        }
+        if let updates: [WeekDay] = dictionary[.updateInterval] as? [WeekDay] {
+            if updates.count > 0 {
+                var days: String = ""
+                var dayStrings: [String] = [String]()
+                if updates.contains(.monday) {
+                    dayStrings.append("Mon")
+                }
+                if updates.contains(.wednesday) {
+                    dayStrings.append("Wed")
+                }
+                if updates.contains(.friday) {
+                    dayStrings.append("Fri")
+                }
+                for (index, dayString) in dayStrings.enumerated() {
+                    days = index > 0 ? days + ", \(dayString)" : dayString
+                }
+                if let text: String = self.dueDateLabel.text {
+                    self.dueDateLabel.text = dictionary[.dueDate]?.first == nil ? "Notify \(days)" : text + " | Notify \(days)"
+                }
+            }
         }
     }
     
@@ -77,6 +120,24 @@ class CreateTaskReviewViewController: UIViewController {
         return itemsArray
     }
     
+    private func create(task: [CreateTaskKeys:[Any]]) {
+        guard let description: String = task[.description]?.first as? String else { return }
+        guard let items: [String] = task[.items] as? [String] else { return }
+        guard let assignees: [User] = task[.assignees] as? [User] else { return }
+        var members: [String] = [String]()
+        for member in assignees {
+            members.append(member.objectId)
+        }
+        let dueDate: Date? = task[.dueDate]?.first as? Date
+        let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
+        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDay: .monday, success: { (task) in
+            // Successfully created task
+            // Do Something
+        }) { (error, statusCode) in
+            // Handle Error
+        }
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
             _ = self.navigationController?.popViewController(animated: true)
@@ -86,12 +147,9 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        // TODO: Create real task
-        TaskService.createTask(title: "Created from iOS app", items: ["test item #1", "test item #2"], assignees: [User.currentUserId()], dueDate: nil, updateDay: .monday, success: { (task) in
-            print("task success")
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
+        
+        guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskReviewController"); return }
+        self.create(task: task)
     }
 }
 
@@ -108,17 +166,36 @@ extension CreateTaskReviewViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "descriptionCell", for: indexPath) as! CreateTaskReviewDescriptionCell
             if self.taskDictionary != nil {
-                cell.descriptionLabel.text = self.description()
+                cell.load(text: self.description())
             }
+            cell.delegate = self
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemCell", for: indexPath) as! CreateTaskReviewItemCell
-        if self.taskDictionary != nil {
-            cell.itemLabel.text = self.items()[indexPath.row - 1]
-        }
+        cell.load(self.items()[indexPath.row - 1])
+        cell.delegate = self
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         return cell
     }
+}
+
+extension CreateTaskReviewViewController: CreateTaskReviewItemCellDelegate, CreateTaskReviewDescriptionCellDelegate {
     
+    func cellNeedsResize(_ cell: UITableViewCell) {
+        // resize
+    }
+    
+    func taskItemReview(cell: CreateTaskReviewItemCell, didUpdate text: String) {
+        guard let roughIndexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
+        let indexPath: IndexPath = IndexPath(row: roughIndexPath.row - 1, section: roughIndexPath.section)
+        _ = indexPath
+        var items = self.items()
+        items[indexPath.row] = text
+        _ = self.taskDictionary?.updateValue(items, forKey: .items)
+    }
+    
+    func taskDescriptionReview(cell: CreateTaskReviewDescriptionCell, didUpdate text: String) {
+        _ = self.taskDictionary?.updateValue([text], forKey: .description)
+    }
 }

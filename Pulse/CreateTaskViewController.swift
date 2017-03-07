@@ -23,12 +23,28 @@ class CreateTaskViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     let tableViewTopInset: CGFloat = 32
-    var taskDescription: String = "" {
-        didSet {
+    var taskDescription: String? {
+        get {
+            guard let description: [String] = self.taskDictionary[.description] as? [String] else { return nil }
+            guard let descriptionString: String = description.first else { return nil }
+            return descriptionString
+        }
+        set {
+            guard let description: String = newValue else { return }
+            _ = self.taskDictionary.updateValue([description], forKey: .description)
             self.toggleNextButton()
         }
     }
-    var taskItems: [String] = [String]()
+    var taskItems: [String] {
+        get {
+            guard let items: [String] = self.taskDictionary[.items] as? [String] else { return [String]() }
+            return items
+        }
+        set {
+            _ = self.taskDictionary.updateValue(newValue, forKey: .items)
+        }
+    }
+    var taskDictionary: [CreateTaskKeys : [Any]] = [CreateTaskKeys : [Any]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +52,11 @@ class CreateTaskViewController: UIViewController {
         self.setupAppearance()
         self.setupTableView()
         self.setupObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -126,9 +147,8 @@ class CreateTaskViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let dictionary: [CreateTaskKeys : [Any]] = [.description : [self.taskDescription], .items : self.taskItems]
         guard let toVC = segue.destination as? CreateTaskDateViewController else { return }
-        toVC.taskDictionary = dictionary
+        toVC.taskDictionary = self.taskDictionary
     }
 }
 
@@ -141,6 +161,7 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell: CreateTaskAddItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateAddItemCell", for: indexPath) as! CreateTaskAddItemCell
+            cell.load(text: self.taskDescription)
             cell.delegate = self
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             return cell

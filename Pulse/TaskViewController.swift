@@ -61,13 +61,12 @@ class TaskViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let task = sender as! Task
-        
+        guard let task: Task = sender as? Task else { return }
         if let viewTaskViewController = segue.destination as? ViewTaskViewController {
-            viewTaskViewController.task = sender as! Task
+            viewTaskViewController.task = task
         }
         if let editTaskViewController = segue.destination as? EditTaskViewController {
-            editTaskViewController.task = sender as! Task
+            editTaskViewController.task = task
         }
     }
     

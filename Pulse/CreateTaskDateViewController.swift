@@ -16,8 +16,13 @@ class CreateTaskDateViewController: UIViewController {
     @IBOutlet weak var calendarPicker: CalendarPicker!
     
     var dueDate: Date? {
-        didSet {
-            let date: Any = self.dueDate as Any
+        get {
+            guard let description: [Date] = self.taskDictionary?[.dueDate] as? [Date] else { return nil }
+            guard let dueDate: Date = description.first else { return nil }
+            return dueDate
+        }
+        set {
+            let date: Any = newValue as Any
             _ = self.taskDictionary?.updateValue([date], forKey: CreateTaskKeys.dueDate)
         }
     }
@@ -28,6 +33,23 @@ class CreateTaskDateViewController: UIViewController {
         
         self.setupAppearance()
         self.setupPicker()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let date: Date = self.dueDate {
+            self.calendarPicker.setSelected(date: date)
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController || self.isBeingDismissed {
+            guard let previousViewController: CreateTaskViewController = NavigationManager.getPreviousViewController(CreateTaskViewController.self, from: self) as? CreateTaskViewController else { return }
+            guard let taskDictionary = self.taskDictionary else { return }
+            previousViewController.taskDictionary = taskDictionary
+        }
     }
     
     private func setupPicker() {
