@@ -151,7 +151,7 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
 //        self.yearLabel.text = formatter.string(from: self.currentDate)
     }
     
-    func setSelected(date: Date) {
+    open func setSelected(date: Date) {
         self.selectedDate = date
         self.collectionView.reloadData()
     }
