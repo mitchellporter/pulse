@@ -57,6 +57,16 @@ extension Update: PulseType {
             let sender = User.from(json: senderJSON, context: context)
             update.sender = sender
         }
+        
+        if let receiverJSON = json["receiver"] as? [String: AnyObject] {
+            let receiver = User.from(json: receiverJSON, context: context)
+            update.receiver = receiver
+        }
+        
+        if let taskJSON = json["task"] as? [String: AnyObject] {
+            let task = Task.from(json: taskJSON, context: context)
+            update.task = task
+        }
     
         return update
     }

@@ -100,6 +100,13 @@ extension Task: PulseType {
             })
         }
         
+        if let updatesJSON = json["updates"] as? [[String: AnyObject]] {
+            updatesJSON.forEach({ updateJSON in
+                let update = Update.from(json: updateJSON,  context: context) as Update
+                task.addToUpdates(update)
+            })
+        }
+        
         return task
     }
 }
