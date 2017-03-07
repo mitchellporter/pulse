@@ -99,6 +99,20 @@ class CreateTaskReviewViewController: UIViewController {
         return itemsArray
     }
     
+    private func create(task: [CreateTaskKeys:[Any]]) {
+        guard let description: String = task[.description]?.first as? String else { return }
+        guard let items: [String] = task[.items] as? [String] else { return }
+        guard let assignees: [String] = task[.assignees] as? [String] else { return }
+        let dueDate: Date? = task[.dueDate]?.first as? Date
+        let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
+        TaskService.createTask(title: description, items: items, assignees: assignees, dueDate: dueDate, updateDay: .monday, success: { (task) in
+            // Successfully created task
+            // Do Something
+        }) { (error, statusCode) in
+            // Handle Error
+        }
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
             _ = self.navigationController?.popViewController(animated: true)
@@ -108,12 +122,9 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        // TODO: Create real task
-        TaskService.createTask(title: "Created from iOS app", items: ["test item #1", "test item #2"], assignees: [User.currentUserId()], dueDate: nil, updateDay: .monday, success: { (task) in
-            print("task success")
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
+        
+        guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskReviewController"); return }
+        self.create(task: task)
     }
 }
 
