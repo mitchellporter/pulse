@@ -31,12 +31,9 @@ class CreateTaskReviewViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if self.isMovingFromParentViewController || self.isBeingDismissed {
-            print("dismissing!")
             guard let previousViewController: CreateTaskUpdatesViewController = NavigationManager.getPreviousViewController(CreateTaskUpdatesViewController.self, from: self) as? CreateTaskUpdatesViewController else { return }
             guard let taskDictionary = self.taskDictionary else { return }
             previousViewController.taskDictionary = taskDictionary
-        } else {
-            print("not dismissing!")
         }
     }
     

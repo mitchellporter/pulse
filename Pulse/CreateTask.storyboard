@@ -31,6 +31,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg4-cO-fOJ" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="18" y="24" width="17" height="22"/>
                                 <state key="normal" image="CloseX"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="l6Y-1H-bwV" eventType="touchUpInside" id="I1p-Kt-ewd"/>
                                 </connections>
@@ -112,6 +120,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psl-HK-oOx" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="QD5-57-c55" eventType="touchUpInside" id="R2S-57-Pdf"/>
                                 </connections>
@@ -207,6 +223,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISY-wA-ZMU" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="4rw-ai-A9X" eventType="touchUpInside" id="f0B-fX-0Pq"/>
                                 </connections>
@@ -299,6 +323,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNB-Cp-EYl" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="cO5-8q-fZy" eventType="touchUpInside" id="PJt-KS-tpy"/>
                                 </connections>
@@ -463,6 +495,14 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evV-so-fPa" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="24" width="22" height="22"/>
                                 <state key="normal" image="BackArrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                        <real key="value" value="50"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="JKF-gX-jdR" eventType="touchUpInside" id="Fhm-Y8-VA7"/>
                                 </connections>

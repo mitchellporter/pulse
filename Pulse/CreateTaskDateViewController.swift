@@ -46,12 +46,9 @@ class CreateTaskDateViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if self.isMovingFromParentViewController || self.isBeingDismissed {
-            print("dismissing!")
             guard let previousViewController: CreateTaskViewController = NavigationManager.getPreviousViewController(CreateTaskViewController.self, from: self) as? CreateTaskViewController else { return }
             guard let taskDictionary = self.taskDictionary else { return }
             previousViewController.taskDictionary = taskDictionary
-        } else {
-            print("not dismissing!")
         }
     }
     
