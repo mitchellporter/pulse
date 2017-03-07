@@ -44,7 +44,7 @@
                         </constraints>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                         <connections>
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="lJz-Mz-CrQ"/>
                         </connections>
