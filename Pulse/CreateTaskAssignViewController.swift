@@ -19,11 +19,16 @@ class CreateTaskAssignViewController: UIViewController {
     var tableViewTopInset: CGFloat = 30
     
     var fetchedResultsController: NSFetchedResultsController<User>!
-    var assignees: Set = Set<String>() {
-        didSet {
-            var assigneesArray: [String] = [String]()
-            assigneesArray.append(contentsOf: self.assignees)
+    var assignees: Set<User> {
+        get {
+            guard let assignees: [User] = self.taskDictionary?[.assignees] as? [User] else { return Set<User>() }
+            let set = Set<User>(assignees)
+            return set
+        }
+        set {
+            let assigneesArray: [User] = [User](newValue)
             _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
+            self.nextButtonToggle()
         }
     }
     
@@ -69,6 +74,15 @@ class CreateTaskAssignViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if self.isMovingFromParentViewController || self.isBeingDismissed {
+            guard let previousViewController: CreateTaskDateViewController = NavigationManager.getPreviousViewController(CreateTaskDateViewController.self, from: self) as? CreateTaskDateViewController else { return }
+            guard let taskDictionary = self.taskDictionary else { return }
+            previousViewController.taskDictionary = taskDictionary
+        }
+    }
+    
     private func setupAppearance() {
         let frame: CGRect = CGRect(x: 0, y: (self.assignDescriptionLabel.frame.origin.y + self.assignDescriptionLabel.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
@@ -78,6 +92,15 @@ class CreateTaskAssignViewController: UIViewController {
         
         self.view.layer.addSublayer(topGradient)
         self.view.backgroundColor = createTaskBackgroundColor
+        
+        self.nextButtonToggle()
+    }
+    
+    private func nextButtonToggle() {
+        let nextAlpha: CGFloat = self.assignees.count > 0 ? 1.0 : 0.0
+        UIView.animate(withDuration: 0.1, animations: {
+            self.nextButton.alpha = nextAlpha
+        })
     }
     
     private func setupTableView() {
@@ -123,13 +146,15 @@ extension CreateTaskAssignViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "assignCell", for: indexPath) as! CreateTaskAssignCell
-
+        
         let teamMember = self.fetchedResultsController.object(at: indexPath)
-        cell.load(teamMember: teamMember)
+        cell.load(teamMember)
         
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         cell.delegate = self
-
+        if self.assignees.contains(teamMember) {
+            cell.state = .selected
+        }
         return cell
     }
 }
@@ -139,7 +164,7 @@ extension CreateTaskAssignViewController: CreateTaskAssignCellDelegate {
     func selectedAssignCell(_ cell: CreateTaskAssignCell) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
         _ = indexPath
-        guard let user: String = cell.user?.objectId else { return }
+        let user: User = self.fetchedResultsController.object(at: indexPath)
         if self.assignees.contains(user) {
             self.assignees.remove(user)
         } else {

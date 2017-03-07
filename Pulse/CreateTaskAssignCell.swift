@@ -43,19 +43,14 @@ class CreateTaskAssignCell: UITableViewCell {
     }
     
     // Same thing, diff method name :)
-    func load(teamMember: User) {
-        self.nameLabel.text = teamMember.name
-        self.positionLabel.text = teamMember.position
+    func load(_ user: User) {
+        self.nameLabel.text = user.name
+        self.positionLabel.text = user.position
         
-        guard let avatarURL = teamMember.avatarURL else { return }
+        guard let avatarURL = user.avatarURL else { return }
         guard let url = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatarView)
 
-    }
-
-    func load(user: User) {
-        self.user = user
-        // setup cell
     }
     
     private func update() {
