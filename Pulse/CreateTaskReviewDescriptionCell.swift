@@ -27,6 +27,14 @@ class CreateTaskReviewDescriptionCell: UITableViewCell {
     func load(text: String?) {
         self.descriptionLabel.text = text
     }
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        if self.descriptionLabel.isFirstResponder {
+            self.descriptionLabel.resignFirstResponder()
+        } else {
+            self.descriptionLabel.becomeFirstResponder()
+        }
+    }
 }
 
 extension CreateTaskReviewDescriptionCell: UITextViewDelegate {

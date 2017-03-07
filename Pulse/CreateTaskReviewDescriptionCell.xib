@@ -35,6 +35,9 @@
                                 <real key="value" value="3"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="editButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="UEk-p2-xqb"/>
+                        </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="I need you to do the new marketing pages for the website, All the marketing assets are in Dropbox." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="scY-4P-vci">
                         <rect key="frame" x="61" y="0.0" width="247" height="119.5"/>

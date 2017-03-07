@@ -33,6 +33,14 @@ class CreateTaskReviewItemCell: UITableViewCell {
     func load(_ string: String) {
         self.string = string
     }
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        if self.itemLabel.isFirstResponder {
+            self.itemLabel.resignFirstResponder()
+        } else {
+            self.itemLabel.becomeFirstResponder()
+        }
+    }
 }
 
 extension CreateTaskReviewItemCell: UITextViewDelegate {
