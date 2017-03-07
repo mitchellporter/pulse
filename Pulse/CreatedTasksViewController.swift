@@ -22,7 +22,6 @@ class CreatedTasksViewController: UIViewController {
         self.setupTaskInvitationCoreData()
         self.setupTaskCoreData()
         self.fetchData()
-
     }
     
     private func setupTaskInvitationCoreData() {
@@ -44,7 +43,6 @@ class CreatedTasksViewController: UIViewController {
         self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
         //        self.taskInvitationFetchedResultsController.delegate = self
         //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
-        
     }
     
     private func setupTaskCoreData() {
@@ -59,7 +57,6 @@ class CreatedTasksViewController: UIViewController {
         //        self.taskFetchedResultsController.delegate = self
         
         //        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
-        
     }
     
     private func fetchData() {
@@ -95,8 +92,6 @@ class CreatedTasksViewController: UIViewController {
             //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
             //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
             
-            
-            
             do {
                 try self.taskInvitationFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
@@ -114,7 +109,6 @@ class CreatedTasksViewController: UIViewController {
                 //                print("second section info: \(self.taskFetchedResultsController.sections![1].name)")
                 //                print("first section objects count: \(self.taskFetchedResultsController.sections![0].numberOfObjects)")
                 //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
-                
                 
                 self.tableView.reloadData()
             } catch {
@@ -158,7 +152,6 @@ extension CreatedTasksViewController: UITableViewDataSource {
         if let sections = self.taskFetchedResultsController.sections {
             sectionCount += sections.count
         }
-        
         return sectionCount
     }
     
@@ -212,7 +205,6 @@ extension CreatedTasksViewController: UITableViewDataSource {
         
         switch indexPath.section {
         case 0:
-            
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
@@ -224,9 +216,7 @@ extension CreatedTasksViewController: UITableViewDataSource {
             let task = self.taskFetchedResultsController.object(at: indexPath)
             cell.load(task: task, type: .assigner)
             return cell
-            
         case 1:
-            
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
@@ -234,7 +224,6 @@ extension CreatedTasksViewController: UITableViewDataSource {
                 cell.load(task: task, type: .assigner)
                 return cell
             }
-            
             let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
             let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             let task = self.taskFetchedResultsController.object(at: realIndexPath)
@@ -305,11 +294,9 @@ extension CreatedTasksViewController: UITableViewDelegate {
         header.contentView.backgroundColor = self.tableView.backgroundColor
         return header
     }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
     }
-    
 }
 
 extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
@@ -322,24 +309,20 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
         
         // If the controller is the invitation controller, then just use the section Index like normal
         
-        
         switch type {
         case .insert:
-            
             if controller == self.taskInvitationFetchedResultsController {
                 self.tableView.insertSections([sectionIndex], with: .fade)
             } else if controller == self.taskFetchedResultsController {
                 //                print("section index: \(sectionIndex)")
                 //                print("section info: \(sectionInfo.name)")
                 //                self.tableView.insertSections([sectionIndex], with: .fade)
-                
                 var realSectionIndex: Int
                 if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                     realSectionIndex = sectionIndex + 1
                 } else {
                     realSectionIndex = sectionIndex
                 }
-                
                 self.tableView.insertSections([realSectionIndex], with: .fade)
             }
         case .delete:

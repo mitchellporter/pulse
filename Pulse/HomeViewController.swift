@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var createbutton: UIButton!
+    @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
     override func viewDidLoad() {
@@ -31,6 +32,10 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func joinButtonPressed(_ sender: UIButton) {
         
     }
     
