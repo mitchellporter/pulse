@@ -14,8 +14,8 @@ typealias TasksServiceSuccess = (_ tasks: [Task]) -> ()
 typealias MyTasksSuccess = () -> ()
 
 struct TaskService {
-    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDay: WeekDay, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .createTask(title: title, items: items, assignees: assignees, dueDate: dueDate, updateDay: updateDay), success: { (data) in
+    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .createTask(title: title, items: items, assignees: assignees, dueDate: dueDate, updateDays: updateDays), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let taskJSON = json["task"].dictionaryObject {

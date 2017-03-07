@@ -28,6 +28,7 @@
         <attribute name="title" attributeType="String" syncable="YES"/>
         <attribute name="update_day" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updateDays" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="assignees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="receivedTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="assigner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="invitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="task" inverseEntity="TaskInvitation" syncable="YES"/>
@@ -145,7 +146,7 @@
     </entity>
     <elements>
         <element name="Item" positionX="-9" positionY="144" width="128" height="150"/>
-        <element name="Task" positionX="-54" positionY="36" width="128" height="255"/>
+        <element name="Task" positionX="-54" positionY="36" width="128" height="270"/>
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
