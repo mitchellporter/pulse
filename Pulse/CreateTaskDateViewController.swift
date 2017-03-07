@@ -35,8 +35,8 @@ class CreateTaskDateViewController: UIViewController {
         self.setupPicker()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let date: Date = self.dueDate {
             self.calendarPicker.setSelected(date: date)
