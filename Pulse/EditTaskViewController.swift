@@ -23,6 +23,8 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var assignedByLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var requestButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     var taskInvite: TaskInvitation? {
         didSet {
@@ -127,10 +129,7 @@ class EditTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            print(self.task)
-            print(assigner)
-            print(assigner.name)
-            self.assignedByLabel.text = "Assigned by: " + assigner.name
+            self.assignedByLabel.text = "Assigned to: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }
@@ -146,27 +145,23 @@ class EditTaskViewController: UIViewController {
         switch(status) {
         case .pending:
             self.dueDateLabel.textColor = appRed
-//            self.updateButton.setTitle("DECLINE TASK", for: .normal)
-//            self.doneButton.setTitle("ACCEPT TASK", for: .normal)
+            self.bottomMenu.alpha = 0
             break
         case .inProgress:
             self.dueDateLabel.textColor = appYellow
-//            self.updateButton.setTitle("GIVE UPDATE", for: .normal)
-//            self.doneButton.setTitle("TASK IS DONE", for: .normal)
+            self.requestButton.setTitle("ASK FOR UPDATE", for: .normal)
+            self.editButton.setTitle("EDIT TASK", for: .normal)
             break
         case .completed:
             self.dueDateLabel.textColor = appGreen
-            break
-        default:
+            self.bottomMenu.alpha = 0
             break
         }
     }
     
     private func setupTableView() {
         self.tableView.backgroundColor = self.view.backgroundColor
-        let viewCell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
         let editCell: UINib = UINib(nibName: "TaskItemEditCell", bundle: nil)
-        self.tableView.register(viewCell, forCellReuseIdentifier: "taskItemViewCell")
         self.tableView.register(editCell, forCellReuseIdentifier: "taskItemEditCell")
         self.tableView.dataSource = self
         
@@ -176,6 +171,38 @@ class EditTaskViewController: UIViewController {
         for constraint in self.bottomMenu.constraints {
             if constraint.firstAttribute == .height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: constraint.constant, right: 0)
+            }
+        }
+    }
+    
+    @IBAction func requestButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                
+                break
+            case .inProgress:
+                // Request Update for Task
+                
+                break
+            case .completed:
+                break
+            }
+        }
+    }
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                break
+            case .inProgress:
+                // Make changes to task
+                break
+            case .completed:
+                break
             }
         }
     }
@@ -197,7 +224,7 @@ class EditTaskViewController: UIViewController {
         })
     }
     
-    @IBAction func cencelButtonPressed(_ sender: UIButton) {
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.view.endEditing(true)
         self.editingTask = false
     }
@@ -206,32 +233,27 @@ class EditTaskViewController: UIViewController {
 extension EditTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("Number of sections: \(self.fetchedResultsController.sections?.count)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects + 1
-//        return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = "taskItemViewCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskItemEditCell", for: indexPath) as! TaskItemEditCell
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
         
         if indexPath.row == 0 {
             cell.label.text = self.task?.title
             cell.button.alpha = 0
         } else {
             cell.delegate = self
-            cell.state = indexPath.row == 0 ? .selected : .unselected
-            cell.contentView.backgroundColor = self.tableView.backgroundColor
             
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
             let item = self.fetchedResultsController.object(at: realIndexPath)
-            //        let item: Item = self.datasource[indexPath.row]
             cell.load(item: item)
             
             if let status = self.status {
@@ -248,7 +270,6 @@ extension EditTaskViewController: UITableViewDataSource {
                 }
             }
         }
-        
         return cell
     }
 }

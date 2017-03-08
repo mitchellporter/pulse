@@ -33,7 +33,6 @@ class ViewTaskViewController: UIViewController {
         didSet {
             // self.updateUI()
             if self.task != nil {
-                print("Items : \(self.task!.items!.anyObject())")
                 guard let items = task?.items as? Set<Item> else { return }
                 self.datasource = [Item](items)
             }
@@ -129,9 +128,6 @@ class ViewTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            print(self.task)
-            print(assigner)
-            print(assigner.name)
             self.assignedByLabel.text = "Assigned by: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
@@ -158,41 +154,62 @@ class ViewTaskViewController: UIViewController {
             break
         case .completed:
             self.dueDateLabel.textColor = appGreen
-            break
-        default:
+            self.bottomMenu.alpha = 0
+            self.dueDateLabel.text = "COMPLETED"
             break
         }
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:
                 // Decline Task
+                TaskInvitationService.respondToTaskInvitation(taskInvitationId: task.objectId, status: .denied, success: { (invitation) in
+                    // Success, do something
+                    
+                }, failure: { (error, statusCode) in
+                    // Error
+                    
+                })
                 break
             case .inProgress:
                 // Send Update for Task
+                // Segue to Update screen
                 break
             case .completed:
-                break
-            default:
                 break
             }
         }
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:
                 // Accept Task
+                TaskInvitationService.respondToTaskInvitation(taskInvitationId: task.objectId, status: .accepted, success: { (invitation) in
+                    // Success, do something
+                    // Unwind to previous page
+                }, failure: { (error, statusCode) in
+                    // Error
+                    
+                })
                 break
             case .inProgress:
                 // Mark Task as Completed
+                TaskService.finishTask(taskId: task.objectId, success: { (task) in
+                    // Update task and UI to reflect the change.
+                    self.task = task
+                    self.updateUI()
+                }, failure: { (error, statusCode) in
+                    // Error
+                    
+                })
                 break
             case .completed:
-                break
-            default:
                 break
             }
         }
@@ -210,28 +227,24 @@ class ViewTaskViewController: UIViewController {
 extension ViewTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("Number of sections: \(self.fetchedResultsController.sections?.count)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects + 1
-//        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         
-        print("IndexPath: \(indexPath)")
         if indexPath.row == 0 {
             cell.label.text = self.task?.title
             cell.button.alpha = 0
         } else {
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
             let item = self.fetchedResultsController.object(at: realIndexPath)
-//            let item: Item = self.datasource[indexPath.row - 1]
             cell.load(item: item)
             
             if let status = self.status {

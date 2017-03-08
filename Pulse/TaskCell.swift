@@ -72,18 +72,19 @@ class TaskCell: UITableViewCell {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
         let dueDate: String = date == nil ? "" : " | " + dateFormatter.string(from: date!)
-        self.duePercentLabel.text = type == .assignee ? "YOUR NEW TASK" + dueDate : "TASK ASSIGNED" + dueDate
+        self.duePercentLabel.text = type == .assignee ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
+        self.duePercentLabel.textColor = appRed
     }
     
     func load(task: Task, type: TaskCellType) {
-        
+        self.duePercentLabel.textColor = task.status == TaskStatus.completed.rawValue ? appGreen : UIColor.white
         var duePercentString: String = ""
         if let dueDate = task.dueDate {
             let diff = dueDate.timeIntervalSince1970 - Date().timeIntervalSince1970
             let daysTillDueDate = Int(round(diff / 86400))
             duePercentString = "DUE: \(daysTillDueDate) DAYS | "
         }
-        self.duePercentLabel.text = duePercentString + "\(Int(task.completionPercentage))% DONE"
+        self.duePercentLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% DONE"
         self.descriptionLabel.text = task.title
         
         var user: User?
@@ -96,7 +97,7 @@ class TaskCell: UITableViewCell {
             user = assigner
         }
         guard let name: String = user?.name else { return }
-        self.assignedLabel.text = type == .assignee ? "ASSIGNED TO:" + name : "ASSIGNED BY:" + name
+        self.assignedLabel.text = type == .assignee ? "ASSIGNED TO: " + name : "ASSIGNED BY: " + name
         
         guard let avatarURL: String = user?.avatarURL else { print("No avatar url found"); return }
         guard let url: URL = URL(string: avatarURL) else { return }
@@ -106,6 +107,7 @@ class TaskCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        self.duePercentLabel.textColor = UIColor.white
     }
     
     override func layoutSubviews() {
