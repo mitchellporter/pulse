@@ -89,8 +89,9 @@ class TaskCell: UITableViewCell {
         var user: User?
         switch type {
         case .assignee:
+            guard let assignees: Set = task.assignees else { return }
             guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
-            user = assignee
+//            user = assignee
         case .assigner:
             guard let assigner: User = task.assigner else { print("There was no assigner for the task"); return }
             user = assigner

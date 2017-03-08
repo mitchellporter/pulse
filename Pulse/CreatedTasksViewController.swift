@@ -232,28 +232,24 @@ extension CreatedTasksViewController: UITableViewDataSource {
 extension CreatedTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
         
+        guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
+        var sender: Any?
         if indexPath.section == 0 {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-                let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                // TODO: Separate segue for viewing task invitation?
-                taskVC.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
+                sender = self.taskInvitationFetchedResultsController.object(at: indexPath)
             } else {
-                let task = self.taskFetchedResultsController.object(at: indexPath)
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: indexPath)
             }
-        } else  {
+        } else {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-                let task = self.taskFetchedResultsController.object(at: realIndexPath)
-                
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: realIndexPath)
             } else {
-                let task = self.taskFetchedResultsController.object(at: indexPath)
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: indexPath)
             }
         }
+        taskVC.performSegue(withIdentifier: "editTask", sender: sender)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

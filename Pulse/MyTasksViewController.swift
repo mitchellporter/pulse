@@ -236,8 +236,9 @@ extension MyTasksViewController: UITableViewDataSource {
         case 1:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
+            } else {
+                realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             }
-            realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
         case 2:
             realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
         default: return UITableViewCell() // This should never hit
