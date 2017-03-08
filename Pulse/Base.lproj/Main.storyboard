@@ -500,10 +500,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="assignedByLabel" destination="Nsy-yh-ffe" id="1hi-Wa-kgr"/>
                         <outlet property="avatarImageView" destination="nej-xA-Fgq" id="fZs-67-zKT"/>
                         <outlet property="backButton" destination="GnN-zj-d4E" id="Twa-Iz-Adc"/>
                         <outlet property="bottomMenu" destination="RQq-4L-R3F" id="Nxr-4C-tGJ"/>
                         <outlet property="cancelButton" destination="I2Y-eT-tA1" id="WUy-q7-sYQ"/>
+                        <outlet property="dueDateLabel" destination="QR5-hq-QFH" id="ef2-We-f44"/>
                         <outlet property="tableView" destination="451-UG-sZ7" id="66U-z2-aIn"/>
                         <outlet property="titleLabel" destination="X46-Ac-2Vi" id="721-pj-ZJZ"/>
                         <outlet property="updateButton" destination="zSN-35-Vwr" id="TK2-jB-NCA"/>

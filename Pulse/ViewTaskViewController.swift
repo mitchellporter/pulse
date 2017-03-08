@@ -33,6 +33,7 @@ class ViewTaskViewController: UIViewController {
         didSet {
             // self.updateUI()
             if self.task != nil {
+                print("Items : \(self.task!.items!.anyObject())")
                 guard let items = task?.items as? Set<Item> else { return }
                 self.datasource = [Item](items)
             }
@@ -52,15 +53,14 @@ class ViewTaskViewController: UIViewController {
 
         self.setupAppearance()
         self.setupTableView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if self.task != nil {
-//            self.setupCoreData()
-//            self.fetchData()
+            self.setupCoreData()
+            self.fetchData()
             self.updateUI()
         }
     }
@@ -72,7 +72,7 @@ class ViewTaskViewController: UIViewController {
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     private func fetchData() {
@@ -209,25 +209,29 @@ class ViewTaskViewController: UIViewController {
 
 extension ViewTaskViewController: UITableViewDataSource {
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return self.fetchedResultsController.sections?.count ?? 1
-//    }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        print("Number of sections: \(self.fetchedResultsController.sections?.count)")
+        return self.fetchedResultsController.sections?.count ?? 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let sectionInfo = self.fetchedResultsController.sections![section]
-//        return sectionInfo.numberOfObjects
-        return self.datasource.count + 1
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects + 1
+//        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
-        //        let item = self.fetchedResultsController.object(at: indexPath)
+        
+        print("IndexPath: \(indexPath)")
         if indexPath.row == 0 {
             cell.label.text = self.task?.title
             cell.button.alpha = 0
         } else {
-            let item: Item = self.datasource[indexPath.row - 1]
+            let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            let item = self.fetchedResultsController.object(at: realIndexPath)
+//            let item: Item = self.datasource[indexPath.row - 1]
             cell.load(item: item)
             
             if let status = self.status {
