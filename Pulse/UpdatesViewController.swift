@@ -14,20 +14,24 @@ class UpdatesViewController: UIViewController {
     
     
     @IBOutlet weak var tableView: UITableView!
-    var fetchedResultsController: NSFetchedResultsController<UpdateRequest>!
+    var updateRequestFetchedResultsController: NSFetchedResultsController<UpdateRequest>!
+    var taskFetchedResultsController: NSFetchedResultsController<Task>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.setupTableView()
-        self.setupCoreData()
+        self.setupUpdateRequestCoreData()
+        self.setupTaskCoreData()
         self.fetchData()
     }
     
     private func setupTableView() {
         self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
         let cell: UINib = UINib(nibName: "UpdateRequestCell", bundle: nil)
+        let taskCell: UINib = UINib(nibName: "TaskCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "UpdateRequestCell")
+        self.tableView.register(taskCell, forCellReuseIdentifier: "TaskCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
 //        self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
@@ -36,30 +40,97 @@ class UpdatesViewController: UIViewController {
         self.tableView.dataSource = self
     }
     
-    private func setupCoreData() {
-        // TODO: Implement predicate
+    private func setupUpdateRequestCoreData() {
+        // Task invitations
         let fetchRequest: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
-        let sort = NSSortDescriptor(key: "senderIsCurrentUser", ascending: true)
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
+        
         fetchRequest.sortDescriptors = [sort]
-
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "senderIsCurrentUser", cacheName: nil)
+        fetchRequest.predicate = predicate
+        
+        // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods.
+        // Here's the specific problem I kept running into:
+        // On first run, I was making sure that we had in_progress tasks, completed tasks, and NO invites. This worked fine.
+        // I then modified the backend to make an invite, so now we needed 3 total sections with both controllers vs. just using the task controller and having 2 sections
+        // This was causing update errors because I was manually calculating the sections count for the tableview to 3, but the task invite FRC had no context of "sections" because I wasn't setting a sectionNameKeyPath on it.
+        // So the FRC delegate's "did change an object" method was getting called, but the "did change section info" was not. Because it wasn't being called, we couldn't insert an additional section...
+        // so the calculated section value of 3 wasn't matching up to the total section count as a result of all my frc delegate method implementations, and the counts need to match. I fixed this by setting a sectionNameKeyPath on the task invite FRC.
+        self.updateRequestFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        //        self.taskInvitationFetchedResultsController.delegate = self
+        //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+        
+    }
+    
+    private func setupTaskCoreData() {
+        // Tasks
+        let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        
+        fetchRequest.sortDescriptors = [sort]
+        fetchRequest.predicate = predicate
+        self.taskFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        //        self.taskFetchedResultsController.delegate = self
+        
+        //        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+        
     }
     
     private func fetchData() {
         
+        //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+        //        print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+        
         // Check cache
         do {
-            try self.fetchedResultsController.performFetch()
+            try self.updateRequestFetchedResultsController.performFetch()
+            try self.taskFetchedResultsController.performFetch()
+            
+            //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections![0].numberOfObjects)")
+            //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+            
+//            self.updateRequestFetchedResultsController.delegate = self
+//            self.taskFetchedResultsController.delegate = self
+            
+            
             self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
         }
         
-        UpdateService.getUpdateRequests(offset: 0, success: { (updateRequests) in
+        TaskService.getUpdatesFeed(success: {
+            
+            // If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
+            self.updateRequestFetchedResultsController.delegate = nil
+            self.taskFetchedResultsController.delegate = nil
+            
             CoreDataStack.shared.saveContext()
             
+            //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+            //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+            
+            
+            
             do {
-                try self.fetchedResultsController.performFetch()
+                try self.updateRequestFetchedResultsController.performFetch()
+                try self.taskFetchedResultsController.performFetch()
+                
+//                self.updateRequestFetchedResultsController.delegate = self
+//                self.taskFetchedResultsController.delegate = self
+                
+                
+                //                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+                //                print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+                
+                
+                //                print("task sections: \(self.taskFetchedResultsController.sections?.count ?? 1)")
+                //                print("first section info: \(self.taskFetchedResultsController.sections![0].name)")
+                //                print("second section info: \(self.taskFetchedResultsController.sections![1].name)")
+                //                print("first section objects count: \(self.taskFetchedResultsController.sections![0].numberOfObjects)")
+                //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
+                
+                
                 self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
@@ -70,7 +141,6 @@ class UpdatesViewController: UIViewController {
         }
     }
 
-    
     func configure(cell: UITableViewCell, at indexPath: IndexPath) {
         // Setup cell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
@@ -79,28 +149,41 @@ class UpdatesViewController: UIViewController {
 
 extension UpdatesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        if section == 0 {
+            let sectionInfo = self.updateRequestFetchedResultsController.sections![section]
+            return sectionInfo.numberOfObjects
+        } else {
+            let sectionInfo = self.taskFetchedResultsController.sections![section - 1]
+            return sectionInfo.numberOfObjects
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.name == "0" ? "PROGRESS UPDATE REQUESTS" : "PROGRESS UPDATES"
+        
+        if section == 0 {
+            return "PROGRESS UPDATES I NEED TO COMPLETE"
+        } else {
+            return "PROGRESS UPDATES SENT TO ME"
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateRequestCell", for: indexPath) as! UpdateRequestCell
-        let updateRequest = self.fetchedResultsController.object(at: indexPath)
         if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateRequestCell", for: indexPath) as! UpdateRequestCell
+            let updateRequest = self.updateRequestFetchedResultsController.object(at: indexPath)
             cell.load(updateRequest: updateRequest, type: .assignee)
+            return cell
         } else {
-            cell.load(updateRequest: updateRequest, type: .assigner)
+            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
+            let task = self.taskFetchedResultsController.object(at: realIndexPath)
+            cell.load(task: task, type: .assigner)
+            return cell
         }
-        return cell
     }
 }
 
@@ -124,58 +207,43 @@ extension UpdatesViewController: UITableViewDelegate {
     
 }
 
-extension UpdatesViewController: NSFetchedResultsControllerDelegate {
-    
-    /*
-     Assume self has a property 'tableView' -- as is the case for an instance of a UITableViewController
-     subclass -- and a method configureCell:atIndexPath: which updates the contents of a given cell
-     with information from a managed object at the given index path in the fetched results controller.
-     */
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        switch(type) {
-        case .insert:
-            self.tableView.insertSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-            break
-            
-        case .delete:
-            self.tableView.deleteSections(NSIndexSet(index: sectionIndex) as IndexSet, with: .fade)
-            break
-        default:
-            break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        let tableView: UITableView = self.tableView
-        guard let indexPath: IndexPath = indexPath else { return }
-        switch(type) {
-            
-        case .insert:
-            tableView.insertRows(at: [indexPath], with: .fade)
-            break
-            
-        case .delete:
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            break
-            
-        case .update:
-            guard let cell: UITableViewCell = self.tableView.cellForRow(at: indexPath) else { break }
-            self.configure(cell: cell, at: indexPath)
-            break
-            
-        case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-            self.tableView.insertRows(at: [indexPath], with: .fade)
-            break
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.endUpdates()
-    }
-}
+//extension MyTasksViewController: NSFetchedResultsControllerDelegate {
+//    
+//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.tableView.beginUpdates()
+//    }
+//    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+//        
+//        // If the controller is the invitation controller, then just use the section Index like normal
+//    
+//        switch type {
+//        case .insert:
+//            self.tableView.insertSections([sectionIndex], with: .fade)
+//        case .delete:
+//            self.tableView.deleteSections([sectionIndex], with: .fade)
+//        case .move:
+//            break
+//        case .update:
+//            break
+//        }
+//    }
+//    
+//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+//        switch type {
+//        case .insert:
+//            self.tableView.insertRows(at: [newIndexPath!], with: .fade)
+//        case .delete:
+//            self.tableView.deleteRows(at: [newIndexPath!], with: .fade)
+//        case .update: // lots
+//                let task = anObject as! Task
+//                cell.load(task: task, type: .assignee)
+//        case .move:
+//            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+//        }
+//    }
+//    
+//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+//        self.tableView.endUpdates()
+//    }
+//}

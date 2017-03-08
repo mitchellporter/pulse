@@ -130,7 +130,7 @@ class CreateTaskReviewViewController: UIViewController {
         }
         let dueDate: Date? = task[.dueDate]?.first as? Date
         let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
-        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDay: .monday, success: { (task) in
+        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: [.monday], success: { (task) in
             // Successfully created task
             // Do Something
         }) { (error, statusCode) in
@@ -147,7 +147,6 @@ class CreateTaskReviewViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        
         guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskReviewController"); return }
         self.create(task: task)
     }

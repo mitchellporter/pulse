@@ -25,6 +25,11 @@ extension Task {
     var taskStatus: TaskStatus {
         return TaskStatus(rawValue: self.status)!
     }
+    
+    var updateDaysEnum: [WeekDay]? {
+        guard let updateDays = self.updateDays else { return nil }
+        return updateDays.flatMap { return WeekDay(rawValue: $0) }
+    }
 }
 
 extension Task: PulseType {
@@ -55,7 +60,8 @@ extension Task: PulseType {
         
         let title = json["title"] as! String
         let status = json["status"] as! String
-        let update_day = json["update_day"] as! String
+        let updateDays = json["update_days"] as? [String]
+        
         let completionPercentage = json["completion_percentage"] as? Float ?? 0.0
         
         var dueDate: Date?
@@ -75,7 +81,7 @@ extension Task: PulseType {
         task.assigner = assigner
         task.title = title
         task.status = status
-        task.update_day = update_day
+        task.updateDays = updateDays
         task.dueDate = dueDate
         task.completionPercentage = completionPercentage
         
@@ -97,6 +103,13 @@ extension Task: PulseType {
             taskInvitationsJSON.forEach({ taskInvitationJSON in
                 let taskInvitation = TaskInvitation.from(json: taskInvitationJSON,  context: context) as TaskInvitation
                 task.addToInvitations(taskInvitation)
+            })
+        }
+        
+        if let updatesJSON = json["updates"] as? [[String: AnyObject]] {
+            updatesJSON.forEach({ updateJSON in
+                let update = Update.from(json: updateJSON,  context: context) as Update
+                task.addToUpdates(update)
             })
         }
         

@@ -14,13 +14,13 @@ public class TaskInvitation: NSManagedObject {
 
 }
 
+enum TaskInvitationStatus: String {
+    case pending
+    case accepted
+    case denied
+}
+
 extension TaskInvitation {
-    
-    enum TaskInvitationStatus: String {
-        case pending
-        case accepted
-        case denied
-    }
     
     var invitationStatus: TaskInvitationStatus {
         return TaskInvitationStatus(rawValue: self.status)!
