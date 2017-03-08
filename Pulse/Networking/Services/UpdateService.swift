@@ -10,6 +10,8 @@ import Foundation
 import SwiftyJSON
 
 typealias UpdateRequestsSuccessCompletion = (_ updateRequests: [UpdateRequest]) -> Void
+
+typealias UpdateSuccessCompletion = (_ update: Update) -> Void
 typealias UpdatesSuccessCompletion = (_ updates: [Update]) -> Void
 
 struct UpdateService {
@@ -40,6 +42,18 @@ struct UpdateService {
                         updates.append(update)
                     })
                     success(updates)
+                }
+            }
+        }, failure: failure)
+    }
+    
+    static func sendTaskUpdate(taskId: String, completionPercentage: Float, success: @escaping UpdateSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .sendTaskUpdate(taskId: taskId, completionPercentage: completionPercentage), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let updateJSON = json["update"].dictionaryObject {
+                    let update = Update.from(json: updateJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(update)
                 }
             }
         }, failure: failure)

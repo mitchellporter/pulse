@@ -84,7 +84,7 @@
         <relationship name="receiver" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="receivedUpdates" inverseEntity="User" syncable="YES"/>
         <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentUpdates" inverseEntity="User" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="updates" inverseEntity="Task" syncable="YES"/>
-        <relationship name="updateRequest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UpdateRequest" inverseName="updates" inverseEntity="UpdateRequest" syncable="YES"/>
+        <relationship name="updateRequest" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UpdateRequest" inverseName="update" inverseEntity="UpdateRequest" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="objectId"/>
@@ -104,7 +104,7 @@
         <relationship name="receiver" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="receivedUpdateRequests" inverseEntity="User" syncable="YES"/>
         <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentUpdateRequests" inverseEntity="User" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="updateRequests" inverseEntity="Task" syncable="YES"/>
-        <relationship name="updates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" inverseName="updateRequest" inverseEntity="Update" syncable="YES"/>
+        <relationship name="update" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Update" inverseName="updateRequest" inverseEntity="Update" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="objectId"/>

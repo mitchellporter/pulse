@@ -118,8 +118,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .requestTaskUpdate(taskId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
-        case let .sendTaskUpdate(taskId):
-            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
+        case let .sendTaskUpdate(taskId, _):
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .finishTaskItem(taskId, itemId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .getTeamMembers(teamId, _):
@@ -209,6 +209,10 @@ extension PulseAPI {
         case .finishTask:
             return [
                 "status": "completed" as AnyObject
+            ]
+        case let .sendTaskUpdate(_, completionPercentage):
+            return [
+                "completion_percentage": completionPercentage as AnyObject
             ]
                default: return nil
         }
