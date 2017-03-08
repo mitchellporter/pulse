@@ -154,6 +154,7 @@ class ViewTaskViewController: UIViewController {
             break
         case .completed:
             self.dueDateLabel.textColor = appGreen
+            self.bottomMenu.alpha = 0
             break
         default:
             break
@@ -161,34 +162,55 @@ class ViewTaskViewController: UIViewController {
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:
                 // Decline Task
+                TaskInvitationService.respondToTaskInvitation(taskInvitationId: task.objectId, status: .denied, success: { (invitation) in
+                    // Success, do something
+                    
+                }, failure: { (error, statusCode) in
+                    // Error
+                    
+                })
                 break
             case .inProgress:
                 // Send Update for Task
+                // Segue to Update screen
                 break
             case .completed:
-                break
-            default:
                 break
             }
         }
     }
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:
                 // Accept Task
+                TaskInvitationService.respondToTaskInvitation(taskInvitationId: task.objectId, status: .accepted, success: { (invitation) in
+                    // Success, do something
+                    // Unwind to previous page
+                }, failure: { (error, statusCode) in
+                    // Error
+                    
+                })
                 break
             case .inProgress:
                 // Mark Task as Completed
+                TaskService.finishTask(taskId: task.objectId, success: { (task) in
+                    // Update task and UI to reflect the change.
+                    self.task = task
+                    self.updateUI()
+                }, failure: { (error, statusCode) in
+                    // Error
+                    
+                })
                 break
             case .completed:
-                break
-            default:
                 break
             }
         }
@@ -212,7 +234,6 @@ extension ViewTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects + 1
-//        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -225,7 +246,6 @@ extension ViewTaskViewController: UITableViewDataSource {
         } else {
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
             let item = self.fetchedResultsController.object(at: realIndexPath)
-//            let item: Item = self.datasource[indexPath.row - 1]
             cell.load(item: item)
             
             if let status = self.status {

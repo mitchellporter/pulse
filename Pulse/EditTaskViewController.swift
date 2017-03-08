@@ -207,25 +207,21 @@ extension EditTaskViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
         return sectionInfo.numberOfObjects + 1
-//        return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = "taskItemEditCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemEditCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskItemEditCell", for: indexPath) as! TaskItemEditCell
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
         
         if indexPath.row == 0 {
             cell.label.text = self.task?.title
             cell.button.alpha = 0
         } else {
             cell.delegate = self
-            cell.state = indexPath.row == 0 ? .selected : .unselected
-            cell.contentView.backgroundColor = self.tableView.backgroundColor
             
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
             let item = self.fetchedResultsController.object(at: realIndexPath)
-            //        let item: Item = self.datasource[indexPath.row]
             cell.load(item: item)
             
             if let status = self.status {
@@ -242,7 +238,6 @@ extension EditTaskViewController: UITableViewDataSource {
                 }
             }
         }
-        
         return cell
     }
 }

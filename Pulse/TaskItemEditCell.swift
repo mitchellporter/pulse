@@ -54,7 +54,7 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        self.textView.becomeFirstResponder()
-        self.delegate?.taskUpdated(item: "")
+//        self.textView.becomeFirstResponder()
+//        self.delegate?.taskUpdated(item: "")
     }
 }
