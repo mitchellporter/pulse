@@ -244,7 +244,7 @@ extension MyTasksViewController: UITableViewDataSource {
         }
         
         let task = self.taskFetchedResultsController.object(at: realIndexPath)
-        cell.load(task: task, type: .assignee)
+        cell.load(task: task, type: .assigner)
         return cell
     }
 }
