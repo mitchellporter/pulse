@@ -45,6 +45,7 @@ enum PulseAPI {
     case getTask(taskId: String) //
     case requestTaskUpdate(taskId: String) //
     case sendTaskUpdate(taskId: String, completionPercentage: Float) //
+    case sendUpdateForUpdateRequest(updateRequestId: String, completionPercentage: Float)
     case finishTask(taskId: String) //
     
     case getUpdateRequests(offset: Int)
@@ -89,7 +90,8 @@ extension PulseAPI {
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
-             .finishTaskItem:
+             .finishTaskItem,
+             .sendUpdateForUpdateRequest:
             return .post
             
         default: return .get
@@ -136,6 +138,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/feeds/updates"
         case let .respondToTaskInvitation(taskInvitationId, _):
             return "/api/\(PulseAPI.apiVersion)/task_invitations/\(taskInvitationId)"
+        case let .sendUpdateForUpdateRequest(updateRequestId, _):
+            return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)"
         }
     }
 }
@@ -211,6 +215,10 @@ extension PulseAPI {
                 "status": "completed" as AnyObject
             ]
         case let .sendTaskUpdate(_, completionPercentage):
+            return [
+                "completion_percentage": completionPercentage as AnyObject
+            ]
+        case let .sendUpdateForUpdateRequest(_, completionPercentage):
             return [
                 "completion_percentage": completionPercentage as AnyObject
             ]
