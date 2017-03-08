@@ -33,7 +33,6 @@ class ViewTaskViewController: UIViewController {
         didSet {
             // self.updateUI()
             if self.task != nil {
-                print("Items : \(self.task!.items!.anyObject())")
                 guard let items = task?.items as? Set<Item> else { return }
                 self.datasource = [Item](items)
             }
@@ -129,9 +128,6 @@ class ViewTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            print(self.task)
-            print(assigner)
-            print(assigner.name)
             self.assignedByLabel.text = "Assigned by: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
@@ -210,7 +206,6 @@ class ViewTaskViewController: UIViewController {
 extension ViewTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("Number of sections: \(self.fetchedResultsController.sections?.count)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
@@ -224,7 +219,6 @@ extension ViewTaskViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         
-        print("IndexPath: \(indexPath)")
         if indexPath.row == 0 {
             cell.label.text = self.task?.title
             cell.button.alpha = 0

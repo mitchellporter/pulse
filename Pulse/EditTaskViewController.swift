@@ -127,9 +127,6 @@ class EditTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            print(self.task)
-            print(assigner)
-            print(assigner.name)
             self.assignedByLabel.text = "Assigned by: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
@@ -164,9 +161,7 @@ class EditTaskViewController: UIViewController {
     
     private func setupTableView() {
         self.tableView.backgroundColor = self.view.backgroundColor
-        let viewCell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
         let editCell: UINib = UINib(nibName: "TaskItemEditCell", bundle: nil)
-        self.tableView.register(viewCell, forCellReuseIdentifier: "taskItemViewCell")
         self.tableView.register(editCell, forCellReuseIdentifier: "taskItemEditCell")
         self.tableView.dataSource = self
         
@@ -206,7 +201,6 @@ class EditTaskViewController: UIViewController {
 extension EditTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("Number of sections: \(self.fetchedResultsController.sections?.count)")
         return self.fetchedResultsController.sections?.count ?? 1
     }
     
@@ -218,8 +212,8 @@ extension EditTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = "taskItemViewCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemViewCell
+        let identifier: String = "taskItemEditCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemEditCell
         
         if indexPath.row == 0 {
             cell.label.text = self.task?.title
