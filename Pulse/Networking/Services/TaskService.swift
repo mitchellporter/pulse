@@ -168,4 +168,28 @@ struct TaskService {
             }
         }, failure: failure)
     }
+    
+    static func markTaskItemInProgress(taskId: String, itemId: String, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .markTaskItemInProgress(taskId: taskId, itemId: itemId), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let taskJSON = json["task"].dictionaryObject {
+                    let task = Task.from(json: taskJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(task)
+                }
+            }
+        }, failure: failure)
+    }
+    
+    static func markTaskItemCompleted(taskId: String, itemId: String, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .markTaskItemCompleted(taskId: taskId, itemId: itemId), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let taskJSON = json["task"].dictionaryObject {
+                    let task = Task.from(json: taskJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(task)
+                }
+            }
+        }, failure: failure)
+    }
 }
