@@ -222,7 +222,7 @@
                                             <action selector="backButtonPressed:" destination="Pzw-db-Dix" eventType="touchUpInside" id="RMg-eM-R3B"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QW6-yp-XTq">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QW6-yp-XTq">
                                         <rect key="frame" x="18" y="86" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="bTG-rU-60L"/>
@@ -445,7 +445,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nej-xA-Fgq">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nej-xA-Fgq">
                                         <rect key="frame" x="18" y="86" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="DJP-ny-Bbx"/>

@@ -24,9 +24,15 @@ class ViewTaskViewController: UIViewController {
     
     var task: Task? {
         didSet {
-            self.updateUI()
+            // self.updateUI()
+            if self.task != nil {
+                guard let items = task?.items as? Set<Item> else { return }
+                self.datasource = [Item](items)
+            }
         }
     }
+    
+    var datasource: [Item] = [Item]()
     
     var status: TaskStatus?
 
@@ -41,6 +47,14 @@ class ViewTaskViewController: UIViewController {
         self.setupTableView()
         self.setupCoreData()
         self.fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.task != nil {
+            self.updateUI()
+        }
     }
     
     private func setupCoreData() {
@@ -117,7 +131,7 @@ class ViewTaskViewController: UIViewController {
         if let dueDate: Date = task.dueDate {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
-            self.dueDateLabel.text = formatter.string(from: dueDate)
+            self.dueDateLabel.text = "Due: " + formatter.string(from: dueDate)
         }
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
@@ -183,38 +197,43 @@ class ViewTaskViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-    
 }
 
 extension ViewTaskViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.fetchedResultsController.sections?.count ?? 1
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+//        let sectionInfo = self.fetchedResultsController.sections![section]
+//        return sectionInfo.numberOfObjects
+        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
-        let item = self.fetchedResultsController.object(at: indexPath)
-        cell.load(item: item)
         cell.contentView.backgroundColor = self.tableView.backgroundColor
-        if let status = self.status {
-            switch(status) {
-            case .pending:
-                cell.button.alpha = 0
-                break
-            case .inProgress:
-                break
-            case .completed:
-                cell.state = .selected
-                cell.button.isEnabled = false
-                break
-            default:
-                break
+        //        let item = self.fetchedResultsController.object(at: indexPath)
+        if indexPath.row == 0 {
+            cell.label.text = self.task?.title
+            cell.button.alpha = 0
+        } else {
+            let item: Item = self.datasource[indexPath.row - 1]
+            cell.load(item: item)
+            
+            if let status = self.status {
+                switch(status) {
+                case .pending:
+                    cell.button.alpha = 0
+                    break
+                case .inProgress:
+                    break
+                case .completed:
+                    cell.state = .selected
+                    cell.button.isEnabled = false
+                    break
+                }
             }
         }
         return cell
