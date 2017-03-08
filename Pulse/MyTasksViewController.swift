@@ -11,7 +11,6 @@ import CoreData
 
 class MyTasksViewController: UIViewController {
     
-    
     @IBOutlet weak var tableView: UITableView!
     
     var taskInvitationFetchedResultsController: NSFetchedResultsController<TaskInvitation>!
@@ -22,7 +21,6 @@ class MyTasksViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupTableView()
-        
         self.setupTaskInvitationCoreData()
         self.setupTaskCoreData()
         self.fetchData()
@@ -52,7 +50,6 @@ class MyTasksViewController: UIViewController {
         self.taskInvitationFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
 //        self.taskInvitationFetchedResultsController.delegate = self
 //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
-        
     }
     
     private func setupTaskCoreData() {
@@ -86,7 +83,6 @@ class MyTasksViewController: UIViewController {
             self.taskInvitationFetchedResultsController.delegate = self
             self.taskFetchedResultsController.delegate = self
             
-            
             self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
@@ -102,16 +98,12 @@ class MyTasksViewController: UIViewController {
             
 //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
 //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
-            
-           
-            
             do {
                 try self.taskInvitationFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
                 
                 self.taskInvitationFetchedResultsController.delegate = self
                 self.taskFetchedResultsController.delegate = self
-
                 
 //                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
 //                print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
@@ -155,9 +147,15 @@ class MyTasksViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "viewTask" {
-            guard let task: Task = sender as? Task else { print("Error: no task"); return }
             guard let toVC: ViewTaskViewController = segue.destination as? ViewTaskViewController else { return }
-            toVC.task = task
+            
+            if let task: Task = sender as? Task {
+                toVC.task = task
+            }
+            
+            if let taskInvite: TaskInvitation = sender as? TaskInvitation {
+                toVC.taskInvite = taskInvite
+            }
         }
     }
 }
@@ -167,7 +165,6 @@ extension MyTasksViewController: UITableViewDataSource {
         var sectionCount = 0
         // If we have any invitations at all, increase section count by 1
         if self.taskInvitationFetchedResultsController.fetchedObjects != nil {
-//            print(self.taskInvitationFetchedResultsController.fetchedObjects!.count)
             if (self.taskInvitationFetchedResultsController.fetchedObjects!.count != 0) {
                 sectionCount += 1
             }
@@ -176,7 +173,6 @@ extension MyTasksViewController: UITableViewDataSource {
         if let sections = self.taskFetchedResultsController.sections {
             sectionCount += sections.count
         }
-        
         return sectionCount
     }
     
@@ -223,80 +219,58 @@ extension MyTasksViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
+        var realIndexPath: IndexPath = indexPath
         
         // Section 0
         // If invitation frc has objects, then it owns section 0
         // If invitation frc does not have objects, then
-        
         switch indexPath.section {
         case 0:
-            
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
-                let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-                cell.textLabel?.text = "THIS IS AN INVITATION CELL ;)"
+                let taskInvitation: TaskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
+                cell.load(invitation: taskInvitation, type: .assigner)
                 return cell
             }
-
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-            let task = self.taskFetchedResultsController.object(at: indexPath)
-            cell.load(task: task, type: .assignee)
-            return cell
-            
         case 1:
-            
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-                let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-                let task = self.taskFetchedResultsController.object(at: realIndexPath)
-                cell.load(task: task, type: .assignee)
-                return cell
+                realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
+            } else {
+                realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             }
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
-            let task = self.taskFetchedResultsController.object(at: realIndexPath)
-            cell.load(task: task, type: .assignee)
-            return cell
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-            let task = self.taskFetchedResultsController.object(at: realIndexPath)
-            cell.load(task: task, type: .assignee)
-            return cell
+            realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
         default: return UITableViewCell() // This should never hit
         }
+        
+        let task = self.taskFetchedResultsController.object(at: realIndexPath)
+        cell.load(task: task, type: .assigner)
+        return cell
     }
 }
 
 extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? TaskCell else { return }
         
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-        
+        var sender: Any?
         if indexPath.section == 0 {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-                let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                // TODO: Separate segue for viewing task invitation?
-                taskVC.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
+                sender = self.taskInvitationFetchedResultsController.object(at: indexPath)
             } else {
-                let task = self.taskFetchedResultsController.object(at: indexPath)
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: indexPath)
             }
-        } else  {
+        } else {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-                let task = self.taskFetchedResultsController.object(at: realIndexPath)
-
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: realIndexPath)
             } else {
-                let task = self.taskFetchedResultsController.object(at: indexPath)
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: indexPath)
             }
         }
-
+        taskVC.performSegue(withIdentifier: "viewTask", sender: sender)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -307,7 +281,6 @@ extension MyTasksViewController: UITableViewDelegate {
                 header.load(status: .pending, type: .assignee)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
-//                print(sectionInfo.name)
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             }
         case 1:
@@ -316,7 +289,6 @@ extension MyTasksViewController: UITableViewDelegate {
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             } else {
                 let sectionInfo = self.taskFetchedResultsController.sections![section]
-//                print(sectionInfo.name)
                 sectionInfo.name == "in_progress" ? header.load(status: .inProgress, type: .assignee) : header.load(status: .completed, type: .assignee)
             }
         case 2:
@@ -342,20 +314,12 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
         
         // If the controller is the invitation controller, then just use the section Index like normal
-        
-        
         switch type {
         case .insert:
-            
-            
-            
-            
             if controller == self.taskInvitationFetchedResultsController {
                 self.tableView.insertSections([sectionIndex], with: .fade)
             } else if controller == self.taskFetchedResultsController {
-//                print("section index: \(sectionIndex)")
-//                print("section info: \(sectionInfo.name)")
-//                self.tableView.insertSections([sectionIndex], with: .fade)
+               // self.tableView.insertSections([sectionIndex], with: .fade)
                 
                 var realSectionIndex: Int
                 if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
@@ -363,7 +327,7 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
                 } else {
                     realSectionIndex = sectionIndex
                 }
-
+                
                 self.tableView.insertSections([realSectionIndex], with: .fade)
             }
         case .delete:
@@ -397,9 +361,7 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             
             if controller == self.taskInvitationFetchedResultsController {
                 self.tableView.deleteRows(at: [indexPath!], with: .fade)
-
             } else if controller == self.taskFetchedResultsController {
-                
                 var realIndexPath: IndexPath
                 if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                     realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
@@ -410,26 +372,20 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             }
             
         case .update: // lots
-            
             if controller == self.taskInvitationFetchedResultsController {
                 if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
                     
                     let task = self.taskFetchedResultsController.fetchedObjects!.first!
                     cell.load(task: task, type: .assignee)
                 }
-
             } else if controller == self.taskFetchedResultsController {
-                
-                
                 var realIndexPath: IndexPath
                 if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                     realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
                 } else {
                     realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
                 }
-                
                 if let cell = self.tableView.cellForRow(at: realIndexPath) as? TaskCell {
-                    
                     let task = anObject as! Task
                     cell.load(task: task, type: .assignee)
                 }

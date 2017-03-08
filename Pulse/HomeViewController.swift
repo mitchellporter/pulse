@@ -11,6 +11,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var createbutton: UIButton!
+    @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
     
     override func viewDidLoad() {
@@ -22,15 +23,19 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.signInButtonPressed(self.signInButton)
+//        self.signInButtonPressed(self.signInButton)
     }
     
     private func setupAppearance() {
-        self.view.backgroundColor = homeScreenBackgroundColor
-        self.createbutton.backgroundColor = createTaskBackgroundColor
+        self.view.backgroundColor = mainBackgroundColor
+        self.createbutton.backgroundColor = appBlue
     }
     
     @IBAction func createButtonPressed(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func joinButtonPressed(_ sender: UIButton) {
         
     }
     

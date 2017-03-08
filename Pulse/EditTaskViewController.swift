@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Nuke
 
 
 // TODO: Setup description cell
@@ -20,11 +21,35 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var updateButton: Button!
     @IBOutlet weak var cancelButton: Button!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedByLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var requestButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
+    
+    var taskInvite: TaskInvitation? {
+        didSet {
+            guard let task: Task = self.taskInvite?.task else { return }
+            self.task = task
+        }
+    }
+    
+    var task: Task? {
+        didSet {
+            // self.updateUI()
+            if self.task != nil {
+                guard let items = task?.items as? Set<Item> else { return }
+                self.datasource = [Item](items)
+            }
+        }
+    }
+    
+    var datasource: [Item] = [Item]()
+    
+    var status: TaskStatus?
     
     var tableViewTopInset: CGFloat = 22
     
     var fetchedResultsController: NSFetchedResultsController<Item>!
-    var task: Task!
     
     fileprivate var editingTask: Bool = false {
         didSet {
@@ -37,18 +62,27 @@ class EditTaskViewController: UIViewController {
 
         self.setupAppearance()
         self.setupTableView()
-        self.setupCoreData()
-        self.fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.task != nil {
+            self.setupCoreData()
+            self.fetchData()
+            self.updateUI()
+        }
     }
 
     private func setupCoreData() {
+        guard let task: Task = self.task else { return }
         let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "task.objectId == %@", self.task.objectId)
+        let predicate = NSPredicate(format: "task.objectId == %@", task.objectId)
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
-        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
+        self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     private func fetchData() {
@@ -60,8 +94,8 @@ class EditTaskViewController: UIViewController {
         } catch {
             print("fetched results controller error: \(error)")
         }
-        
-        TaskService.getTask(taskId: self.task.objectId, success: { (task) in
+        guard let task: Task = self.task else { return }
+        TaskService.getTask(taskId: task.objectId, success: { (task) in
             CoreDataStack.shared.saveContext()
             
             do {
@@ -92,11 +126,42 @@ class EditTaskViewController: UIViewController {
         self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
     }
     
+    private func updateUI() {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        if let assigner: User = task.assigner {
+            self.assignedByLabel.text = "Assigned to: " + assigner.name
+            guard let url: URL = URL(string: assigner.avatarURL!) else { return }
+            Nuke.loadImage(with: url, into: self.avatarImageView)
+        }
+        if let dueDate: Date = task.dueDate {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            self.dueDateLabel.text = "Due: " + formatter.string(from: dueDate)
+        }
+        
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        self.status = status
+        
+        switch(status) {
+        case .pending:
+            self.dueDateLabel.textColor = appRed
+            self.bottomMenu.alpha = 0
+            break
+        case .inProgress:
+            self.dueDateLabel.textColor = appYellow
+            self.requestButton.setTitle("ASK FOR UPDATE", for: .normal)
+            self.editButton.setTitle("EDIT TASK", for: .normal)
+            break
+        case .completed:
+            self.dueDateLabel.textColor = appGreen
+            self.bottomMenu.alpha = 0
+            break
+        }
+    }
+    
     private func setupTableView() {
         self.tableView.backgroundColor = self.view.backgroundColor
-        let viewCell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
         let editCell: UINib = UINib(nibName: "TaskItemEditCell", bundle: nil)
-        self.tableView.register(viewCell, forCellReuseIdentifier: "taskItemViewCell")
         self.tableView.register(editCell, forCellReuseIdentifier: "taskItemEditCell")
         self.tableView.dataSource = self
         
@@ -106,6 +171,38 @@ class EditTaskViewController: UIViewController {
         for constraint in self.bottomMenu.constraints {
             if constraint.firstAttribute == .height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: constraint.constant, right: 0)
+            }
+        }
+    }
+    
+    @IBAction func requestButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                
+                break
+            case .inProgress:
+                // Request Update for Task
+                
+                break
+            case .completed:
+                break
+            }
+        }
+    }
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                break
+            case .inProgress:
+                // Make changes to task
+                break
+            case .completed:
+                break
             }
         }
     }
@@ -127,7 +224,7 @@ class EditTaskViewController: UIViewController {
         })
     }
     
-    @IBAction func cencelButtonPressed(_ sender: UIButton) {
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.view.endEditing(true)
         self.editingTask = false
     }
@@ -141,23 +238,40 @@ extension EditTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+        return sectionInfo.numberOfObjects + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = "taskItemEditCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemEditCell
-        cell.delegate = self
-        cell.state = indexPath.row == 0 ? .selected : .unselected
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskItemEditCell", for: indexPath) as! TaskItemEditCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         
-        let item = self.fetchedResultsController.object(at: indexPath)
-        cell.load(item: item)
-        
+        if indexPath.row == 0 {
+            cell.label.text = self.task?.title
+            cell.button.alpha = 0
+        } else {
+            cell.delegate = self
+            
+            let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+            let item = self.fetchedResultsController.object(at: realIndexPath)
+            cell.load(item: item)
+            
+            if let status = self.status {
+                switch(status) {
+                case .pending:
+                    cell.button.alpha = 0
+                    break
+                case .inProgress:
+                    break
+                case .completed:
+                    cell.state = .selected
+                    cell.button.isEnabled = false
+                    break
+                }
+            }
+        }
         return cell
     }
-    
 }
 
 extension EditTaskViewController: TaskItemCellDelegate {

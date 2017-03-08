@@ -16,7 +16,7 @@ public class Item: NSManagedObject {
 
 enum ItemStatus: String {
     case inProgress = "in_progress"
-    case completed
+    case completed = "completed"
 }
 
 extension Item {

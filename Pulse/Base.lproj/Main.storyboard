@@ -218,11 +218,19 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2D5-s5-LiK" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                         <rect key="frame" x="23" y="27" width="23" height="22"/>
                                         <state key="normal" image="BackDownArrow"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="backButtonPressed:" destination="Pzw-db-Dix" eventType="touchUpInside" id="RMg-eM-R3B"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QW6-yp-XTq">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QW6-yp-XTq">
                                         <rect key="frame" x="18" y="86" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="bTG-rU-60L"/>
@@ -358,7 +366,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="updateButtonPressed:" destination="Pzw-db-Dix" eventType="touchUpInside" id="BF5-9u-zzX"/>
+                                                    <action selector="requestButtonPressed:" destination="8rE-5M-G2m" eventType="touchUpInside" id="0Ih-f4-PlC"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pY-Bh-U9q" customClass="Button" customModule="Pulse" customModuleProvider="target">
@@ -383,7 +391,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="doneButtonPressed:" destination="Pzw-db-Dix" eventType="touchUpInside" id="r6U-wr-F82"/>
+                                                    <action selector="editButtonPressed:" destination="8rE-5M-G2m" eventType="touchUpInside" id="Gtc-8n-nl7"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -419,8 +427,16 @@
                                         <state key="normal" title="CANCEL">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                                <real key="value" value="50"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="cencelButtonPressed:" destination="8rE-5M-G2m" eventType="touchUpInside" id="gMC-60-iYT"/>
+                                            <action selector="cancelButtonPressed:" destination="8rE-5M-G2m" eventType="touchUpInside" id="OWO-u7-zr9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSN-35-Vwr" customClass="Button" customModule="Pulse" customModuleProvider="target">
@@ -445,7 +461,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nej-xA-Fgq">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nej-xA-Fgq">
                                         <rect key="frame" x="18" y="86" width="34" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="34" id="DJP-ny-Bbx"/>
@@ -500,10 +516,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="assignedByLabel" destination="Nsy-yh-ffe" id="1hi-Wa-kgr"/>
                         <outlet property="avatarImageView" destination="nej-xA-Fgq" id="fZs-67-zKT"/>
                         <outlet property="backButton" destination="GnN-zj-d4E" id="Twa-Iz-Adc"/>
                         <outlet property="bottomMenu" destination="RQq-4L-R3F" id="Nxr-4C-tGJ"/>
                         <outlet property="cancelButton" destination="I2Y-eT-tA1" id="WUy-q7-sYQ"/>
+                        <outlet property="dueDateLabel" destination="QR5-hq-QFH" id="ef2-We-f44"/>
+                        <outlet property="editButton" destination="3pY-Bh-U9q" id="XIq-mr-tTB"/>
+                        <outlet property="requestButton" destination="dQh-k3-T9C" id="2j8-z6-bl8"/>
                         <outlet property="tableView" destination="451-UG-sZ7" id="66U-z2-aIn"/>
                         <outlet property="titleLabel" destination="X46-Ac-2Vi" id="721-pj-ZJZ"/>
                         <outlet property="updateButton" destination="zSN-35-Vwr" id="TK2-jB-NCA"/>

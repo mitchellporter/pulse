@@ -593,9 +593,11 @@
                         <outlet property="dueDateLabel" destination="DSS-cG-ogZ" id="5yv-82-oGr"/>
                         <outlet property="nextButton" destination="vVc-GP-tI2" id="DNq-7a-xsM"/>
                         <outlet property="tableView" destination="3L0-rl-Tba" id="7r1-AT-mk3"/>
+                        <segue destination="KTa-pF-sWP" kind="unwind" identifier="completeCreation" unwindAction="unwindToTaskViewController:" id="OS8-0E-7So"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymg-az-vMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="KTa-pF-sWP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2957.5999999999999" y="108.39580209895054"/>
         </scene>
