@@ -23,6 +23,8 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var assignedByLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var requestButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
     
     var taskInvite: TaskInvitation? {
         didSet {
@@ -127,7 +129,7 @@ class EditTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            self.assignedByLabel.text = "Assigned by: " + assigner.name
+            self.assignedByLabel.text = "Assigned to: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }
@@ -143,18 +145,16 @@ class EditTaskViewController: UIViewController {
         switch(status) {
         case .pending:
             self.dueDateLabel.textColor = appRed
-//            self.updateButton.setTitle("DECLINE TASK", for: .normal)
-//            self.doneButton.setTitle("ACCEPT TASK", for: .normal)
+            self.bottomMenu.alpha = 0
             break
         case .inProgress:
             self.dueDateLabel.textColor = appYellow
-//            self.updateButton.setTitle("GIVE UPDATE", for: .normal)
-//            self.doneButton.setTitle("TASK IS DONE", for: .normal)
+            self.requestButton.setTitle("ASK FOR UPDATE", for: .normal)
+            self.editButton.setTitle("EDIT TASK", for: .normal)
             break
         case .completed:
             self.dueDateLabel.textColor = appGreen
-            break
-        default:
+            self.bottomMenu.alpha = 0
             break
         }
     }
@@ -171,6 +171,38 @@ class EditTaskViewController: UIViewController {
         for constraint in self.bottomMenu.constraints {
             if constraint.firstAttribute == .height {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: constraint.constant, right: 0)
+            }
+        }
+    }
+    
+    @IBAction func requestButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                
+                break
+            case .inProgress:
+                // Request Update for Task
+                
+                break
+            case .completed:
+                break
+            }
+        }
+    }
+    
+    @IBAction func editButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("No task"); return }
+        if let status = self.status {
+            switch(status) {
+            case .pending:
+                break
+            case .inProgress:
+                // Make changes to task
+                break
+            case .completed:
+                break
             }
         }
     }
@@ -192,7 +224,7 @@ class EditTaskViewController: UIViewController {
         })
     }
     
-    @IBAction func cencelButtonPressed(_ sender: UIButton) {
+    @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.view.endEditing(true)
         self.editingTask = false
     }

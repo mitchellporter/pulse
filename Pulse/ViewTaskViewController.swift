@@ -155,8 +155,7 @@ class ViewTaskViewController: UIViewController {
         case .completed:
             self.dueDateLabel.textColor = appGreen
             self.bottomMenu.alpha = 0
-            break
-        default:
+            self.dueDateLabel.text = "COMPLETED"
             break
         }
     }
