@@ -130,11 +130,13 @@ class CreateTaskReviewViewController: UIViewController {
         }
         let dueDate: Date? = task[.dueDate]?.first as? Date
         let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
-        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: [.monday], success: { (task) in
+        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
             // Successfully created task
             // Do Something
+            self.performSegue(withIdentifier: "completeCreation", sender: nil)
         }) { (error, statusCode) in
             // Handle Error
+            print("There was an error when creating the task. Error: \(statusCode) \(error.localizedDescription)")
         }
     }
     

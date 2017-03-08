@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamspaceHomeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bNM-Eg-z8e">
-                                <rect key="frame" x="88" y="172.5" width="200" height="33"/>
+                                <rect key="frame" x="88" y="173" width="200" height="33"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1La-4b-2rQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="55" y="476" width="265" height="52"/>
@@ -45,7 +45,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0G-zl-lbk" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                <rect key="frame" x="55.5" y="547.5" width="265" height="52"/>
+                                <rect key="frame" x="56" y="548" width="265" height="52"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="TD0-5n-50N"/>

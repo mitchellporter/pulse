@@ -39,8 +39,6 @@ class UpdateAlertController: AlertController {
         self.alertView.layer.cornerRadius = 3
         self.alertViewHeader.backgroundColor = createTaskBackgroundColor
         
-        
-        
         self.drawCircle()
     }
     
