@@ -80,7 +80,8 @@ extension PulseAPI {
             return .get
             
         case .editTask,
-             .respondToTaskInvitation:
+             .respondToTaskInvitation,
+             .finishTask:
             return .put
         
         case .login,
@@ -88,7 +89,6 @@ extension PulseAPI {
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
-             .finishTask,
              .finishTaskItem:
             return .post
             
@@ -205,6 +205,10 @@ extension PulseAPI {
         case let .respondToTaskInvitation(_, status):
             return [
                 "status": status.rawValue as AnyObject
+            ]
+        case .finishTask:
+            return [
+                "status": "completed" as AnyObject
             ]
                default: return nil
         }
