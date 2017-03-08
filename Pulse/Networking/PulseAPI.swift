@@ -52,7 +52,8 @@ enum PulseAPI {
     case getUpdates(updateRequestId: String, offset: Int)
     
     // Task Items
-    case finishTaskItem(taskId: String, itemId: String) //
+    case markTaskItemCompleted(taskId: String, itemId: String) //
+    case markTaskItemInProgress(taskId: String, itemId: String)
     
     // Team members
     case getTeamMembers(teamId: String, offset: Int)
@@ -82,7 +83,9 @@ extension PulseAPI {
             
         case .editTask,
              .respondToTaskInvitation,
-             .finishTask:
+             .finishTask,
+             .markTaskItemInProgress,
+             .markTaskItemCompleted:
             return .put
         
         case .login,
@@ -90,7 +93,6 @@ extension PulseAPI {
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
-             .finishTaskItem,
              .sendUpdateForUpdateRequest:
             return .post
             
@@ -122,8 +124,6 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .sendTaskUpdate(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
-        case let .finishTaskItem(taskId, itemId):
-            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
         case .getUpdateRequests:
@@ -140,6 +140,10 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/task_invitations/\(taskInvitationId)"
         case let .sendUpdateForUpdateRequest(updateRequestId, _):
             return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)"
+        case let .markTaskItemInProgress(taskId, itemId):
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
+        case let .markTaskItemCompleted(taskId, itemId):
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         }
     }
 }
@@ -221,6 +225,14 @@ extension PulseAPI {
         case let .sendUpdateForUpdateRequest(_, completionPercentage):
             return [
                 "completion_percentage": completionPercentage as AnyObject
+            ]
+        case .markTaskItemInProgress:
+            return [
+                "status": "in_progress" as AnyObject
+            ]
+        case .markTaskItemCompleted:
+            return [
+                "status": "completed" as AnyObject
             ]
                default: return nil
         }
