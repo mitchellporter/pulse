@@ -62,7 +62,7 @@ enum PulseAPI {
     case getUpdatesFeed
     
     // Task invitations
-    case respondToTaskInvitation(taskId: String, taskInvitationId: String, status: TaskInvitationStatus)
+    case respondToTaskInvitation(taskInvitationId: String, status: TaskInvitationStatus)
 }
 
 extension PulseAPI {
@@ -134,8 +134,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/feeds/tasks_created"
         case .getUpdatesFeed:
             return "/api/\(PulseAPI.apiVersion)/feeds/updates"
-        case let .respondToTaskInvitation(taskId, taskInvitationId, _):
-            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/invitations/\(taskInvitationId)"
+        case let .respondToTaskInvitation(taskInvitationId, _):
+            return "/api/\(PulseAPI.apiVersion)/task_invitations/\(taskInvitationId)"
         }
     }
 }
@@ -202,7 +202,7 @@ extension PulseAPI {
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject
             ]
-        case let .respondToTaskInvitation(_, _, status):
+        case let .respondToTaskInvitation(_, status):
             return [
                 "status": status.rawValue as AnyObject
             ]
