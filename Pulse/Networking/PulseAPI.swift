@@ -121,7 +121,7 @@ extension PulseAPI {
         case let .finishTask(taskId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .requestTaskUpdate(taskId):
-            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/update_requests"
         case let .sendTaskUpdate(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .getTeamMembers(teamId, _):
