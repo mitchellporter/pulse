@@ -22,6 +22,13 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var assignedByLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     
+    var taskInvite: TaskInvitation? {
+        didSet {
+            guard let task: Task = self.taskInvite?.task else { return }
+            self.task = task
+        }
+    }
+    
     var task: Task? {
         didSet {
             // self.updateUI()

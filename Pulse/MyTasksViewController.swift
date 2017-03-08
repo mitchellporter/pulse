@@ -147,9 +147,15 @@ class MyTasksViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "viewTask" {
-            guard let task: Task = sender as? Task else { print("Error: no task"); return }
             guard let toVC: ViewTaskViewController = segue.destination as? ViewTaskViewController else { return }
-            toVC.task = task
+            
+            if let task: Task = sender as? Task {
+                toVC.task = task
+            }
+            
+            if let taskInvite: TaskInvitation = sender as? TaskInvitation {
+                toVC.taskInvite = taskInvite
+            }
         }
     }
 }
@@ -246,29 +252,24 @@ extension MyTasksViewController: UITableViewDataSource {
 extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? TaskCell else { return }
         
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
+        var sender: Any?
         if indexPath.section == 0 {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-                let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                // TODO: Separate segue for viewing task invitation?
-                taskVC.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
+                sender = self.taskInvitationFetchedResultsController.object(at: indexPath)
             } else {
-                let task = self.taskFetchedResultsController.object(at: indexPath)
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: indexPath)
             }
-        } else  {
+        } else {
             if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
                 let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-                let task = self.taskFetchedResultsController.object(at: realIndexPath)
-
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: realIndexPath)
             } else {
-                let task = self.taskFetchedResultsController.object(at: indexPath)
-                taskVC.performSegue(withIdentifier: "viewTask", sender: task)
+                sender = self.taskFetchedResultsController.object(at: indexPath)
             }
         }
+        taskVC.performSegue(withIdentifier: "viewTask", sender: sender)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
