@@ -64,6 +64,17 @@ class TaskCell: UITableViewCell {
         self.badge.alpha = 0
     }
     
+    func load(invitation: TaskInvitation, type: TaskCellType) {
+        guard let task: Task = invitation.task else { print("There was no task associated with the invitation"); return }
+        self.load(task: task, type: type)
+        
+        let date: Date? = task.dueDate
+        let dateFormatter: DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd yyyy"
+        let dueDate: String = date == nil ? "" : " | " + dateFormatter.string(from: date!)
+        self.duePercentLabel.text = type == .assignee ? "YOUR NEW TASK" + dueDate : "TASK ASSIGNED" + dueDate
+    }
+    
     func load(task: Task, type: TaskCellType) {
         
         var duePercentString: String = ""
@@ -84,7 +95,8 @@ class TaskCell: UITableViewCell {
             guard let assigner: User = task.assigner else { print("There was no assigner for the task"); return }
             user = assigner
         }
-        self.assignedLabel.text = type == .assignee ? "ASSIGNED TO:" + "\(user.name)" : "ASSIGNED BY:" + "\(user.name)"
+        guard let name: String = user.name else { return }
+        self.assignedLabel.text = type == .assignee ? "ASSIGNED TO:" + name : "ASSIGNED BY:" + name
         
         guard let avatarURL: String = user.avatarURL else { print("No avatar url found"); return }
         guard let url: URL = URL(string: avatarURL) else { return }
