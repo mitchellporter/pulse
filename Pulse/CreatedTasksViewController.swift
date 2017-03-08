@@ -209,7 +209,7 @@ extension CreatedTasksViewController: UITableViewDataSource {
         case 0:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                // Load taskInvitation
+                cell.load(invitation: taskInvitation, type: .assignee)
                 return cell
             }
         case 1:

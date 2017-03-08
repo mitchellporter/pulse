@@ -86,7 +86,7 @@ class TaskCell: UITableViewCell {
         self.duePercentLabel.text = duePercentString + "\(Int(task.completionPercentage))% DONE"
         self.descriptionLabel.text = task.title
         
-        var user: User = User()
+        var user: User?
         switch type {
         case .assignee:
             guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
@@ -95,10 +95,10 @@ class TaskCell: UITableViewCell {
             guard let assigner: User = task.assigner else { print("There was no assigner for the task"); return }
             user = assigner
         }
-        guard let name: String = user.name else { return }
+        guard let name: String = user?.name else { return }
         self.assignedLabel.text = type == .assignee ? "ASSIGNED TO:" + name : "ASSIGNED BY:" + name
         
-        guard let avatarURL: String = user.avatarURL else { print("No avatar url found"); return }
+        guard let avatarURL: String = user?.avatarURL else { print("No avatar url found"); return }
         guard let url: URL = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatar)
     }
