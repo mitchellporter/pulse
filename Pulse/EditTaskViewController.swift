@@ -218,8 +218,8 @@ extension EditTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let identifier: String = "taskItemEditCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemEditCell
+        let identifier: String = "taskItemViewCell"
+        let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as! TaskItemViewCell
         
         if indexPath.row == 0 {
             cell.label.text = self.task?.title

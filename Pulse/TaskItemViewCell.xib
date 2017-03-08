@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-My-VzZ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fi8-My-VzZ" customClass="Button" customModule="Pulse" customModuleProvider="target">
                         <rect key="frame" x="18" y="24" width="28" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="Bbc-GB-wkg"/>
