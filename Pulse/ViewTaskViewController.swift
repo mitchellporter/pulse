@@ -52,14 +52,15 @@ class ViewTaskViewController: UIViewController {
 
         self.setupAppearance()
         self.setupTableView()
-        self.setupCoreData()
-        self.fetchData()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if self.task != nil {
+//            self.setupCoreData()
+//            self.fetchData()
             self.updateUI()
         }
     }

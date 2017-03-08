@@ -36,7 +36,7 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
     }
 
     func load(item: Item) {
-        self.state = item.completed == true ? .selected : .unselected
+        self.state = item.status == ItemStatus.completed.rawValue ? .selected : .unselected
         self.textView.text = item.text
     }
     

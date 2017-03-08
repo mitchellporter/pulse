@@ -21,10 +21,28 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var cancelButton: Button!
     @IBOutlet weak var avatarImageView: UIImageView!
     
+    var taskInvite: TaskInvitation? {
+        didSet {
+            guard let task: Task = self.taskInvite?.task else { return }
+            self.task = task
+        }
+    }
+    
+    var task: Task? {
+        didSet {
+            // self.updateUI()
+            if self.task != nil {
+                guard let items = task?.items as? Set<Item> else { return }
+                self.datasource = [Item](items)
+            }
+        }
+    }
+    
+    var datasource: [Item] = [Item]()
+    
     var tableViewTopInset: CGFloat = 22
     
     var fetchedResultsController: NSFetchedResultsController<Item>!
-    var task: Task!
     
     fileprivate var editingTask: Bool = false {
         didSet {
@@ -37,14 +55,15 @@ class EditTaskViewController: UIViewController {
 
         self.setupAppearance()
         self.setupTableView()
-        self.setupCoreData()
-        self.fetchData()
+//        self.setupCoreData()
+//        self.fetchData()
     }
 
     private func setupCoreData() {
+        guard let task: Task = self.task else { return }
         let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "task.objectId == %@", self.task.objectId)
+        let predicate = NSPredicate(format: "task.objectId == %@", task.objectId)
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
@@ -60,8 +79,8 @@ class EditTaskViewController: UIViewController {
         } catch {
             print("fetched results controller error: \(error)")
         }
-        
-        TaskService.getTask(taskId: self.task.objectId, success: { (task) in
+        guard let task: Task = self.task else { return }
+        TaskService.getTask(taskId: task.objectId, success: { (task) in
             CoreDataStack.shared.saveContext()
             
             do {
@@ -135,13 +154,14 @@ class EditTaskViewController: UIViewController {
 
 extension EditTaskViewController: UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return self.fetchedResultsController.sections?.count ?? 1
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects
+//        let sectionInfo = self.fetchedResultsController.sections![section]
+//        return sectionInfo.numberOfObjects
+        return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -152,12 +172,12 @@ extension EditTaskViewController: UITableViewDataSource {
         cell.state = indexPath.row == 0 ? .selected : .unselected
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         
-        let item = self.fetchedResultsController.object(at: indexPath)
+//        let item = self.fetchedResultsController.object(at: indexPath)
+        let item: Item = self.datasource[indexPath.row]
         cell.load(item: item)
         
         return cell
     }
-    
 }
 
 extension EditTaskViewController: TaskItemCellDelegate {
