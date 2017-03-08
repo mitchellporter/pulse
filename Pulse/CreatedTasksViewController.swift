@@ -198,45 +198,33 @@ extension CreatedTasksViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
+        var realIndexPath: IndexPath = indexPath
         
         // Section 0
         // If invitation frc has objects, then it owns section 0
         // If invitation frc does not have objects, then
-        
         switch indexPath.section {
         case 0:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-                cell.textLabel?.text = "THIS IS AN INVITATION CELL ;)"
+                // Load taskInvitation
                 return cell
             }
-            
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-            let task = self.taskFetchedResultsController.object(at: indexPath)
-            cell.load(task: task, type: .assigner)
-            return cell
         case 1:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
-                let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-                let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-                let task = self.taskFetchedResultsController.object(at: realIndexPath)
-                cell.load(task: task, type: .assigner)
-                return cell
+                realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
             }
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
-            let task = self.taskFetchedResultsController.object(at: realIndexPath)
-            cell.load(task: task, type: .assigner)
-            return cell
+            realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
         case 2:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
-            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-            let task = self.taskFetchedResultsController.object(at: realIndexPath)
-            cell.load(task: task, type: .assigner)
-            return cell
+            realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
         default: return UITableViewCell() // This should never hit
         }
+        
+        let task = self.taskFetchedResultsController.object(at: realIndexPath)
+        cell.load(task: task, type: .assignee)
+        return cell
     }
 }
 

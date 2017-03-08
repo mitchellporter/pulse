@@ -27,4 +27,5 @@ let appRed: UIColor = UIColor("FF5E5B")
 // This color would be "3EAEFF" in sRGB colorspace.
 let appBlue: UIColor = UIColor("349CFF")
 
-let appGreen: UIColor = UIColor("26CE93")
+// This color would be "26CE93" in sRGB colorspace.
+let appGreen: UIColor = UIColor("28C781")

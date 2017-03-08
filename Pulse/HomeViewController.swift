@@ -23,12 +23,12 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.signInButtonPressed(self.signInButton)
+//        self.signInButtonPressed(self.signInButton)
     }
     
     private func setupAppearance() {
-        self.view.backgroundColor = homeScreenBackgroundColor
-        self.createbutton.backgroundColor = createTaskBackgroundColor
+        self.view.backgroundColor = mainBackgroundColor
+        self.createbutton.backgroundColor = appBlue
     }
     
     @IBAction func createButtonPressed(_ sender: UIButton) {
