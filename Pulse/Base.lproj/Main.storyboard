@@ -124,6 +124,8 @@
                         <segue destination="Pzw-db-Dix" kind="show" identifier="viewTask" id="XVE-wZ-co4"/>
                         <segue destination="8rE-5M-G2m" kind="show" identifier="editTask" id="JlE-aY-mzx"/>
                         <segue destination="G4V-dw-zpV" kind="show" identifier="create" id="Fyo-YP-oKR"/>
+                        <segue destination="I5S-J9-69p" kind="show" identifier="giveUpdate" id="D5z-bH-Cm9"/>
+                        <segue destination="uhU-nG-RNd" kind="show" identifier="viewUpdate" id="SmP-nK-41P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -289,30 +291,28 @@
                         <outlet property="dueDateLabel" destination="8EJ-Ig-0fV" id="S36-ud-TA0"/>
                         <outlet property="tableView" destination="WgQ-Lw-ki8" id="ZiC-32-bGI"/>
                         <outlet property="updateButton" destination="Piz-7U-zZe" id="iuo-lq-0nP"/>
-                        <segue destination="g3e-FS-BZ0" kind="show" identifier="giveUpdate" id="OXo-ip-9IE"/>
+                        <segue destination="I5S-J9-69p" kind="show" identifier="giveUpdate" id="5Ph-PG-ed7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joE-xi-VR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1957.5999999999999" y="-117.39130434782609"/>
+            <point key="canvasLocation" x="1954" y="-524"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="tZx-52-Kk6">
+        <!--update-->
+        <scene sceneID="kLN-N4-L9u">
             <objects>
-                <viewController id="g3e-FS-BZ0" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="OJy-me-oEA"/>
-                        <viewControllerLayoutGuide type="bottom" id="U0g-GF-AaO"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="qyL-g4-FTT">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eDT-Oz-DM1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="update" id="I5S-J9-69p" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GGd-ql-lR2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2929" y="-117"/>
+            <point key="canvasLocation" x="1954" y="-76"/>
+        </scene>
+        <!--viewUpdate-->
+        <scene sceneID="HK3-h2-qUE">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Updates" referencedIdentifier="viewUpdate" id="uhU-nG-RNd" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="taF-xb-2TP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1954" y="5"/>
         </scene>
         <!--CreateTask-->
         <scene sceneID="ISZ-al-XBx">
@@ -538,4 +538,7 @@
         <image name="AddButtonIcon" width="19" height="20"/>
         <image name="BackDownArrow" width="23" height="13"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="5Ph-PG-ed7"/>
+    </inferredMetricsTieBreakers>
 </document>

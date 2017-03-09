@@ -28,7 +28,7 @@ class UpdatesViewController: UIViewController {
     
     private func setupTableView() {
         self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
-        let cell: UINib = UINib(nibName: "UpdateRequestCell", bundle: nil)
+        let cell: UINib = UINib(nibName: "TaskCell", bundle: nil)
         let taskCell: UINib = UINib(nibName: "TaskCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "UpdateRequestCell")
         self.tableView.register(taskCell, forCellReuseIdentifier: "TaskCell")
@@ -162,28 +162,20 @@ extension UpdatesViewController: UITableViewDataSource {
         }
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
-        if section == 0 {
-            return "PROGRESS UPDATES I NEED TO COMPLETE"
-        } else {
-            return "PROGRESS UPDATES SENT TO ME"
-        }
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let realIndex: IndexPath = indexPath.section == 0 ? indexPath : IndexPath(row: indexPath.row, section: indexPath.section - 1)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
         if indexPath.section == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "UpdateRequestCell", for: indexPath) as! UpdateRequestCell
             let updateRequest = self.updateRequestFetchedResultsController.object(at: indexPath)
-            cell.load(updateRequest: updateRequest, type: .assignee)
-            return cell
+            if let task: Task = updateRequest.task {
+                cell.load(task: task, type: .assignee)
+            }
         } else {
-            let realIndexPath = IndexPath(row: indexPath.row, section: indexPath.section - 1)
-            let cell = tableView.dequeueReusableCell(withIdentifier: "TaskCell", for: indexPath) as! TaskCell
-            let task = self.taskFetchedResultsController.object(at: realIndexPath)
+            let task = self.taskFetchedResultsController.object(at: realIndex)
             cell.load(task: task, type: .assigner)
-            return cell
         }
+        return cell
     }
 }
 
@@ -191,12 +183,15 @@ extension UpdatesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-//        taskVC.performSegue(withIdentifier: "viewTask", sender: nil)
+        let segue: String = indexPath.section == 0 ? "giveUpdate" : "viewUpdate"
+        let sender: Any = indexPath.section == 0 ? self.updateRequestFetchedResultsController.object(at: indexPath) : self.taskFetchedResultsController.object(at: IndexPath(row: indexPath.row, section: indexPath.section - 1))
+        taskVC.performSegue(withIdentifier: segue, sender: sender)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-//        header.load(status: .inProgress)
+        header.title = section == 0 ? "PROGRESS UPDATES I NEED TO COMPLETE" : "PROGRESS UPDATES SENT TO ME"
+        header.markerColor = section == 0 ? appRed : appYellow
         header.contentView.backgroundColor = self.tableView.backgroundColor
         return header
     }

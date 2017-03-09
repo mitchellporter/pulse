@@ -24,4 +24,53 @@ class NavigationManager {
         }
         return nil
     }
+    
+    class func willSearchAndSetNavigationStackFor(viewControllerClass: AnyClass) -> Bool {
+        guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else {return false}
+        var navigationStack = [UIViewController]()
+        for vc in navigationController.viewControllers {
+            navigationStack.append(vc)
+            if vc.isKind(of: viewControllerClass) {
+                navigationController.viewControllers = navigationStack
+                return true
+            }
+        }
+        return false
+    }
+    
+    static func presentUpdateReceived(update: Update) {
+        if self.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self) {
+            guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
+            guard let taskController = navigationController.viewControllers.last as? TaskViewController else { return }
+            
+            taskController.performSegue(withIdentifier: "viewUpdate", sender: update)
+        }
+    }
+    
+    static func presentUpdateRequestReceived(updateRequest: UpdateRequest) {
+        if self.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self) {
+            guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
+            guard let taskController = navigationController.viewControllers.last as? TaskViewController else { return }
+            
+            taskController.performSegue(withIdentifier: "giveUpdate", sender: updateRequest)
+        }
+    }
+    
+    static func presentTaskCompleted(task: Task) {
+        if self.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self) {
+            guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
+            guard let taskController = navigationController.viewControllers.last as? TaskViewController else { return }
+            
+            taskController.performSegue(withIdentifier: "editTask", sender: task)
+        }
+    }
+    
+    static func presentTaskAssigned(task: Task) {
+        if self.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self) {
+            guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
+            guard let taskController = navigationController.viewControllers.last as? TaskViewController else { return }
+            
+            taskController.performSegue(withIdentifier: "viewTask", sender: task)
+        }
+    }
 }

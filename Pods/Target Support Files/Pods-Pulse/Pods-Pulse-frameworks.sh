@@ -88,6 +88,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/KGHitTestingViews/KGHitTestingViews.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PubNub/PubNub.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Local" ]]; then
@@ -95,6 +96,7 @@ if [[ "$CONFIGURATION" == "Local" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/KGHitTestingViews/KGHitTestingViews.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PubNub/PubNub.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Staging" ]]; then
@@ -102,6 +104,7 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/KGHitTestingViews/KGHitTestingViews.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PubNub/PubNub.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Production" ]]; then
@@ -109,6 +112,7 @@ if [[ "$CONFIGURATION" == "Production" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/KGHitTestingViews/KGHitTestingViews.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PubNub/PubNub.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "App Store" ]]; then
@@ -116,6 +120,7 @@ if [[ "$CONFIGURATION" == "App Store" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/KGHitTestingViews/KGHitTestingViews.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PubNub/PubNub.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Beta" ]]; then
@@ -123,5 +128,6 @@ if [[ "$CONFIGURATION" == "Beta" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/KGHitTestingViews/KGHitTestingViews.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KeychainAccess/KeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Nuke/Nuke.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/PubNub/PubNub.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SwiftyJSON/SwiftyJSON.framework"
 fi
