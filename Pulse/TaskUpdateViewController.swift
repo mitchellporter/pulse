@@ -151,12 +151,12 @@ class TaskUpdateViewController: UIViewController {
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         if self.updateRequest != nil {
-        UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
-            // Success, do something
-            self.backButtonPressed(self.backButton)
-        }, failure: { (error, statusCode) in
-            print("Error: \(statusCode) \(error.localizedDescription)")
-        })
+            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+                // Success, do something
+                self.backButtonPressed(self.backButton)
+            }, failure: { (error, statusCode) in
+                print("Error: \(statusCode) \(error.localizedDescription)")
+            })
             
         } else if self.task != nil {
             UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
