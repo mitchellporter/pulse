@@ -90,8 +90,16 @@ class TaskViewController: UIViewController {
                 destination.task = task
             }
         } else if segue.identifier == "viewUpdate" {
+            
             guard let destination: ViewUpdateViewController = segue.destination as? ViewUpdateViewController else { return }
-            guard let task: Task = sender as? Task else { return }
+            
+            var task: Task?
+            if let passedTask: Task = sender as? Task {
+                task = passedTask
+            }
+            if let update: Update = sender as? Update {
+                task = update.task
+            }
             destination.task = task
         }
     }

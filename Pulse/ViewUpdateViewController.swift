@@ -34,7 +34,7 @@ class ViewUpdateViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+                
         guard let task: Task = self.task else { return }
         if let assignee: User = task.assignees?.allObjects.first as? User {
            self.assignedLabel.text = "Assigned to: \(assignee.name)"
