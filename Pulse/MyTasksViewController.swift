@@ -241,7 +241,7 @@ extension MyTasksViewController: UITableViewDataSource {
         case 0:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 let taskInvitation: TaskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath)
-                cell.load(invitation: taskInvitation, type: .assigner)
+                cell.load(invitation: taskInvitation, type: .assignee)
                 return cell
             }
         case 1:
@@ -256,7 +256,7 @@ extension MyTasksViewController: UITableViewDataSource {
         }
         
         let task = self.taskFetchedResultsController.object(at: realIndexPath)
-        cell.load(task: task, type: .assigner)
+        cell.load(task: task, type: .assignee)
         return cell
     }
 }

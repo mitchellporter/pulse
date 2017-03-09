@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class UpdateAlertController: AlertController {
     
@@ -58,6 +59,10 @@ class UpdateAlertController: AlertController {
         }
         
         self.descriptionLabel.text = task.title
+        
+        guard let avatarURL: String = task.assigner?.avatarURL else { return }
+        guard let url: URL = URL(string: avatarURL) else { return }
+        Nuke.loadImage(with: url, into: self.avatarImageView)
     }
 
     private func setupAppearance() {
