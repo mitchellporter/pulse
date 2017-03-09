@@ -48,7 +48,7 @@ class ViewUpdateViewController: UIViewController {
         if let date: Date = task.dueDate {
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
-            let percentage: CGFloat = update.completionPercentage > 1.0 ? 1.0 : CGFloat(update.completionPercentage)
+            let percentage: Int = update.completionPercentage > 1 ? 1 : Int(update.completionPercentage)
             self.dueDateLabel.text = "Due: " + formatter.string(from: date) + " | \((percentage * 100))% Done"
         } else {
             self.dueDateLabel.text = ""
