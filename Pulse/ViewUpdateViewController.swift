@@ -41,18 +41,14 @@ class ViewUpdateViewController: UIViewController {
            self.assignedLabel.text = "Assigned to: \(assignee.name)"
             
             guard let url = URL(string: assignee.avatarURL!) else { return }
-//            Nuke.loadImage(with: url, into: self.avatarImageView)
+            Nuke.loadImage(with: url, into: self.avatarImageView)
             
         } else {
             self.assignedLabel.text = "Assigned to:"
         }
-//        print(task.updates)
+        
         guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
-        print("zzz: \(updates)")
-        
         guard let update: Update = updates.first else { return }
-        
-        
         
         self.updateCircleFillbyAdding(percent: CGFloat(update.completionPercentage))
         if let date: Date = task.dueDate {
