@@ -49,8 +49,15 @@ class CreatedTasksViewController: UIViewController {
         // Tasks
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "status", ascending: false)
-        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+
         
+        let inProgressPredicate = NSPredicate(format: "status == %@", "in_progress")
+        let completedPredicate = NSPredicate(format: "status == %@", "completed")
+        let assignerPredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        
+        let statusPredicates = NSCompoundPredicate(orPredicateWithSubpredicates: [inProgressPredicate, completedPredicate])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicates, assignerPredicate])
+
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.taskFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
