@@ -8,7 +8,6 @@
 
 import UIKit
 import PubNub
-import RocketData
 
 enum UpdateType: String {
     case newMessage = "new_message"
@@ -37,7 +36,7 @@ class SocketManager: NSObject {
     
     func connect(user: User) {
         let config = PNConfiguration(publishKey: self.publishKey, subscribeKey: self.subscribeKey)
-        config.uuid = user.username // TODO: I feel like both uuid and authKey should be set to user's objectId
+        config.uuid = user.name // TODO: I feel like both uuid and authKey should be set to user's objectId
         config.authKey = user.objectId // ????
         config.presenceHeartbeatInterval = 20
         config.presenceHeartbeatValue = 60
@@ -67,10 +66,10 @@ extension SocketManager: PNObjectEventListener {
     func client(_ client: PubNub, didReceiveMessage message: PNMessageResult) {
         print("received message for channel: \(message.data.subscription)")
         print("message: \(message.data.message)")
-        let messageJSON = message.data.message as! [String: AnyObject]
-        let conversationJSON = messageJSON["conversation"] as! [String: AnyObject]
-        let message = Message.from(json: messageJSON) as! Message
-        let conversation = Conversation.from(json: conversationJSON) as! Conversation
+//        let messageJSON = message.data.message as! [String: AnyObject]
+//        let conversationJSON = messageJSON["conversation"] as! [String: AnyObject]
+//        let message = Message.from(json: messageJSON) as! Message
+//        let conversation = Conversation.from(json: conversationJSON) as! Conversation
 //        conversation.objectId = "823974987234"
 //        DataModelManager
         // type: new_message
