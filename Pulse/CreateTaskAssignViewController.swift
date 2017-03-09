@@ -110,6 +110,7 @@ class CreateTaskAssignViewController: UIViewController {
         self.tableView.dataSource = self
         self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
         self.tableView.backgroundColor = self.view.backgroundColor
+        self.tableView.showsVerticalScrollIndicator = false
     }
     
     
