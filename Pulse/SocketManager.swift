@@ -62,10 +62,38 @@ class SocketManager: NSObject {
     }
 }
 
+enum NotificationType: String {
+    case taskCompleted = "task_completed"
+    case taskAssigned = "task_assigned"
+    case updateRequestReceived = "update_request"
+    case updateReceived = "update"
+}
+
 extension SocketManager: PNObjectEventListener {
     func client(_ client: PubNub, didReceiveMessage message: PNMessageResult) {
         print("received message for channel: \(message.data.subscription)")
         print("message: \(message.data.message)")
+        
+        let json = message.data.message as! [String: AnyObject]
+        let type = json["type"] as! String
+        let notificationType = NotificationType(rawValue: type)!
+        
+        switch notificationType {
+        case .taskCompleted:
+            let taskJSON = json["task"] as! [String: AnyObject]
+            self.processTaskCompletedNotification(json: taskJSON)
+        case .taskAssigned:
+            let taskJSON = json["task"] as! [String: AnyObject]
+            self.processTaskAssignedNotification(json: taskJSON)
+        case .updateRequestReceived:
+            let updateRequestJSON = json["update_request"] as! [String: AnyObject]
+            self.processUpdateRequestReceivedNotification(json: updateRequestJSON)
+        case .updateReceived:
+            let updateJSON = json["update"] as! [String: AnyObject]
+            self.processUpdateReceivedNotification(json: updateJSON)
+        }
+        
+        
 //        let messageJSON = message.data.message as! [String: AnyObject]
 //        let conversationJSON = messageJSON["conversation"] as! [String: AnyObject]
 //        let message = Message.from(json: messageJSON) as! Message
@@ -90,6 +118,31 @@ extension SocketManager: PNObjectEventListener {
 //        CollectionDataProvider<Message>.append([message], cacheKey: CacheKey.conversation(id: conversation.objectId).key, dataModelManager: DataModelManager.sharedInstance)
 //        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "lol"), object: nil, userInfo: message.data.message as! [AnyHashable : Any]?)
     }
+    
+    func processTaskCompletedNotification(json: [String: AnyObject]) {
+        let task = Task.from(json: json, context: CoreDataStack.shared.context)
+        print(task)
+        
+    }
+    
+    func processTaskAssignedNotification(json: [String: AnyObject]) {
+        let task = Task.from(json: json, context: CoreDataStack.shared.context)
+        print(task)
+        
+    }
+    
+    func processUpdateRequestReceivedNotification(json: [String: AnyObject]) {
+        let updateRequest = UpdateRequest.from(json: json, context: CoreDataStack.shared.context)
+        print(updateRequest)
+        
+    }
+    
+    func processUpdateReceivedNotification(json: [String: AnyObject]) {
+        let update = Update.from(json: json, context: CoreDataStack.shared.context)
+        print(update)
+        
+    }
+    
     
     func client(client: PubNub, didReceiveStatus status: PNStatus) {
         print("Did receive status: \(status)")
