@@ -242,7 +242,13 @@ extension PulseAPI {
 extension PulseAPI {
     var headers: [String: String] {
         var assigned: [String: String] = ["Accept": "application/json", "Content-Type": "application/json"]
-        if requiresAuthToken { assigned["Authorization"] = "586ecdc0213f22d94db5ef7f" } // TODO: Removed hardcoded id
+       
+        if requiresAuthToken {
+            let defaults = UserDefaults.standard
+            let userId = defaults.object(forKey: "user_id") as! String
+            assigned["Authorization"] = userId
+        
+        } // TODO: Removed hardcoded id
         
         switch self {
         default: return assigned
