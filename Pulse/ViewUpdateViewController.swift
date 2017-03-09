@@ -13,6 +13,9 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var percentCompletedLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var assignedLabel: UILabel!
+    @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var backButton: UIButton!
     
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     private var circleLayer: CAShapeLayer = CAShapeLayer()
@@ -21,17 +24,34 @@ class ViewUpdateViewController: UIViewController {
     private var circleFrame: CGRect = CGRect(x: 11, y: 11, width: 240, height: 240)
     private var percentInterval: CGFloat = 0.1
     
+    var task: Task?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.setupAppearance()
-        
-        self.updateCircleFillbyAdding(percent: 0.4)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let task: Task = self.task else { return }
+        if let assignee: User = task.assignees?.allObjects.first as? User {
+           self.assignedLabel.text = "Assigned to: \(assignee.name)"
+        } else {
+            self.assignedLabel.text = "Assigned to:"
+        }
+        
+        guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
+        guard let update: Update = updates.first else { return }
+        self.updateCircleFillbyAdding(percent: CGFloat(update.completionPercentage))
+        if let date: Date = task.dueDate {
+            let formatter: DateFormatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            self.dueDateLabel.text = formatter.string(from: date) + " | \((update.completionPercentage * 100))% Done"
+        } else {
+            self.dueDateLabel.text = ""
+        }
     }
     
 
@@ -86,8 +106,12 @@ class ViewUpdateViewController: UIViewController {
         })
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        if self.navigationController != nil {
+            _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
 }

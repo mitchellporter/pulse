@@ -79,6 +79,21 @@ class TaskViewController: UIViewController {
                 editTaskViewController.taskInvite = taskInvite
             }
         }
+        
+        if segue.identifier == "giveUpdate" {
+            guard let destination: TaskUpdateViewController = segue.destination as? TaskUpdateViewController else { return }
+            if let updateRequest: UpdateRequest = sender as? UpdateRequest {
+                destination.updateRequest = updateRequest
+            }
+            
+            if let task: Task = sender as? Task {
+                destination.task = task
+            }
+        } else if segue.identifier == "viewUpdate" {
+            guard let destination: ViewUpdateViewController = segue.destination as? ViewUpdateViewController else { return }
+            guard let task: Task = sender as? Task else { return }
+            destination.task = task
+        }
     }
     
     private func setupAppearance() {
