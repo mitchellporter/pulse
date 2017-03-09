@@ -115,7 +115,8 @@ class MyTasksViewController: UIViewController {
 //                print("first section objects count: \(self.taskFetchedResultsController.sections![0].numberOfObjects)")
 //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
 
-                
+                print(self.taskInvitationFetchedResultsController.fetchedObjects?.count)
+                print(self.taskFetchedResultsController.fetchedObjects?.count)
                 self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")

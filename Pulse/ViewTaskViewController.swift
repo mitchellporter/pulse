@@ -57,45 +57,56 @@ class ViewTaskViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if self.task != nil {
-            self.setupCoreData()
-            self.fetchData()
-            self.updateUI()
+        
+        var task: Task?
+        if let vcTask = self.task {
+            task = vcTask
         }
+        if let vcTask = self.taskInvite?.task {
+            task = vcTask
+        }
+        guard let finalTask = task else { return }
+        self.setupCoreData(task: finalTask)
+        self.fetchData(task: finalTask)
+        self.updateUI()
     }
     
-    private func setupCoreData() {
+    private func setupCoreData(task: Task) {
         let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "task.objectId == %@", self.task!.objectId)
+        
+       
+        let predicate = NSPredicate(format: "task.objectId == %@", task.objectId)
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
-    private func fetchData() {
+    private func fetchData(task: Task) {
         
         // Check cache
         do {
             try self.fetchedResultsController.performFetch()
+            print(self.fetchedResultsController.fetchedObjects?.count)
             self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
         }
         
-        TaskService.getTask(taskId: self.task!.objectId, success: { (task) in
-            CoreDataStack.shared.saveContext()
-            
-            do {
-                try self.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
+//        TaskService.getTask(taskId: task.objectId, success: { (task) in
+//            CoreDataStack.shared.saveContext()
+//            
+//            do {
+//                try self.fetchedResultsController.performFetch()
+//                print(self.fetchedResultsController.fetchedObjects?.count)
+//                self.tableView.reloadData()
+//            } catch {
+//                print("fetched results controller error: \(error)")
+//            }
+//        }) { (error, statusCode) in
+//            // TODO: Handle failure
+//        }
     }
     
     private func setupAppearance() {
@@ -187,13 +198,16 @@ class ViewTaskViewController: UIViewController {
     
     @IBAction func doneButtonPressed(_ sender: UIButton) {
         guard let task: Task = self.task else { print("No task"); return }
+        
         if let status = self.status {
             switch(status) {
             case .pending:
                 // Accept Task
-                TaskInvitationService.respondToTaskInvitation(taskInvitationId: task.objectId, status: .accepted, success: { (invitation) in
+                guard let taskInvitation: TaskInvitation = self.taskInvite else { print("No task invitation"); return }
+                TaskInvitationService.respondToTaskInvitation(taskInvitationId: taskInvitation.objectId, status: .accepted, success: { (invitation) in
                     // Success, do something
                     // Unwind to previous page
+                    self.backButtonPressed(UIButton())
                 }, failure: { (error, statusCode) in
                     // Error
                     
