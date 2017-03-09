@@ -122,25 +122,25 @@ extension SocketManager: PNObjectEventListener {
     func processTaskCompletedNotification(json: [String: AnyObject]) {
         let task = Task.from(json: json, context: CoreDataStack.shared.context)
         print(task)
-        
+        NavigationManager.presentTaskCompleted(task: task)
     }
     
     func processTaskAssignedNotification(json: [String: AnyObject]) {
         let task = Task.from(json: json, context: CoreDataStack.shared.context)
         print(task)
-        
+        NavigationManager.presentTaskAssigned(task: task)
     }
     
     func processUpdateRequestReceivedNotification(json: [String: AnyObject]) {
         let updateRequest = UpdateRequest.from(json: json, context: CoreDataStack.shared.context)
         print(updateRequest)
-        
+        AlertManager.presentAlert(ofType: .update, with: updateRequest)
     }
     
     func processUpdateReceivedNotification(json: [String: AnyObject]) {
         let update = Update.from(json: json, context: CoreDataStack.shared.context)
         print(update)
-        
+        NavigationManager.presentUpdateReceived(update: update)
     }
     
     
