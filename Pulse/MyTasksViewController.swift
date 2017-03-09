@@ -35,7 +35,9 @@ class MyTasksViewController: UIViewController {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
+        
+        /// I ONLY WANT PENDING, NO ACCEPTED OR DENIED
+        let predicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "pending")
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
@@ -56,7 +58,14 @@ class MyTasksViewController: UIViewController {
         // Tasks
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "status", ascending: false)
-        let predicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
+        
+        let inProgressPredicate = NSPredicate(format: "status == %@", "in_progress")
+        let completedPredicate = NSPredicate(format: "status == %@", "completed")
+        let assigneePredicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
+        
+        let statusPredicates = NSCompoundPredicate(orPredicateWithSubpredicates: [inProgressPredicate, completedPredicate])
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicates, assigneePredicate])
+
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
