@@ -50,7 +50,8 @@ class ViewUpdateViewController: UIViewController {
         guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
         guard let update: Update = updates.first else { return }
         
-        self.updateCircleFillbyAdding(percent: CGFloat(update.completionPercentage))
+        let circlePercentage = update.completionPercentage * 0.01
+        self.updateCircleFillbyAdding(percent: CGFloat(circlePercentage))
         if let date: Date = task.dueDate {
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
