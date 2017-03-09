@@ -42,6 +42,11 @@ class CreateTaskAssignCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.state = .unselected
+    }
+    
     // Same thing, diff method name :)
     func load(_ user: User) {
         self.nameLabel.text = user.name
