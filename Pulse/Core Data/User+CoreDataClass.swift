@@ -17,8 +17,11 @@ public class User: NSManagedObject {
 extension User {
     static func currentUserId() -> String {
         let defaults = UserDefaults.standard
-        let userId = defaults.object(forKey: "user_id") as! String
-        return userId
+        var userId = defaults.object(forKey: "user_id") as? String
+        if (userId == nil) {
+            userId = "586ecdc0213f22d94db5ef7f"
+        }
+        return userId!
     }
 }
 

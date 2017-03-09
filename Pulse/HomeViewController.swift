@@ -19,6 +19,11 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let defaults = UserDefaults.standard
+        if defaults.object(forKey: "user_id") != nil {
+            self.userField.isHidden = true
+        }
+        
         self.setupAppearance()
     }
     
@@ -62,7 +67,10 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.updateUserDefaults()
+        
+        if self.userField.isHidden == false {
+            self.updateUserDefaults()
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
