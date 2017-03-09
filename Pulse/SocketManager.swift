@@ -34,10 +34,10 @@ class SocketManager: NSObject {
     private func setup() {
     }
     
-    func connect(user: User) {
+    func connect(userId: String) {
         let config = PNConfiguration(publishKey: self.publishKey, subscribeKey: self.subscribeKey)
-        config.uuid = user.name // TODO: I feel like both uuid and authKey should be set to user's objectId
-        config.authKey = user.objectId // ????
+        config.uuid = userId // TODO: I feel like both uuid and authKey should be set to user's objectId
+        config.authKey = userId // ????
         config.presenceHeartbeatInterval = 20
         config.presenceHeartbeatValue = 60
         
@@ -45,7 +45,7 @@ class SocketManager: NSObject {
         self.pubnub?.logger.setLogLevel(0)
         self.pubnub?.addListener(self)
         
-        let rooms = [self.testSubChannel, "hello_world", user.objectId]
+        let rooms = [self.testSubChannel, "hello_world", userId]
         self.pubnub?.subscribeToChannels(rooms, withPresence: true)
     }
     
