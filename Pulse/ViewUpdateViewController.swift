@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class ViewUpdateViewController: UIViewController {
 
@@ -38,18 +39,28 @@ class ViewUpdateViewController: UIViewController {
         guard let task: Task = self.task else { return }
         if let assignee: User = task.assignees?.allObjects.first as? User {
            self.assignedLabel.text = "Assigned to: \(assignee.name)"
+            
+            guard let url = URL(string: assignee.avatarURL!) else { return }
+//            Nuke.loadImage(with: url, into: self.avatarImageView)
+            
         } else {
             self.assignedLabel.text = "Assigned to:"
         }
-        
+//        print(task.updates)
         guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
+        print("zzz: \(updates)")
+        
         guard let update: Update = updates.first else { return }
+        
+        
+        
         self.updateCircleFillbyAdding(percent: CGFloat(update.completionPercentage))
         if let date: Date = task.dueDate {
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
-            let percentage: Int = update.completionPercentage > 1 ? 1 : Int(update.completionPercentage)
-            self.dueDateLabel.text = "Due: " + formatter.string(from: date) + " | \((percentage * 100))% Done"
+
+            let percentage = Int(update.completionPercentage)
+            self.dueDateLabel.text = "Due: " + formatter.string(from: date) + " | \(percentage)% Done"
         } else {
             self.dueDateLabel.text = ""
         }
