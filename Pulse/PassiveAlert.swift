@@ -58,6 +58,7 @@ class PassiveAlert: UIView {
     @IBOutlet weak var viewButton: Button!
     
     var data: Any?
+    var alertType: PassiveAlertType?
     var swipeGesture: UISwipeGestureRecognizer!
     
     private func loadView() {
@@ -69,6 +70,7 @@ class PassiveAlert: UIView {
     }
 
     func load(alertType: PassiveAlertType, with data: Any) {
+        self.alertType = alertType
         self.data = data
         switch(alertType) {
         case .due:
@@ -107,6 +109,28 @@ class PassiveAlert: UIView {
     @IBAction func viewPressed(_ sender: UIButton) {
         // Navigate to appropriate view controller to display notification info, then dismiss alert.
         AlertManager.dismissPassiveAlert(self)
+        
+        guard let alertType: PassiveAlertType = self.alertType else { return }
+        switch(alertType) {
+        case .due:
+            
+            break
+        case .assigned:
+            guard let task: Task = self.data as? Task else { return }
+            NavigationManager.presentTaskAssigned(task: task)
+            break
+        case .completed:
+            guard let task: Task = self.data as? Task else { return }
+            NavigationManager.presentTaskCompleted(task: task)
+            break
+        case .edited:
+            
+            break
+        case .update:
+            guard let update: Update = self.data as? Update else { return }
+            NavigationManager.presentUpdateReceived(update: update)
+            break
+        }
     }
     
     func viewSwiped() {

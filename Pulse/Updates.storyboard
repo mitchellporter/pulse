@@ -49,6 +49,9 @@
                                         <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submitButtonPressed:" destination="aSW-TG-8RG" eventType="touchUpInside" id="Whq-fY-paR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jdB-8T-0l6" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="18" y="24" width="17" height="22"/>
@@ -61,6 +64,9 @@
                                         <real key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="aSW-TG-8RG" eventType="touchUpInside" id="cYX-11-gwk"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="92" translatesAutoresizingMaskIntoConstraints="NO" id="YIN-15-TBs">
                                 <rect key="frame" x="53" y="503" width="268" height="86"/>
@@ -172,9 +178,11 @@
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="Zzb-LA-Ht2" id="6cr-ay-vpF"/>
+                        <outlet property="backButton" destination="jdB-8T-0l6" id="JZN-4M-Grz"/>
                         <outlet property="circleView" destination="gIt-w2-SQz" id="xEo-iq-VtD"/>
                         <outlet property="minusButton" destination="9CQ-1k-wEJ" id="0MM-Xy-ClB"/>
                         <outlet property="percentCompletedLabel" destination="qio-lb-fwz" id="uLI-wy-xv6"/>
+                        <outlet property="submitButton" destination="kmS-6d-L6r" id="UU7-Ca-oOP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9D1-ut-7nh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -230,6 +238,9 @@
                                         <real key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="MFu-WP-8kJ" eventType="touchUpInside" id="Jwj-hh-452"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UPDATED STATUS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqh-Aq-Q1w">
                                 <rect key="frame" x="125" y="25" width="126" height="17"/>
@@ -275,8 +286,11 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="assignedLabel" destination="VkK-6A-y9Q" id="gRE-oX-9yQ"/>
                         <outlet property="avatarImageView" destination="GqQ-p9-oQT" id="BhN-0t-hbh"/>
+                        <outlet property="backButton" destination="cXk-On-4ID" id="Ktc-Ho-koD"/>
                         <outlet property="circleView" destination="BAP-Ig-eYj" id="7TI-wM-hbm"/>
+                        <outlet property="dueDateLabel" destination="uhH-AU-gAu" id="Tqz-yA-TDo"/>
                         <outlet property="percentCompletedLabel" destination="xFx-bZ-Vrr" id="Tlp-dk-BBX"/>
                     </connections>
                 </viewController>

@@ -176,7 +176,8 @@ class ViewTaskViewController: UIViewController {
                 break
             case .inProgress:
                 // Send Update for Task
-                // Segue to Update screen
+                guard let task: Task = self.task else { return }
+                self.performSegue(withIdentifier: "giveUpdate", sender: task)
                 break
             case .completed:
                 break
@@ -220,6 +221,14 @@ class ViewTaskViewController: UIViewController {
             _ = self.navigationController?.popViewController(animated: true)
         } else {
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "giveUpdate" {
+            guard let destination: TaskUpdateViewController = segue.destination as? TaskUpdateViewController else { return }
+            guard let task: Task = sender as? Task else { return }
+            destination.task = task
         }
     }
 }

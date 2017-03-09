@@ -16,12 +16,18 @@ class TaskUpdateViewController: UIViewController {
     @IBOutlet weak var percentCompletedLabel: UILabel!
     @IBOutlet weak var addButton: Button!
     @IBOutlet weak var minusButton: Button!
+    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var submitButton: UIButton!
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     private var circleLayer: CAShapeLayer = CAShapeLayer()
     
     private var circleLineWidth: CGFloat = 27
     private var circleFrame: CGRect = CGRect(x: 13.5, y: 13.5, width: 285, height: 285)
     private var percentInterval: CGFloat = 0.1
+    
+    var holdTimer: Timer?
+    var updateRequest: UpdateRequest?
+    var task: Task?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +38,8 @@ class TaskUpdateViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.updateCircleFillbyAdding(percent: 0.4)
+//        guard let task: Task = self.task else { return }
+//        self.updatePercentFor(task: task)
     }
 
     private func setupAppearance() {
@@ -57,6 +64,11 @@ class TaskUpdateViewController: UIViewController {
 //        gradient.mask = shapeMask
 //        
 //        self.view.layer.addSublayer(gradient)
+    }
+    
+    func updatePercentFor(task: Task) {
+        let percent: CGFloat = CGFloat(task.completionPercentage)
+        self.updateCircleFillbyAdding(percent: percent)
     }
     
     private func getCirclePath() -> UIBezierPath {
@@ -137,5 +149,30 @@ class TaskUpdateViewController: UIViewController {
         self.holdTimer = nil
     }
     
-    var holdTimer: Timer?
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        if self.updateRequest != nil {
+            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+                // Success, do something
+                self.backButtonPressed(self.backButton)
+            }, failure: { (error, statusCode) in
+                print("Error: \(statusCode) \(error.localizedDescription)")
+            })
+            
+        } else if self.task != nil {
+            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+                // Success, do something
+                self.backButtonPressed(self.backButton)
+            }, failure: { (error, statusCode) in
+                print("Error: \(statusCode) \(error.localizedDescription)")
+            })
+        }
+    }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        if self.navigationController != nil {
+            _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
 }

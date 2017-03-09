@@ -86,6 +86,7 @@ class AlertManager {
         self.setupWindow()
     }
     
+    /** Call this method to present a passive alert that requires no user interaction. */
     class func presentPassiveAlert(of type: PassiveAlertType, with data: Any) {
         let alert: PassiveAlert = PassiveAlert(frame: CGRect(x: 0, y: -93, width: UIScreen.main.bounds.width, height: 93))
         self.passiveAlert = alert
@@ -101,6 +102,7 @@ class AlertManager {
         })
     }
     
+    /** Call this method to dismiss a presented passive alert. */
     @objc class func dismissPassiveAlert(_ alert: PassiveAlert) {
         UIView.animate(withDuration: 0.25, animations: {
             if alert.frame.origin.y == 0 {
@@ -191,6 +193,7 @@ extension AlertManager {
         self.presentAlert(alert: defaultAlert)
         
         // TODO: Setup View Controller with closures based on user action.
+        
     }
     
     // Custom Alert Methods
@@ -199,6 +202,23 @@ extension AlertManager {
         switch ofType {
         case .update: {
             self.loadDefaultAlert(ofType: "update", title: nil, message: nil)
+        }()
+        }
+    }
+    
+    // TEMPORARY WORKAROUND THIS NEEDS TO GO, IT SHOULD NOT BE HERE
+    private class func loadActionAlert(ofType: String, title: String?, message: String?, request: UpdateRequest) {
+        guard let defaultAlert = UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: ofType) as? AlertController else { print("DefaultAlertController not found with specified identifier."); return }
+        guard let updateAlertController: UpdateAlertController = defaultAlert as? UpdateAlertController else { return }
+        updateAlertController.updateRequest = request
+        self.presentAlert(alert: defaultAlert)
+    }
+    
+    // THIS TOO: REMOVE
+    class func presentAlert(ofType: CustomAlertType, with request: UpdateRequest) {
+        switch ofType {
+        case .update: {
+            self.loadActionAlert(ofType: "update", title: nil, message: nil, request: request)
         }()
         }
     }

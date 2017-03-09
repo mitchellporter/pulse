@@ -28,6 +28,8 @@ class UpdateAlertController: AlertController {
     private var circleLineWidth: CGFloat = 15
     private var circleFrame: CGRect = CGRect(x: 7.5, y: 7.5, width: 160, height: 160)
     private var percentInterval: CGFloat = 0.1
+    
+    var updateRequest: UpdateRequest?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,6 +123,14 @@ class UpdateAlertController: AlertController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-       AlertManager.dismissAlert()
+        if self.updateRequest != nil {
+            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+                // Success, do something
+                
+            }, failure: { (error, statusCode) in
+                print("Error: \(statusCode) \(error.localizedDescription)")
+            })
+        }
+        AlertManager.dismissAlert()
     }
 }
