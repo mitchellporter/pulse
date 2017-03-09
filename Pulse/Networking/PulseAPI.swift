@@ -139,7 +139,7 @@ extension PulseAPI {
         case let .respondToTaskInvitation(taskInvitationId, _):
             return "/api/\(PulseAPI.apiVersion)/task_invitations/\(taskInvitationId)"
         case let .sendUpdateForUpdateRequest(updateRequestId, _):
-            return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)"
+            return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)/updates"
         case let .markTaskItemInProgress(taskId, itemId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .markTaskItemCompleted(taskId, itemId):
