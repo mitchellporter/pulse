@@ -83,8 +83,8 @@ extension SocketManager: PNObjectEventListener {
             let taskJSON = json["task"] as! [String: AnyObject]
             self.processTaskCompletedNotification(json: taskJSON)
         case .taskAssigned:
-            let taskJSON = json["task"] as! [String: AnyObject]
-            self.processTaskAssignedNotification(json: taskJSON)
+            let taskInvitationJSON = json["task_invitation"] as! [String: AnyObject]
+            self.processTaskAssignedNotification(json: taskInvitationJSON)
         case .updateRequestReceived:
             let updateRequestJSON = json["update_request"] as! [String: AnyObject]
             self.processUpdateRequestReceivedNotification(json: updateRequestJSON)
@@ -122,25 +122,25 @@ extension SocketManager: PNObjectEventListener {
     func processTaskCompletedNotification(json: [String: AnyObject]) {
         let task = Task.from(json: json, context: CoreDataStack.shared.context)
         print(task)
-        
+        AlertManager.presentPassiveAlert(of: .completed, with: task)
     }
     
     func processTaskAssignedNotification(json: [String: AnyObject]) {
-        let task = Task.from(json: json, context: CoreDataStack.shared.context)
-        print(task)
-        
+        let taskInvitation = TaskInvitation.from(json: json, context: CoreDataStack.shared.context)
+        print(taskInvitation)
+        AlertManager.presentPassiveAlert(of: .assigned, with: taskInvitation)
     }
     
     func processUpdateRequestReceivedNotification(json: [String: AnyObject]) {
         let updateRequest = UpdateRequest.from(json: json, context: CoreDataStack.shared.context)
         print(updateRequest)
-        
+        AlertManager.presentAlert(ofType: .update, with: updateRequest)
     }
     
     func processUpdateReceivedNotification(json: [String: AnyObject]) {
         let update = Update.from(json: json, context: CoreDataStack.shared.context)
         print(update)
-        
+        AlertManager.presentPassiveAlert(of: .update, with: update)
     }
     
     

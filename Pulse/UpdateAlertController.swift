@@ -36,6 +36,29 @@ class UpdateAlertController: AlertController {
 
         self.setupAppearance()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        guard let updateRequest: UpdateRequest = self.updateRequest else { return }
+        guard let task: Task = updateRequest.task else { return }
+        if let assigner: User = task.assigner {
+            self.assignedToLabel.text = "Assigned by: \(assigner.name)"
+        } else {
+            self.assignedToLabel.text = "Assigned by:"
+        }
+        
+        if let date: Date = task.dueDate {
+            let formatter: DateFormatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            let percentage: Int = task.completionPercentage > 1 ? 1 : Int(task.completionPercentage)
+            self.dueDateLabel.text = "Due: " + formatter.string(from: date) + " | \((percentage * 100))% Done"
+        } else {
+            self.dueDateLabel.text = ""
+        }
+        
+        self.descriptionLabel.text = task.title
+    }
 
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3

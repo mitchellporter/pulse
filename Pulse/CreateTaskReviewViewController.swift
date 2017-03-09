@@ -133,6 +133,7 @@ class CreateTaskReviewViewController: UIViewController {
         TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
             // Successfully created task
             // Do Something
+            
             self.performSegue(withIdentifier: "completeCreation", sender: nil)
         }) { (error, statusCode) in
             // Handle Error

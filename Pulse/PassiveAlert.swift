@@ -116,8 +116,8 @@ class PassiveAlert: UIView {
             
             break
         case .assigned:
-            guard let task: Task = self.data as? Task else { return }
-            NavigationManager.presentTaskAssigned(task: task)
+            guard let taskInvitation: TaskInvitation = self.data as? TaskInvitation else { return }
+            NavigationManager.presentTaskAssigned(taskInvitation: taskInvitation)
             break
         case .completed:
             guard let task: Task = self.data as? Task else { return }

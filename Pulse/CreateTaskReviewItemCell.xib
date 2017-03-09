@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Label" translatesAutoresizingMaskIntoConstraints="NO" id="OJT-p9-Kfn">
-                        <rect key="frame" x="61" y="0.0" width="247" height="41"/>
+                        <rect key="frame" x="61" y="0.0" width="247" height="40"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="oaC-8R-jkq"/>

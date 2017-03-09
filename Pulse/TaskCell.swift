@@ -90,12 +90,13 @@ class TaskCell: UITableViewCell {
         var user: User?
         switch type {
         case .assignee:
-            guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
-            user = assignee
-        case .assigner:
             guard let assigner: User = task.assigner else { print("There was no assigner for the task"); return }
             user = assigner
+        case .assigner:
+            guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
+            user = assignee
         }
+//        print(user)
         guard let name: String = user?.name else { return }
         self.assignedLabel.text = type == .assignee ? "ASSIGNED TO: " + name : "ASSIGNED BY: " + name
         

@@ -135,6 +135,7 @@ class CreatedTasksViewController: UIViewController {
         self.tableView.estimatedRowHeight = 70
 //        self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
         self.tableView.backgroundColor = mainBackgroundColor
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }

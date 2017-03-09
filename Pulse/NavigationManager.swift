@@ -65,12 +65,12 @@ class NavigationManager {
         }
     }
     
-    static func presentTaskAssigned(task: Task) {
+    static func presentTaskAssigned(taskInvitation: TaskInvitation) {
         if self.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self) {
             guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
             guard let taskController = navigationController.viewControllers.last as? TaskViewController else { return }
             
-            taskController.performSegue(withIdentifier: "viewTask", sender: task)
+            taskController.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
         }
     }
 }
