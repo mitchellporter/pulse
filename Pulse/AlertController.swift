@@ -13,7 +13,8 @@ class AlertController: UIViewController {
     var titleText: String?
     var message: String?
     
-    var completions = [AlertCompletion]()
+    var data: Any?
+    var completions: Array<AlertCompletion>?
     
     override func viewDidLoad() {
         self.view.backgroundColor = UIColor.clear

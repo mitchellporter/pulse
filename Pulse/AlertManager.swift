@@ -73,7 +73,7 @@ class AlertManager {
         self.rootViewController = viewController
     }
     
-    /** This method must be called at the end of your load alert method to make the alert visible in the applicaiton. */
+    /** This method must be called at the end of your load alert method to make the alert visible in the application. */
     fileprivate class func presentAlert(alert: UIViewController) {
         if self.rootViewController == nil {
             self.setRoot(viewController: alert)
@@ -169,7 +169,7 @@ extension AlertManager {
     
     /** Use this method to present a custom Action alert with functionality to be performed after being presented. */
     class func presentActionAlert(withTitle: String?, andMessage: String?, completion: @escaping AlertCompletion) {
-        self.loadActionAlert(ofType: "", title: withTitle, message: andMessage, completion: completion)
+        self.loadActionAlert(ofType: "action", title: withTitle, message: andMessage, completion: completion)
     }
     
     /** Use this method to load an Action alert without custom messaging. */
@@ -188,7 +188,7 @@ extension AlertManager {
             defaultAlert.message = message
         }
         if let completion = completion {
-            defaultAlert.completions.append(completion)
+            defaultAlert.completions = [completion]
         }
         self.presentAlert(alert: defaultAlert)
         
@@ -206,20 +206,20 @@ extension AlertManager {
         }
     }
     
-    // TEMPORARY WORKAROUND THIS NEEDS TO GO, IT SHOULD NOT BE HERE
-    private class func loadActionAlert(ofType: String, title: String?, message: String?, request: UpdateRequest) {
-        guard let defaultAlert = UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: ofType) as? AlertController else { print("DefaultAlertController not found with specified identifier."); return }
-        guard let updateAlertController: UpdateAlertController = defaultAlert as? UpdateAlertController else { return }
-        updateAlertController.updateRequest = request
-        self.presentAlert(alert: defaultAlert)
-    }
-    
-    // THIS TOO: REMOVE
-    class func presentAlert(ofType: CustomAlertType, with request: UpdateRequest) {
+    /** Use this method to present a custom Interactive alert with optional data. */
+    class func presentAlert(ofType: CustomAlertType, with data: Any?) {
         switch ofType {
         case .update: {
-            self.loadActionAlert(ofType: "update", title: nil, message: nil, request: request)
+            self.loadInteractiveAlert(ofType: "update", title: nil, message: nil, with: data)
         }()
         }
+    }
+    
+    /** This method loads an Interactive alert and presents it over the application. */
+    private class func loadInteractiveAlert(ofType: String, title: String?, message: String?, with data: Any?) {
+        guard let defaultAlert = UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: ofType) as? AlertController else { print("DefaultAlertController not found with specified identifier."); return }
+        guard let updateAlertController: UpdateAlertController = defaultAlert as? UpdateAlertController else { return }
+        updateAlertController.data = data
+        self.presentAlert(alert: defaultAlert)
     }
 }

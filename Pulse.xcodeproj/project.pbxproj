@@ -13,6 +13,7 @@
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
 		C133AF451E6A27B7008AD201 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF441E6A27B7008AD201 /* NavigationController.swift */; };
+		C15474CF1E72077C000DADD2 /* DefaultActionAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15474CE1E72077C000DADD2 /* DefaultActionAlertViewController.swift */; };
 		C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */; };
 		C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */; };
 		C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */; };
@@ -159,6 +160,7 @@
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
 		C133AF441E6A27B7008AD201 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		C15474CE1E72077C000DADD2 /* DefaultActionAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultActionAlertViewController.swift; sourceTree = "<group>"; };
 		C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
 		C1629A911E5F6A4400EC91B0 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 				C1AD36771E68D44100C5A9AA /* AlertManager.swift */,
 				C1AD36781E68D44100C5A9AA /* AlertController.swift */,
 				C1AD367E1E68D60000C5A9AA /* UpdateAlertController.swift */,
+				C15474CE1E72077C000DADD2 /* DefaultActionAlertViewController.swift */,
 				C1AD367C1E68D4C700C5A9AA /* Alerts.storyboard */,
 				C1AD36821E68EC0600C5A9AA /* PassiveAlert.swift */,
 				C1AD36801E68EBF300C5A9AA /* PassiveAlert.xib */,
@@ -932,6 +935,7 @@
 				C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */,
 				C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */,
 				C1B993321E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift in Sources */,
+				C15474CF1E72077C000DADD2 /* DefaultActionAlertViewController.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,
 				C1AD36671E689F4A00C5A9AA /* MyTasksViewController.swift in Sources */,
 				C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */,
