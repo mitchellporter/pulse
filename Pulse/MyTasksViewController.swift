@@ -86,6 +86,7 @@ class MyTasksViewController: UIViewController {
             try self.taskInvitationFetchedResultsController.performFetch()
             try self.taskFetchedResultsController.performFetch()
             
+            
 //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections![0].numberOfObjects)")
 //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
             
