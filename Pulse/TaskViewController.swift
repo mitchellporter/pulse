@@ -114,19 +114,19 @@ class TaskViewController: UIViewController {
         switch mode {
         case .myTasks:
             self.myTasksButton.alpha = 1
-            self.updatesButton.alpha = 0.3
-            self.createdTasksButton.alpha = 0.3
+            self.updatesButton.alpha = 0.2
+            self.createdTasksButton.alpha = 0.2
             self.updateContainerView(with: self.viewControllers[0])
         case .updates:
-            self.myTasksButton.alpha = 0.3
+            self.myTasksButton.alpha = 0.2
             self.updatesButton.alpha = 1
-            self.createdTasksButton.alpha = 0.3
+            self.createdTasksButton.alpha = 0.2
 
             self.updateContainerView(with: self.viewControllers[1])
         case .createdTasks:
             self.createdTasksButton.alpha = 1
-            self.updatesButton.alpha = 0.3
-            self.myTasksButton.alpha = 0.3
+            self.updatesButton.alpha = 0.2
+            self.myTasksButton.alpha = 0.2
             self.updateContainerView(with: self.viewControllers[2])
         }
     }
