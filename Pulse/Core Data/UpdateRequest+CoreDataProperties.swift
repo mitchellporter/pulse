@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension UpdateRequest {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<UpdateRequest> {
@@ -24,5 +23,6 @@ extension UpdateRequest {
     @NSManaged public var sender: User?
     @NSManaged public var task: Task?
     @NSManaged public var update: Update?
+    @NSManaged public var status: String
 
 }

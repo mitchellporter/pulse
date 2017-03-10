@@ -100,6 +100,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="senderIsCurrentUser" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="status" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="receiver" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="receivedUpdateRequests" inverseEntity="User" syncable="YES"/>
         <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentUpdateRequests" inverseEntity="User" syncable="YES"/>
@@ -149,7 +150,7 @@
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
-        <element name="UpdateRequest" positionX="-27" positionY="144" width="128" height="165"/>
+        <element name="UpdateRequest" positionX="-27" positionY="144" width="128" height="180"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="270"/>
     </elements>
 </model>
