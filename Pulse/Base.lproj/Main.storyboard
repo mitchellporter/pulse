@@ -240,14 +240,14 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZC-Zs-hg3">
-                                        <rect key="frame" x="68" y="81" width="295" height="17"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <rect key="frame" x="68" y="81" width="295" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="0.5" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EJ-Ig-0fV">
-                                        <rect key="frame" x="68" y="98" width="295" height="17"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <rect key="frame" x="68" y="98" width="295" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -469,14 +469,14 @@
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nsy-yh-ffe">
-                                        <rect key="frame" x="68" y="81" width="37.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <rect key="frame" x="68" y="81" width="295" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR5-hq-QFH">
-                                        <rect key="frame" x="68" y="98" width="37.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <rect key="frame" x="68" y="98" width="295" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -485,8 +485,10 @@
                                 <constraints>
                                     <constraint firstItem="I2Y-eT-tA1" firstAttribute="leading" secondItem="ZRC-ui-Gk0" secondAttribute="leading" constant="12" id="25o-xD-1j8"/>
                                     <constraint firstItem="QR5-hq-QFH" firstAttribute="top" secondItem="nej-xA-Fgq" secondAttribute="centerY" constant="-5" id="3GU-YO-j74"/>
+                                    <constraint firstAttribute="trailing" secondItem="Nsy-yh-ffe" secondAttribute="trailing" constant="12" id="62A-Gb-T7V"/>
                                     <constraint firstItem="X46-Ac-2Vi" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="25" id="9ii-nt-iIt"/>
                                     <constraint firstItem="X46-Ac-2Vi" firstAttribute="centerX" secondItem="ZRC-ui-Gk0" secondAttribute="centerX" id="HPW-0s-aRl"/>
+                                    <constraint firstAttribute="trailing" secondItem="QR5-hq-QFH" secondAttribute="trailing" constant="12" id="Iy0-0z-lr0"/>
                                     <constraint firstItem="GnN-zj-d4E" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="27" id="JCm-4E-hSm"/>
                                     <constraint firstItem="zSN-35-Vwr" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="20" id="Ns9-CM-VUj"/>
                                     <constraint firstItem="QR5-hq-QFH" firstAttribute="leading" secondItem="nej-xA-Fgq" secondAttribute="trailing" constant="16" id="UZK-aj-D4U"/>
@@ -539,6 +541,6 @@
         <image name="BackDownArrow" width="23" height="13"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="D5z-bH-Cm9"/>
+        <segue reference="5Ph-PG-ed7"/>
     </inferredMetricsTieBreakers>
 </document>

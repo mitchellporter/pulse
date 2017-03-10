@@ -16,6 +16,7 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var assignedLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     
     private var completedCircle: CAShapeLayer = CAShapeLayer()
@@ -46,6 +47,8 @@ class ViewUpdateViewController: UIViewController {
         } else {
             self.assignedLabel.text = "Assigned to:"
         }
+        
+        self.descriptionLabel.text = task.title
         
         guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
         guard let update: Update = updates.first else { return }
