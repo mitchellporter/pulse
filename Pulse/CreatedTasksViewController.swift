@@ -88,43 +88,43 @@ class CreatedTasksViewController: UIViewController {
             print("fetched results controller error: \(error)")
         }
         
-        TaskService.getTasksCreated(success: {
-            
-            // If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
-            self.taskInvitationFetchedResultsController.delegate = nil
-            self.taskFetchedResultsController.delegate = nil
-            
-            CoreDataStack.shared.saveContext()
-            
-            //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
-            //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
-            
-            do {
-                try self.taskInvitationFetchedResultsController.performFetch()
-                try self.taskFetchedResultsController.performFetch()
-                
-                self.taskInvitationFetchedResultsController.delegate = self
-                self.taskFetchedResultsController.delegate = self
-                
-                
-                //                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
-                //                print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
-                
-                
-                //                print("task sections: \(self.taskFetchedResultsController.sections?.count ?? 1)")
-                //                print("first section info: \(self.taskFetchedResultsController.sections![0].name)")
-                //                print("second section info: \(self.taskFetchedResultsController.sections![1].name)")
-                //                print("first section objects count: \(self.taskFetchedResultsController.sections![0].numberOfObjects)")
-                //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
-                
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-            
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
+//        TaskService.getTasksCreated(success: {
+//            
+//            // If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
+//            self.taskInvitationFetchedResultsController.delegate = nil
+//            self.taskFetchedResultsController.delegate = nil
+//            
+//            CoreDataStack.shared.saveContext()
+//            
+//            //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+//            //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+//            
+//            do {
+//                try self.taskInvitationFetchedResultsController.performFetch()
+//                try self.taskFetchedResultsController.performFetch()
+//                
+//                self.taskInvitationFetchedResultsController.delegate = self
+//                self.taskFetchedResultsController.delegate = self
+//                
+//                
+//                //                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
+//                //                print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
+//                
+//                
+//                //                print("task sections: \(self.taskFetchedResultsController.sections?.count ?? 1)")
+//                //                print("first section info: \(self.taskFetchedResultsController.sections![0].name)")
+//                //                print("second section info: \(self.taskFetchedResultsController.sections![1].name)")
+//                //                print("first section objects count: \(self.taskFetchedResultsController.sections![0].numberOfObjects)")
+//                //                print("second section objects count: \(self.taskFetchedResultsController.sections![1].numberOfObjects)")
+//                
+//                self.tableView.reloadData()
+//            } catch {
+//                print("fetched results controller error: \(error)")
+//            }
+//            
+//        }) { (error, statusCode) in
+//            // TODO: Handle failure
+//        }
     }
     
     private func setupTableView() {
