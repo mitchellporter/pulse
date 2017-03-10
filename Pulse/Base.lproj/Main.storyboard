@@ -154,7 +154,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="zHL-eR-TPi">
                                         <rect key="frame" x="35" y="17" width="306" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Piz-7U-zZe" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Piz-7U-zZe" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="133" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="133" id="EYE-9j-im7"/>
@@ -176,10 +176,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="buttonPressed:" destination="Pzw-db-Dix" eventType="touchDown" id="E6h-ve-U40"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchDragOutside" id="D3i-az-7qX"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchUpInside" id="HFh-vW-zA4"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchUpOutside" id="HyW-dX-Oxx"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchCancel" id="Pzz-Dm-MGl"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchDragExit" id="Xfc-l8-Yd9"/>
                                                     <action selector="updateButtonPressed:" destination="Pzw-db-Dix" eventType="touchUpInside" id="tFo-gp-lNf"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziE-z3-f70" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziE-z3-f70" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="173" y="0.0" width="133" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="1F6-AN-5ep"/>
@@ -201,6 +207,12 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="buttonPressed:" destination="Pzw-db-Dix" eventType="touchDown" id="qdi-lu-yJT"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchDragOutside" id="ErM-lb-M1B"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchDragExit" id="Upp-ce-0jU"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchCancel" id="bBa-fX-Qjr"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchUpInside" id="mMg-Ce-aAx"/>
+                                                    <action selector="buttonRelease:" destination="Pzw-db-Dix" eventType="touchUpOutside" id="o3U-Th-Or2"/>
                                                     <action selector="doneButtonPressed:" destination="Pzw-db-Dix" eventType="touchUpInside" id="DTS-o9-dqo"/>
                                                 </connections>
                                             </button>
@@ -341,10 +353,10 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RQq-4L-R3F">
                                 <rect key="frame" x="0.0" y="602" width="375" height="65"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-oS-bnt">
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="UGE-oS-bnt">
                                         <rect key="frame" x="35" y="17" width="306" height="30"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQh-k3-T9C" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQh-k3-T9C" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="133" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="133" id="8mt-NO-NMw"/>
@@ -366,10 +378,16 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="buttonPressed:" destination="8rE-5M-G2m" eventType="touchDown" id="FnN-f1-uMe"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchUpInside" id="5gu-jD-aVM"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchCancel" id="GNw-eg-GcB"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchDragOutside" id="RDu-rY-01v"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchDragExit" id="cPG-XA-O8h"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchUpOutside" id="cXM-Ro-vVt"/>
                                                     <action selector="requestButtonPressed:" destination="8rE-5M-G2m" eventType="touchUpInside" id="0Ih-f4-PlC"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pY-Bh-U9q" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pY-Bh-U9q" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="173" y="0.0" width="133" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="K9B-Yz-il5"/>
@@ -391,6 +409,12 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="buttonPressed:" destination="8rE-5M-G2m" eventType="touchDown" id="JGt-Zg-gGx"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchDragOutside" id="BGa-kC-jAS"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchDragExit" id="GBx-AY-ke3"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchUpOutside" id="Mmx-bv-Cgz"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchUpInside" id="Rf4-BW-88j"/>
+                                                    <action selector="buttonRelease:" destination="8rE-5M-G2m" eventType="touchCancel" id="n95-I7-2sO"/>
                                                     <action selector="editButtonPressed:" destination="8rE-5M-G2m" eventType="touchUpInside" id="Gtc-8n-nl7"/>
                                                 </connections>
                                             </button>

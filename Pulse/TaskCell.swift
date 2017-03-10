@@ -72,19 +72,21 @@ class TaskCell: UITableViewCell {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
         let dueDate: String = date == nil ? "" : " | " + dateFormatter.string(from: date!)
-        self.duePercentLabel.text = type == .assignee ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
+        self.duePercentLabel.text = type == .assigner ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
         self.duePercentLabel.textColor = appRed
     }
     
     func load(task: Task, type: TaskCellType) {
         self.duePercentLabel.textColor = task.status == TaskStatus.completed.rawValue ? appGreen : UIColor.white
         var duePercentString: String = ""
-        if let dueDate = task.dueDate {
-            let diff = dueDate.timeIntervalSince1970 - Date().timeIntervalSince1970
-            let daysTillDueDate = Int(round(diff / 86400))
-            duePercentString = "DUE: \(daysTillDueDate) DAYS | "
-            if dueDate.timeIntervalSince(Date()) <= 86400 {
-                self.duePercentLabel.textColor = appRed
+        if task.status != TaskStatus.completed.rawValue {
+            if let dueDate = task.dueDate {
+                let diff = dueDate.timeIntervalSince1970 - Date().timeIntervalSince1970
+                let daysTillDueDate = Int(round(diff / 86400))
+                duePercentString = "DUE: \(daysTillDueDate) DAYS | "
+                if dueDate.timeIntervalSince(Date()) <= 86400 {
+                    self.duePercentLabel.textColor = appRed
+                }
             }
         }
         self.duePercentLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% DONE"

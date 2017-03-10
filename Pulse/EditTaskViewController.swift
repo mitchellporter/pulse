@@ -150,7 +150,15 @@ class EditTaskViewController: UIViewController {
         case .inProgress:
             self.dueDateLabel.textColor = appYellow
             self.requestButton.setTitle("ASK FOR UPDATE", for: .normal)
+            self.requestButton.setTitleColor(UIColor.black, for: .normal)
+            self.requestButton.setTitleColor(UIColor.white, for: .highlighted)
+            guard let requestBackground: UIImage = ImageWith(color: appBlue) else { return }
+            self.requestButton.setBackgroundImage(requestBackground, for: .highlighted)
             self.editButton.setTitle("EDIT TASK", for: .normal)
+            self.editButton.setTitleColor(UIColor.black, for: .normal)
+            self.editButton.setTitleColor(UIColor.white, for: .highlighted)
+            guard let editBackground: UIImage = ImageWith(color: appGreen) else { return }
+            self.editButton.setBackgroundImage(editBackground, for: .highlighted)
             break
         case .completed:
             self.dueDateLabel.textColor = appGreen
@@ -173,6 +181,22 @@ class EditTaskViewController: UIViewController {
                 self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: constraint.constant, right: 0)
             }
         }
+    }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        if sender == self.requestButton {
+            sender.layer.borderColor = appBlue.cgColor
+        } else if sender == self.editButton {
+            sender.layer.borderColor = appGreen.cgColor
+        }
+    }
+    
+    @IBAction func buttonRelease(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        sender.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func requestButtonPressed(_ sender: UIButton) {
