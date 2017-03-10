@@ -118,8 +118,8 @@ class EditTaskViewController: UIViewController {
         
         self.view.layer.addSublayer(topGradient)
         
-        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
-        self.avatarImageView.layer.borderWidth = 2
+//        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+//        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
         
         self.view.backgroundColor = mainBackgroundColor

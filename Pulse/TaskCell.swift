@@ -56,8 +56,8 @@ class TaskCell: UITableViewCell {
     
     private func setupAppearance() {
         self.avatar.layer.cornerRadius = 4
-        self.avatar.layer.borderColor = UIColor.white.cgColor
-        self.avatar.layer.borderWidth = 2
+//        self.avatar.layer.borderColor = UIColor.white.cgColor
+//        self.avatar.layer.borderWidth = 2
         
         self.badge.layer.borderColor = UIColor.white.cgColor
         self.badge.layer.borderWidth = 2

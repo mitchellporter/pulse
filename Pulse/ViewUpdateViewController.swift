@@ -66,8 +66,8 @@ class ViewUpdateViewController: UIViewController {
 
     private func setupAppearance() {
         self.drawCircle()
-        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
-        self.avatarImageView.layer.borderWidth = 2
+//        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+//        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
     }
     

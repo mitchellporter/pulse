@@ -66,6 +66,7 @@ class UpdateAlertController: AlertController {
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3
         self.alertViewHeader.backgroundColor = createTaskBackgroundColor
+        self.avatarImageView.layer.cornerRadius = 4
         
         self.drawCircle()
     }
