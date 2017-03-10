@@ -67,7 +67,8 @@ class UpdatesViewController: UIViewController {
         // Tasks
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        
+        let predicate = NSPredicate(format: "assigner.objectId == %@ AND updates.@count > 0", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
