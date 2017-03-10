@@ -176,9 +176,11 @@ class ViewTaskViewController: UIViewController {
             switch(status) {
             case .pending:
                 // Decline Task
-                TaskInvitationService.respondToTaskInvitation(taskInvitationId: task.objectId, status: .denied, success: { (invitation) in
+                guard let taskInvitation: TaskInvitation = self.taskInvite else { print("No task invitation"); return }
+                TaskInvitationService.respondToTaskInvitation(taskInvitationId: taskInvitation.objectId, status: .denied, success: { (invitation) in
                     // Success, do something
-                    
+                    self.backButtonPressed(UIButton())
+                    CoreDataStack.shared.saveContext()
                 }, failure: { (error, statusCode) in
                     // Error
                     
@@ -204,6 +206,9 @@ class ViewTaskViewController: UIViewController {
                 // Accept Task
                 guard let taskInvitation: TaskInvitation = self.taskInvite else { print("No task invitation"); return }
                 TaskInvitationService.respondToTaskInvitation(taskInvitationId: taskInvitation.objectId, status: .accepted, success: { (invitation) in
+                    
+                    CoreDataStack.shared.saveContext()
+                    
                     // Success, do something
                     // Unwind to previous page
                     self.backButtonPressed(UIButton())
@@ -215,6 +220,9 @@ class ViewTaskViewController: UIViewController {
             case .inProgress:
                 // Mark Task as Completed
                 TaskService.finishTask(taskId: task.objectId, success: { (task) in
+                    
+                    CoreDataStack.shared.saveContext()
+                    
                     // Update task and UI to reflect the change.
                     self.task = task
                     self.updateUI()

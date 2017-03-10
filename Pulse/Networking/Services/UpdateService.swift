@@ -76,15 +76,19 @@ struct UpdateService {
     }
     
     // TODO: You'll need to parse the update_request here
-    static func sendUpdateForUpdateRequest(updateRequestId: String, completionPercentage: Float, success: @escaping UpdateSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+    static func sendUpdateForUpdateRequest(updateRequestId: String, completionPercentage: Float, success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .sendUpdateForUpdateRequest(updateRequestId: updateRequestId, completionPercentage: completionPercentage), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
+                if let updateRequestJSON = json["update_request"].dictionaryObject {
+                    let updateRequest = UpdateRequest.from(json: updateRequestJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                }
+                
                 if let updateJSON = json["update"].dictionaryObject {
                     let update = Update.from(json: updateJSON as [String : AnyObject], context: CoreDataStack.shared.context)
-                    success(update)
                 }
             }
+            success()
         }, failure: failure)
     }
 }

@@ -14,6 +14,17 @@ public class UpdateRequest: NSManagedObject {
     
 }
 
+enum UpdateRequestStatus: String {
+    case sent
+    case responded
+}
+
+extension UpdateRequest {
+    var updateRequestStatus: UpdateRequestStatus {
+        return UpdateRequestStatus(rawValue: self.status)!
+    }
+}
+
 extension UpdateRequest: PulseType {
     typealias T = UpdateRequest
     
@@ -38,11 +49,14 @@ extension UpdateRequest: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
+        let status = json["status"] as! String
+        
         let description = NSEntityDescription.entity(forEntityName: "UpdateRequest", in: context)!
         let updateRequest = UpdateRequest(entity: description, insertInto: context)
         updateRequest.objectId = objectId
         updateRequest.createdAt = createdAt
         updateRequest.updatedAt = updatedAt
+        updateRequest.status = status
         
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context)
