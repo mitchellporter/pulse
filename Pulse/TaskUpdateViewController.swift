@@ -151,7 +151,8 @@ class TaskUpdateViewController: UIViewController {
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         if self.updateRequest != nil {
-            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+            let percentage = Float(self.completedCircle.strokeEnd * 100)
+            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: percentage, success: { (update) in
                 CoreDataStack.shared.saveContext()
                 // Success, do something
                 self.backButtonPressed(self.backButton)
@@ -160,7 +161,8 @@ class TaskUpdateViewController: UIViewController {
             })
             
         } else if self.task != nil {
-            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+            let percentage = Float(self.completedCircle.strokeEnd * 100)
+            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, success: { (update) in
                 
                 CoreDataStack.shared.saveContext()
 
