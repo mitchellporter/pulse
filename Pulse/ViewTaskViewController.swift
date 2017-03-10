@@ -146,6 +146,9 @@ class ViewTaskViewController: UIViewController {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
             self.dueDateLabel.text = "Due: " + formatter.string(from: dueDate)
+            if dueDate.timeIntervalSince(Date()) <= 86400 {
+                self.dueDateLabel.textColor = appRed
+            }
         }
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
@@ -153,12 +156,12 @@ class ViewTaskViewController: UIViewController {
         
         switch(status) {
         case .pending:
-            self.dueDateLabel.textColor = appRed
+//            self.dueDateLabel.textColor = appRed
             self.updateButton.setTitle("DECLINE TASK", for: .normal)
             self.doneButton.setTitle("ACCEPT TASK", for: .normal)
             break
         case .inProgress:
-            self.dueDateLabel.textColor = appYellow
+//            self.dueDateLabel.textColor = appYellow
             self.updateButton.setTitle("GIVE UPDATE", for: .normal)
             self.doneButton.setTitle("TASK IS DONE", for: .normal)
             break

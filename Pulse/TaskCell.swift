@@ -83,6 +83,9 @@ class TaskCell: UITableViewCell {
             let diff = dueDate.timeIntervalSince1970 - Date().timeIntervalSince1970
             let daysTillDueDate = Int(round(diff / 86400))
             duePercentString = "DUE: \(daysTillDueDate) DAYS | "
+            if dueDate.timeIntervalSince(Date()) <= 86400 {
+                self.duePercentLabel.textColor = appRed
+            }
         }
         self.duePercentLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% DONE"
         self.descriptionLabel.text = task.title
