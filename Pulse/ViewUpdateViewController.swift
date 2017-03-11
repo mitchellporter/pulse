@@ -18,6 +18,15 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    
+    // Comment View outlets
+    @IBOutlet weak var commentCloseButton: UIButton!
+    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var commentTopBar: UIView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var commentViewY: NSLayoutConstraint!
+    @IBOutlet weak var commentCoverView: UIView!
     
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     private var circleLayer: CAShapeLayer = CAShapeLayer()
@@ -27,6 +36,8 @@ class ViewUpdateViewController: UIViewController {
     private var percentInterval: CGFloat = 0.1
     
     var task: Task?
+    
+    var commentBadge: CALayer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +83,25 @@ class ViewUpdateViewController: UIViewController {
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
+        
+        // Setup comment badge
+        let circle: CALayer = CALayer()
+        circle.frame = CGRect(x: 12, y: -2, width: 12, height: 12)
+        circle.backgroundColor = appRed.cgColor
+        circle.masksToBounds = true
+        circle.cornerRadius = circle.frame.width/2
+        let border: CAShapeLayer = CAShapeLayer()
+        border.path = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: 10, height: 10)).cgPath
+        border.strokeColor = UIColor.white.cgColor
+        border.lineWidth = 2
+        border.fillColor = nil
+        circle.addSublayer(border)
+        
+        self.commentBadge = circle
+        
+        // Setup comment view
+        self.commentView.layer.cornerRadius = 3
+        self.commentTopBar.backgroundColor = mainBackgroundColor
     }
     
     private func getCirclePath() -> UIBezierPath {
@@ -118,6 +148,29 @@ class ViewUpdateViewController: UIViewController {
         })
     }
     
+    private func presentCommentView(_ presenting: Bool) {
+        if presenting {
+            self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            self.commentCoverView.frame = self.view.bounds
+            self.view.addSubview(self.commentCoverView)
+            self.commentViewY.constant = self.view.bounds.height
+            self.view.layoutIfNeeded()
+            self.commentViewY.constant = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.66)
+                self.view.layoutIfNeeded()
+            })
+        } else {
+            self.commentViewY.constant = self.view.bounds.height
+            UIView.animate(withDuration: 0.2, animations: {
+                self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.commentCoverView.removeFromSuperview()
+            })
+        }
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
             _ = self.navigationController?.popViewController(animated: true)
@@ -125,5 +178,12 @@ class ViewUpdateViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+    
+    @IBAction func commentButtonPressed(_ sender: UIButton) {
+        self.presentCommentView(true)
+    }
+    
+    @IBAction func commentViewClosed(_ sender: UIButton) {
+        self.presentCommentView(false)
+    }
 }
