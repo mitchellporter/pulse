@@ -36,7 +36,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-pU-dIT" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="248" y="0.0" width="127" height="62"/>
+                                        <rect key="frame" x="236" y="0.0" width="139" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="TASKS CREATED">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -46,7 +46,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-2k-txQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="124" y="0.0" width="124" height="62"/>
+                                        <rect key="frame" x="116" y="0.0" width="124" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="UPDATES">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -63,10 +63,10 @@
                                     <constraint firstItem="gWi-Oh-d3b" firstAttribute="leading" secondItem="9eL-nv-gE8" secondAttribute="leading" id="Hpk-nW-57o"/>
                                     <constraint firstItem="lxn-2k-txQ" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="JDt-sx-K9c"/>
                                     <constraint firstItem="gWi-Oh-d3b" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="MgK-F2-UDr"/>
-                                    <constraint firstItem="T3l-pU-dIT" firstAttribute="leading" secondItem="lxn-2k-txQ" secondAttribute="trailing" id="Vou-Ng-Lsy"/>
+                                    <constraint firstItem="T3l-pU-dIT" firstAttribute="leading" secondItem="lxn-2k-txQ" secondAttribute="trailing" constant="-4" id="Vou-Ng-Lsy"/>
                                     <constraint firstAttribute="bottom" secondItem="lxn-2k-txQ" secondAttribute="bottom" id="W2w-U7-HfQ"/>
                                     <constraint firstItem="gWi-Oh-d3b" firstAttribute="width" secondItem="9eL-nv-gE8" secondAttribute="width" multiplier="0.33" id="WGo-C5-Hgg"/>
-                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="leading" secondItem="gWi-Oh-d3b" secondAttribute="trailing" id="Xr9-vh-6Tj"/>
+                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="leading" secondItem="gWi-Oh-d3b" secondAttribute="trailing" constant="-8" id="Xr9-vh-6Tj"/>
                                     <constraint firstAttribute="bottom" secondItem="T3l-pU-dIT" secondAttribute="bottom" id="bCL-uH-3fw"/>
                                     <constraint firstAttribute="bottom" secondItem="gWi-Oh-d3b" secondAttribute="bottom" id="nUl-ez-tjd"/>
                                     <constraint firstAttribute="trailing" secondItem="T3l-pU-dIT" secondAttribute="trailing" id="r4D-Iv-mhJ"/>
@@ -565,6 +565,6 @@
         <image name="BackDownArrow" width="23" height="13"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Ph-PG-ed7"/>
+        <segue reference="D5z-bH-Cm9"/>
     </inferredMetricsTieBreakers>
 </document>

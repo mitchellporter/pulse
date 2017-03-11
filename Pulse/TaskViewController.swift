@@ -26,7 +26,7 @@ class TaskViewController: UIViewController {
     
 
     private var viewControllers: [UIViewController] = [UIViewController]()
-    
+    private var selectionDot: UIImageView = UIImageView()
     fileprivate var modeSelected: ViewMode = .myTasks {
         didSet {
             if oldValue != self.modeSelected {
@@ -40,6 +40,10 @@ class TaskViewController: UIViewController {
 
 
         self.initializeViewControllers()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.updateView(mode: self.modeSelected)
     }
     
@@ -52,6 +56,10 @@ class TaskViewController: UIViewController {
     }
     
     private func updateContainerView(with viewController: UIViewController) {
+        for view in self.containerView.subviews {
+            view.removeFromSuperview()
+        }
+        
         self.addChildViewController(viewController)
         
         self.containerView.addSubview(viewController.view)
@@ -117,17 +125,43 @@ class TaskViewController: UIViewController {
             self.updatesButton.alpha = 0.2
             self.createdTasksButton.alpha = 0.2
             self.updateContainerView(with: self.viewControllers[0])
+            
+            guard let buttonTitleFrame: CGRect = self.myTasksButton.titleLabel?.superview?.convert(self.myTasksButton.titleLabel!.frame, to: nil) else { return }
+            let image: UIImage = #imageLiteral(resourceName: "GreenDot")
+            self.selectionDot.image = image
+            self.selectionDot.frame.size = image.size
+            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.myTasksButton.center.y - (self.selectionDot.bounds.height / 2))
+            self.selectionDot.frame.origin = dotOrigin
+//            self.selectionDot.center.y = self.myTasksButton.center.y
+            self.view.addSubview(self.selectionDot)
         case .updates:
             self.myTasksButton.alpha = 0.2
             self.updatesButton.alpha = 1
             self.createdTasksButton.alpha = 0.2
-
             self.updateContainerView(with: self.viewControllers[1])
+            
+            guard let buttonTitleFrame: CGRect = self.updatesButton.titleLabel?.superview?.convert(self.updatesButton.titleLabel!.frame, to: nil) else { return }
+            let image: UIImage = #imageLiteral(resourceName: "RedDot")
+            self.selectionDot.image = image
+            self.selectionDot.frame.size = image.size
+            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.updatesButton.center.y - (self.selectionDot.bounds.height / 2))
+            self.selectionDot.frame.origin = dotOrigin
+            //            self.selectionDot.center.y = self.myTasksButton.center.y
+            self.view.addSubview(self.selectionDot)
         case .createdTasks:
             self.createdTasksButton.alpha = 1
             self.updatesButton.alpha = 0.2
             self.myTasksButton.alpha = 0.2
             self.updateContainerView(with: self.viewControllers[2])
+            
+            guard let buttonTitleFrame: CGRect = self.createdTasksButton.titleLabel?.superview?.convert(self.createdTasksButton.titleLabel!.frame, to: nil) else { return }
+            let image: UIImage = #imageLiteral(resourceName: "BlueDot")
+            self.selectionDot.image = image
+            self.selectionDot.frame.size = image.size
+            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.createdTasksButton.center.y - (self.selectionDot.bounds.height / 2))
+            self.selectionDot.frame.origin = dotOrigin
+            //            self.selectionDot.center.y = self.myTasksButton.center.y
+            self.view.addSubview(self.selectionDot)
         }
     }
 
