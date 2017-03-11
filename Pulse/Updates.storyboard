@@ -228,7 +228,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jZS-5z-Ox4">
-                            <rect key="frame" x="26" y="32" width="323" height="602"/>
+                            <rect key="frame" x="26" y="22.5" width="323" height="602"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSJ-Hc-gNg">
                                     <rect key="frame" x="0.0" y="0.0" width="323" height="56"/>
@@ -289,6 +289,9 @@
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.24440817636986301" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="aSW-TG-8RG" id="1L8-Vh-MmX"/>
+                                    </connections>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -306,7 +309,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.66497217465753422" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="jZS-5z-Ox4" firstAttribute="height" secondItem="iL9-L6-hQG" secondAttribute="height" multiplier="0.9025" id="3Nz-KC-z4u"/>
-                        <constraint firstItem="jZS-5z-Ox4" firstAttribute="centerY" secondItem="iL9-L6-hQG" secondAttribute="centerY" id="Yf1-BB-dPr"/>
+                        <constraint firstItem="jZS-5z-Ox4" firstAttribute="centerY" secondItem="iL9-L6-hQG" secondAttribute="centerY" multiplier="0.97" id="Yf1-BB-dPr"/>
                         <constraint firstItem="jZS-5z-Ox4" firstAttribute="centerX" secondItem="iL9-L6-hQG" secondAttribute="centerX" id="myA-hs-ONV"/>
                         <constraint firstItem="jZS-5z-Ox4" firstAttribute="width" secondItem="iL9-L6-hQG" secondAttribute="width" multiplier="0.8613" id="wW3-mt-CyW"/>
                     </constraints>
@@ -446,6 +449,7 @@
                         <outlet property="commentButton" destination="c8e-Ee-Kq5" id="66b-Xi-y7F"/>
                         <outlet property="commentCloseButton" destination="EFU-L9-VG8" id="bBa-lu-OOU"/>
                         <outlet property="commentCoverView" destination="bPf-Kk-t2c" id="ARE-1x-G92"/>
+                        <outlet property="commentTextView" destination="qUf-f1-QCx" id="feI-wR-Vze"/>
                         <outlet property="commentTopBar" destination="USN-nf-paf" id="QKO-gy-ZBP"/>
                         <outlet property="commentView" destination="93R-95-nxZ" id="CbC-ma-t1n"/>
                         <outlet property="commentViewY" destination="4uN-5s-Krd" id="XqV-0v-Dqv"/>
@@ -460,7 +464,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="93R-95-nxZ">
-                            <rect key="frame" x="26" y="32" width="323" height="602"/>
+                            <rect key="frame" x="26" y="22.5" width="323" height="602"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USN-nf-paf">
                                     <rect key="frame" x="0.0" y="0.0" width="323" height="56"/>
@@ -510,7 +514,7 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.65806934931506844" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="93R-95-nxZ" firstAttribute="centerY" secondItem="bPf-Kk-t2c" secondAttribute="centerY" id="4uN-5s-Krd"/>
+                        <constraint firstItem="93R-95-nxZ" firstAttribute="centerY" secondItem="bPf-Kk-t2c" secondAttribute="centerY" multiplier="0.97" id="4uN-5s-Krd"/>
                         <constraint firstItem="93R-95-nxZ" firstAttribute="width" secondItem="bPf-Kk-t2c" secondAttribute="width" multiplier="0.8613" id="Mu1-wm-jnT"/>
                         <constraint firstItem="93R-95-nxZ" firstAttribute="height" secondItem="bPf-Kk-t2c" secondAttribute="height" multiplier="0.9025" id="mHc-8E-fTE"/>
                         <constraint firstItem="93R-95-nxZ" firstAttribute="centerX" secondItem="bPf-Kk-t2c" secondAttribute="centerX" id="wdf-q6-FZH"/>

@@ -10,6 +10,8 @@ import UIKit
 import QuartzCore
 import CoreGraphics
 
+let kUpdateCommentPlaceHolder: String = "Add a message here"
+
 class TaskUpdateViewController: UIViewController {
 
     @IBOutlet weak var circleView: UIView!
@@ -78,6 +80,8 @@ class TaskUpdateViewController: UIViewController {
         // Setup comment view
         self.commentView.layer.cornerRadius = 3
         self.commentTopBar.backgroundColor = mainBackgroundColor
+        self.commentTextView.textContainerInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 20)
+        self.commentTextView.text = kUpdateCommentPlaceHolder
         
 //        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100))
 //        
@@ -98,7 +102,7 @@ class TaskUpdateViewController: UIViewController {
 //        self.view.layer.addSublayer(gradient)
     }
     
-    private func showCommentBadge(_ visible: Bool) {
+    fileprivate func showCommentBadge(_ visible: Bool) {
         if visible {
             guard let badge: CALayer = self.commentBadge else { return }
             self.commentButton.layer.addSublayer(badge)
@@ -167,8 +171,11 @@ class TaskUpdateViewController: UIViewController {
             UIView.animate(withDuration: 0.3, animations: {
                 self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.66)
                 self.view.layoutIfNeeded()
+            }, completion: {_ in
+                self.commentTextView.becomeFirstResponder()
             })
         } else {
+            self.commentTextView.resignFirstResponder()
             self.commentViewY.constant = self.view.bounds.height
             UIView.animate(withDuration: 0.2, animations: {
                 self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
@@ -248,6 +255,60 @@ class TaskUpdateViewController: UIViewController {
     }
     
     @IBAction func commentDoneButtonPressed(_ sender: UIButton) {
+        // Add comment to task update and dismiss comment view.
+    }
+}
+
+extension TaskUpdateViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            if textView.text == kUpdateCommentPlaceHolder {
+                textView.selectedRange = NSMakeRange(0, 0)
+            }
+        }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        let zeroRange: NSRange = NSMakeRange(0, 0)
+        if textView.text == kUpdateCommentPlaceHolder {
+            if (textView.selectedRange.location != zeroRange.location) || (textView.selectedRange.length != zeroRange.length) {
+                textView.selectedRange = zeroRange
+            }
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
+        if textView.text == kUpdateCommentPlaceHolder {
+            if text != "" {
+                textView.text = ""
+                textView.textColor = UIColor.black
+            }
+        }
+        return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        
+        if textView.text == "" {
+                textView.text = kUpdateCommentPlaceHolder
+                textView.textColor = UIColor.black.withAlphaComponent(0.24)
+        }
+        
+        if textView.text != kUpdateCommentPlaceHolder {
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = kUpdateCommentPlaceHolder
+        }
+        
+        if textView.text != "" && textView.text != kUpdateCommentPlaceHolder {
+            self.showCommentBadge(true)
+        } else {
+            self.showCommentBadge(false)
+        }
     }
 }

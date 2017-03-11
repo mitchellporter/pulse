@@ -102,6 +102,7 @@ class ViewUpdateViewController: UIViewController {
         // Setup comment view
         self.commentView.layer.cornerRadius = 3
         self.commentTopBar.backgroundColor = mainBackgroundColor
+        self.commentTextView.textContainerInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 20)
     }
     
     private func getCirclePath() -> UIBezierPath {
