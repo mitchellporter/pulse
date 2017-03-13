@@ -18,9 +18,11 @@ class UpdateAlertController: AlertController {
     @IBOutlet weak var assignedToLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var updateTitleLabel: UILabel!
     @IBOutlet weak var completedPercentageLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var commentBubbleButton: UIButton!
     
     var holdTimer: Timer?
     private var completedCircle: CAShapeLayer = CAShapeLayer()
