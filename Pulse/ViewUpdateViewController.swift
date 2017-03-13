@@ -47,8 +47,7 @@ class ViewUpdateViewController: UIViewController {
             self.assignedLabel.text = "Assigned to:"
         }
         
-        guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
-        guard let update: Update = updates.first else { return }
+        guard let update: Update = task.mostRecentUpdate() else { return }
         
         let circlePercentage = update.completionPercentage * 0.01
         self.updateCircleFillbyAdding(percent: CGFloat(circlePercentage))

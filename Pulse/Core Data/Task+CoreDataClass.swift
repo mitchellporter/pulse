@@ -30,6 +30,15 @@ extension Task {
         guard let updateDays = self.updateDays else { return nil }
         return updateDays.flatMap { return WeekDay(rawValue: $0) }
     }
+    
+    func mostRecentUpdate() -> Update? {
+        return self.updatesSortedByRecency()?.first
+    }
+    
+    func updatesSortedByRecency() -> [Update]? {
+        guard let updates = self.updates else { return nil }
+        return updates.sorted { $0.createdAt! > $1.createdAt! }
+    }
 }
 
 extension Task: PulseType {

@@ -29,7 +29,7 @@ extension Task {
     @NSManaged public var invitations: NSSet?
     @NSManaged public var items: NSSet?
     @NSManaged public var updateRequests: NSSet?
-    @NSManaged public var updates: NSSet?
+    @NSManaged public var updates: Set<Update>?
 
 }
 
