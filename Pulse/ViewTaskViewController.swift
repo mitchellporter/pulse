@@ -100,7 +100,6 @@ class ViewTaskViewController: UIViewController {
             
             do {
                 try self.fetchedResultsController.performFetch()
-                print(self.fetchedResultsController.fetchedObjects?.count)
                 self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
