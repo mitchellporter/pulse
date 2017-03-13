@@ -154,7 +154,6 @@ extension CreatedTasksViewController: UITableViewDataSource {
         var sectionCount = 0
         // If we have any invitations at all, increase section count by 1
         if self.taskInvitationFetchedResultsController.fetchedObjects != nil {
-            //            print(self.taskInvitationFetchedResultsController.fetchedObjects!.count)
             if (self.taskInvitationFetchedResultsController.fetchedObjects!.count != 0) {
                 sectionCount += 1
             }
@@ -190,7 +189,6 @@ extension CreatedTasksViewController: UITableViewDataSource {
         case 1:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 guard let sections = self.taskFetchedResultsController.sections else {
-                    print("fetched count: \(self.taskFetchedResultsController.fetchedObjects?.count ?? 0)")
                     return self.taskFetchedResultsController.fetchedObjects?.count ?? 0
                 }
                 
@@ -367,7 +365,6 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
         case .update: // lots
             
             if controller == self.taskInvitationFetchedResultsController {
-                print("task invitation controller")
                 if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
                     
                     let task = self.taskFetchedResultsController.fetchedObjects!.first!

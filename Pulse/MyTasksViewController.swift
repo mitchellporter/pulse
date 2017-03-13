@@ -210,7 +210,6 @@ extension MyTasksViewController: UITableViewDataSource {
         case 1:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
                 guard let sections = self.taskFetchedResultsController.sections else {
-                    print("fetched count: \(self.taskFetchedResultsController.fetchedObjects?.count ?? 0)")
                     return self.taskFetchedResultsController.fetchedObjects?.count ?? 0
                 }
                 

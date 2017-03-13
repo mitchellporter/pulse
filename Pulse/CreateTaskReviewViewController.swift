@@ -136,7 +136,7 @@ class CreateTaskReviewViewController: UIViewController {
             
             self.performSegue(withIdentifier: "completeCreation", sender: nil)
         }) { (error, statusCode) in
-            // Handle Error
+            // TODO: Handle Error
             print("There was an error when creating the task. Error: \(statusCode) \(error.localizedDescription)")
         }
     }
