@@ -367,8 +367,8 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
             if controller == self.taskInvitationFetchedResultsController {
                 if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
                     
-                    let task = self.taskFetchedResultsController.fetchedObjects!.first!
-                    cell.load(task: task, type: .assigner)
+                    let taskInvitation = self.taskInvitationFetchedResultsController.object(at: indexPath!)
+                    cell.load(invitation: taskInvitation, type: .assigner)
                 }
                 
             } else if controller == self.taskFetchedResultsController {

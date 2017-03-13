@@ -183,6 +183,7 @@ extension MyTasksViewController: UITableViewDataSource {
         if let sections = self.taskFetchedResultsController.sections {
             sectionCount += sections.count
         }
+        
         return sectionCount
     }
     
@@ -349,6 +350,7 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
         switch type {
         case .insert: // a few
             

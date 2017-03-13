@@ -225,8 +225,8 @@ class ViewTaskViewController: UIViewController {
                     CoreDataStack.shared.saveContext()
                     
                     // Update task and UI to reflect the change.
-                    self.task = task
-                    self.updateUI()
+//                    self.task = task
+//                    self.updateUI()
                 }, failure: { (error, statusCode) in
                     // Error
                     
