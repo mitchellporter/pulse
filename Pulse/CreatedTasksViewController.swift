@@ -28,7 +28,10 @@ class CreatedTasksViewController: UIViewController {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "sender.objectId == %@", User.currentUserId())
+        
+        let statusPredicate = NSPredicate(format: "status == %@", "pending")
+        let senderPredicate = NSPredicate(format: "sender.objectId == %@", User.currentUserId())
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate, senderPredicate])
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
