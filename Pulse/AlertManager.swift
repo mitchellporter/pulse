@@ -88,18 +88,20 @@ class AlertManager {
     
     /** Call this method to present a passive alert that requires no user interaction. */
     class func presentPassiveAlert(of type: PassiveAlertType, with data: Any) {
-        let alert: PassiveAlert = PassiveAlert(frame: CGRect(x: 0, y: -93, width: UIScreen.main.bounds.width, height: 93))
-        self.passiveAlert = alert
-        alert.load(alertType: type, with: data)
-        guard let navigationController: UINavigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController else { return }
-        navigationController.view.addSubview(alert)
-        UIView.animate(withDuration: 0.2, animations: {
-            alert.frame.origin.y = 0
-        }, completion: { _ in
-            Delay.wait(4) {
-                self.dismissPassiveAlert(alert)
-            }
-        })
+        if self.rootViewController == nil {
+            let alert: PassiveAlert = PassiveAlert(frame: CGRect(x: 0, y: -93, width: UIScreen.main.bounds.width, height: 93))
+            self.passiveAlert = alert
+            alert.load(alertType: type, with: data)
+            guard let navigationController: UINavigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController else { return }
+            navigationController.view.addSubview(alert)
+            UIView.animate(withDuration: 0.2, animations: {
+                alert.frame.origin.y = 0
+            }, completion: { _ in
+                Delay.wait(4) {
+                    self.dismissPassiveAlert(alert)
+                }
+            })
+        }
     }
     
     /** Call this method to dismiss a presented passive alert. */

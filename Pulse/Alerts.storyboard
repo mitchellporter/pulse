@@ -64,6 +64,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-Jj-GD5" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="288" y="14" width="20" height="22"/>
                                                 <state key="normal" image="CommentBubble"/>
+                                                <connections>
+                                                    <action selector="commentButtonPressed:" destination="4GS-KF-ndx" eventType="touchUpInside" id="uaf-xX-IJ2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.12549019610000001" green="0.60784313729999995" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -248,10 +251,10 @@
             </objects>
             <point key="canvasLocation" x="45.600000000000001" y="353.9730134932534"/>
         </scene>
-        <!--View Controller-->
+        <!--Update Alert Comment View Controller-->
         <scene sceneID="U67-qn-RSx">
             <objects>
-                <viewController id="P5I-wq-043" sceneMemberID="viewController">
+                <viewController id="P5I-wq-043" customClass="UpdateAlertCommentViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wbM-BE-0io"/>
                         <viewControllerLayoutGuide type="bottom" id="aGO-Rx-QYG"/>
@@ -260,14 +263,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5n-3W-0EV">
-                                <rect key="frame" x="67" y="20" width="240" height="627"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5n-3W-0EV">
+                                <rect key="frame" x="25.5" y="22.5" width="323" height="602"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk1-Or-nAX">
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="56"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-kk-3u0" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                                <rect key="frame" x="247" y="14" width="68" height="28"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <state key="normal" title="Done">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="3"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                        <real key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="doneButtonPressed:" destination="P5I-wq-043" eventType="touchUpInside" id="3M7-ok-VOh"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-zM-7f8" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="17" width="17" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="CloseX"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="closeButtonPressed:" destination="P5I-wq-043" eventType="touchUpInside" id="zKf-1x-HYh"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.12549019607843137" green="0.60784313725490191" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="wWz-AP-D4K"/>
+                                        </constraints>
+                                    </view>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SHb-bX-YVW">
+                                        <rect key="frame" x="0.0" y="56" width="323" height="546"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.24141160102739725" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="P5I-wq-043" id="JCS-Ox-THw"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gk1-Or-nAX" firstAttribute="leading" secondItem="k5n-3W-0EV" secondAttribute="leading" id="1na-W9-f9x"/>
+                                    <constraint firstItem="SHb-bX-YVW" firstAttribute="top" secondItem="gk1-Or-nAX" secondAttribute="bottom" id="AYc-71-8v4"/>
+                                    <constraint firstAttribute="bottom" secondItem="SHb-bX-YVW" secondAttribute="bottom" id="Gf1-aG-549"/>
+                                    <constraint firstItem="gk1-Or-nAX" firstAttribute="top" secondItem="k5n-3W-0EV" secondAttribute="top" id="JRm-Ai-u8f"/>
+                                    <constraint firstItem="SHb-bX-YVW" firstAttribute="leading" secondItem="k5n-3W-0EV" secondAttribute="leading" id="Kk0-Yy-xLU"/>
+                                    <constraint firstAttribute="trailing" secondItem="gk1-Or-nAX" secondAttribute="trailing" id="wiV-un-VJk"/>
+                                    <constraint firstAttribute="trailing" secondItem="SHb-bX-YVW" secondAttribute="trailing" id="xui-1w-EFk"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="k5n-3W-0EV" firstAttribute="centerX" secondItem="ztu-WB-vLi" secondAttribute="centerX" id="2AC-am-zlf"/>
+                            <constraint firstItem="k5n-3W-0EV" firstAttribute="centerY" secondItem="ztu-WB-vLi" secondAttribute="centerY" constant="-10" id="MtD-Rk-atk"/>
+                            <constraint firstItem="k5n-3W-0EV" firstAttribute="height" secondItem="ztu-WB-vLi" secondAttribute="height" multiplier="0.9025" id="avc-yR-WqD"/>
+                            <constraint firstItem="k5n-3W-0EV" firstAttribute="width" secondItem="ztu-WB-vLi" secondAttribute="width" multiplier="0.8613" id="fBF-Rv-qYv"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="alertView" destination="k5n-3W-0EV" id="bVb-py-CJm"/>
+                        <outlet property="alertViewHeader" destination="gk1-Or-nAX" id="Yef-CD-ZVI"/>
+                        <outlet property="textView" destination="SHb-bX-YVW" id="hb6-zQ-oV5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwa-BB-8ZG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -338,6 +418,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CloseX" width="17" height="15"/>
         <image name="CommentBubble" width="20" height="22"/>
         <image name="DummyStoney" width="32" height="32"/>
     </resources>
