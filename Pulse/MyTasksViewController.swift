@@ -403,7 +403,18 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             }
             break
         case .move:
-            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            
+            if controller == self.taskInvitationFetchedResultsController {
+                self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            } else if controller == self.taskFetchedResultsController {
+                var realIndexPath: IndexPath
+                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                self.tableView.moveRow(at: indexPath!, to: realIndexPath)
+            }
         }
     }
     
