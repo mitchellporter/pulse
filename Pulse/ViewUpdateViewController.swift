@@ -19,6 +19,7 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
+    @IBOutlet weak var breakdownButton: UIButton!
     
     // Comment View outlets
     @IBOutlet weak var commentCloseButton: UIButton!
@@ -62,6 +63,7 @@ class ViewUpdateViewController: UIViewController {
         self.descriptionLabel.text = task.title
         
         guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
+        self.breakdownButton.alpha = updates.count > 1 ? 1.0 : 0.0
         guard let update: Update = updates.first else { return }
         
         let circlePercentage = update.completionPercentage * 0.01
@@ -170,6 +172,10 @@ class ViewUpdateViewController: UIViewController {
                 self.commentCoverView.removeFromSuperview()
             })
         }
+    }
+    
+    @IBAction func breakdownButtonPressed(_ sender: UIButton) {
+        // Do something
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
