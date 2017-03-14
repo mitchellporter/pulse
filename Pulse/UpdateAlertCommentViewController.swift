@@ -13,6 +13,8 @@ class UpdateAlertCommentViewController: AlertController {
     @IBOutlet weak var alertView: UIView!
     @IBOutlet weak var alertViewHeader: UIView!
     @IBOutlet weak var textView: UITextView!
+    
+    var comment: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,15 @@ class UpdateAlertCommentViewController: AlertController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.comment != "" {
+            self.textView.text = self.comment
+            textView.textColor = UIColor.black
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {

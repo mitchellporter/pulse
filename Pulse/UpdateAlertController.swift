@@ -172,7 +172,7 @@ class UpdateAlertController: AlertController {
         toVC.transitioningDelegate = self
         
         guard let comment: String = sender as? String else { return }
-        toVC.textView.text = comment
+        toVC.comment = comment
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
