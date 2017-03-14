@@ -67,6 +67,8 @@
 		C1B993391E6655C800A404C9 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993381E6655C800A404C9 /* ColorConstants.swift */; };
 		C1D11C151E771763005D2D18 /* UpdateAlertCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C141E771763005D2D18 /* UpdateAlertCommentViewController.swift */; };
 		C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */; };
+		C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D11C191E789252005D2D18 /* Onboarding.storyboard */; };
+		C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1B1E7892A5005D2D18 /* NewTeamNameViewController.swift */; };
 		C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */; };
 		C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DA11791E5FA85300AF752E /* CreateTask.storyboard */; };
 		C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */; };
@@ -216,6 +218,8 @@
 		C1B993381E6655C800A404C9 /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
 		C1D11C141E771763005D2D18 /* UpdateAlertCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentViewController.swift; sourceTree = "<group>"; };
 		C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentAnimator.swift; sourceTree = "<group>"; };
+		C1D11C191E789252005D2D18 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		C1D11C1B1E7892A5005D2D18 /* NewTeamNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamNameViewController.swift; sourceTree = "<group>"; };
 		C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C1DA11791E5FA85300AF752E /* CreateTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTask.storyboard; sourceTree = "<group>"; };
 		C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -438,6 +442,15 @@
 			name = CreateTaskViews;
 			sourceTree = "<group>";
 		};
+		C1D11C181E789217005D2D18 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				C1D11C1B1E7892A5005D2D18 /* NewTeamNameViewController.swift */,
+				C1D11C191E789252005D2D18 /* Onboarding.storyboard */,
+			);
+			name = Onboarding;
+			sourceTree = "<group>";
+		};
 		C1DA11781E5FA7C100AF752E /* CreateTask */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,6 +505,7 @@
 				C1B86B251E60C0FA00A3182A /* ViewTaskViewController.swift */,
 				C1B86B271E60E85200A3182A /* EditTaskViewController.swift */,
 				C356E4581E5E5AC700E215CF /* Main.storyboard */,
+				C1D11C181E789217005D2D18 /* Onboarding */,
 				C133AF401E6A1BB5008AD201 /* HomeViewController.swift */,
 				C133AF3E1E6A1B99008AD201 /* Home.storyboard */,
 				C356E45B1E5E5AC700E215CF /* Assets.xcassets */,
@@ -772,6 +786,7 @@
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
 				C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */,
 				C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */,
+				C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */,
 				C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */,
 				C1AD366E1E689F6C00C5A9AA /* UpdatesViewController.xib in Resources */,
 			);
@@ -931,6 +946,7 @@
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
 				C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */,
 				C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */,
+				C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */,
 				C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */,
 				C133AF451E6A27B7008AD201 /* NavigationController.swift in Sources */,
 				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,

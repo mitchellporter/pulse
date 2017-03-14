@@ -21,23 +21,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TeamspaceHomeLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bNM-Eg-z8e">
-                                <rect key="frame" x="87.5" y="172.5" width="200" height="33"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WorkBertLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bNM-Eg-z8e">
+                                <rect key="frame" x="66.5" y="88.5" width="242" height="201"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1La-4b-2rQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                <rect key="frame" x="55" y="476" width="265" height="52"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1La-4b-2rQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                <rect key="frame" x="52" y="476" width="271" height="52"/>
                                 <color key="backgroundColor" red="0.20392156859999999" green="0.61176470589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="265" id="exb-xX-Ecx"/>
+                                    <constraint firstAttribute="width" constant="271" id="exb-xX-Ecx"/>
                                     <constraint firstAttribute="height" constant="52" id="lL5-dG-zde"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <state key="normal" title="Create a new team">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="CREATE MY TEAM" backgroundImage="CreateMyTeamButton">
+                                    <color key="titleColor" red="0.20392156859999999" green="0.61176470589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
+                                        <real key="value" value="6"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -45,22 +45,25 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b0G-zl-lbk" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                <rect key="frame" x="55" y="547.5" width="265" height="52"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="52" y="547.5" width="271" height="52"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="TD0-5n-50N"/>
-                                    <constraint firstAttribute="width" constant="265" id="uB3-BT-RLx"/>
+                                    <constraint firstAttribute="width" constant="271" id="uB3-BT-RLx"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
-                                <state key="normal" title="Join a team">
-                                    <color key="titleColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="JOIN TEAM">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -75,14 +78,14 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <state key="normal" title="SIGN IN">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" white="0.0" alpha="0.35281999143835618" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="signInButtonPressed:" destination="xo4-k2-SZh" eventType="touchUpInside" id="Ee8-Gc-C1y"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2de-9o-SOJ">
-                                <rect key="frame" x="87.5" y="265" width="200" height="30"/>
+                                <rect key="frame" x="87.5" y="349" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="aG9-9f-V8P"/>
                                 </constraints>
@@ -94,7 +97,7 @@
                                 </connections>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="0.027585787699999999" green="0.12646174430000001" blue="0.22513502839999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.20392156859999999" green="0.61176470589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="2de-9o-SOJ" firstAttribute="top" secondItem="bNM-Eg-z8e" secondAttribute="bottom" constant="59.5" id="5be-x6-ftZ"/>
                             <constraint firstItem="2de-9o-SOJ" firstAttribute="centerX" secondItem="GnC-0d-dVc" secondAttribute="centerX" id="Dw1-l2-b7X"/>
@@ -116,11 +119,20 @@
                         <outlet property="signInButton" destination="DIA-s7-mtO" id="KGX-du-ZVe"/>
                         <outlet property="userField" destination="2de-9o-SOJ" id="2hR-dx-SPc"/>
                         <segue destination="cAa-n2-Tay" kind="show" identifier="toLogin" id="cAn-0u-51P"/>
+                        <segue destination="67t-fP-ktw" kind="show" identifier="create" id="VO4-Pi-k5y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="56w-GO-PeY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="164.16791604197903"/>
+        </scene>
+        <!--Onboarding-->
+        <scene sceneID="aoV-X0-BfB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Onboarding" id="67t-fP-ktw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WPC-cf-jq9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1743" y="30"/>
         </scene>
         <!--Main-->
         <scene sceneID="Reh-3c-dZV">
@@ -150,6 +162,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="TeamspaceHomeLogo" width="200" height="33"/>
+        <image name="CreateMyTeamButton" width="271" height="52"/>
+        <image name="WorkBertLogo" width="242" height="201"/>
     </resources>
 </document>
