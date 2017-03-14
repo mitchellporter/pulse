@@ -39,8 +39,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIButton) {
-//        self.performSegue(withIdentifier: "toLogin", sender: nil)
-        AlertManager.presentAlert(ofType: .update, with: nil)
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
     
     @IBAction func joinButtonPressed(_ sender: UIButton) {
