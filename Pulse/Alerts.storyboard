@@ -64,6 +64,14 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-Jj-GD5" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="288" y="14" width="20" height="22"/>
                                                 <state key="normal" image="CommentBubble"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
+                                                        <real key="value" value="50"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="commentButtonPressed:" destination="4GS-KF-ndx" eventType="touchUpInside" id="uaf-xX-IJ2"/>
                                                 </connections>
