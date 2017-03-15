@@ -45,7 +45,7 @@ class UpdatesViewController: UIViewController {
         // Task invitations
         let fetchRequest: NSFetchRequest<UpdateRequest> = UpdateRequest.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "receiver.objectId == %@", User.currentUserId())
+        let predicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "sent")
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
@@ -67,7 +67,8 @@ class UpdatesViewController: UIViewController {
         // Tasks
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        
+        let predicate = NSPredicate(format: "assigner.objectId == %@ AND updates.@count > 0", User.currentUserId())
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
@@ -88,11 +89,13 @@ class UpdatesViewController: UIViewController {
             try self.updateRequestFetchedResultsController.performFetch()
             try self.taskFetchedResultsController.performFetch()
             
+//            print(updateRequestFetchedResultsController.fetchedObjects!.first!.objectId)
+            
             //            print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections![0].numberOfObjects)")
             //            print("task frc sections nil?: \(self.taskFetchedResultsController.sections)")
             
-//            self.updateRequestFetchedResultsController.delegate = self
-//            self.taskFetchedResultsController.delegate = self
+            self.updateRequestFetchedResultsController.delegate = self
+            self.taskFetchedResultsController.delegate = self
             
             
             self.tableView.reloadData()
@@ -117,8 +120,8 @@ class UpdatesViewController: UIViewController {
                 try self.updateRequestFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
                 
-//                self.updateRequestFetchedResultsController.delegate = self
-//                self.taskFetchedResultsController.delegate = self
+                self.updateRequestFetchedResultsController.delegate = self
+                self.taskFetchedResultsController.delegate = self
                 
                 
                 //                print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
@@ -203,43 +206,107 @@ extension UpdatesViewController: UITableViewDelegate {
     
 }
 
-//extension MyTasksViewController: NSFetchedResultsControllerDelegate {
-//    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.beginUpdates()
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//        
-//        // If the controller is the invitation controller, then just use the section Index like normal
-//    
-//        switch type {
-//        case .insert:
-//            self.tableView.insertSections([sectionIndex], with: .fade)
-//        case .delete:
-//            self.tableView.deleteSections([sectionIndex], with: .fade)
-//        case .move:
-//            break
-//        case .update:
-//            break
-//        }
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//        switch type {
-//        case .insert:
-//            self.tableView.insertRows(at: [newIndexPath!], with: .fade)
-//        case .delete:
-//            self.tableView.deleteRows(at: [newIndexPath!], with: .fade)
-//        case .update: // lots
-//                let task = anObject as! Task
-//                cell.load(task: task, type: .assignee)
-//        case .move:
-//            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
-//        }
-//    }
-//    
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.endUpdates()
-//    }
-//}
+extension UpdatesViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        
+        // If the controller is the invitation controller, then just use the section Index like normal
+        
+        switch type {
+        case .insert:
+            if controller == self.updateRequestFetchedResultsController {
+                self.tableView.insertSections([sectionIndex], with: .fade)
+            } else {
+                
+                var realSectionIndex: Int
+                if (self.updateRequestFetchedResultsController.fetchedObjects?.count != 0) {
+                    realSectionIndex = sectionIndex + 1
+                } else {
+                    realSectionIndex = sectionIndex
+                }
+                self.tableView.insertSections([realSectionIndex], with: .fade)
+            }
+        case .delete:
+            self.tableView.deleteSections([sectionIndex], with: .fade)
+        case .move:
+            break
+        case .update:
+            break
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert: // a few
+            
+            if controller == self.updateRequestFetchedResultsController {
+                self.tableView.insertRows(at: [newIndexPath!], with: .fade)
+            } else  {
+                
+                var realIndexPath: IndexPath
+                if (self.updateRequestFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section)
+                }
+                
+                self.tableView.insertRows(at: [realIndexPath], with: .fade)
+            }
+            
+        case .delete:
+            
+            if controller == self.updateRequestFetchedResultsController {
+                self.tableView.deleteRows(at: [indexPath!], with: .fade)
+                
+            } else {
+                
+                var realIndexPath: IndexPath
+                if (self.updateRequestFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                self.tableView.deleteRows(at: [realIndexPath], with: .fade)
+            }
+            
+        case .update: // lots
+            
+            if controller == self.updateRequestFetchedResultsController {
+                print("task invitation controller")
+                if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
+                    
+                    let task = self.taskFetchedResultsController.fetchedObjects!.first!
+                    cell.load(task: task, type: .assigner)
+                }
+                
+            } else  {
+                
+                
+                var realIndexPath: IndexPath
+                if (self.updateRequestFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                
+                if let cell = self.tableView.cellForRow(at: realIndexPath) as? TaskCell {
+                    
+                    let task = anObject as! Task
+                    cell.load(task: task, type: .assigner)
+                }
+            }
+            break
+        case .move:
+            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+}
+

@@ -201,6 +201,11 @@ class EditTaskViewController: UIViewController {
     
     @IBAction func requestButtonPressed(_ sender: UIButton) {
         guard let task: Task = self.task else { print("No task"); return }
+        UpdateService.requestTaskUpdate(taskId: task.objectId, success: { (updateRequest) in
+            CoreDataStack.shared.saveContext()
+        }) { (error, statusCode) in
+            // TODO: Handle error
+        }
         if let status = self.status {
             switch(status) {
             case .pending:

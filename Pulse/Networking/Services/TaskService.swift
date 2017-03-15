@@ -14,14 +14,22 @@ typealias TasksServiceSuccess = (_ tasks: [Task]) -> ()
 typealias MyTasksSuccess = () -> ()
 
 struct TaskService {
-    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?, success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .createTask(title: title, items: items, assignees: assignees, dueDate: dueDate, updateDays: updateDays), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let taskJSON = json["task"].dictionaryObject {
                     let task = Task.from(json: taskJSON as [String : AnyObject], context: CoreDataStack.shared.context)
-                    success(task)
                 }
+                
+                if let taskInvitationsJSON = json["task_invitations"].arrayObject {
+                    var taskInvitations = [TaskInvitation]()
+                    taskInvitationsJSON.forEach({ (taskInvitationJSON) in
+                        let taskInvitation = TaskInvitation.from(json: taskInvitationJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
+                        taskInvitations.append(taskInvitation)
+                    })
+                }
+                success()
             }
         }) { (error, statusCode) in
             failure(error, statusCode)
