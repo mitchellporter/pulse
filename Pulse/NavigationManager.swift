@@ -73,4 +73,12 @@ class NavigationManager {
             taskController.performSegue(withIdentifier: "viewTask", sender: taskInvitation)
         }
     }
+    
+    static func dismissOnboarding() {
+        let mainController = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController() as! TaskViewController
+        guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
+        guard let rootController = navigationController.viewControllers[0] as? HomeViewController else { return }
+        let viewControllers = [rootController, mainController]
+        navigationController.setViewControllers(viewControllers, animated: true)
+    }
 }

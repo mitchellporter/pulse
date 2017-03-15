@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "CreateMyTeamButton.png",
+      "filename" : "WhiteStarButtonBackground.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "CreateMyTeamButton@2x.png",
+      "filename" : "WhiteStarButtonBackground@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "CreateMyTeamButton@3x.png",
+      "filename" : "WhiteStarButtonBackground@3x.png",
       "scale" : "3x"
     }
   ],

@@ -33,6 +33,6 @@ class NewTeamInviteViewController: UIViewController {
     }
     
     @IBAction func skipButtonPressed(_ sender: UIButton) {
-        //
+        NavigationManager.dismissOnboarding()
     }
 }

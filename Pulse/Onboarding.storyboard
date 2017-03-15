@@ -510,53 +510,96 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZdK-8f-lfI">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZdK-8f-lfI">
                                 <rect key="frame" x="0.0" y="290" width="375" height="377"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-AC-pTW">
-                                        <rect key="frame" x="160" y="30" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workbert is better with others" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sqf-AC-pTW">
+                                        <rect key="frame" x="57.5" y="38.5" width="260.5" height="21"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRP-m5-yzU">
-                                        <rect key="frame" x="160" y="94" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make sure to invite people to your new team. If you invite 5 or more people we’ll give you $10* after they signup." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XRP-m5-yzU">
+                                        <rect key="frame" x="47.5" y="88" width="280.5" height="54"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="nSo-bH-4fw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCN-ij-miA">
-                                        <rect key="frame" x="147" y="185" width="68" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Contacts"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TCN-ij-miA" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                        <rect key="frame" x="52" y="177.5" width="271" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="5Hp-el-sPs"/>
+                                            <constraint firstAttribute="width" constant="271" id="pBC-BD-Y7o"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                        <state key="normal" title="LETS USE MY CONTACTS" backgroundImage="BlueStarButtonBackground">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="contactsButtonPressed:" destination="DKM-iE-Tle" eventType="touchUpInside" id="f7Q-w4-Ahq"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNw-aK-lwT">
-                                        <rect key="frame" x="160" y="242" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Email"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jNw-aK-lwT" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                        <rect key="frame" x="52" y="246.5" width="271" height="48"/>
+                                        <color key="backgroundColor" red="0.90588235294117647" green="0.90588235294117647" blue="0.90588235294117647" alpha="1" colorSpace="deviceRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="2zC-Bg-jfa"/>
+                                            <constraint firstAttribute="width" constant="271" id="ZXj-3Y-C0p"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <state key="normal" title="I WOULD RATHER EMAIL PEOPLE">
+                                            <color key="titleColor" red="0.015686274509803921" green="0.17254901960784313" blue="0.29019607843137252" alpha="0.60257919520547942" colorSpace="deviceRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="emailButtonPressed:" destination="DKM-iE-Tle" eventType="touchUpInside" id="0VO-Za-FE1"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc3-iA-y70">
-                                        <rect key="frame" x="158" y="305" width="46" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Skip"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cc3-iA-y70" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                        <rect key="frame" x="142" y="322" width="91" height="27"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <state key="normal" title="SKIP FOR NOW">
+                                            <color key="titleColor" white="0.0" alpha="0.36748180650684931" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="skipButtonPressed:" destination="DKM-iE-Tle" eventType="touchUpInside" id="ddr-mU-gcQ"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Sqf-AC-pTW" firstAttribute="centerY" secondItem="ZdK-8f-lfI" secondAttribute="centerY" multiplier="0.26" id="65k-eA-0lE"/>
+                                    <constraint firstItem="XRP-m5-yzU" firstAttribute="centerX" secondItem="ZdK-8f-lfI" secondAttribute="centerX" id="AwC-nK-1Xf"/>
+                                    <constraint firstItem="jNw-aK-lwT" firstAttribute="centerY" secondItem="ZdK-8f-lfI" secondAttribute="centerY" multiplier="1.435" id="G1c-Wo-hDW"/>
+                                    <constraint firstItem="XRP-m5-yzU" firstAttribute="centerY" secondItem="ZdK-8f-lfI" secondAttribute="centerY" multiplier="0.61" id="HDP-h4-zNE"/>
+                                    <constraint firstItem="jNw-aK-lwT" firstAttribute="centerX" secondItem="ZdK-8f-lfI" secondAttribute="centerX" id="Hah-4g-LOG"/>
+                                    <constraint firstAttribute="height" constant="377" id="HuP-Dv-Gdd"/>
+                                    <constraint firstItem="TCN-ij-miA" firstAttribute="centerX" secondItem="ZdK-8f-lfI" secondAttribute="centerX" id="Jnc-s4-qCc"/>
+                                    <constraint firstItem="TCN-ij-miA" firstAttribute="centerY" secondItem="ZdK-8f-lfI" secondAttribute="centerY" multiplier="1.07" id="U6K-8C-1qf"/>
+                                    <constraint firstItem="Cc3-iA-y70" firstAttribute="centerY" secondItem="ZdK-8f-lfI" secondAttribute="centerY" multiplier="1.78" id="hWC-h3-DYS"/>
+                                    <constraint firstItem="Cc3-iA-y70" firstAttribute="centerX" secondItem="ZdK-8f-lfI" secondAttribute="centerX" id="ibU-nf-aRC"/>
+                                    <constraint firstItem="Sqf-AC-pTW" firstAttribute="centerX" secondItem="ZdK-8f-lfI" secondAttribute="centerX" id="taS-EV-jGq"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.24313725489999999" green="0.68235294120000001" blue="1" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="ZdK-8f-lfI" firstAttribute="leading" secondItem="5dM-ux-3ME" secondAttribute="leading" id="Fat-kf-Qpv"/>
+                            <constraint firstItem="lt5-XO-FJ1" firstAttribute="top" secondItem="ZdK-8f-lfI" secondAttribute="bottom" id="bsb-X6-JIb"/>
+                            <constraint firstAttribute="trailing" secondItem="ZdK-8f-lfI" secondAttribute="trailing" id="mYi-hB-QBL"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="contactsButton" destination="TCN-ij-miA" id="XSZ-Dc-fLg"/>
@@ -572,6 +615,7 @@
     <resources>
         <image name="BackArrow" width="22" height="17"/>
         <image name="Bert" width="120" height="108"/>
+        <image name="BlueStarButtonBackground" width="271" height="48"/>
         <image name="CloseX" width="17" height="15"/>
         <image name="Sherburt" width="70" height="70"/>
     </resources>

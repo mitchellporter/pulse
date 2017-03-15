@@ -32,7 +32,7 @@
                                     <constraint firstAttribute="height" constant="52" id="lL5-dG-zde"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                <state key="normal" title="CREATE MY TEAM" backgroundImage="CreateMyTeamButton">
+                                <state key="normal" title="CREATE MY TEAM" backgroundImage="WhiteStarButtonBackground">
                                     <color key="titleColor" red="0.20392156859999999" green="0.61176470589999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -162,7 +162,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="CreateMyTeamButton" width="271" height="52"/>
+        <image name="WhiteStarButtonBackground" width="271" height="52"/>
         <image name="WorkBertLogo" width="242" height="201"/>
     </resources>
 </document>
