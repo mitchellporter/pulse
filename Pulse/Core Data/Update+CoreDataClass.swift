@@ -39,13 +39,14 @@ extension Update: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let completionPercentage = json["completion_percentage"] as! Float
+        let type = json["type"] as! String
         
         let description = NSEntityDescription.entity(forEntityName: "Update", in: context)!
         let update = Update(entity: description, insertInto: context)
         update.objectId = objectId
         update.createdAt = createdAt
         update.updatedAt = updatedAt
+        update.type = type
         
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context)

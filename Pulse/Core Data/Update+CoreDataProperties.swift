@@ -20,7 +20,7 @@ extension Update {
     @NSManaged public var objectId: String
     @NSManaged public var updatedAt: Date?
     @NSManaged public var type: String?
-    @NSManaged public var task: Task?
+    @NSManaged public var task: Task
     @NSManaged public var responses: NSSet?
 
 }
