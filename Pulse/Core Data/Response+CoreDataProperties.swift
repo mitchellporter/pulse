@@ -14,7 +14,7 @@ import CoreData
 extension Response {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Response> {
-        return NSFetchRequest<Response>(entityName: "Response");
+        return NSFetchRequest<Response>(entityName: "Response")
     }
 
     @NSManaged public var objectId: String
