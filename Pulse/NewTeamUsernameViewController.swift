@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamUsernameViewController: UIViewController {
+class NewTeamUsernameViewController: UIViewController, Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var takenLabel: UILabel!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamInviteViewController: UIViewController {
+class NewTeamInviteViewController: UIViewController, Onboarding {
     
     @IBOutlet weak var contactsButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!

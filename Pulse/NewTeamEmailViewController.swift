@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamEmailViewController: UIViewController {
+class NewTeamEmailViewController: UIViewController, Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var backButton: UIButton!

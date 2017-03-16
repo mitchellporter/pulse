@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamPasswordViewController: UIViewController {
+class NewTeamPasswordViewController: UIViewController, Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var backButton: UIButton!

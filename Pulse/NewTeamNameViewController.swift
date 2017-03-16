@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamNameViewController: UIViewController {
+class NewTeamNameViewController: UIViewController, Onboarding {
     
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!

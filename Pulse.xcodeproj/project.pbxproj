@@ -73,6 +73,7 @@
 		C1D11C201E79CBEC005D2D18 /* NewTeamEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1F1E79CBEC005D2D18 /* NewTeamEmailViewController.swift */; };
 		C1D11C221E79CBFA005D2D18 /* NewTeamPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C211E79CBFA005D2D18 /* NewTeamPasswordViewController.swift */; };
 		C1D11C241E79CC14005D2D18 /* NewTeamInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C231E79CC14005D2D18 /* NewTeamInviteViewController.swift */; };
+		C1D11C291E7A0D44005D2D18 /* OnboardingTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C281E7A0D44005D2D18 /* OnboardingTransition.swift */; };
 		C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */; };
 		C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1DA11791E5FA85300AF752E /* CreateTask.storyboard */; };
 		C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */; };
@@ -228,6 +229,7 @@
 		C1D11C1F1E79CBEC005D2D18 /* NewTeamEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamEmailViewController.swift; sourceTree = "<group>"; };
 		C1D11C211E79CBFA005D2D18 /* NewTeamPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamPasswordViewController.swift; sourceTree = "<group>"; };
 		C1D11C231E79CC14005D2D18 /* NewTeamInviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamInviteViewController.swift; sourceTree = "<group>"; };
+		C1D11C281E7A0D44005D2D18 /* OnboardingTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTransition.swift; sourceTree = "<group>"; };
 		C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		C1DA11791E5FA85300AF752E /* CreateTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CreateTask.storyboard; sourceTree = "<group>"; };
 		C1DA117B1E5FA9A900AF752E /* CreateTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
@@ -459,8 +461,17 @@
 				C1D11C211E79CBFA005D2D18 /* NewTeamPasswordViewController.swift */,
 				C1D11C231E79CC14005D2D18 /* NewTeamInviteViewController.swift */,
 				C1D11C191E789252005D2D18 /* Onboarding.storyboard */,
+				C1D11C271E7A0D1A005D2D18 /* Transitions */,
 			);
 			name = Onboarding;
+			sourceTree = "<group>";
+		};
+		C1D11C271E7A0D1A005D2D18 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				C1D11C281E7A0D44005D2D18 /* OnboardingTransition.swift */,
+			);
+			name = Transitions;
 			sourceTree = "<group>";
 		};
 		C1DA11781E5FA7C100AF752E /* CreateTask */ = {
@@ -950,6 +961,7 @@
 				C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
 				C3522F821E6F8AAE00C689D9 /* TaskInvitationService.swift in Sources */,
+				C1D11C291E7A0D44005D2D18 /* OnboardingTransition.swift in Sources */,
 				C3DBA95F1E67920900859D4E /* Update+CoreDataProperties.swift in Sources */,
 				C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */,
 				C1B993221E64B20600A404C9 /* CreateTaskItemCell.swift in Sources */,
