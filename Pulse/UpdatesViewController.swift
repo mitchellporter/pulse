@@ -56,9 +56,6 @@ class UpdatesViewController: UIViewController {
         // So the FRC delegate's "did change an object" method was getting called, but the "did change section info" was not. Because it wasn't being called, we couldn't insert an additional section...
         // so the calculated section value of 3 wasn't matching up to the total section count as a result of all my frc delegate method implementations, and the counts need to match. I fixed this by setting a sectionNameKeyPath on the task invite FRC.
         self.updateFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
-        //        self.taskInvitationFetchedResultsController.delegate = self
-        //        print("invitation frc sections nil?: \(self.taskInvitationFetchedResultsController.sections)")
-        
     }
     
     private func fetchData() {
@@ -67,36 +64,28 @@ class UpdatesViewController: UIViewController {
         
         // Check cache
         do {
-            try self.updateRequestFetchedResultsController.performFetch()
-            
-            self.updateRequestFetchedResultsController.delegate = self
-            
-            
+            try self.updateFetchedResultsController.performFetch()
+            self.updateFetchedResultsController.delegate = self
             self.tableView.reloadData()
         } catch {
             print("fetched results controller error: \(error)")
         }
         
-        TaskService.getUpdatesFeed(success: {
-            
-            // If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
+        FeedService.getUpdatesFeed(success: { (updates) in
+            // NOTE: If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
             self.updateFetchedResultsController.delegate = nil
             
             CoreDataStack.shared.saveContext()
             
-            
             do {
                 try self.updateFetchedResultsController.performFetch()
-                
                 self.updateFetchedResultsController.delegate = self
-                
                 self.tableView.reloadData()
             } catch {
                 print("fetched results controller error: \(error)")
             }
-            
         }) { (error, statusCode) in
-            // TODO: Handle failure
+            // TODO: Handle error
         }
     }
 
