@@ -46,26 +46,17 @@ extension Update: PulseType {
         update.objectId = objectId
         update.createdAt = createdAt
         update.updatedAt = updatedAt
-        update.completionPercentage = completionPercentage
-        
-        if let updateRequestJSON = json["update_request"] as? [String: AnyObject] {
-            let updateRequest = UpdateRequest.from(json: updateRequestJSON, context: context)
-            update.updateRequest = updateRequest
-        }
-        
-        if let senderJSON = json["sender"] as? [String: AnyObject] {
-            let sender = User.from(json: senderJSON, context: context)
-            update.sender = sender
-        }
-        
-        if let receiverJSON = json["receiver"] as? [String: AnyObject] {
-            let receiver = User.from(json: receiverJSON, context: context)
-            update.receiver = receiver
-        }
         
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context)
             update.task = task
+        }
+        
+        if let responsesJSON = json["responses"] as? [[String: AnyObject]] {
+            responsesJSON.forEach { responseJSON in
+                let response = Response.from(json: responseJSON, context: context)
+                update.addToResponses(response)
+            }
         }
     
         return update
