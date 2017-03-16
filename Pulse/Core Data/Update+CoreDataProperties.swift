@@ -2,7 +2,7 @@
 //  Update+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 3/7/17.
+//  Created by Mitchell Porter on 3/16/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -16,13 +16,28 @@ extension Update {
         return NSFetchRequest<Update>(entityName: "Update");
     }
 
-    @NSManaged public var completionPercentage: Float
     @NSManaged public var createdAt: Date?
     @NSManaged public var objectId: String
     @NSManaged public var updatedAt: Date?
-    @NSManaged public var sender: User?
-    @NSManaged public var updateRequest: UpdateRequest?
-    @NSManaged public var receiver: User?
+    @NSManaged public var type: String?
     @NSManaged public var task: Task?
+    @NSManaged public var responses: NSSet?
+
+}
+
+// MARK: Generated accessors for responses
+extension Update {
+
+    @objc(addResponsesObject:)
+    @NSManaged public func addToResponses(_ value: Response)
+
+    @objc(removeResponsesObject:)
+    @NSManaged public func removeFromResponses(_ value: Response)
+
+    @objc(addResponses:)
+    @NSManaged public func addToResponses(_ values: NSSet)
+
+    @objc(removeResponses:)
+    @NSManaged public func removeFromResponses(_ values: NSSet)
 
 }
