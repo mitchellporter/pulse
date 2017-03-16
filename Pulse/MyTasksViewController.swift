@@ -207,6 +207,7 @@ extension MyTasksViewController: UITableViewDataSource {
                 return self.taskInvitationFetchedResultsController.fetchedObjects?.count ?? 0
             }
             let sectionInfo = self.taskFetchedResultsController.sections![0]
+            print(sectionInfo.numberOfObjects)
             return sectionInfo.numberOfObjects
         case 1:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
@@ -216,13 +217,16 @@ extension MyTasksViewController: UITableViewDataSource {
                 
                 if (sections.count != 0) {
                     let sectionInfo = sections[0]
+                    print(sectionInfo.numberOfObjects)
                     return sectionInfo.numberOfObjects
                 }
             }
             let sectionInfo = self.taskFetchedResultsController.sections![1]
+            print(sectionInfo.numberOfObjects)
             return sectionInfo.numberOfObjects
         case 2:
             let sectionInfo = self.taskFetchedResultsController.sections![1]
+            print(sectionInfo.numberOfObjects)
             return sectionInfo.numberOfObjects
         default: return 0 // This should never hit
         }
@@ -341,7 +345,7 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
                 self.tableView.insertSections([realSectionIndex], with: .fade)
             }
         case .delete:
-            self.tableView.deleteSections([sectionIndex], with: .fade)
+            self.tableView.deleteSections([sectionIndex + 1], with: .fade) // this fixed it but unhardcode this
         case .move:
             break
         case .update:
@@ -409,11 +413,17 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             } else if controller == self.taskFetchedResultsController {
                 var realIndexPath: IndexPath
                 if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section + 1)
                 } else {
-                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section)
                 }
-                self.tableView.moveRow(at: indexPath!, to: realIndexPath)
+//                self.tableView.moveRow(at: indexPath!, to: realIndexPath)
+                
+                /////
+                    let deleteIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                    self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
+                    self.tableView.insertRows(at: [realIndexPath], with: .fade)
+                
             }
         }
     }
