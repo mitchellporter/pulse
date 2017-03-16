@@ -11,8 +11,6 @@ import CoreData
 
 class UpdatesViewController: UIViewController {
 
-    
-    
     @IBOutlet weak var tableView: UITableView!
     var updateFetchedResultsController: NSFetchedResultsController<Update>!
     
@@ -42,7 +40,7 @@ class UpdatesViewController: UIViewController {
     private func setupCoreData() {
         // Task invitations
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
-        let sort = NSSortDescriptor(key: "taskAssignerIsCurrentUser", ascending: false)
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
 //        let pred1 = NSPredicate(format: "ANY responses.assignee.objectId == %@", User.currentUserId())
 //        let predicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "sent")
@@ -57,7 +55,7 @@ class UpdatesViewController: UIViewController {
         // This was causing update errors because I was manually calculating the sections count for the tableview to 3, but the task invite FRC had no context of "sections" because I wasn't setting a sectionNameKeyPath on it.
         // So the FRC delegate's "did change an object" method was getting called, but the "did change section info" was not. Because it wasn't being called, we couldn't insert an additional section...
         // so the calculated section value of 3 wasn't matching up to the total section count as a result of all my frc delegate method implementations, and the counts need to match. I fixed this by setting a sectionNameKeyPath on the task invite FRC.
-        self.updateFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        self.updateFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "taskAssignerIsCurrentUser", cacheName: nil)
     }
     
     private func fetchData() {
@@ -99,7 +97,7 @@ class UpdatesViewController: UIViewController {
 
 extension UpdatesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return self.updateFetchedResultsController.sections?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
