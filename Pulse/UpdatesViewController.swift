@@ -42,11 +42,13 @@ class UpdatesViewController: UIViewController {
     private func setupCoreData() {
         // Task invitations
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        let predicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "sent")
+        let sort = NSSortDescriptor(key: "taskAssignerIsCurrentUser", ascending: false)
+        
+//        let pred1 = NSPredicate(format: "ANY responses.assignee.objectId == %@", User.currentUserId())
+//        let predicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "sent")
         
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = predicate
+//        fetchRequest.predicate = predicate
         
         // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods.
         // Here's the specific problem I kept running into:
