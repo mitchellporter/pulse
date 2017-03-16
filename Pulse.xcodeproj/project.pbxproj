@@ -101,6 +101,7 @@
 		C3A398B91E68E70C007E3BD8 /* UpdateRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */; };
 		C3A3EDD01E7B399B00560678 /* Response+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */; };
 		C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */; };
+		C3A3EDD31E7B48AC00560678 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDD21E7B48AC00560678 /* FeedService.swift */; };
 		C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */; };
 		C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */; };
 		C3DBA95F1E67920900859D4E /* Update+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */; };
@@ -251,6 +252,7 @@
 		C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateRequestCell.xib; sourceTree = "<group>"; };
 		C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Response+CoreDataClass.swift"; path = "Core Data/Response+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Response+CoreDataProperties.swift"; path = "Core Data/Response+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C3A3EDD21E7B48AC00560678 /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedService.swift; path = Networking/Services/FeedService.swift; sourceTree = "<group>"; };
 		C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateService.swift; path = Networking/Services/UpdateService.swift; sourceTree = "<group>"; };
 		C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Update+CoreDataClass.swift"; path = "Core Data/Update+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3DBA95D1E67920900859D4E /* Update+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Update+CoreDataProperties.swift"; path = "Core Data/Update+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -530,6 +532,7 @@
 				C356E4C71E5FC52600E215CF /* TaskService.swift */,
 				C3510B9C1E60D8F600EEA4E0 /* TeamService.swift */,
 				C3522F811E6F8AAE00C689D9 /* TaskInvitationService.swift */,
+				C3A3EDD21E7B48AC00560678 /* FeedService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -902,6 +905,7 @@
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
+				C3A3EDD31E7B48AC00560678 /* FeedService.swift in Sources */,
 				C1AD36851E68F0DB00C5A9AA /* Utilities.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */,
