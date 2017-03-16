@@ -22,7 +22,7 @@ extension Update {
     @NSManaged public var type: String?
     @NSManaged public var task: Task
     @NSManaged public var responses: NSSet?
-
+    @NSManaged public var taskAssignerIsCurrentUser: Bool
 }
 
 // MARK: Generated accessors for responses

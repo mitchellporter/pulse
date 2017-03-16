@@ -51,6 +51,9 @@ extension Update: PulseType {
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context)
             update.task = task
+            
+            // TODO: Clean this up
+            update.taskAssignerIsCurrentUser = User.currentUserId() == task.assigner!.objectId
         }
         
         if let responsesJSON = json["responses"] as? [[String: AnyObject]] {
