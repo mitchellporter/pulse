@@ -1968,7 +1968,7 @@
 			baseConfigurationReference = CAD539A276DBE6C2FD301F9F /* Pods-Pulse.local.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				API_BASE_URL = "192.168.1.133:3000";
+				API_BASE_URL = "192.168.1.103:3000";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Pulse Local";
