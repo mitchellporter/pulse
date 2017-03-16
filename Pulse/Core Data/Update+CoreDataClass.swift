@@ -15,6 +15,17 @@ public class Update: NSManagedObject {
 
 }
 
+extension Update {
+    var mostRecentResponse: Response? {
+        return self.responsesSortedByRecency()?.first
+    }
+    
+    func responsesSortedByRecency() -> [Response]? {
+        guard let responses = self.responses else { return nil }
+        return responses.sorted { $0.createdAt! > $1.createdAt! }
+    }
+}
+
 extension Update: PulseType {
     typealias T = Update
     

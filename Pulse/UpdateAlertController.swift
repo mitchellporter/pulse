@@ -30,7 +30,7 @@ class UpdateAlertController: AlertController {
     private var circleFrame: CGRect = CGRect(x: 7.5, y: 7.5, width: 160, height: 160)
     private var percentInterval: CGFloat = 0.1
     
-    var updateRequest: UpdateRequest?
+    var update: Update?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +41,8 @@ class UpdateAlertController: AlertController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let updateRequest: UpdateRequest = self.updateRequest else { return }
-        guard let task: Task = updateRequest.task else { return }
+        guard let update: Update = self.update else { return }
+        guard let task: Task = update.task else { return }
         if let assigner: User = task.assigner {
             self.assignedToLabel.text = "Assigned by: \(assigner.name)"
         } else {
@@ -151,13 +151,15 @@ class UpdateAlertController: AlertController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        if self.updateRequest != nil {
-            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
-                // Success, do something
-                
-            }, failure: { (error, statusCode) in
-                print("Error: \(statusCode) \(error.localizedDescription)")
-            })
+        if self.update != nil {
+            
+            // TODO: Implement
+//            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+//                // Success, do something
+//                
+//            }, failure: { (error, statusCode) in
+//                print("Error: \(statusCode) \(error.localizedDescription)")
+//            })
         }
         AlertManager.dismissAlert()
     }

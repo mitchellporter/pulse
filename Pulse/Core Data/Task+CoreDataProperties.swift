@@ -84,23 +84,6 @@ extension Task {
 
 }
 
-// MARK: Generated accessors for updateRequests
-extension Task {
-
-    @objc(addUpdateRequestsObject:)
-    @NSManaged public func addToUpdateRequests(_ value: UpdateRequest)
-
-    @objc(removeUpdateRequestsObject:)
-    @NSManaged public func removeFromUpdateRequests(_ value: UpdateRequest)
-
-    @objc(addUpdateRequests:)
-    @NSManaged public func addToUpdateRequests(_ values: NSSet)
-
-    @objc(removeUpdateRequests:)
-    @NSManaged public func removeFromUpdateRequests(_ values: NSSet)
-
-}
-
 // MARK: Generated accessors for updates
 extension Task {
 

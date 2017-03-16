@@ -97,8 +97,8 @@
 		C39D04171E70D5600054BC93 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D04161E70D5600054BC93 /* SocketManager.swift */; };
 		C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */; };
 		C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */; };
-		C3A398B71E68E533007E3BD8 /* UpdateRequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A398B61E68E533007E3BD8 /* UpdateRequestCell.swift */; };
-		C3A398B91E68E70C007E3BD8 /* UpdateRequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */; };
+		C3A398B71E68E533007E3BD8 /* UpdateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A398B61E68E533007E3BD8 /* UpdateCell.swift */; };
+		C3A398B91E68E70C007E3BD8 /* UpdateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A398B81E68E70C007E3BD8 /* UpdateCell.xib */; };
 		C3A3EDD01E7B399B00560678 /* Response+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */; };
 		C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */; };
 		C3A3EDD31E7B48AC00560678 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDD21E7B48AC00560678 /* FeedService.swift */; };
@@ -248,8 +248,8 @@
 		C39D04161E70D5600054BC93 /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskInvitation+CoreDataClass.swift"; path = "Core Data/TaskInvitation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskInvitation+CoreDataProperties.swift"; path = "Core Data/TaskInvitation+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		C3A398B61E68E533007E3BD8 /* UpdateRequestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRequestCell.swift; sourceTree = "<group>"; };
-		C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateRequestCell.xib; sourceTree = "<group>"; };
+		C3A398B61E68E533007E3BD8 /* UpdateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateCell.swift; sourceTree = "<group>"; };
+		C3A398B81E68E70C007E3BD8 /* UpdateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateCell.xib; sourceTree = "<group>"; };
 		C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Response+CoreDataClass.swift"; path = "Core Data/Response+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Response+CoreDataProperties.swift"; path = "Core Data/Response+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C3A3EDD21E7B48AC00560678 /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedService.swift; path = Networking/Services/FeedService.swift; sourceTree = "<group>"; };
@@ -332,8 +332,8 @@
 				C1B86B1E1E60B4BF00A3182A /* TaskItemViewCell.xib */,
 				C1B86B211E60B51000A3182A /* TaskItemEditCell.swift */,
 				C1B86B221E60B51000A3182A /* TaskItemEditCell.xib */,
-				C3A398B61E68E533007E3BD8 /* UpdateRequestCell.swift */,
-				C3A398B81E68E70C007E3BD8 /* UpdateRequestCell.xib */,
+				C3A398B61E68E533007E3BD8 /* UpdateCell.swift */,
+				C3A398B81E68E70C007E3BD8 /* UpdateCell.xib */,
 			);
 			name = TaskViews;
 			sourceTree = "<group>";
@@ -761,7 +761,7 @@
 				C1AD36681E689F4A00C5A9AA /* MyTasksViewController.xib in Resources */,
 				C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */,
 				C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */,
-				C3A398B91E68E70C007E3BD8 /* UpdateRequestCell.xib in Resources */,
+				C3A398B91E68E70C007E3BD8 /* UpdateCell.xib in Resources */,
 				C1AD36721E689F7900C5A9AA /* CreatedTasksViewController.xib in Resources */,
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
 				C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */,
@@ -956,7 +956,7 @@
 				C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */,
 				C1B86B261E60C0FA00A3182A /* ViewTaskViewController.swift in Sources */,
 				C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */,
-				C3A398B71E68E533007E3BD8 /* UpdateRequestCell.swift in Sources */,
+				C3A398B71E68E533007E3BD8 /* UpdateCell.swift in Sources */,
 				C1B9932C1E660CE100A404C9 /* CreateTaskAssignCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

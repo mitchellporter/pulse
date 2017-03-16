@@ -69,5 +69,6 @@ extension Response: PulseType {
             let assignee = User.from(json: assigneeJSON, context: context)
             response.assignee = assignee
         }
+        return response
     }
 }

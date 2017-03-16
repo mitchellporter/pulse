@@ -86,23 +86,6 @@ extension User {
 
 }
 
-// MARK: Generated accessors for receivedUpdateRequests
-extension User {
-
-    @objc(addReceivedUpdateRequestsObject:)
-    @NSManaged public func addToReceivedUpdateRequests(_ value: UpdateRequest)
-
-    @objc(removeReceivedUpdateRequestsObject:)
-    @NSManaged public func removeFromReceivedUpdateRequests(_ value: UpdateRequest)
-
-    @objc(addReceivedUpdateRequests:)
-    @NSManaged public func addToReceivedUpdateRequests(_ values: NSSet)
-
-    @objc(removeReceivedUpdateRequests:)
-    @NSManaged public func removeFromReceivedUpdateRequests(_ values: NSSet)
-
-}
-
 // MARK: Generated accessors for receivedUpdates
 extension User {
 
@@ -134,23 +117,6 @@ extension User {
 
     @objc(removeSentTaskInvitations:)
     @NSManaged public func removeFromSentTaskInvitations(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for sentUpdateRequests
-extension User {
-
-    @objc(addSentUpdateRequestsObject:)
-    @NSManaged public func addToSentUpdateRequests(_ value: UpdateRequest)
-
-    @objc(removeSentUpdateRequestsObject:)
-    @NSManaged public func removeFromSentUpdateRequests(_ value: UpdateRequest)
-
-    @objc(addSentUpdateRequests:)
-    @NSManaged public func addToSentUpdateRequests(_ values: NSSet)
-
-    @objc(removeSentUpdateRequests:)
-    @NSManaged public func removeFromSentUpdateRequests(_ values: NSSet)
 
 }
 
