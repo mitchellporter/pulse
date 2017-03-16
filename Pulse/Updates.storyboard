@@ -552,10 +552,10 @@
             </objects>
             <point key="canvasLocation" x="837.60000000000002" y="145.27736131934034"/>
         </scene>
-        <!--View Controller-->
+        <!--View Update Breakdown View Controller-->
         <scene sceneID="kgn-Ug-Knn">
             <objects>
-                <viewController id="klg-s7-jQm" sceneMemberID="viewController">
+                <viewController id="klg-s7-jQm" customClass="ViewUpdateBreakdownViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ids-TJ-PC8"/>
                         <viewControllerLayoutGuide type="bottom" id="uWv-YP-aSU"/>
@@ -571,7 +571,7 @@
                                 <rect key="frame" x="0.0" y="245" width="375" height="422"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.76230736301369861" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fpu-qw-2gL">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fpu-qw-2gL">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="245"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -594,10 +594,13 @@
                             <constraint firstItem="Fpu-qw-2gL" firstAttribute="top" secondItem="ids-TJ-PC8" secondAttribute="bottom" id="zqN-PN-nEf"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="Fpu-qw-2gL" id="7wy-ra-OqN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXb-XJ-B5s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1613.5999999999999" y="145.27736131934034"/>
+            <point key="canvasLocation" x="1631" y="145"/>
         </scene>
     </scenes>
     <resources>

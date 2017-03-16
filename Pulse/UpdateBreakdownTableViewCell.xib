@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="UpdateBreakdownTableViewCell" customModule="Pulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="Pog-KC-Fy7">
+                        <rect key="frame" x="22" y="8" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="3nu-2i-n6K"/>
+                            <constraint firstAttribute="height" constant="32" id="EkM-J7-VBJ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adam Westerfield" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m4J-Jc-sEX">
+                        <rect key="frame" x="70" y="7" width="123" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lead Developer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tga-bA-Og1">
+                        <rect key="frame" x="70" y="24" width="107" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" white="0.0" alpha="0.44199486301369861" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4h-2p-a8s">
+                        <rect key="frame" x="273.5" y="17" width="30.5" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-xp-BF9" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                        <rect key="frame" x="221" y="8" width="77" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="77" id="Nqf-9y-BJl"/>
+                            <constraint firstAttribute="height" constant="32" id="ddA-1u-gQP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                        <state key="normal" title="RESEND">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="resendButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yyn-0c-c9f"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="CzS-xp-BF9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5RP-Gz-WT2"/>
+                    <constraint firstItem="tga-bA-Og1" firstAttribute="leading" secondItem="Pog-KC-Fy7" secondAttribute="trailing" constant="16" id="8Ak-8X-iuS"/>
+                    <constraint firstItem="m4J-Jc-sEX" firstAttribute="bottom" secondItem="Pog-KC-Fy7" secondAttribute="centerY" id="8f4-r0-lIz"/>
+                    <constraint firstItem="tga-bA-Og1" firstAttribute="top" secondItem="Pog-KC-Fy7" secondAttribute="centerY" id="9zo-rK-975"/>
+                    <constraint firstItem="i4h-2p-a8s" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="1" id="RsF-Jf-SFI"/>
+                    <constraint firstAttribute="trailing" secondItem="CzS-xp-BF9" secondAttribute="trailing" constant="22" id="U1v-Lq-GRK"/>
+                    <constraint firstItem="Pog-KC-Fy7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="YfC-l4-wOC"/>
+                    <constraint firstItem="Pog-KC-Fy7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="axt-Q0-LHr"/>
+                    <constraint firstItem="m4J-Jc-sEX" firstAttribute="leading" secondItem="Pog-KC-Fy7" secondAttribute="trailing" constant="16" id="jjl-uH-yo1"/>
+                    <constraint firstAttribute="trailing" secondItem="i4h-2p-a8s" secondAttribute="trailing" constant="16" id="oPu-n5-o3U"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="avatarView" destination="Pog-KC-Fy7" id="yNS-vL-x4w"/>
+                <outlet property="nameLabel" destination="m4J-Jc-sEX" id="eJj-YK-PoG"/>
+                <outlet property="percentageLabel" destination="i4h-2p-a8s" id="Sj5-xm-TRq"/>
+                <outlet property="positionLabel" destination="tga-bA-Og1" id="NEA-5s-74j"/>
+                <outlet property="resendButton" destination="CzS-xp-BF9" id="m14-b5-cLC"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="53.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="DummyStoney" width="32" height="32"/>
+    </resources>
+</document>

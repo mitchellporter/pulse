@@ -175,7 +175,7 @@ class ViewUpdateViewController: UIViewController {
     }
     
     @IBAction func breakdownButtonPressed(_ sender: UIButton) {
-        // Do something
+        self.performSegue(withIdentifier: "breakdown", sender: nil)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

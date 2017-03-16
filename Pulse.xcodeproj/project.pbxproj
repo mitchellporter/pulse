@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		19BA1953E6BA977046D9D9D7 /* Pods_Pulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 642ABEEF6F9A9E7577030BAF /* Pods_Pulse.framework */; };
 		4F5D8C59254209F7064F6748 /* Pods_PulseTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0AA27FC1A0CDA00D0CC6FFC /* Pods_PulseTests.framework */; };
+		C1160E411E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E401E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift */; };
+		C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */; };
+		C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -165,6 +168,9 @@
 		6F7A72D97BDA05B27204B17D /* Pods-PulseTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.staging.xcconfig"; sourceTree = "<group>"; };
 		7F91BFCFE8C1C83B1CDCB955 /* Pods-Pulse.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pulse.beta.xcconfig"; path = "Pods/Target Support Files/Pods-Pulse/Pods-Pulse.beta.xcconfig"; sourceTree = "<group>"; };
 		B0AED16B1455F81351B2DD3A /* Pods-PulseTests.local.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PulseTests.local.xcconfig"; path = "Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests.local.xcconfig"; sourceTree = "<group>"; };
+		C1160E401E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateBreakdownViewController.swift; sourceTree = "<group>"; };
+		C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBreakdownTableViewCell.swift; sourceTree = "<group>"; };
+		C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -340,6 +346,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		C1160E421E7B455D00AC0249 /* UpdateViews */ = {
+			isa = PBXGroup;
+			children = (
+				C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */,
+				C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */,
+			);
+			name = UpdateViews;
+			sourceTree = "<group>";
+		};
 		C1629A971E5F712600EC91B0 /* TaskViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,8 +401,10 @@
 		C16B5DDB1E6787AF00F5BB58 /* TaskUpdate */ = {
 			isa = PBXGroup;
 			children = (
+				C1160E421E7B455D00AC0249 /* UpdateViews */,
 				C16B5DDE1E678F2400F5BB58 /* TaskUpdateViewController.swift */,
 				C1AD36731E68CC4E00C5A9AA /* ViewUpdateViewController.swift */,
+				C1160E401E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift */,
 				C16B5DDC1E6787D700F5BB58 /* Updates.storyboard */,
 			);
 			name = TaskUpdate;
@@ -809,6 +826,7 @@
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
 				C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */,
 				C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */,
+				C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */,
 				C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */,
 				C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */,
 				C1AD366E1E689F6C00C5A9AA /* UpdatesViewController.xib in Resources */,
@@ -993,6 +1011,7 @@
 				C3510BA11E60DAFF00EEA4E0 /* Team+CoreDataProperties.swift in Sources */,
 				C1629A921E5F6A4400EC91B0 /* UIColorExtension.swift in Sources */,
 				C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */,
+				C1160E411E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift in Sources */,
 				C16B5DDF1E678F2400F5BB58 /* TaskUpdateViewController.swift in Sources */,
 				C1B993281E64CD1F00A404C9 /* CreateTaskAddItemCell.swift in Sources */,
 				C19B74221E5F9337002D9352 /* TaskViewController.swift in Sources */,
@@ -1003,6 +1022,7 @@
 				C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */,
 				C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */,
 				C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */,
+				C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */,
 				C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */,
 				C1DA11801E5FA9C900AF752E /* CreateTaskAssignViewController.swift in Sources */,
 				C32C53651E6743A0007D93F8 /* UpdateRequest+CoreDataProperties.swift in Sources */,
