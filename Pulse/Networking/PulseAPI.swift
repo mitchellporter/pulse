@@ -114,7 +114,7 @@ extension PulseAPI {
         case let .finishTask(taskId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .requestTaskUpdate(taskId):
-            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/update_requests"
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .sendTaskUpdate(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .getTeamMembers(teamId, _):
@@ -187,10 +187,9 @@ extension PulseAPI {
                 "limit": 25 as AnyObject
             ]
             
-        case let .getUpdateRequests(offset):
+        case let .requestTaskUpdate:
             return [
-                "offset": offset as AnyObject,
-                "limit": 25 as AnyObject
+                "type": "requested" as AnyObject
             ]
         case let .getUpdates(_, offset):
             return [
