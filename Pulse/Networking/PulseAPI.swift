@@ -45,11 +45,7 @@ enum PulseAPI {
     case getTask(taskId: String) //
     case requestTaskUpdate(taskId: String) //
     case sendTaskUpdate(taskId: String, completionPercentage: Float) //
-    case sendUpdateForUpdateRequest(updateRequestId: String, completionPercentage: Float)
     case finishTask(taskId: String) //
-    
-    case getUpdateRequests(offset: Int)
-    case getUpdates(updateRequestId: String, offset: Int)
     
     // Task Items
     case markTaskItemCompleted(taskId: String, itemId: String) //
@@ -74,8 +70,6 @@ extension PulseAPI {
                  .getTasksAssignedToUser,
                  .getTask,
                  .getTeamMembers,
-                 .getUpdateRequests,
-                 .getUpdates,
                  .getMyTasks,
                  .getTasksCreated,
                  .getUpdatesFeed:
@@ -92,8 +86,7 @@ extension PulseAPI {
              .signup,
              .createTask,
              .requestTaskUpdate,
-             .sendTaskUpdate,
-             .sendUpdateForUpdateRequest:
+             .sendTaskUpdate:
             return .post
             
         default: return .get
@@ -126,10 +119,6 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
-        case .getUpdateRequests:
-            return "/api/\(PulseAPI.apiVersion)/update_requests"
-        case let .getUpdates(updateRequestId, _):
-            return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)/updates"
         case .getMyTasks:
             return "/api/\(PulseAPI.apiVersion)/feeds/my_tasks"
         case .getTasksCreated:
@@ -138,8 +127,6 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/feeds/updates"
         case let .respondToTaskInvitation(taskInvitationId, _):
             return "/api/\(PulseAPI.apiVersion)/task_invitations/\(taskInvitationId)"
-        case let .sendUpdateForUpdateRequest(updateRequestId, _):
-            return "/api/\(PulseAPI.apiVersion)/update_requests/\(updateRequestId)/updates"
         case let .markTaskItemInProgress(taskId, itemId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .markTaskItemCompleted(taskId, itemId):
