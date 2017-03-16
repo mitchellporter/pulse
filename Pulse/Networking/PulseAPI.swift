@@ -46,6 +46,7 @@ enum PulseAPI {
     case requestTaskUpdate(taskId: String) //
     case sendTaskUpdate(taskId: String, completionPercentage: Float) //
     case finishTask(taskId: String) //
+    case respondToUpdate(updateId: String, responseId: String, completionPercentage: Float)
     
     // Task Items
     case markTaskItemCompleted(taskId: String, itemId: String) //
@@ -79,6 +80,7 @@ extension PulseAPI {
              .respondToTaskInvitation,
              .finishTask,
              .markTaskItemInProgress,
+             .respondToUpdate,
              .markTaskItemCompleted:
             return .put
         
@@ -117,6 +119,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .sendTaskUpdate(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
+        case let .respondToUpdate(updateId, responseId, _):
+            return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)/responses/\(responseId)"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
         case .getMyTasks:
@@ -186,15 +190,13 @@ extension PulseAPI {
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject
             ]
-            
-        case let .requestTaskUpdate:
+        case .requestTaskUpdate:
             return [
                 "type": "requested" as AnyObject
             ]
-        case let .getUpdates(_, offset):
+        case let .respondToUpdate(_, _, completionPercentage):
             return [
-                "offset": offset as AnyObject,
-                "limit": 25 as AnyObject
+                "completion_percentage": completionPercentage as AnyObject
             ]
         case let .respondToTaskInvitation(_, status):
             return [
@@ -205,10 +207,6 @@ extension PulseAPI {
                 "status": "completed" as AnyObject
             ]
         case let .sendTaskUpdate(_, completionPercentage):
-            return [
-                "completion_percentage": completionPercentage as AnyObject
-            ]
-        case let .sendUpdateForUpdateRequest(_, completionPercentage):
             return [
                 "completion_percentage": completionPercentage as AnyObject
             ]
