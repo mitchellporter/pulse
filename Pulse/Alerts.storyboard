@@ -272,14 +272,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k5n-3W-0EV">
-                                <rect key="frame" x="25.5" y="22.5" width="323" height="602"/>
+                                <rect key="frame" x="26" y="22.5" width="323" height="602"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gk1-Or-nAX">
                                         <rect key="frame" x="0.0" y="0.0" width="323" height="56"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-kk-3u0" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                                <rect key="frame" x="247" y="14" width="68" height="28"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgn-kk-3u0" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                                <rect key="frame" x="241" y="14" width="68" height="28"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="28" id="AnY-yT-ACF"/>
+                                                    <constraint firstAttribute="width" constant="68" id="ZUg-G4-6em"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                 <state key="normal" title="Done">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -299,9 +302,8 @@
                                                     <action selector="doneButtonPressed:" destination="P5I-wq-043" eventType="touchUpInside" id="3M7-ok-VOh"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-zM-7f8" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="17" width="17" height="22"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-zM-7f8" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                                <rect key="frame" x="17" y="18" width="17" height="22"/>
                                                 <state key="normal" image="CloseX"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
@@ -318,6 +320,10 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.12549019607843137" green="0.60784313725490191" blue="0.32156862745098036" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="kgn-kk-3u0" secondAttribute="trailing" constant="14" id="1Pb-81-JJh"/>
+                                            <constraint firstItem="UNc-zM-7f8" firstAttribute="top" secondItem="gk1-Or-nAX" secondAttribute="top" constant="18" id="36y-X6-J3e"/>
+                                            <constraint firstItem="kgn-kk-3u0" firstAttribute="top" secondItem="gk1-Or-nAX" secondAttribute="top" constant="14" id="61y-G3-cML"/>
+                                            <constraint firstItem="UNc-zM-7f8" firstAttribute="leading" secondItem="gk1-Or-nAX" secondAttribute="leading" constant="17" id="pfX-Dt-rMG"/>
                                             <constraint firstAttribute="height" constant="56" id="wWz-AP-D4K"/>
                                         </constraints>
                                     </view>
