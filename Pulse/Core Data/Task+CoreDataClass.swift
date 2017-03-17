@@ -93,9 +93,7 @@ extension Task: PulseType {
         task.updateDays = updateDays
         task.dueDate = dueDate
         task.completionPercentage = completionPercentage
-        
-        print(task.status)
-        
+                
         if let assigneesJSON = json["assignees"] as? [[String: AnyObject]] {
             assigneesJSON.forEach({ assigneeJSON in
                 let assignee = User.from(json: assigneeJSON, context: context)

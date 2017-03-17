@@ -54,14 +54,24 @@ class HomeViewController: UIViewController {
         let defaults = UserDefaults.standard
         let username = self.userField.text ?? "mitchell"
         switch username {
+        case "mitchell":
+            defaults.set("586ecdc0213f22d94db5ef7f", forKey: "user_id")
+            defaults.set("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODZlY2RjMDIxM2YyMmQ5NGRiNWVmN2YiLCJpYXQiOjE0ODk1Mjg2ODMsImV4cCI6MTQ5ODE2ODY4M30.ozUcV9aEOEq7k8i_0jJ03aKZD_iT4FtV8DHt2cwyJBY", forKey: "bearer_token")
+            defaults.synchronize()
+            
             case "kori":
             defaults.set("585c2130f31b2fbff4efbf68", forKey: "user_id")
+            defaults.set("Bearer nothing", forKey: "bearer_token")
             defaults.synchronize()
-            case "mitchell":
-            defaults.set("586ecdc0213f22d94db5ef7f", forKey: "user_id")
+            
+            case "allen":
+            defaults.set("5881130a387e980f48c743f7", forKey: "user_id")
+            defaults.set("Bearer nothing", forKey: "bearer_token")
             defaults.synchronize()
+            
             case "arch":
             defaults.set("58c70df6105bd171feeb2cbc", forKey: "user_id")
+            defaults.set("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1OGM3MGRmNjEwNWJkMTcxZmVlYjJjYmMiLCJpYXQiOjE0ODk1MzA2NTUsImV4cCI6MTQ5ODE3MDY1NX0.ct7VhoZKqyMv0KA0ygvPYbZDmO8-OrKMldCrkavqRRA", forKey: "bearer_token")
             defaults.synchronize()
         default: break
         }

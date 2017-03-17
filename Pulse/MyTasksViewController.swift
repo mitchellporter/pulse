@@ -62,7 +62,7 @@ class MyTasksViewController: UIViewController {
         let inProgressPredicate = NSPredicate(format: "status == %@", "in_progress")
         let completedPredicate = NSPredicate(format: "status == %@", "completed")
         let assigneePredicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
-        
+        print(User.currentUserId())
         let statusPredicates = NSCompoundPredicate(orPredicateWithSubpredicates: [inProgressPredicate, completedPredicate])
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicates, assigneePredicate])
 
@@ -111,6 +111,8 @@ class MyTasksViewController: UIViewController {
             do {
                 try self.taskInvitationFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
+                
+                print(self.taskFetchedResultsController.fetchedObjects!.count)
                 
                 self.taskInvitationFetchedResultsController.delegate = self
                 self.taskFetchedResultsController.delegate = self

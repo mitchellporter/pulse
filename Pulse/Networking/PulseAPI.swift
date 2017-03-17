@@ -228,8 +228,7 @@ extension PulseAPI {
         var assigned: [String: String] = ["Accept": "application/json", "Content-Type": "application/json"]
        
         if requiresAuthToken {
-            assigned["Authorization"] = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODZlY2RjMDIxM2YyMmQ5NGRiNWVmN2YiLCJpYXQiOjE0ODk1Mjg2ODMsImV4cCI6MTQ5ODE2ODY4M30.ozUcV9aEOEq7k8i_0jJ03aKZD_iT4FtV8DHt2cwyJBY"
-        
+            assigned["Authorization"] = UserDefaults.standard.object(forKey: "bearer_token") as? String
         } // TODO: Removed hardcoded JWT
         
         switch self {
