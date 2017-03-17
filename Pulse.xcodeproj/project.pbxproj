@@ -12,6 +12,7 @@
 		C1160E411E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E401E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift */; };
 		C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */; };
 		C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */; };
+		C1160E481E7B518E00AC0249 /* PercentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E471E7B518E00AC0249 /* PercentBar.swift */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -171,6 +172,7 @@
 		C1160E401E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUpdateBreakdownViewController.swift; sourceTree = "<group>"; };
 		C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBreakdownTableViewCell.swift; sourceTree = "<group>"; };
 		C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateBreakdownTableViewCell.xib; sourceTree = "<group>"; };
+		C1160E471E7B518E00AC0249 /* PercentBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentBar.swift; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 			children = (
 				C19B74231E5F9491002D9352 /* Button.swift */,
 				C1DA11761E5F9F4B00AF752E /* UIViewExtension.swift */,
+				C1160E471E7B518E00AC0249 /* PercentBar.swift */,
 				C19B742C1E5F950D002D9352 /* UIAdditions.h */,
 				C19B742D1E5F950D002D9352 /* Info.plist */,
 			);
@@ -951,6 +954,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DA11771E5F9F4B00AF752E /* UIViewExtension.swift in Sources */,
+				C1160E481E7B518E00AC0249 /* PercentBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

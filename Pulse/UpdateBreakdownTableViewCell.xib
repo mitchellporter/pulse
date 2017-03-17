@@ -62,6 +62,11 @@
                             <action selector="resendButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yyn-0c-c9f"/>
                         </connections>
                     </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WQX-4l-7dk" customClass="PercentBar" customModule="UIAdditions">
+                        <rect key="frame" x="218" y="27" width="68" height="8"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="CzS-xp-BF9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5RP-Gz-WT2"/>
