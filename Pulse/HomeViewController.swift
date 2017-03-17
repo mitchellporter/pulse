@@ -60,6 +60,9 @@ class HomeViewController: UIViewController {
             case "mitchell":
             defaults.set("586ecdc0213f22d94db5ef7f", forKey: "user_id")
             defaults.synchronize()
+            case "arch":
+            defaults.set("58c70df6105bd171feeb2cbc", forKey: "user_id")
+            defaults.synchronize()
         default: break
         }
     }
