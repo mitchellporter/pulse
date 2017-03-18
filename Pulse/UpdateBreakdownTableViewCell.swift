@@ -15,6 +15,7 @@ class UpdateBreakdownTableViewCell: UITableViewCell {
     @IBOutlet weak var avatarView: UIImageView!
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var resendButton: UIButton!
+    @IBOutlet weak var percentView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

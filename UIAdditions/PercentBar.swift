@@ -15,17 +15,17 @@ class DotControl: UIView {
     private var frontDots: CALayer = CALayer()
     private var backDots: CALayer = CALayer()
     
+    /*This is the color the control will display to represent the uncompleted percentage of the control.*/
+    @IBInspectable var emptyColor: UIColor = UIColor.white {
+        didSet {
+            self.updateColor(self.emptyColor, for: self.backDots)
+        }
+    }
+    
     /*This is the color the control will display to represent the completed percentage of the control.*/
     @IBInspectable var completedColor: UIColor = UIColor.black {
         didSet {
             self.updateColor(self.completedColor, for: self.frontDots)
-        }
-    }
-    
-    /*This is the color the control will display to represent the uncompleted percentage of the control.*/
-    @IBInspectable var zeroColor: UIColor = UIColor.white {
-        didSet {
-            self.updateColor(self.zeroColor, for: self.backDots)
         }
     }
     
@@ -61,9 +61,13 @@ class DotControl: UIView {
         self.load()
     }
     
+    override func prepareForInterfaceBuilder() {
+        self.load()
+    }
+    
     private func load() {
-        self.backgroundColor  = UIColor.clear
-        self.drawDots(for: self.backDots, with: self.zeroColor)
+        self.backgroundColor = UIColor.clear
+        self.drawDots(for: self.backDots, with: self.emptyColor)
         self.drawDots(for: self.frontDots, with: self.completedColor)
     }
     
