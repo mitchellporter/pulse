@@ -63,7 +63,6 @@ extension Update: PulseType {
             let task = Task.from(json: taskJSON, context: context)
             update.task = task
             
-            // TODO: Clean this up
             update.taskAssignerIsCurrentUser = User.currentUserId() == task.assigner!.objectId
         }
         

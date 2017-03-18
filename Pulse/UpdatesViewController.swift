@@ -38,7 +38,6 @@ class UpdatesViewController: UIViewController {
     }
     
     private func setupCoreData() {
-        // Task invitations
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
@@ -127,7 +126,8 @@ extension UpdatesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-        header.title = section == 0 ? "PROGRESS UPDATES I NEED TO COMPLETE" : "PROGRESS UPDATES SENT TO ME"
+        let sectionInfo = self.updateFetchedResultsController.sections![section]
+        header.title = sectionInfo.name == "0" ? "PROGRESS UPDATES I NEED TO COMPLETE" : "PROGRESS UPDATES SENT TO ME"
         header.markerColor = section == 0 ? appRed : appYellow
         header.contentView.backgroundColor = self.tableView.backgroundColor
         return header

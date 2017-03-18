@@ -30,19 +30,15 @@ struct UpdateService {
 //    }
     
     static func requestTaskUpdate(taskId: String, success: @escaping UpdateSuccessCompletion, failure: @escaping PulseFailureCompletion) {
-//        NetworkingClient.sharedClient.request(target: .requestTaskUpdate(taskId: taskId), success: { (data) in
-//            let json = JSON(data: data)
-//            if json["success"].boolValue {
-//                if let updateRequstsJSON = json["update"].arrayObject {
-//                    var updateRequests = [UpdateRequest]()
-//                    updateRequstsJSON.forEach({ (updateRequestJSON) in
-//                        let updateRequest = UpdateRequest.from(json: updateRequestJSON as! [String : AnyObject], context: CoreDataStack.shared.context)
-//                        updateRequests.append(updateRequest)
-//                    })
-//                    success(updateRequests)
-//                }
-//            }
-//        }, failure: failure)
+        NetworkingClient.sharedClient.request(target: .requestTaskUpdate(taskId: taskId), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let updateJSON = json["update"].dictionaryObject {
+                    let update = Update.from(json: updateJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(update)
+                }
+            }
+        }, failure: failure)
     }
     
     static func sendTaskUpdate(taskId: String, completionPercentage: Float, success: @escaping UpdateSuccessCompletion, failure: @escaping PulseFailureCompletion) {
