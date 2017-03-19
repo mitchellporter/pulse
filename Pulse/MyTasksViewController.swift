@@ -347,7 +347,10 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
                 self.tableView.insertSections([realSectionIndex], with: .fade)
             }
         case .delete:
-            self.tableView.deleteSections([sectionIndex + 1], with: .fade) // this fixed it but unhardcode this
+            
+            if controller == self.taskInvitationFetchedResultsController {
+                self.tableView.deleteSections([sectionIndex], with: .fade)
+            }
         case .move:
             break
         case .update:
