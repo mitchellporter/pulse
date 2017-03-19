@@ -23,6 +23,7 @@ extension Update {
     @NSManaged public var task: Task?
     @NSManaged public var responses: Set<Response>?
     @NSManaged public var taskAssignerIsCurrentUser: Bool
+    @NSManaged public var requiresResponseFromCurrentUser: Bool
 }
 
 // MARK: Generated accessors for responses

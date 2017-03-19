@@ -66,12 +66,22 @@ extension Update: PulseType {
             update.taskAssignerIsCurrentUser = User.currentUserId() == task.assigner!.objectId
         }
         
+        var requiresResponseFromCurrentUser = false
         if let responsesJSON = json["responses"] as? [[String: AnyObject]] {
             responsesJSON.forEach { responseJSON in
                 let response = Response.from(json: responseJSON, context: context)
                 update.addToResponses(response)
+                
+                // Check if update has response that requires update from current user
+                // This helps filtering via FRC in updates feed
+                if let assignee = response.assignee {
+                    if assignee.objectId == User.currentUserId() && response.status == "requested" {
+                        requiresResponseFromCurrentUser = true
+                    }
+                }
             }
         }
+        update.requiresResponseFromCurrentUser = requiresResponseFromCurrentUser
     
         return update
     }

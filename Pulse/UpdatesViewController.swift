@@ -43,28 +43,10 @@ class UpdatesViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
-        // NOTE: These predicates work for the first section, but I have a feeling they will break the second section
-    
-        // 1st section: responses where the status is requested and the assignee is me
-        // 2nd section: update where the task assigner is me
-        let responsesStatusPredicate = NSPredicate(format: "ANY responses.status == %@", "requested")
-        let responsesAssigneePredicate = NSPredicate(format: "ANY responses.assignee.objectId == %@", User.currentUserId())
-        let compoundResponsesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [responsesStatusPredicate, responsesAssigneePredicate])
-        
-        // NOTE: These predicates could help as well but nothings finalized - was just experimenting
-//        let assignerPredicate = NSPredicate(format: "task.assigner.objectId == %@", User.currentUserId())
-//        let orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [assignerPredicate, compoundResponsesPredicate])
-        
+        let requiresResponsePredicate = NSPredicate(format: "requiresResponseFromCurrentUser == true")
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = compoundResponsesPredicate
+        fetchRequest.predicate = requiresResponsePredicate
         
-        // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods.
-        // Here's the specific problem I kept running into:
-        // On first run, I was making sure that we had in_progress tasks, completed tasks, and NO invites. This worked fine.
-        // I then modified the backend to make an invite, so now we needed 3 total sections with both controllers vs. just using the task controller and having 2 sections
-        // This was causing update errors because I was manually calculating the sections count for the tableview to 3, but the task invite FRC had no context of "sections" because I wasn't setting a sectionNameKeyPath on it.
-        // So the FRC delegate's "did change an object" method was getting called, but the "did change section info" was not. Because it wasn't being called, we couldn't insert an additional section...
-        // so the calculated section value of 3 wasn't matching up to the total section count as a result of all my frc delegate method implementations, and the counts need to match. I fixed this by setting a sectionNameKeyPath on the task invite FRC.
         self.assigneeUpdatesFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
