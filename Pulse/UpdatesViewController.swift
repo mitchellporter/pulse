@@ -284,7 +284,6 @@ extension UpdatesViewController: NSFetchedResultsControllerDelegate {
             }
         case .move:
             
-            
             if controller == self.assigneeUpdatesFetchedResultsController {
                 self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
             } else if controller == self.assignerUpdatesFetchedResultsController {
