@@ -133,12 +133,22 @@ class UpdatesViewController: UIViewController {
 
 extension UpdatesViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        var sectionCount = 0
+        if let fetchedObjects = self.assigneeUpdatesFetchedResultsController.fetchedObjects {
+            sectionCount += fetchedObjects.count != 0 ? 1 : 0
+        }
+        if let fetchedObjects = self.assignerUpdatesFetchedResultsController.fetchedObjects {
+            sectionCount += fetchedObjects.count != 0 ? 1 : 0
+        }
+        return sectionCount
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return self.assigneeUpdatesFetchedResultsController.fetchedObjects?.count ?? 0
+            if let fetchedObjects = self.assigneeUpdatesFetchedResultsController.fetchedObjects {
+                return fetchedObjects.count
+            }
+            return self.assignerUpdatesFetchedResultsController.fetchedObjects?.count ?? 0
         } else {
             return self.assignerUpdatesFetchedResultsController.fetchedObjects?.count ?? 0
         }
@@ -150,7 +160,11 @@ extension UpdatesViewController: UITableViewDataSource {
         
         var update: Update
         if indexPath.section == 0 {
-            update = self.assigneeUpdatesFetchedResultsController.object(at: indexPath)
+            if self.assigneeUpdatesFetchedResultsController.fetchedObjects != nil {
+                update = self.assigneeUpdatesFetchedResultsController.object(at: indexPath)
+            } else {
+                update = self.assignerUpdatesFetchedResultsController.object(at: indexPath)
+            }
         } else {
             let realIndexPath = IndexPath(row: indexPath.row, section: 0)
             update = self.assignerUpdatesFetchedResultsController.object(at: realIndexPath)
@@ -171,7 +185,11 @@ extension UpdatesViewController: UITableViewDelegate {
         
         var update: Update
         if indexPath.section == 0 {
-            update = self.assigneeUpdatesFetchedResultsController.object(at: indexPath)
+            if self.assigneeUpdatesFetchedResultsController.fetchedObjects != nil {
+                update = self.assigneeUpdatesFetchedResultsController.object(at: indexPath)
+            } else {
+                update = self.assignerUpdatesFetchedResultsController.object(at: indexPath)
+            }
         } else {
             let realIndexPath = IndexPath(row: indexPath.row, section: 0)
             update = self.assignerUpdatesFetchedResultsController.object(at: realIndexPath)
@@ -234,4 +252,3 @@ extension UpdatesViewController: UITableViewDelegate {
 //        self.tableView.endUpdates()
 //    }
 //}
-
