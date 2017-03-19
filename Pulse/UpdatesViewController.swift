@@ -76,8 +76,8 @@ class UpdatesViewController: UIViewController {
             try self.assigneeUpdatesFetchedResultsController.performFetch()
             try self.assignerUpdatesFetchedResultsController.performFetch()
 
-//            self.assigneeUpdatesFetchedResultsController.delegate = self
-//            self.assignerUpdatesFetchedResultsController.delegate = self
+            self.assigneeUpdatesFetchedResultsController.delegate = self
+            self.assignerUpdatesFetchedResultsController.delegate = self
 
             self.tableView.reloadData()
         } catch {
@@ -95,8 +95,8 @@ class UpdatesViewController: UIViewController {
                 try self.assigneeUpdatesFetchedResultsController.performFetch()
                 try self.assignerUpdatesFetchedResultsController.performFetch()
 
-//                self.assigneeUpdatesFetchedResultsController.delegate = self
-//                self.assignerUpdatesFetchedResultsController.delegate = self
+                self.assigneeUpdatesFetchedResultsController.delegate = self
+                self.assignerUpdatesFetchedResultsController.delegate = self
                 
                 self.tableView.reloadData()
             } catch {
@@ -192,45 +192,109 @@ extension UpdatesViewController: UITableViewDelegate {
     }
 }
 
-//extension UpdatesViewController: NSFetchedResultsControllerDelegate {
-//    
-//    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.beginUpdates()
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-//        
-//        // If the controller is the invitation controller, then just use the section Index like normal
-//        
-//        switch type {
-//        case .insert:
-//            self.tableView.insertSections([sectionIndex], with: .fade)
-//        case .delete:
-//            self.tableView.deleteSections([sectionIndex], with: .fade)
-//        case .move:
-//            break
-//        case .update:
-//            break
-//        }
-//    }
-//    
-//    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-//        switch type {
-//        case .insert:
-//            self.tableView.insertRows(at: [newIndexPath!], with: .fade)
-//        case .delete:
-//            self.tableView.deleteRows(at: [indexPath!], with: .fade)
-//        case .update: // lots
-//            if let cell = self.tableView.cellForRow(at: indexPath!) as? TaskCell {
-//                let update = self.updateFetchedResultsController.object(at: indexPath!)
-//                cell.load(task: update.task!, type: .assigner)
-//            }
-//        case .move:
-//            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
-//        }
-//    }
-//    
-//    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-//        self.tableView.endUpdates()
-//    }
-//}
+extension UpdatesViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+    
+        switch type {
+        case .insert:
+            self.tableView.insertSections([sectionIndex], with: .fade)
+        case .delete:
+            self.tableView.deleteSections([sectionIndex], with: .fade)
+        case .move:
+            break
+        case .update:
+            break
+        }
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .insert:
+            if controller == self.assigneeUpdatesFetchedResultsController {
+                self.tableView.insertRows(at: [newIndexPath!], with: .fade)
+            } else if controller == self.assignerUpdatesFetchedResultsController {
+                
+                var realIndexPath: IndexPath
+                if (self.assigneeUpdatesFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section)
+                }
+                
+                self.tableView.insertRows(at: [realIndexPath], with: .fade)
+            }
+        case .delete:
+            
+            if controller == self.assigneeUpdatesFetchedResultsController {
+                // NOTE: Last row of section deletion bug fix: https://forums.developer.apple.com/thread/9964#26303
+                if self.tableView.numberOfRows(inSection: indexPath!.section) == 1 {
+                    self.tableView.deleteSections([indexPath!.section], with: .fade)
+                } else {
+                    self.tableView.deleteRows(at: [indexPath!], with: .fade)
+                }
+            } else if controller == self.assignerUpdatesFetchedResultsController {
+                var realIndexPath: IndexPath
+                if (self.assigneeUpdatesFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                // NOTE: Last row of section deletion bug fix: https://forums.developer.apple.com/thread/9964#26303
+                if self.tableView.numberOfRows(inSection: realIndexPath.section) == 1 {
+                    self.tableView.deleteSections([realIndexPath.section], with: .fade)
+                } else {
+                    self.tableView.deleteRows(at: [realIndexPath], with: .fade)
+                }
+            }
+            
+        case .update: // lots
+            
+            if controller == self.assigneeUpdatesFetchedResultsController {
+                if let cell = self.tableView.cellForRow(at: indexPath!) as? UpdateCell {
+                    
+                    let update = self.assigneeUpdatesFetchedResultsController.fetchedObjects!.first!
+                    cell.load(update: update, type: .assignee)
+                }
+            } else if controller == self.assignerUpdatesFetchedResultsController {
+                var realIndexPath: IndexPath
+                if (self.assigneeUpdatesFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section)
+                }
+                if let cell = self.tableView.cellForRow(at: realIndexPath) as? UpdateCell {
+                    let update = anObject as! Update
+                    cell.load(update: update, type: .assigner)
+                }
+            }
+        case .move:
+            
+            
+            if controller == self.assigneeUpdatesFetchedResultsController {
+                self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            } else if controller == self.assignerUpdatesFetchedResultsController {
+                var realIndexPath: IndexPath
+                if (self.assigneeUpdatesFetchedResultsController.fetchedObjects?.count != 0) {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section + 1)
+                } else {
+                    realIndexPath = IndexPath(row: newIndexPath!.row, section: newIndexPath!.section)
+                }
+                
+                // NOTE: Not 100% on this, may cause problems: http://stackoverflow.com/a/8072390/3344977
+                let deleteIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
+                self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
+                self.tableView.insertRows(at: [realIndexPath], with: .fade)
+            }
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
+    }
+}
