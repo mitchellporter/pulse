@@ -350,7 +350,22 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             
             if controller == self.taskInvitationFetchedResultsController {
                 self.tableView.deleteSections([sectionIndex], with: .fade)
+            } else if controller == self.taskFetchedResultsController {
+                
+                var realSectionIndex: Int
+                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
+                    realSectionIndex = sectionIndex + 1
+                } else {
+                    realSectionIndex = sectionIndex
+                }
+                
+                self.tableView.deleteSections([realSectionIndex], with: .fade)
             }
+//
+//            
+//            if controller == self.taskInvitationFetchedResultsController {
+//                self.tableView.deleteSections([sectionIndex], with: .fade)
+//            }
         case .move:
             break
         case .update:
