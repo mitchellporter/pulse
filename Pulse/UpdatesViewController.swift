@@ -42,7 +42,7 @@ class UpdatesViewController: UIViewController {
     private func setupAssigneeCoreData() {
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        
+
         let requiresResponsePredicate = NSPredicate(format: "requiresResponseFromCurrentUser == true")
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = requiresResponsePredicate
@@ -94,6 +94,8 @@ class UpdatesViewController: UIViewController {
             do {
                 try self.assigneeUpdatesFetchedResultsController.performFetch()
                 try self.assignerUpdatesFetchedResultsController.performFetch()
+                
+                print(self.assigneeUpdatesFetchedResultsController.sections!)
 
                 self.assigneeUpdatesFetchedResultsController.delegate = self
                 self.assignerUpdatesFetchedResultsController.delegate = self
@@ -126,9 +128,14 @@ extension UpdatesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // TODO: Need to clean this up. You kept getting errors when you deleted the last row of the first section
+        // This was because you were always returning the fetched count for the wrong controller... so you always need to check for BOTH nil and count
+        // on the controller's fetchedObjects property
         if section == 0 {
             if let fetchedObjects = self.assigneeUpdatesFetchedResultsController.fetchedObjects {
-                return fetchedObjects.count
+                if fetchedObjects.count != 0 {
+                    return fetchedObjects.count
+                }
             }
             return self.assignerUpdatesFetchedResultsController.fetchedObjects?.count ?? 0
         } else {
@@ -204,7 +211,9 @@ extension UpdatesViewController: NSFetchedResultsControllerDelegate {
         case .insert:
             self.tableView.insertSections([sectionIndex], with: .fade)
         case .delete:
-            self.tableView.deleteSections([sectionIndex], with: .fade)
+            if controller == self.assigneeUpdatesFetchedResultsController {
+                self.tableView.deleteSections([sectionIndex], with: .fade)
+            }
         case .move:
             break
         case .update:
@@ -232,8 +241,8 @@ extension UpdatesViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             
             if controller == self.assigneeUpdatesFetchedResultsController {
-                // NOTE: Last row of section deletion bug fix: https://forums.developer.apple.com/thread/9964#26303
                 if self.tableView.numberOfRows(inSection: indexPath!.section) == 1 {
+                    self.tableView.deleteRows(at: [indexPath!], with: .fade)
                     self.tableView.deleteSections([indexPath!.section], with: .fade)
                 } else {
                     self.tableView.deleteRows(at: [indexPath!], with: .fade)
