@@ -62,7 +62,7 @@ class MyTasksViewController: UIViewController {
         let inProgressPredicate = NSPredicate(format: "status == %@", "in_progress")
         let completedPredicate = NSPredicate(format: "status == %@", "completed")
         let assigneePredicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
-        print(User.currentUserId())
+//        print(User.currentUserId())
         let statusPredicates = NSCompoundPredicate(orPredicateWithSubpredicates: [inProgressPredicate, completedPredicate])
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicates, assigneePredicate])
 
@@ -112,7 +112,7 @@ class MyTasksViewController: UIViewController {
                 try self.taskInvitationFetchedResultsController.performFetch()
                 try self.taskFetchedResultsController.performFetch()
                 
-                print(self.taskFetchedResultsController.fetchedObjects!.count)
+//                print(self.taskFetchedResultsController.fetchedObjects!.count)
                 
                 self.taskInvitationFetchedResultsController.delegate = self
                 self.taskFetchedResultsController.delegate = self
@@ -209,7 +209,7 @@ extension MyTasksViewController: UITableViewDataSource {
                 return self.taskInvitationFetchedResultsController.fetchedObjects?.count ?? 0
             }
             let sectionInfo = self.taskFetchedResultsController.sections![0]
-            print(sectionInfo.numberOfObjects)
+//            print(sectionInfo.numberOfObjects)
             return sectionInfo.numberOfObjects
         case 1:
             if self.taskInvitationFetchedResultsController.fetchedObjects != nil && self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0 {
@@ -219,16 +219,16 @@ extension MyTasksViewController: UITableViewDataSource {
                 
                 if (sections.count != 0) {
                     let sectionInfo = sections[0]
-                    print(sectionInfo.numberOfObjects)
+//                    print(sectionInfo.numberOfObjects)
                     return sectionInfo.numberOfObjects
                 }
             }
             let sectionInfo = self.taskFetchedResultsController.sections![1]
-            print(sectionInfo.numberOfObjects)
+//            print(sectionInfo.numberOfObjects)
             return sectionInfo.numberOfObjects
         case 2:
             let sectionInfo = self.taskFetchedResultsController.sections![1]
-            print(sectionInfo.numberOfObjects)
+//            print(sectionInfo.numberOfObjects)
             return sectionInfo.numberOfObjects
         default: return 0 // This should never hit
         }
