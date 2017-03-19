@@ -52,4 +52,16 @@ struct UpdateService {
             }
         }, failure: failure)
     }
+    
+    static func respondToUpdateRequest(updateId: String, completionPercentage: Float, success: @escaping UpdateSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .respondToUpdateRequest(updateId: updateId, completionPercentage: completionPercentage), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let updateJSON = json["update"].dictionaryObject {
+                    let update = Update.from(json: updateJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(update)
+                }
+            }
+        }, failure: failure)
+    }
 }

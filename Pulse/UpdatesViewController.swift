@@ -41,11 +41,20 @@ class UpdatesViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
-//        let pred1 = NSPredicate(format: "ANY responses.assignee.objectId == %@", User.currentUserId())
-//        let predicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "sent")
+        // NOTE: These predicates work for the first section, but I have a feeling they will break the second section
+    
+        // 1st section: responses where the status is requested and the assignee is me
+        // 2nd section: update where the task assigner is me
+        let responsesStatusPredicate = NSPredicate(format: "ANY responses.status == %@", "requested")
+        let responsesAssigneePredicate = NSPredicate(format: "ANY responses.assignee.objectId == %@", User.currentUserId())
+        let compoundResponsesPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [responsesStatusPredicate, responsesAssigneePredicate])
+        
+        // NOTE: These predicates could help as well but nothings finalized - was just experimenting
+//        let assignerPredicate = NSPredicate(format: "task.assigner.objectId == %@", User.currentUserId())
+//        let orPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: [assignerPredicate, compoundResponsesPredicate])
         
         fetchRequest.sortDescriptors = [sort]
-//        fetchRequest.predicate = predicate
+//        fetchRequest.predicate = responsesAssigneePredicate
         
         // Notes: If you don't specify a sectionNameKeyPath for this FRC, but the other one has one, then this one will cause errors in the FRC delegate methods.
         // Here's the specific problem I kept running into:

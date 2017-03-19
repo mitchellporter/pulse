@@ -46,7 +46,7 @@ enum PulseAPI {
     case requestTaskUpdate(taskId: String) //
     case sendTaskUpdate(taskId: String, completionPercentage: Float) //
     case finishTask(taskId: String) //
-    case respondToUpdate(updateId: String, responseId: String, completionPercentage: Float)
+    case respondToUpdateRequest(updateId: String, completionPercentage: Float)
     
     // Task Items
     case markTaskItemCompleted(taskId: String, itemId: String) //
@@ -80,7 +80,7 @@ extension PulseAPI {
              .respondToTaskInvitation,
              .finishTask,
              .markTaskItemInProgress,
-             .respondToUpdate,
+             .respondToUpdateRequest,
              .markTaskItemCompleted:
             return .put
         
@@ -119,8 +119,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
         case let .sendTaskUpdate(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
-        case let .respondToUpdate(updateId, responseId, _):
-            return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)/responses/\(responseId)"
+        case let .respondToUpdateRequest(updateId, _):
+            return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
         case .getMyTasks:
@@ -194,7 +194,7 @@ extension PulseAPI {
             return [
                 "type": "requested" as AnyObject
             ]
-        case let .respondToUpdate(_, _, completionPercentage):
+        case let .respondToUpdateRequest(_, completionPercentage):
             return [
                 "completion_percentage": completionPercentage as AnyObject
             ]
