@@ -27,11 +27,6 @@ class MyTasksViewController: UIViewController {
         self.fetchData()
     }
     
-    // FRC Notes:
-    // An FRC's sections property is nil until you call performFetch for the first time. Then it is initialized.
-    // If an FRC doesn not provide a sectionNameKeyPath, the sections array contains 1 default section info item
-    // If an FRC does provide a sectionNameKeyPath, the sections array remains empty until you actually have data to sort and separate into sections
-    
     private func setupTaskInvitationCoreData() {
         // Task invitations
         let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
