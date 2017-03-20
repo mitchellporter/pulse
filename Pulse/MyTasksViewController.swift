@@ -210,26 +210,86 @@ extension MyTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-        
+        header.contentView.backgroundColor = self.tableView.backgroundColor
+
         switch section {
         case 0:
-            header.load(status: .pending, type: .assignee)
+            
+            guard let fetchedObjects = self.taskInvitationsFetchedResultsController.fetchedObjects else {
+                return nil
+            }
+            if fetchedObjects.count != 0 {
+                header.load(status: .pending, type: .assignee)
+                return header
+            } else {
+                return nil
+            }
+            
         case 1:
-            header.load(status: .inProgress, type: .assignee)
+            
+            guard let fetchedObjects = self.tasksInProgressFetchedResultsController.fetchedObjects else {
+                return nil
+            }
+            if fetchedObjects.count != 0 {
+                header.load(status: .inProgress, type: .assignee)
+                return header
+            } else {
+                return nil
+            }
 
         case 2:
-            header.load(status: .completed, type: .assignee)
-        default: break
+            guard let fetchedObjects = self.tasksCompletedFetchedResultsController.fetchedObjects else {
+                return nil
+            }
+            if fetchedObjects.count != 0 {
+                header.load(status: .completed, type: .assignee)
+                return header
+            } else {
+                return nil
+            }
+        default: return nil
         }
-        
-        header.contentView.backgroundColor = self.tableView.backgroundColor
-        return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        
+        switch section {
+        case 0:
+            
+            guard let fetchedObjects = self.taskInvitationsFetchedResultsController.fetchedObjects else {
+                return 0
+            }
+            if fetchedObjects.count != 0 {
+                return 30
+            } else {
+                return 0
+            }
+            
+        case 1:
+            
+            guard let fetchedObjects = self.tasksInProgressFetchedResultsController.fetchedObjects else {
+                return 0
+            }
+            if fetchedObjects.count != 0 {
+                return 30
+            } else {
+                return 0
+            }
+            
+        case 2:
+            
+            guard let fetchedObjects = self.tasksCompletedFetchedResultsController.fetchedObjects else {
+                return 0
+            }
+            if fetchedObjects.count != 0 {
+                return 30
+            } else {
+                return 0
+            }
+            
+        default: return 0
+        }
     }
-    
 }
 
 extension MyTasksViewController: NSFetchedResultsControllerDelegate {
