@@ -244,44 +244,7 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        
-        // If the controller is the invitation controller, then just use the section Index like normal
-//        switch type {
-//        case .insert:
-//            if controller == self.taskInvitationFetchedResultsController {
-//                self.tableView.insertSections([sectionIndex], with: .fade)
-//            } else if controller == self.taskFetchedResultsController {
-//               // self.tableView.insertSections([sectionIndex], with: .fade)
-//                
-//                var realSectionIndex: Int
-//                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-//                    realSectionIndex = sectionIndex + 1
-//                } else {
-//                    realSectionIndex = sectionIndex
-//                }
-//                
-//                self.tableView.insertSections([realSectionIndex], with: .fade)
-//            }
-//        case .delete:
-//            
-//            if controller == self.taskInvitationFetchedResultsController {
-//                self.tableView.deleteSections([sectionIndex], with: .fade)
-//            } else if controller == self.taskFetchedResultsController {
-//                
-//                var realSectionIndex: Int
-//                if (self.taskInvitationFetchedResultsController.fetchedObjects?.count != 0) {
-//                    realSectionIndex = sectionIndex + 1
-//                } else {
-//                    realSectionIndex = sectionIndex
-//                }
-//                
-//                self.tableView.deleteSections([realSectionIndex], with: .fade)
-//            }
-//        case .move:
-//            break
-//        case .update:
-//            break
-//        }
+ 
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
@@ -328,7 +291,7 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
                 }
                 
             case self.tasksCompletedFetchedResultsController:
-                if let cell = self.tableView.cellForRow(at: indexPath.taskInProgressIndexPath()) as? TaskCell {
+                if let cell = self.tableView.cellForRow(at: indexPath.taskCompletedIndexPath()) as? TaskCell {
                     let task = anObject as! Task
                     cell.load(task: task, type: .assignee)
                 }
@@ -343,14 +306,9 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
             case self.tasksInProgressFetchedResultsController:
                 self.tableView.moveRow(at: indexPath!.taskInProgressIndexPath(), to: newIndexPath!.taskInProgressIndexPath())
             case self.tasksCompletedFetchedResultsController:
-                self.tableView.moveRow(at: indexPath!.taskInProgressIndexPath(), to: newIndexPath!.taskInProgressIndexPath())
+                self.tableView.moveRow(at: indexPath!.taskInProgressIndexPath(), to: newIndexPath!.taskCompletedIndexPath())
             default: break
             }
-            
-            // Alternative
-//            let deleteIndexPath = IndexPath(row: indexPath!.row, section: indexPath!.section + 1)
-//            self.tableView.deleteRows(at: [deleteIndexPath], with: .fade)
-//            self.tableView.insertRows(at: [realIndexPath], with: .fade)
         }
     }
     
