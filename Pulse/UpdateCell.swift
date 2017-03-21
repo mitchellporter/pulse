@@ -11,7 +11,7 @@ import UIKit
 import Nuke
 
 // TODO: HANDLE THESE OPTIONALS
-class UpdateRequestCell: UITableViewCell {
+class UpdateCell: UITableViewCell {
     
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var badge: UIView!
@@ -21,16 +21,16 @@ class UpdateRequestCell: UITableViewCell {
     @IBOutlet weak var duePercentLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
-    var updateRequest: UpdateRequest? {
+    var update: Update? {
         didSet {
-            self.configureState(for: self.updateRequest!.task!)
+            self.configureState(for: self.update!.task!)
         }
     }
     
     var type: TaskCellType!
     
     var stateColor: UIColor {
-        switch self.updateRequest!.task!.taskStatus {
+        switch self.update!.task!.taskStatus {
         case .pending:
             return UIColor("FF5E5B")
         case .inProgress:
@@ -51,8 +51,8 @@ class UpdateRequestCell: UITableViewCell {
         self.setupAppearance()
     }
     
-    func load(updateRequest: UpdateRequest, type: TaskCellType) {
-        self.updateRequest = updateRequest
+    func load(update: Update, type: TaskCellType) {
+        self.update = update
         self.type = type
         
         switch self.type! {
@@ -65,38 +65,38 @@ class UpdateRequestCell: UITableViewCell {
     
     // TODO: Both loads are gross, fix these
     private func loadForAssignee() {
-        Nuke.loadImage(with: URL(string: self.updateRequest!.task!.assigner!.avatarURL!)!, into: self.avatar)
+        Nuke.loadImage(with: URL(string: self.update!.task!.assigner!.avatarURL!)!, into: self.avatar)
         
         // TODO: Shouldn't need bang for data
-        if let assigner = self.updateRequest!.task!.assigner {
+        if let assigner = self.update!.task!.assigner {
             self.assignedLabel.text = "ASSIGNED BY: \(assigner.name)"
         } else {
             self.assignedLabel.text = "ASSIGNER WAS NIL AND IT SHOULDN'T HAVE BEEN!"
         }
         
         // Calculate due date label
-        let dueDate = self.updateRequest!.task!.dueDate!
+        let dueDate = self.update!.task!.dueDate!
         let now = Date()
         let diff = dueDate.timeIntervalSince1970 - now.timeIntervalSince1970
         let daysTillDueDate = lround(diff / 86400)
         
-        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.updateRequest!.task!.completionPercentage))% DONE"
-        self.descriptionLabel.text = self.updateRequest!.task!.title
+        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.update!.task!.completionPercentage))% DONE"
+        self.descriptionLabel.text = self.update!.task!.title
     }
     
     private func loadForAssigner() {
        
-        let assignee = self.updateRequest!.task!.assignees?.anyObject() as! User
+        let assignee = self.update!.task!.assignees?.anyObject() as! User
         self.assignedLabel.text = "ASSIGNED TO: \(assignee.name)"
         
         // Calculate due date label
-        let dueDate = self.updateRequest!.task!.dueDate!
+        let dueDate = self.update!.task!.dueDate!
         let now = Date()
         let diff = dueDate.timeIntervalSince1970 - now.timeIntervalSince1970
         let daysTillDueDate = Int(round(diff / 86400))
         
-        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.updateRequest!.task!.completionPercentage))% DONE"
-        self.descriptionLabel.text = self.updateRequest!.task!.title
+        self.duePercentLabel.text = "DUE: \(daysTillDueDate) DAYS | \(Int(self.update!.task!.completionPercentage))% DONE"
+        self.descriptionLabel.text = self.update!.task!.title
         
         Nuke.loadImage(with: URL(string: assignee.avatarURL!)!, into: self.avatar)
     }

@@ -60,8 +60,6 @@ class TaskViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print(segue.destination)
-        print(sender)
         
         if let viewTaskViewController = segue.destination as? ViewTaskViewController {
             if let task: Task = sender as? Task {
@@ -84,8 +82,8 @@ class TaskViewController: UIViewController {
         
         if segue.identifier == "giveUpdate" {
             guard let destination: TaskUpdateViewController = segue.destination as? TaskUpdateViewController else { return }
-            if let updateRequest: UpdateRequest = sender as? UpdateRequest {
-                destination.updateRequest = updateRequest
+            if let update: Update = sender as? Update {
+                destination.update = update
             }
             
             if let task: Task = sender as? Task {
@@ -94,15 +92,9 @@ class TaskViewController: UIViewController {
         } else if segue.identifier == "viewUpdate" {
             
             guard let destination: ViewUpdateViewController = segue.destination as? ViewUpdateViewController else { return }
-            
-            var task: Task?
-            if let passedTask: Task = sender as? Task {
-                task = passedTask
-            }
             if let update: Update = sender as? Update {
-                task = update.task
+                destination.update = update
             }
-            destination.task = task
         }
     }
     

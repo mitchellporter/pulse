@@ -207,18 +207,18 @@ extension AlertManager {
     }
     
     // TEMPORARY WORKAROUND THIS NEEDS TO GO, IT SHOULD NOT BE HERE
-    private class func loadActionAlert(ofType: String, title: String?, message: String?, request: UpdateRequest) {
+    private class func loadActionAlert(ofType: String, title: String?, message: String?, update: Update) {
         guard let defaultAlert = UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: ofType) as? AlertController else { print("DefaultAlertController not found with specified identifier."); return }
         guard let updateAlertController: UpdateAlertController = defaultAlert as? UpdateAlertController else { return }
-        updateAlertController.updateRequest = request
+        updateAlertController.update = update
         self.presentAlert(alert: defaultAlert)
     }
     
     // THIS TOO: REMOVE
-    class func presentAlert(ofType: CustomAlertType, with request: UpdateRequest) {
+    class func presentAlert(ofType: CustomAlertType, with update: Update) {
         switch ofType {
         case .update: {
-            self.loadActionAlert(ofType: "update", title: nil, message: nil, request: request)
+            self.loadActionAlert(ofType: "update", title: nil, message: nil, update: update)
         }()
         }
     }

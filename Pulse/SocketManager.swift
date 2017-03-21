@@ -86,8 +86,8 @@ extension SocketManager: PNObjectEventListener {
             let taskInvitationJSON = json["task_invitation"] as! [String: AnyObject]
             self.processTaskAssignedNotification(json: taskInvitationJSON)
         case .updateRequestReceived:
-            let updateRequestJSON = json["update_request"] as! [String: AnyObject]
-            self.processUpdateRequestReceivedNotification(json: updateRequestJSON)
+            let updateJSON = json["update"] as! [String: AnyObject]
+            self.processUpdateResponseReceivedNotification(json: updateJSON)
         case .updateReceived:
             let updateJSON = json["update"] as! [String: AnyObject]
             self.processUpdateReceivedNotification(json: updateJSON)
@@ -131,13 +131,13 @@ extension SocketManager: PNObjectEventListener {
         AlertManager.presentPassiveAlert(of: .assigned, with: taskInvitation)
     }
     
-    func processUpdateRequestReceivedNotification(json: [String: AnyObject]) {
-        let updateRequest = UpdateRequest.from(json: json, context: CoreDataStack.shared.context)
-        print(updateRequest)
-        AlertManager.presentAlert(ofType: .update, with: updateRequest)
+    func processUpdateReceivedNotification(json: [String: AnyObject]) {
+        let update = Update.from(json: json, context: CoreDataStack.shared.context)
+        print(update)
+        AlertManager.presentAlert(ofType: .update, with: update)
     }
     
-    func processUpdateReceivedNotification(json: [String: AnyObject]) {
+    func processUpdateResponseReceivedNotification(json: [String: AnyObject]) {
         let update = Update.from(json: json, context: CoreDataStack.shared.context)
         print(update)
         AlertManager.presentPassiveAlert(of: .update, with: update)

@@ -93,19 +93,20 @@ class ViewTaskViewController: UIViewController {
             print("fetched results controller error: \(error)")
         }
         
-//        TaskService.getTask(taskId: task.objectId, success: { (task) in
-//            CoreDataStack.shared.saveContext()
-//            
-//            do {
-//                try self.fetchedResultsController.performFetch()
-//                print(self.fetchedResultsController.fetchedObjects?.count)
-//                self.tableView.reloadData()
-//            } catch {
-//                print("fetched results controller error: \(error)")
-//            }
-//        }) { (error, statusCode) in
-//            // TODO: Handle failure
-//        }
+        // TODO: Need to update uI again when this finishes? We get the changes in the task model,
+        // but UI is not refreshed
+        TaskService.getTask(taskId: task.objectId, success: { (task) in
+            CoreDataStack.shared.saveContext()
+            
+            do {
+                try self.fetchedResultsController.performFetch()
+                self.tableView.reloadData()
+            } catch {
+                print("fetched results controller error: \(error)")
+            }
+        }) { (error, statusCode) in
+            // TODO: Handle failure
+        }
     }
     
     private func setupAppearance() {
@@ -224,8 +225,8 @@ class ViewTaskViewController: UIViewController {
                     CoreDataStack.shared.saveContext()
                     
                     // Update task and UI to reflect the change.
-                    self.task = task
-                    self.updateUI()
+//                    self.task = task
+//                    self.updateUI()
                 }, failure: { (error, statusCode) in
                     // Error
                     
