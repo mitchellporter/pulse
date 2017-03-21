@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.swift
 //  Pulse
 //
-//  Created by Mitchell Porter on 3/7/17.
+//  Created by Mitchell Porter on 3/16/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -20,17 +20,18 @@ extension User {
     @NSManaged public var createdAt: Date?
     @NSManaged public var name: String
     @NSManaged public var objectId: String
-    @NSManaged public var position: String
+    @NSManaged public var position: String?
     @NSManaged public var updatedAt: Date?
     @NSManaged public var createdTasks: NSSet?
     @NSManaged public var receivedTaskInvitations: NSSet?
     @NSManaged public var receivedTasks: NSSet?
     @NSManaged public var receivedUpdateRequests: NSSet?
+    @NSManaged public var receivedUpdates: NSSet?
     @NSManaged public var sentTaskInvitations: NSSet?
     @NSManaged public var sentUpdateRequests: NSSet?
     @NSManaged public var sentUpdates: NSSet?
     @NSManaged public var team: Team?
-    @NSManaged public var receivedUpdates: NSSet?
+    @NSManaged public var responses: NSSet?
 
 }
 
@@ -85,20 +86,20 @@ extension User {
 
 }
 
-// MARK: Generated accessors for receivedUpdateRequests
+// MARK: Generated accessors for receivedUpdates
 extension User {
 
-    @objc(addReceivedUpdateRequestsObject:)
-    @NSManaged public func addToReceivedUpdateRequests(_ value: UpdateRequest)
+    @objc(addReceivedUpdatesObject:)
+    @NSManaged public func addToReceivedUpdates(_ value: Update)
 
-    @objc(removeReceivedUpdateRequestsObject:)
-    @NSManaged public func removeFromReceivedUpdateRequests(_ value: UpdateRequest)
+    @objc(removeReceivedUpdatesObject:)
+    @NSManaged public func removeFromReceivedUpdates(_ value: Update)
 
-    @objc(addReceivedUpdateRequests:)
-    @NSManaged public func addToReceivedUpdateRequests(_ values: NSSet)
+    @objc(addReceivedUpdates:)
+    @NSManaged public func addToReceivedUpdates(_ values: NSSet)
 
-    @objc(removeReceivedUpdateRequests:)
-    @NSManaged public func removeFromReceivedUpdateRequests(_ values: NSSet)
+    @objc(removeReceivedUpdates:)
+    @NSManaged public func removeFromReceivedUpdates(_ values: NSSet)
 
 }
 
@@ -119,23 +120,6 @@ extension User {
 
 }
 
-// MARK: Generated accessors for sentUpdateRequests
-extension User {
-
-    @objc(addSentUpdateRequestsObject:)
-    @NSManaged public func addToSentUpdateRequests(_ value: UpdateRequest)
-
-    @objc(removeSentUpdateRequestsObject:)
-    @NSManaged public func removeFromSentUpdateRequests(_ value: UpdateRequest)
-
-    @objc(addSentUpdateRequests:)
-    @NSManaged public func addToSentUpdateRequests(_ values: NSSet)
-
-    @objc(removeSentUpdateRequests:)
-    @NSManaged public func removeFromSentUpdateRequests(_ values: NSSet)
-
-}
-
 // MARK: Generated accessors for sentUpdates
 extension User {
 
@@ -153,19 +137,19 @@ extension User {
 
 }
 
-// MARK: Generated accessors for receivedUpdates
+// MARK: Generated accessors for responses
 extension User {
 
-    @objc(addReceivedUpdatesObject:)
-    @NSManaged public func addToReceivedUpdates(_ value: Update)
+    @objc(addResponsesObject:)
+    @NSManaged public func addToResponses(_ value: Response)
 
-    @objc(removeReceivedUpdatesObject:)
-    @NSManaged public func removeFromReceivedUpdates(_ value: Update)
+    @objc(removeResponsesObject:)
+    @NSManaged public func removeFromResponses(_ value: Response)
 
-    @objc(addReceivedUpdates:)
-    @NSManaged public func addToReceivedUpdates(_ values: NSSet)
+    @objc(addResponses:)
+    @NSManaged public func addToResponses(_ values: NSSet)
 
-    @objc(removeReceivedUpdates:)
-    @NSManaged public func removeFromReceivedUpdates(_ values: NSSet)
+    @objc(removeResponses:)
+    @NSManaged public func removeFromResponses(_ values: NSSet)
 
 }

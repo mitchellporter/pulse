@@ -36,7 +36,7 @@ class ViewUpdateViewController: UIViewController {
     private var circleFrame: CGRect = CGRect(x: 11, y: 11, width: 240, height: 240)
     private var percentInterval: CGFloat = 0.1
     
-    var task: Task?
+    var update: Update!
     
     var commentBadge: CALayer?
     
@@ -49,7 +49,7 @@ class ViewUpdateViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
                 
-        guard let task: Task = self.task else { return }
+        guard let task: Task = self.update.task else { return }
         if let assignee: User = task.assignees?.allObjects.first as? User {
            self.assignedLabel.text = "Assigned to: \(assignee.name)"
             
@@ -65,14 +65,15 @@ class ViewUpdateViewController: UIViewController {
         guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
         self.breakdownButton.alpha = updates.count > 1 ? 1.0 : 0.0
         guard let update: Update = updates.first else { return }
+        guard let response: Response = self.update.mostRecentResponse else { return }
         
-        let circlePercentage = update.completionPercentage * 0.01
+        let circlePercentage = response.completionPercentage * 0.01
         self.updateCircleFillbyAdding(percent: CGFloat(circlePercentage))
         if let date: Date = task.dueDate {
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
 
-            let percentage = Int(update.completionPercentage)
+            let percentage = Int(response.completionPercentage)
             self.dueDateLabel.text = "Due: " + formatter.string(from: date) + " | \(percentage)% Done"
         } else {
             self.dueDateLabel.text = ""

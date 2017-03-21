@@ -15,6 +15,17 @@ public class Update: NSManagedObject {
 
 }
 
+extension Update {
+    var mostRecentResponse: Response? {
+        return self.responsesSortedByRecency()?.first
+    }
+    
+    func responsesSortedByRecency() -> [Response]? {
+        guard let responses = self.responses else { return nil }
+        return responses.sorted { $0.createdAt! > $1.createdAt! }
+    }
+}
+
 extension Update: PulseType {
     typealias T = Update
     
@@ -39,34 +50,38 @@ extension Update: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let completionPercentage = json["completion_percentage"] as! Float
+        let type = json["type"] as! String
         
         let description = NSEntityDescription.entity(forEntityName: "Update", in: context)!
         let update = Update(entity: description, insertInto: context)
         update.objectId = objectId
         update.createdAt = createdAt
         update.updatedAt = updatedAt
-        update.completionPercentage = completionPercentage
-        
-        if let updateRequestJSON = json["update_request"] as? [String: AnyObject] {
-            let updateRequest = UpdateRequest.from(json: updateRequestJSON, context: context)
-            update.updateRequest = updateRequest
-        }
-        
-        if let senderJSON = json["sender"] as? [String: AnyObject] {
-            let sender = User.from(json: senderJSON, context: context)
-            update.sender = sender
-        }
-        
-        if let receiverJSON = json["receiver"] as? [String: AnyObject] {
-            let receiver = User.from(json: receiverJSON, context: context)
-            update.receiver = receiver
-        }
+        update.type = type
         
         if let taskJSON = json["task"] as? [String: AnyObject] {
             let task = Task.from(json: taskJSON, context: context)
             update.task = task
+            
+            update.taskAssignerIsCurrentUser = User.currentUserId() == task.assigner!.objectId
         }
+        
+        var requiresResponseFromCurrentUser = false
+        if let responsesJSON = json["responses"] as? [[String: AnyObject]] {
+            responsesJSON.forEach { responseJSON in
+                let response = Response.from(json: responseJSON, context: context)
+                update.addToResponses(response)
+                
+                // Check if update has response that requires update from current user
+                // This helps filtering via FRC in updates feed
+                if let assignee = response.assignee {
+                    if assignee.objectId == User.currentUserId() && response.status == "requested" {
+                        requiresResponseFromCurrentUser = true
+                    }
+                }
+            }
+        }
+        update.requiresResponseFromCurrentUser = requiresResponseFromCurrentUser
     
         return update
     }

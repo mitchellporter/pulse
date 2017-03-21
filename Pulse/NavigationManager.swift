@@ -47,7 +47,7 @@ class NavigationManager {
         }
     }
     
-    static func presentUpdateRequestReceived(updateRequest: UpdateRequest) {
+    static func presentUpdateRequestReceived(updateRequest: Update) {
         if self.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self) {
             guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else { return }
             guard let taskController = navigationController.viewControllers.last as? TaskViewController else { return }

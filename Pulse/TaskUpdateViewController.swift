@@ -39,7 +39,7 @@ class TaskUpdateViewController: UIViewController {
     private var percentInterval: CGFloat = 0.1
     
     var holdTimer: Timer?
-    var updateRequest: UpdateRequest?
+    var update: Update?
     var task: Task?
     
     var commentBadge: CALayer?
@@ -220,16 +220,17 @@ class TaskUpdateViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        if self.updateRequest != nil {
+        if self.update != nil {
+            
+            // TODO: Implement
             let percentage = Float(self.completedCircle.strokeEnd * 100)
-            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: percentage, success: { (update) in
+            UpdateService.respondToUpdateRequest(updateId: self.update!.objectId, completionPercentage: percentage, success: { (update) in
                 CoreDataStack.shared.saveContext()
                 // Success, do something
                 self.backButtonPressed(self.backButton)
             }, failure: { (error, statusCode) in
-                print("Error: \(statusCode) \(error.localizedDescription)")
+                // TODO: Handle failure
             })
-            
         } else if self.task != nil {
             let percentage = Float(self.completedCircle.strokeEnd * 100)
             UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, success: { (update) in

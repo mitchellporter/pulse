@@ -202,6 +202,15 @@ class UpdateAlertController: AlertController {
             }, failure: { (error, statusCode) in
                 print("Error: \(statusCode) \(error.localizedDescription)")
             })
+        if self.update != nil {
+            
+            // TODO: Implement
+//            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+//                // Success, do something
+//                
+//            }, failure: { (error, statusCode) in
+//                print("Error: \(statusCode) \(error.localizedDescription)")
+//            })
         }
         AlertManager.dismissAlert()
     }
