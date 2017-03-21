@@ -22,6 +22,7 @@
     <entity name="Response" representedClassName="Response" syncable="YES">
         <attribute name="completionPercentage" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="message" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -142,7 +143,7 @@
     </entity>
     <elements>
         <element name="Item" positionX="-9" positionY="144" width="128" height="150"/>
-        <element name="Response" positionX="-45" positionY="135" width="128" height="150"/>
+        <element name="Response" positionX="-45" positionY="135" width="128" height="165"/>
         <element name="Task" positionX="-54" positionY="36" width="128" height="240"/>
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>

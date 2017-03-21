@@ -24,5 +24,5 @@ extension Response {
     @NSManaged public var completionPercentage: Float
     @NSManaged public var assignee: User?
     @NSManaged public var update: Update?
-
+    @NSManaged public var message: String?
 }

@@ -60,7 +60,9 @@ extension Response: PulseType {
         response.status = status
         response.completionPercentage = completionPercentage
         
-        print(status)
+        if let message = json["message"] as? String {
+            response.message = message
+        }
         
         if let updateJSON = json["update"] as? [String: AnyObject] {
             let update = Update.from(json: updateJSON, context: context)
