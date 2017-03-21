@@ -44,9 +44,9 @@ enum PulseAPI {
     // Task Updates
     case getTask(taskId: String) //
     case requestTaskUpdate(taskId: String) //
-    case sendTaskUpdate(taskId: String, completionPercentage: Float) //
+    case sendTaskUpdate(taskId: String, completionPercentage: Float, message: String?) //
     case finishTask(taskId: String) //
-    case respondToUpdateRequest(updateId: String, completionPercentage: Float)
+    case respondToUpdateRequest(updateId: String, completionPercentage: Float, message: String?)
     
     // Task Items
     case markTaskItemCompleted(taskId: String, itemId: String) //
@@ -117,9 +117,9 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
         case let .requestTaskUpdate(taskId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
-        case let .sendTaskUpdate(taskId, _):
+        case let .sendTaskUpdate(taskId, _, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/updates"
-        case let .respondToUpdateRequest(updateId, _):
+        case let .respondToUpdateRequest(updateId, _, _):
             return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)"
         case let .getTeamMembers(teamId, _):
             return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members/"
@@ -194,10 +194,13 @@ extension PulseAPI {
             return [
                 "type": "requested" as AnyObject
             ]
-        case let .respondToUpdateRequest(_, completionPercentage):
-            return [
-                "completion_percentage": completionPercentage as AnyObject
-            ]
+        case let .respondToUpdateRequest(_, completionPercentage, message):
+            var params = [String: AnyObject]()
+            params["completion_percentage"] = completionPercentage as AnyObject
+            
+            guard let message = message else { return params }
+            params["message"] = message as AnyObject
+            return params
         case let .respondToTaskInvitation(_, status):
             return [
                 "status": status.rawValue as AnyObject
@@ -206,10 +209,13 @@ extension PulseAPI {
             return [
                 "status": "completed" as AnyObject
             ]
-        case let .sendTaskUpdate(_, completionPercentage):
-            return [
-                "completion_percentage": completionPercentage as AnyObject
-            ]
+        case let .sendTaskUpdate(_, completionPercentage, message):
+            var params = [String: AnyObject]()
+            params["completion_percentage"] = completionPercentage as AnyObject
+            
+            guard let message = message else { return params }
+            params["message"] = message as AnyObject
+            return params
         case .markTaskItemInProgress:
             return [
                 "status": "in_progress" as AnyObject
