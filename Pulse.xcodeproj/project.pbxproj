@@ -32,6 +32,7 @@
 		C1629ABA1E5F8ED100EC91B0 /* DateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1629AB51E5F8ED100EC91B0 /* DateCell.xib */; };
 		C16B5DDD1E6787D700F5BB58 /* Updates.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C16B5DDC1E6787D700F5BB58 /* Updates.storyboard */; };
 		C16B5DDF1E678F2400F5BB58 /* TaskUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16B5DDE1E678F2400F5BB58 /* TaskUpdateViewController.swift */; };
+		C19502271E8092020051E1BC /* MyTasksToViewTaskTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19502261E8092010051E1BC /* MyTasksToViewTaskTransition.swift */; };
 		C19B74221E5F9337002D9352 /* TaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B74211E5F9337002D9352 /* TaskViewController.swift */; };
 		C19B74241E5F9491002D9352 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B74231E5F9491002D9352 /* Button.swift */; };
 		C19B742E1E5F950D002D9352 /* UIAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C19B742C1E5F950D002D9352 /* UIAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -192,6 +193,7 @@
 		C1629AB51E5F8ED100EC91B0 /* DateCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateCell.xib; sourceTree = "<group>"; };
 		C16B5DDC1E6787D700F5BB58 /* Updates.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Updates.storyboard; sourceTree = "<group>"; };
 		C16B5DDE1E678F2400F5BB58 /* TaskUpdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskUpdateViewController.swift; sourceTree = "<group>"; };
+		C19502261E8092010051E1BC /* MyTasksToViewTaskTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTasksToViewTaskTransition.swift; sourceTree = "<group>"; };
 		C19B74211E5F9337002D9352 /* TaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskViewController.swift; sourceTree = "<group>"; };
 		C19B74231E5F9491002D9352 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = ../Pulse/Button.swift; sourceTree = "<group>"; };
 		C19B742A1E5F950C002D9352 /* UIAdditions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIAdditions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -412,6 +414,14 @@
 			name = TaskUpdate;
 			sourceTree = "<group>";
 		};
+		C19502251E8091C30051E1BC /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				C19502261E8092010051E1BC /* MyTasksToViewTaskTransition.swift */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
 		C19B742B1E5F950D002D9352 /* UIAdditions */ = {
 			isa = PBXGroup;
 			children = (
@@ -435,6 +445,7 @@
 				C1AD366C1E689F6C00C5A9AA /* UpdatesViewController.xib */,
 				C1AD366F1E689F7900C5A9AA /* CreatedTasksViewController.swift */,
 				C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */,
+				C19502251E8091C30051E1BC /* Transitions */,
 			);
 			name = TaskViewController;
 			sourceTree = "<group>";
@@ -966,6 +977,7 @@
 				C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */,
 				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
 				C1AD367A1E68D44100C5A9AA /* AlertController.swift in Sources */,
+				C19502271E8092020051E1BC /* MyTasksToViewTaskTransition.swift in Sources */,
 				C39D04171E70D5600054BC93 /* SocketManager.swift in Sources */,
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
@@ -1418,6 +1430,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = UIAdditions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.UIAdditions;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1472,7 +1485,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UIAdditions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.UIAdditions;
@@ -1531,7 +1544,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UIAdditions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.UIAdditions;
@@ -1590,7 +1603,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UIAdditions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.UIAdditions;
@@ -1649,7 +1662,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UIAdditions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.UIAdditions;
@@ -1708,7 +1721,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = UIAdditions/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.mentorventures.UIAdditions;

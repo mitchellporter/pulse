@@ -9,6 +9,8 @@
 import UIKit
 
 class NavigationController: UINavigationController {
+    
+    var animator: UIViewControllerAnimatedTransitioning?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,8 @@ extension NavigationController: UINavigationControllerDelegate {
         
         if fromVC is Onboarding && toVC is Onboarding {
             return OnboardingTransition()
+        } else if fromVC is TaskViewController && toVC is ViewTaskViewController {
+            return self.animator
         }
         return nil
     }

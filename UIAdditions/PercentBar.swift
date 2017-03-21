@@ -11,26 +11,26 @@ import UIKit
 /* This class has a temporary size constraint to height: 46 width: 10. In the future the size will be dynamic to maintain the correct aspect ratio. */
 
 @IBDesignable
-class DotControl: UIView {
+open class DotControl: UIView {
     private var frontDots: CALayer = CALayer()
     private var backDots: CALayer = CALayer()
     
     /*This is the color the control will display to represent the uncompleted percentage of the control.*/
-    @IBInspectable var emptyColor: UIColor = UIColor.white {
+    @IBInspectable open var emptyColor: UIColor = UIColor.black {
         didSet {
             self.updateColor(self.emptyColor, for: self.backDots)
         }
     }
     
     /*This is the color the control will display to represent the completed percentage of the control.*/
-    @IBInspectable var completedColor: UIColor = UIColor.black {
+    @IBInspectable open var completedColor: UIColor = UIColor.white {
         didSet {
             self.updateColor(self.completedColor, for: self.frontDots)
         }
     }
     
     /*Percentage the control will display using values between 0.0 and 1.0. The closest valid value will be used for any value outside this range.*/
-    @IBInspectable var percent: CGFloat = 0.0 {
+    @IBInspectable open var percent: CGFloat = 0.0 {
         didSet {
             if self.percent > 1.0 {
                 self.percent = 1.0
@@ -41,7 +41,7 @@ class DotControl: UIView {
         }
     }
     
-    override var frame: CGRect {
+    override open var frame: CGRect {
         get {
             return super.frame
         }
@@ -56,12 +56,12 @@ class DotControl: UIView {
         self.load()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.load()
     }
     
-    override func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
         self.load()
     }
     
@@ -84,6 +84,7 @@ class DotControl: UIView {
             let circle: CAShapeLayer = CAShapeLayer()
             circle.path = circlePath.cgPath
             circle.fillColor = color.cgColor
+            circle.strokeColor = nil
             dotLayer.addSublayer(circle)
             originX += circleFrame.width + 2
         }
@@ -100,6 +101,7 @@ class DotControl: UIView {
     private func updatePercent(_ percent: CGFloat) {
         let backPercent: CGRect = CGRect(x: self.frame.width * percent, y: 0, width: self.frame.width * (1.0 - percent), height: 10)
         let frontPercent: CGRect = CGRect(x: 0, y: 0, width: self.frame.width * percent, height: 10)
+        
         self.backDots.mask?.frame = backPercent
         self.frontDots.mask?.frame = frontPercent
     }
