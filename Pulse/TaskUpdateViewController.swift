@@ -225,8 +225,8 @@ class TaskUpdateViewController: UIViewController {
             // TODO: Implement
             let percentage = Float(self.completedCircle.strokeEnd * 100)
             UpdateService.respondToUpdateRequest(updateId: self.update!.objectId, completionPercentage: percentage, success: { (update) in
-                CoreDataStack.shared.saveContext()
                 // Success, do something
+                CoreDataStack.shared.saveContext()
                 self.backButtonPressed(self.backButton)
             }, failure: { (error, statusCode) in
                 // TODO: Handle failure
@@ -234,10 +234,8 @@ class TaskUpdateViewController: UIViewController {
         } else if self.task != nil {
             let percentage = Float(self.completedCircle.strokeEnd * 100)
             UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, success: { (update) in
-                
-                CoreDataStack.shared.saveContext()
-
                 // Success, do something
+                CoreDataStack.shared.saveContext()
                 self.backButtonPressed(self.backButton)
             }, failure: { (error, statusCode) in
                 print("Error: \(statusCode) \(error.localizedDescription)")

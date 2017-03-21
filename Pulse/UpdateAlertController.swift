@@ -42,15 +42,15 @@ class UpdateAlertController: AlertController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupAppearance()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let updateRequest: UpdateRequest = self.data as? UpdateRequest else { return }
-        guard let task: Task = updateRequest.task else { return }
+        guard let update: Update = self.data as? Update else { return }
+        guard let task: Task = update.task else { return }
         if let assigner: User = task.assigner {
             self.assignedToLabel.text = "Assigned by: \(assigner.name)"
         } else {
@@ -72,7 +72,7 @@ class UpdateAlertController: AlertController {
         guard let url: URL = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatarImageView)
     }
-
+    
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3
         self.alertViewHeader.backgroundColor = createTaskBackgroundColor
@@ -195,24 +195,16 @@ class UpdateAlertController: AlertController {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        if let updateRequest: UpdateRequest = self.data as? UpdateRequest {
-            UpdateService.sendUpdateForUpdateRequest(updateRequestId: updateRequest.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
-                // Success, do something
-                
-            }, failure: { (error, statusCode) in
-                print("Error: \(statusCode) \(error.localizedDescription)")
-            })
-        if self.update != nil {
-            
+        if let updateRequest: Update = self.data as? Update {
             // TODO: Implement
-//            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
-//                // Success, do something
-//                
-//            }, failure: { (error, statusCode) in
-//                print("Error: \(statusCode) \(error.localizedDescription)")
-//            })
+            //            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+            //                // Success, do something
+            //
+            //            }, failure: { (error, statusCode) in
+            //                print("Error: \(statusCode) \(error.localizedDescription)")
+            //            })
+            AlertManager.dismissAlert()
         }
-        AlertManager.dismissAlert()
     }
 }
 

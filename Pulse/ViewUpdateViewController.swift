@@ -36,7 +36,7 @@ class ViewUpdateViewController: UIViewController {
     private var circleFrame: CGRect = CGRect(x: 11, y: 11, width: 240, height: 240)
     private var percentInterval: CGFloat = 0.1
     
-    var update: Update!
+    var update: Update?
     
     var commentBadge: CALayer?
     
@@ -48,8 +48,9 @@ class ViewUpdateViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                
-        guard let task: Task = self.update.task else { return }
+        
+        guard let update: Update = self.update else { return }
+        guard let task: Task = update.task else { return }
         if let assignee: User = task.assignees?.allObjects.first as? User {
            self.assignedLabel.text = "Assigned to: \(assignee.name)"
             
@@ -62,18 +63,27 @@ class ViewUpdateViewController: UIViewController {
         
         self.descriptionLabel.text = task.title
         
-        guard let updates: [Update] = task.updates?.allObjects as? [Update] else { return }
-        self.breakdownButton.alpha = updates.count > 1 ? 1.0 : 0.0
-        guard let update: Update = updates.first else { return }
-        guard let response: Response = self.update.mostRecentResponse else { return }
+        guard let updateResponses: Set<Response> = update.responses else { return }
+        let responses: [Response] = Array(updateResponses)
         
-        let circlePercentage = response.completionPercentage * 0.01
+        // Set breakdown button visible if there is more than 1 response to the update.
+        self.breakdownButton.alpha = responses.count > 1 ? 1.0 : 0.0
+        
+        var percentage: Float = 0.0
+        for response in responses {
+            percentage += response.completionPercentage
+        }
+        percentage = percentage / Float(responses.count)
+        
+//        guard let response: Response = update.mostRecentResponse else { return }
+        
+        let circlePercentage = percentage / 100
         self.updateCircleFillbyAdding(percent: CGFloat(circlePercentage))
         if let date: Date = task.dueDate {
             let formatter: DateFormatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
 
-            let percentage = Int(response.completionPercentage)
+            let percentage = Int(percentage)
             self.dueDateLabel.text = "Due: " + formatter.string(from: date) + " | \(percentage)% Done"
         } else {
             self.dueDateLabel.text = ""
