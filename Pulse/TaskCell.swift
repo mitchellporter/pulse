@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import UIAdditions
 
 enum TaskCellType {
     case assigner
@@ -23,6 +24,7 @@ class TaskCell: UITableViewCell {
     // Revisit if this should be one or two labels.
     @IBOutlet weak var duePercentLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var completedControl: DotControl!
     
 //    var task: Task? {
 //        didSet {
@@ -74,6 +76,7 @@ class TaskCell: UITableViewCell {
         let dueDate: String = date == nil ? "" : " | " + dateFormatter.string(from: date!)
         self.duePercentLabel.text = type == .assigner ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
         self.duePercentLabel.textColor = appRed
+        self.completedControl.alpha = 0.0
     }
     
     func load(task: Task, type: TaskCellType) {
@@ -101,7 +104,12 @@ class TaskCell: UITableViewCell {
             guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
             user = assignee
         }
-//        print(user)
+
+        self.completedControl.percent = CGFloat(0.0)
+        self.completedControl.percent = CGFloat(task.completionPercentage / 100)
+//        self.completedControl.emptyColor = UIColor("04243B")
+//        self.completedControl.completedColor = UIColor("FFFFFF")
+        
         guard let name: String = user?.name else { return }
         self.assignedLabel.text = type == .assignee ? "ASSIGNED TO: " + name : "ASSIGNED BY: " + name
         

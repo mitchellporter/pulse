@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="Pog-KC-Fy7">
@@ -112,6 +112,7 @@
             <connections>
                 <outlet property="avatarView" destination="Pog-KC-Fy7" id="yNS-vL-x4w"/>
                 <outlet property="nameLabel" destination="m4J-Jc-sEX" id="eJj-YK-PoG"/>
+                <outlet property="percentControl" destination="5Es-7F-ZU4" id="RQO-cZ-CUh"/>
                 <outlet property="percentView" destination="TqN-EH-pu0" id="FGi-Ys-Ut2"/>
                 <outlet property="percentageLabel" destination="i4h-2p-a8s" id="Sj5-xm-TRq"/>
                 <outlet property="positionLabel" destination="tga-bA-Og1" id="NEA-5s-74j"/>
