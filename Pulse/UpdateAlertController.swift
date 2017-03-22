@@ -196,13 +196,13 @@ class UpdateAlertController: AlertController {
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         if let updateRequest: Update = self.data as? Update {
-            // TODO: Implement
-            //            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
-            //                // Success, do something
-            //
-            //            }, failure: { (error, statusCode) in
-            //                print("Error: \(statusCode) \(error.localizedDescription)")
-            //            })
+            let comment: String? = self.comment == "" ? nil : self.comment
+            UpdateService.respondToUpdateRequest(updateId: updateRequest.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), message: comment, success: { (update) in
+                // Success, do something
+                
+            }, failure: { (error, statusCode) in
+                print("Error: \(statusCode) \(error.localizedDescription)")
+            })
             AlertManager.dismissAlert()
         }
     }
