@@ -62,6 +62,12 @@ enum PulseAPI {
     
     // Task invitations
     case respondToTaskInvitation(taskInvitationId: String, status: TaskInvitationStatus)
+    
+    // Availability
+    case checkTeamNameAvailability(teamName: String)
+    case checkUsernameAvailability(username: String)
+    case checkEmailAddressAvailability(emailAddress: String)
+
 }
 
 extension PulseAPI {
@@ -73,7 +79,10 @@ extension PulseAPI {
                  .getTeamMembers,
                  .getMyTasks,
                  .getTasksCreated,
-                 .getUpdatesFeed:
+                 .getUpdatesFeed,
+                 .checkTeamNameAvailability,
+                 .checkUsernameAvailability,
+                 .checkEmailAddressAvailability:
             return .get
             
         case .editTask,
@@ -135,6 +144,12 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
         case let .markTaskItemCompleted(taskId, itemId):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/items/\(itemId)"
+        case .checkTeamNameAvailability:
+            return "/api/\(PulseAPI.apiVersion)/availability/teams"
+        case .checkUsernameAvailability:
+            return "/api/\(PulseAPI.apiVersion)/availability/usernames"
+        case .checkEmailAddressAvailability:
+            return "/api/\(PulseAPI.apiVersion)/availability/emails"
         }
     }
 }
@@ -223,6 +238,18 @@ extension PulseAPI {
         case .markTaskItemCompleted:
             return [
                 "status": "completed" as AnyObject
+            ]
+        case let .checkTeamNameAvailability(teamName):
+            return [
+                "name": teamName as AnyObject
+            ]
+        case let .checkUsernameAvailability(username):
+            return [
+                "username": username as AnyObject
+            ]
+        case let .checkEmailAddressAvailability(email):
+            return [
+                "email_address": email as AnyObject
             ]
                default: return nil
         }
