@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
             
             case "allen":
             defaults.set("5881130a387e980f48c743f7", forKey: "user_id")
-            defaults.set("Bearer nothing", forKey: "bearer_token")
+            defaults.set("Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ODgxMTMwYTM4N2U5ODBmNDhjNzQzZjcifQ.PPFE_iGoi_UGKdETnOv6teeOPmJeUsGWK0lK_fwIPSg", forKey: "bearer_token")
             defaults.synchronize()
             
             case "arch":
