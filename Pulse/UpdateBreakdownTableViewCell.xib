@@ -39,6 +39,7 @@
                     </label>
                     <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CzS-xp-BF9" customClass="Button" customModule="Pulse" customModuleProvider="target">
                         <rect key="frame" x="221" y="8" width="77" height="32"/>
+                        <color key="backgroundColor" red="0.24313725490196078" green="0.68235294117647061" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="77" id="Nqf-9y-BJl"/>
                             <constraint firstAttribute="height" constant="32" id="ddA-1u-gQP"/>

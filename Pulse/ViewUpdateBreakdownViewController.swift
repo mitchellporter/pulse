@@ -11,6 +11,8 @@ import UIKit
 class ViewUpdateBreakdownViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var datasource: [Response] = [Response]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,17 +51,14 @@ class ViewUpdateBreakdownViewController: UIViewController {
 extension ViewUpdateBreakdownViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell: UpdateBreakdownTableViewCell = tableView.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath) as? UpdateBreakdownTableViewCell else {
             return tableView.dequeueReusableCell(withIdentifier: "progressCell", for: indexPath)
         }
-        
-        
-        
+        cell.load(datasource[indexPath.row])
         return cell
     }
-    
 }

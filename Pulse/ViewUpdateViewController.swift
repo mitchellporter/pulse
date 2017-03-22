@@ -186,7 +186,8 @@ class ViewUpdateViewController: UIViewController {
     }
     
     @IBAction func breakdownButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "breakdown", sender: nil)
+        guard let update: Update = self.update else { return }
+        self.performSegue(withIdentifier: "breakdown", sender: update)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -203,5 +204,16 @@ class ViewUpdateViewController: UIViewController {
     
     @IBAction func commentViewClosed(_ sender: UIButton) {
         self.presentCommentView(false)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "breakdown" {
+            guard let update: Update = sender as? Update else { return }
+            guard let responses: Set<Response> = update.responses else { return }
+            guard let toVC: ViewUpdateBreakdownViewController = segue.destination as? ViewUpdateBreakdownViewController else { return }
+            toVC.datasource = Array(responses)
+        }
     }
 }

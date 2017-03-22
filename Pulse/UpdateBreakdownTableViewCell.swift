@@ -8,6 +8,7 @@
 
 import UIKit
 import UIAdditions
+import Nuke
 
 class UpdateBreakdownTableViewCell: UITableViewCell {
     
@@ -30,15 +31,40 @@ class UpdateBreakdownTableViewCell: UITableViewCell {
         self.percentControl.percent = 0.0
     }
 
-    func load() {
-        // This method needs to take an update progress as a parameter.
+    func load(_ response: Response) {
         
-        // This should be a value loaded from the Update Response.
-        self.percentControl.percent = 0.5
+        guard let user: User = response.assignee else { return }
+        self.nameLabel.text = user.name
+        self.positionLabel.text = user.position
+        
+        guard let responseStatus: ResponseStatus = ResponseStatus(rawValue: response.status) else { return }
+        if responseStatus == .requested {
+            self.percentView.alpha = 0.0
+            self.resendButton.alpha = 1.0
+        } else {
+            // This should be a value loaded from the Update Response.
+            self.percentControl.percent = CGFloat(response.completionPercentage / 100)
+            self.percentageLabel.text = String(response.completionPercentage) + "%"
+        }
+        
+        guard let avatarURLString: String = user.avatarURL else { return }
+        guard let url: URL = URL(string: avatarURLString) else { return }
+        Nuke.loadImage(with: url, into: self.avatarView)
     }
     
     @IBAction func resendButtonPressed(_ sender: UIButton) {
         // Resend update request
+        
+        
+        // After successful resend set button to sent state
+        self.resendButton.backgroundColor = appGreen
+        self.resendButton.setTitle("SENT", for: .normal)
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        self.resendButton.backgroundColor = appBlue
+        self.resendButton.setTitle("RESEND", for: .normal)
+    }
 }
