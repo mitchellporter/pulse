@@ -16,7 +16,7 @@ class CreateTaskAssignViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var assignDescriptionLabel: UILabel!
     var taskDictionary: [CreateTaskKeys : [Any]]?
-    var tableViewTopInset: CGFloat = 30
+    var tableViewTopInset: CGFloat = 42
     
     var fetchedResultsController: NSFetchedResultsController<User>!
     var assignees: Set<User> {
@@ -34,6 +34,8 @@ class CreateTaskAssignViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.layoutIfNeeded()
         self.setupAppearance()
         self.setupTableView()
         self.setupCoreData()
@@ -84,7 +86,7 @@ class CreateTaskAssignViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        let frame: CGRect = CGRect(x: 0, y: (self.assignDescriptionLabel.frame.origin.y + self.assignDescriptionLabel.frame.height), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+        let frame: CGRect = CGRect(x: 0, y: (self.tableView.frame.origin.y), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
         topGradient.colors = [createTaskBackgroundColor.cgColor, createTaskBackgroundColor.withAlphaComponent(0.0).cgColor]
@@ -104,10 +106,12 @@ class CreateTaskAssignViewController: UIViewController {
     }
     
     private func setupTableView() {
+        self.tableView.register(TaskSectionHeader.self, forHeaderFooterViewReuseIdentifier: "taskHeader")
         let cell: UINib = UINib(nibName: "CreateTaskAssignCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "assignCell")
         self.tableView.rowHeight = 58
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
         self.tableView.backgroundColor = self.view.backgroundColor
         self.tableView.showsVerticalScrollIndicator = false
@@ -134,10 +138,22 @@ class CreateTaskAssignViewController: UIViewController {
 
 }
 
-extension CreateTaskAssignViewController: UITableViewDataSource {
+extension CreateTaskAssignViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.fetchedResultsController.sections?.count ?? 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 36
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
+        header.contentView.backgroundColor = createTaskBackgroundColor
+        header.title = "MY TEAM"
+        header.markerWidth = 5.0
+        return header
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

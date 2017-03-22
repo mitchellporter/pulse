@@ -34,16 +34,15 @@ class HomeViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        self.view.backgroundColor = mainBackgroundColor
-        self.createbutton.backgroundColor = appBlue
+        self.view.backgroundColor = appBlue
     }
     
     @IBAction func createButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toLogin", sender: nil)
+        self.performSegue(withIdentifier: "create", sender: nil)
     }
     
     @IBAction func joinButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toLogin", sender: nil)
+//        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {

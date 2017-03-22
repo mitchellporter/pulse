@@ -10,6 +10,8 @@ import UIKit
 import QuartzCore
 import CoreGraphics
 
+let kUpdateCommentPlaceHolder: String = "Add a message here"
+
 class TaskUpdateViewController: UIViewController {
 
     @IBOutlet weak var circleView: UIView!
@@ -18,6 +20,17 @@ class TaskUpdateViewController: UIViewController {
     @IBOutlet weak var minusButton: Button!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var commentButton: UIButton!
+    
+    // Comment View outlets
+    @IBOutlet weak var commentCloseButton: UIButton!
+    @IBOutlet weak var commentDoneButton: UIButton!
+    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var commentTopBar: UIView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var commentViewY: NSLayoutConstraint!
+    @IBOutlet weak var commentCoverView: UIView!
+    
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     private var circleLayer: CAShapeLayer = CAShapeLayer()
     
@@ -29,9 +42,11 @@ class TaskUpdateViewController: UIViewController {
     var update: Update?
     var task: Task?
     
+    var commentBadge: CALayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupAppearance()
     }
     
@@ -41,11 +56,32 @@ class TaskUpdateViewController: UIViewController {
 //        guard let task: Task = self.task else { return }
 //        self.updatePercentFor(task: task)
     }
-
+    
     private func setupAppearance() {
         self.view.backgroundColor = mainBackgroundColor
         
         self.drawCircle()
+        
+        // Setup comment badge
+        let circle: CALayer = CALayer()
+        circle.frame = CGRect(x: 12, y: -2, width: 12, height: 12)
+        circle.backgroundColor = appRed.cgColor
+        circle.masksToBounds = true
+        circle.cornerRadius = circle.frame.width/2
+        let border: CAShapeLayer = CAShapeLayer()
+        border.path = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: 10, height: 10)).cgPath
+        border.strokeColor = UIColor.white.cgColor
+        border.lineWidth = 2
+        border.fillColor = nil
+        circle.addSublayer(border)
+        
+        self.commentBadge = circle
+        
+        // Setup comment view
+        self.commentView.layer.cornerRadius = 3
+        self.commentTopBar.backgroundColor = mainBackgroundColor
+        self.commentTextView.textContainerInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 20)
+        self.commentTextView.text = kUpdateCommentPlaceHolder
         
 //        let path = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 100, height: 100))
 //        
@@ -64,6 +100,15 @@ class TaskUpdateViewController: UIViewController {
 //        gradient.mask = shapeMask
 //        
 //        self.view.layer.addSublayer(gradient)
+    }
+    
+    fileprivate func showCommentBadge(_ visible: Bool) {
+        if visible {
+            guard let badge: CALayer = self.commentBadge else { return }
+            self.commentButton.layer.addSublayer(badge)
+        } else {
+            self.commentBadge?.removeFromSuperlayer()
+        }
     }
     
     func updatePercentFor(task: Task) {
@@ -115,6 +160,32 @@ class TaskUpdateViewController: UIViewController {
         })
     }
     
+    private func presentCommentView(_ presenting: Bool) {
+        if presenting {
+            self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            self.commentCoverView.frame = self.view.bounds
+            self.view.addSubview(self.commentCoverView)
+            self.commentViewY.constant = self.view.bounds.height
+            self.view.layoutIfNeeded()
+            self.commentViewY.constant = 0
+            UIView.animate(withDuration: 0.3, animations: {
+                self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.66)
+                self.view.layoutIfNeeded()
+            }, completion: {_ in
+                self.commentTextView.becomeFirstResponder()
+            })
+        } else {
+            self.commentTextView.resignFirstResponder()
+            self.commentViewY.constant = self.view.bounds.height
+            UIView.animate(withDuration: 0.2, animations: {
+                self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                self.commentCoverView.removeFromSuperview()
+            })
+        }
+    }
+    
     private func giveFeedback() {
         if #available(iOS 10.0, *) {
             let mediumGenerator = UIImpactFeedbackGenerator(style: .light)
@@ -132,7 +203,6 @@ class TaskUpdateViewController: UIViewController {
         self.giveFeedback()
         self.updateCircleFillbyAdding(percent: -self.percentInterval)
     }
-    
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if sender == self.addButton {
@@ -154,20 +224,18 @@ class TaskUpdateViewController: UIViewController {
             
             // TODO: Implement
             let percentage = Float(self.completedCircle.strokeEnd * 100)
-            UpdateService.respondToUpdateRequest(updateId: self.update!.objectId, completionPercentage: percentage, success: { (update) in
-                CoreDataStack.shared.saveContext()
+            UpdateService.respondToUpdateRequest(updateId: self.update!.objectId, completionPercentage: percentage, message: self.commentTextView.text, success: { (update) in
                 // Success, do something
+                CoreDataStack.shared.saveContext()
                 self.backButtonPressed(self.backButton)
             }, failure: { (error, statusCode) in
                 // TODO: Handle failure
             })
         } else if self.task != nil {
             let percentage = Float(self.completedCircle.strokeEnd * 100)
-            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, success: { (update) in
-                
-                CoreDataStack.shared.saveContext()
-
+            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, message: self.commentTextView.text, success: { (update) in
                 // Success, do something
+                CoreDataStack.shared.saveContext()
                 self.backButtonPressed(self.backButton)
             }, failure: { (error, statusCode) in
                 print("Error: \(statusCode) \(error.localizedDescription)")
@@ -180,6 +248,72 @@ class TaskUpdateViewController: UIViewController {
             _ = self.navigationController?.popViewController(animated: true)
         } else {
             self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func commentButtonPressed(_ sender: UIButton) {
+        self.presentCommentView(true)
+    }
+    
+    @IBAction func commentViewClosed(_ sender: UIButton) {
+        self.presentCommentView(false)
+    }
+    
+    @IBAction func commentDoneButtonPressed(_ sender: UIButton) {
+        // Add comment to task update and dismiss comment view.
+    }
+}
+
+extension TaskUpdateViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        DispatchQueue.main.async {
+            if textView.text == kUpdateCommentPlaceHolder {
+                textView.selectedRange = NSMakeRange(0, 0)
+            }
+        }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        let zeroRange: NSRange = NSMakeRange(0, 0)
+        if textView.text == kUpdateCommentPlaceHolder {
+            if (textView.selectedRange.location != zeroRange.location) || (textView.selectedRange.length != zeroRange.length) {
+                textView.selectedRange = zeroRange
+            }
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        if textView.text == kUpdateCommentPlaceHolder {
+            if text != "" {
+                textView.text = ""
+                textView.textColor = UIColor.black
+            }
+        }
+        return true
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        
+        if textView.text == "" {
+                textView.text = kUpdateCommentPlaceHolder
+                textView.textColor = UIColor.black.withAlphaComponent(0.24)
+        }
+        
+        if textView.text != kUpdateCommentPlaceHolder {
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = kUpdateCommentPlaceHolder
+        }
+        
+        if textView.text != "" && textView.text != kUpdateCommentPlaceHolder {
+            self.showCommentBadge(true)
+        } else {
+            self.showCommentBadge(false)
         }
     }
 }

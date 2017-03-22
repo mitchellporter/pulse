@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import UIAdditions
 
 enum TaskCellType {
     case assigner
@@ -23,6 +24,7 @@ class TaskCell: UITableViewCell {
     // Revisit if this should be one or two labels.
     @IBOutlet weak var duePercentLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var completedControl: DotControl!
     
 //    var task: Task? {
 //        didSet {
@@ -56,33 +58,55 @@ class TaskCell: UITableViewCell {
     
     private func setupAppearance() {
         self.avatar.layer.cornerRadius = 4
-        self.avatar.layer.borderColor = UIColor.white.cgColor
-        self.avatar.layer.borderWidth = 2
+//        self.avatar.layer.borderColor = UIColor.white.cgColor
+//        self.avatar.layer.borderWidth = 2
         
         self.badge.layer.borderColor = UIColor.white.cgColor
         self.badge.layer.borderWidth = 2
         self.badge.alpha = 0
     }
     
-    func load(invitation: TaskInvitation, type: TaskCellType) {
+    func load(_ object: Any, type: TaskCellType) {
+        if let invitation: TaskInvitation = object as? TaskInvitation {
+            self.load(invitation, type: type)
+            return
+        }
+        
+        if let task: Task = object as? Task {
+            self.load(task, type: type)
+            return
+        }
+        
+        
+        // What happens when this inference fails??.... INFINITE LOOP
+//        self.load(object, type: type)
+    }
+    
+    private func load(_ invitation: TaskInvitation, type: TaskCellType) {
         guard let task: Task = invitation.task else { print("There was no task associated with the invitation"); return }
-        self.load(task: task, type: type)
+        self.load(task, type: type)
         
         let date: Date? = task.dueDate
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
         let dueDate: String = date == nil ? "" : " | " + dateFormatter.string(from: date!)
-        self.duePercentLabel.text = type == .assignee ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
+        self.duePercentLabel.text = type == .assigner ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
         self.duePercentLabel.textColor = appRed
+        self.completedControl.alpha = 0.0
     }
     
-    func load(task: Task, type: TaskCellType) {
+    private func load(_ task: Task, type: TaskCellType) {
         self.duePercentLabel.textColor = task.status == TaskStatus.completed.rawValue ? appGreen : UIColor.white
         var duePercentString: String = ""
-        if let dueDate = task.dueDate {
-            let diff = dueDate.timeIntervalSince1970 - Date().timeIntervalSince1970
-            let daysTillDueDate = Int(round(diff / 86400))
-            duePercentString = "DUE: \(daysTillDueDate) DAYS | "
+        if task.status != TaskStatus.completed.rawValue {
+            if let dueDate = task.dueDate {
+                let diff = dueDate.timeIntervalSince1970 - Date().timeIntervalSince1970
+                let daysTillDueDate = Int(round(diff / 86400))
+                duePercentString = "DUE: \(daysTillDueDate) DAYS | "
+                if dueDate.timeIntervalSince(Date()) <= 86400 {
+                    self.duePercentLabel.textColor = appRed
+                }
+            }
         }
         self.duePercentLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% DONE"
         self.descriptionLabel.text = task.title
@@ -96,7 +120,12 @@ class TaskCell: UITableViewCell {
             guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
             user = assignee
         }
-//        print(user)
+
+        self.completedControl.percent = CGFloat(0.0)
+        self.completedControl.percent = CGFloat(task.completionPercentage / 100)
+//        self.completedControl.emptyColor = UIColor("04243B")
+//        self.completedControl.completedColor = UIColor("FFFFFF")
+        
         guard let name: String = user?.name else { return }
         self.assignedLabel.text = type == .assignee ? "ASSIGNED TO: " + name : "ASSIGNED BY: " + name
         

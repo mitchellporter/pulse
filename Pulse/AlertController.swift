@@ -13,10 +13,11 @@ class AlertController: UIViewController {
     var titleText: String?
     var message: String?
     
-    var completions = [AlertCompletion]()
+    var data: Any?
+    var completions: Array<AlertCompletion>?
     
     override func viewDidLoad() {
-        self.view.backgroundColor = UIColor.clear
+        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +42,7 @@ class AlertController: UIViewController {
     
     private func animateOut() {
         UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseIn, animations: {
-            self.view.backgroundColor = UIColor.clear
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         }, completion: { _ in
             //
         })

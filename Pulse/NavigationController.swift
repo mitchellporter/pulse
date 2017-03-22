@@ -9,27 +9,29 @@
 import UIKit
 
 class NavigationController: UINavigationController {
+    
+    var animator: UIViewControllerAnimatedTransitioning?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.delegate = self
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension NavigationController: UINavigationControllerDelegate {
+    func navigationController(_ animationControllerForfromtonavigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        if fromVC is Onboarding && toVC is Onboarding {
+            return OnboardingTransition()
+        } else if fromVC is TaskViewController && toVC is ViewTaskViewController {
+            return self.animator
+        }
+        return nil
     }
-    */
-
 }

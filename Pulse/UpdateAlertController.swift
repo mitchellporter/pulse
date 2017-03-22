@@ -18,9 +18,11 @@ class UpdateAlertController: AlertController {
     @IBOutlet weak var assignedToLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var updateTitleLabel: UILabel!
     @IBOutlet weak var completedPercentageLabel: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var commentBubbleButton: UIButton!
     
     var holdTimer: Timer?
     private var completedCircle: CAShapeLayer = CAShapeLayer()
@@ -30,18 +32,24 @@ class UpdateAlertController: AlertController {
     private var circleFrame: CGRect = CGRect(x: 7.5, y: 7.5, width: 160, height: 160)
     private var percentInterval: CGFloat = 0.1
     
-    var update: Update?
-
+    var comment: String = "" {
+        didSet {
+            let visible: Bool = self.comment == "" ? false : true
+            self.showCommentBadge(visible)
+        }
+    }
+    var commentBadge: CALayer?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupAppearance()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let update: Update = self.update else { return }
+        guard let update: Update = self.data as? Update else { return }
         guard let task: Task = update.task else { return }
         if let assigner: User = task.assigner {
             self.assignedToLabel.text = "Assigned by: \(assigner.name)"
@@ -64,12 +72,37 @@ class UpdateAlertController: AlertController {
         guard let url: URL = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatarImageView)
     }
-
+    
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3
         self.alertViewHeader.backgroundColor = createTaskBackgroundColor
+        self.avatarImageView.layer.cornerRadius = 4
         
         self.drawCircle()
+        
+        // Setup comment badge
+        let circle: CALayer = CALayer()
+        circle.frame = CGRect(x: 12, y: -2, width: 12, height: 12)
+        circle.backgroundColor = appRed.cgColor
+        circle.masksToBounds = true
+        circle.cornerRadius = circle.frame.width/2
+        let border: CAShapeLayer = CAShapeLayer()
+        border.path = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: 10, height: 10)).cgPath
+        border.strokeColor = UIColor.white.cgColor
+        border.lineWidth = 2
+        border.fillColor = nil
+        circle.addSublayer(border)
+        
+        self.commentBadge = circle
+    }
+    
+    fileprivate func showCommentBadge(_ visible: Bool) {
+        if visible {
+            guard let badge: CALayer = self.commentBadge else { return }
+            self.commentBubbleButton.layer.addSublayer(badge)
+        } else {
+            self.commentBadge?.removeFromSuperlayer()
+        }
     }
     
     private func getCirclePath() -> UIBezierPath {
@@ -134,6 +167,13 @@ class UpdateAlertController: AlertController {
         self.updateCircleFillbyAdding(percent: -self.percentInterval)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let toVC: UpdateAlertCommentViewController = segue.destination as? UpdateAlertCommentViewController else { return }
+        toVC.transitioningDelegate = self
+        
+        guard let comment: String = sender as? String else { return }
+        toVC.comment = comment
+    }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         if sender == self.addButton {
@@ -150,17 +190,40 @@ class UpdateAlertController: AlertController {
         self.holdTimer = nil
     }
     
+    @IBAction func commentButtonPressed(_ sender: UIButton!) {
+        self.performSegue(withIdentifier: "comment", sender: self.comment)
+    }
+    
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        if self.update != nil {
-            
+        if let updateRequest: Update = self.data as? Update {
             // TODO: Implement
-//            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
-//                // Success, do something
-//                
-//            }, failure: { (error, statusCode) in
-//                print("Error: \(statusCode) \(error.localizedDescription)")
-//            })
+            //            UpdateService.sendUpdateForUpdateRequest(updateRequestId: self.updateRequest!.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), success: { (update) in
+            //                // Success, do something
+            //
+            //            }, failure: { (error, statusCode) in
+            //                print("Error: \(statusCode) \(error.localizedDescription)")
+            //            })
+            AlertManager.dismissAlert()
         }
-        AlertManager.dismissAlert()
+    }
+}
+
+extension UpdateAlertController: UIViewControllerTransitioningDelegate {
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if presented.isKind(of: UpdateAlertCommentViewController.self) {
+            let animator = UpdateAlertCommentAnimator()
+            return animator
+        }
+        return nil
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        if dismissed.isKind(of: UpdateAlertCommentViewController.self) {
+            let animator = UpdateAlertCommentAnimator()
+            animator.presenting = false
+            return animator
+        }
+        return nil
     }
 }

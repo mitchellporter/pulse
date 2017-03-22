@@ -118,8 +118,8 @@ class ViewTaskViewController: UIViewController {
         
         self.view.layer.addSublayer(topGradient)
         
-        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
-        self.avatarImageView.layer.borderWidth = 2
+//        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+//        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
         
         self.view.backgroundColor = mainBackgroundColor
@@ -147,6 +147,9 @@ class ViewTaskViewController: UIViewController {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
             self.dueDateLabel.text = "Due: " + formatter.string(from: dueDate)
+            if dueDate.timeIntervalSince(Date()) <= 86400 {
+                self.dueDateLabel.textColor = appRed
+            }
         }
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
@@ -154,14 +157,30 @@ class ViewTaskViewController: UIViewController {
         
         switch(status) {
         case .pending:
-            self.dueDateLabel.textColor = appRed
+//            self.dueDateLabel.textColor = appRed
             self.updateButton.setTitle("DECLINE TASK", for: .normal)
+            self.updateButton.setTitleColor(UIColor.black, for: .normal)
+            self.updateButton.setTitleColor(UIColor.white, for: .highlighted)
+            guard let updateBackground: UIImage = ImageWith(color: appRed) else { return }
+            self.updateButton.setBackgroundImage(updateBackground, for: .highlighted)
             self.doneButton.setTitle("ACCEPT TASK", for: .normal)
+            self.doneButton.setTitleColor(UIColor.black, for: .normal)
+            self.doneButton.setTitleColor(UIColor.white, for: .highlighted)
+            guard let doneBackground: UIImage = ImageWith(color: appGreen) else { return }
+            self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
             break
         case .inProgress:
-            self.dueDateLabel.textColor = appYellow
+//            self.dueDateLabel.textColor = appYellow
             self.updateButton.setTitle("GIVE UPDATE", for: .normal)
+            self.updateButton.setTitleColor(UIColor.black, for: .normal)
+            self.updateButton.setTitleColor(UIColor.white, for: .highlighted)
+            guard let updateBackground: UIImage = ImageWith(color: appBlue) else { return }
+            self.updateButton.setBackgroundImage(updateBackground, for: .highlighted)
             self.doneButton.setTitle("TASK IS DONE", for: .normal)
+            self.doneButton.setTitleColor(UIColor.black, for: .normal)
+            self.doneButton.setTitleColor(UIColor.white, for: .highlighted)
+            guard let doneBackground: UIImage = ImageWith(color: appGreen) else { return }
+            self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
             break
         case .completed:
             self.dueDateLabel.textColor = appGreen
@@ -169,6 +188,22 @@ class ViewTaskViewController: UIViewController {
             self.dueDateLabel.text = "COMPLETED"
             break
         }
+    }
+    
+    @IBAction func buttonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        if sender == self.updateButton {
+            sender.layer.borderColor = status == .pending ? appRed.cgColor : appBlue.cgColor
+        } else if sender == self.doneButton {
+            sender.layer.borderColor = appGreen.cgColor
+        }
+    }
+    
+    @IBAction func buttonRelease(_ sender: UIButton) {
+        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        sender.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {

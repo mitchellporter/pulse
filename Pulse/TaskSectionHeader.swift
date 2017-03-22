@@ -38,6 +38,17 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
             self.markerView.backgroundColor = self.markerColor
         }
     }
+    var markerWidth: CGFloat = 3.0 {
+        didSet {
+            for constraint in self.markerView.constraints {
+                if constraint.firstAttribute == .width {
+                    self.markerView.removeConstraint(constraint)
+                    self.markerView.widthAnchor.constraint(equalToConstant: self.markerWidth).isActive = true
+                    self.layoutIfNeeded()
+                }
+            }
+        }
+    }
 
     func load(status: TaskStatus, type: TaskCellType) {
         if self.titleLabel == nil || self.markerView == nil {
@@ -66,6 +77,7 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         view.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor).isActive = true
         view.leftAnchor.constraint(equalTo: self.contentView.leftAnchor).isActive = true
         view.widthAnchor.constraint(equalToConstant: 3).isActive = true
+        view.backgroundColor = self.markerColor
         
         let label: UILabel = UILabel(frame: CGRect.zero)
         label.font = UIFont.boldSystemFont(ofSize: 12)
@@ -73,10 +85,10 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         self.titleLabel = label
         self.contentView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true
+        label.leftAnchor.constraint(equalTo: self.markerView.rightAnchor, constant: 12).isActive = true
         label.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
         
-        self.contentView.backgroundColor = UIColor("111A37")
+        self.contentView.backgroundColor = mainBackgroundColor
     }
     
     private func load(title: String) {

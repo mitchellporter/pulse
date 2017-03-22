@@ -10,6 +10,10 @@
 import Foundation
 import CoreData
 
+enum RequestStatus: String {
+    case requested = "requested"
+    case sent = "sent"
+}
 
 extension Response {
 
