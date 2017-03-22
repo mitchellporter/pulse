@@ -224,7 +224,7 @@ class TaskUpdateViewController: UIViewController {
             
             // TODO: Implement
             let percentage = Float(self.completedCircle.strokeEnd * 100)
-            UpdateService.respondToUpdateRequest(updateId: self.update!.objectId, completionPercentage: percentage, success: { (update) in
+            UpdateService.respondToUpdateRequest(updateId: self.update!.objectId, completionPercentage: percentage, message: self.commentTextView.text, success: { (update) in
                 // Success, do something
                 CoreDataStack.shared.saveContext()
                 self.backButtonPressed(self.backButton)
@@ -233,7 +233,7 @@ class TaskUpdateViewController: UIViewController {
             })
         } else if self.task != nil {
             let percentage = Float(self.completedCircle.strokeEnd * 100)
-            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, success: { (update) in
+            UpdateService.sendTaskUpdate(taskId: self.task!.objectId, completionPercentage: percentage, message: self.commentTextView.text, success: { (update) in
                 // Success, do something
                 CoreDataStack.shared.saveContext()
                 self.backButtonPressed(self.backButton)
