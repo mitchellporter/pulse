@@ -66,9 +66,25 @@ class TaskCell: UITableViewCell {
         self.badge.alpha = 0
     }
     
-    func load(invitation: TaskInvitation, type: TaskCellType) {
+    func load(_ object: Any, type: TaskCellType) {
+        if let invitation: TaskInvitation = object as? TaskInvitation {
+            self.load(invitation, type: type)
+            return
+        }
+        
+        if let task: Task = object as? Task {
+            self.load(task, type: type)
+            return
+        }
+        
+        
+        // What happens when this inference fails??.... INFINITE LOOP
+//        self.load(object, type: type)
+    }
+    
+    private func load(_ invitation: TaskInvitation, type: TaskCellType) {
         guard let task: Task = invitation.task else { print("There was no task associated with the invitation"); return }
-        self.load(task: task, type: type)
+        self.load(task, type: type)
         
         let date: Date? = task.dueDate
         let dateFormatter: DateFormatter = DateFormatter()
@@ -79,7 +95,7 @@ class TaskCell: UITableViewCell {
         self.completedControl.alpha = 0.0
     }
     
-    func load(task: Task, type: TaskCellType) {
+    private func load(_ task: Task, type: TaskCellType) {
         self.duePercentLabel.textColor = task.status == TaskStatus.completed.rawValue ? appGreen : UIColor.white
         var duePercentString: String = ""
         if task.status != TaskStatus.completed.rawValue {

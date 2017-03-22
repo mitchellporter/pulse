@@ -159,15 +159,15 @@ extension CreatedTasksViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let taskInvitation: TaskInvitation = self.taskInvitationsFetchedResultsController.object(at: indexPath.modify())
-            cell.load(invitation: taskInvitation, type: .assigner)
+            cell.load(taskInvitation, type: .assigner)
             return cell
         case 1:
             let task = self.tasksInProgressFetchedResultsController.object(at: indexPath.modify())
-            cell.load(task: task, type: .assigner)
+            cell.load(task, type: .assigner)
             return cell
         case 2:
             let task = self.tasksCompletedFetchedResultsController.object(at: indexPath.modify())
-            cell.load(task: task, type: .assigner)
+            cell.load(task, type: .assigner)
             return cell
         default: return UITableViewCell() // TODO: Handle
         }
@@ -322,19 +322,19 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
             case self.taskInvitationsFetchedResultsController:
                 if let cell = self.tableView.cellForRow(at: indexPath.taskInvitationIndexPath()) as? TaskCell {
                     let taskInvitation = anObject as! TaskInvitation
-                    cell.load(invitation: taskInvitation, type: .assigner)
+                    cell.load(taskInvitation, type: .assigner)
                 }
                 
             case self.tasksInProgressFetchedResultsController:
                 if let cell = self.tableView.cellForRow(at: indexPath.taskInProgressIndexPath()) as? TaskCell {
                     let task = anObject as! Task
-                    cell.load(task: task, type: .assigner)
+                    cell.load(task, type: .assigner)
                 }
                 
             case self.tasksCompletedFetchedResultsController:
                 if let cell = self.tableView.cellForRow(at: indexPath.taskCompletedIndexPath()) as? TaskCell {
                     let task = anObject as! Task
-                    cell.load(task: task, type: .assigner)
+                    cell.load(task, type: .assigner)
                 }
             default: break
             }
