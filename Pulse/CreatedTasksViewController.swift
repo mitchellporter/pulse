@@ -13,6 +13,8 @@ class CreatedTasksViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var fetchedResultsControllers: [NSFetchedResultsController<NSFetchRequestResult>] = [NSFetchedResultsController<NSFetchRequestResult>]()
+    let headerStatus: [TaskStatus] = [.pending, .inProgress, .completed]
     var taskInvitationsFetchedResultsController: NSFetchedResultsController<TaskInvitation>!
     var tasksInProgressFetchedResultsController: NSFetchedResultsController<Task>!
     var tasksCompletedFetchedResultsController: NSFetchedResultsController<Task>!
@@ -21,99 +23,79 @@ class CreatedTasksViewController: UIViewController {
         super.viewDidLoad()
         
         self.setupTableView()
-        self.setupTaskInvitationCoreData()
-        self.setupTasksInProgressCoreData()
-        self.setupTasksCompletedCoreData()
+        self.setupCoreData()
         self.fetchData()
     }
     
-    private func setupTaskInvitationCoreData() {
-        // Task invitations
-        let fetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+    private func setupCoreData() {
+        // Reset FRC array
+        self.fetchedResultsControllers.removeAll()
         
+        // Setup Invitation FRC
+        let invitationsFetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
         let statusPredicate = NSPredicate(format: "status == %@", "pending")
         let senderPredicate = NSPredicate(format: "sender.objectId == %@", User.currentUserId())
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate, senderPredicate])
+        let invitationsPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [statusPredicate, senderPredicate])
+        self.taskInvitationsFetchedResultsController = self.setupCoreData(with: invitationsFetchRequest, and: invitationsPredicate)
         
-        fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = predicate
+        let assigneePredicate: NSPredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
         
-        self.taskInvitationsFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
-    }
-    
-    private func setupTasksInProgressCoreData() {
-        
-        let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        
+        // Setup InProgress FRC
+        let inProgressFetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let inProgressPredicate = NSPredicate(format: "status == %@", "in_progress")
-        let assigneePredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [inProgressPredicate, assigneePredicate])
+        let inProgressCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [inProgressPredicate, assigneePredicate])
+        self.tasksInProgressFetchedResultsController = self.setupCoreData(with: inProgressFetchRequest, and: inProgressCompoundPredicate)
         
-        fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = predicate
-        self.tasksInProgressFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        // Setup Completed FRC
+        let completedFetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
+        let completedPredicate = NSPredicate(format: "status == %@", "completed")
+        let completedCompoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [completedPredicate, assigneePredicate])
+        self.tasksCompletedFetchedResultsController = self.setupCoreData(with: completedFetchRequest, and: completedCompoundPredicate)
+        
+        self.setupDatasource()
     }
     
-    private func setupTasksCompletedCoreData() {
-        
-        let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
-        
-        let completedPredicate = NSPredicate(format: "status == %@", "completed")
-        let assigneePredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
-        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [completedPredicate, assigneePredicate])
-        
-        
-        fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = predicate
-        self.tasksCompletedFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+    private func setupDatasource() {
+        guard let resultsControllerOne: NSFetchedResultsController<NSFetchRequestResult> = self.taskInvitationsFetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> else { return }
+        guard let resultsControllerTwo: NSFetchedResultsController<NSFetchRequestResult> = self.tasksInProgressFetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> else { return }
+        guard let resultsControllerThree: NSFetchedResultsController<NSFetchRequestResult> = self.tasksCompletedFetchedResultsController as? NSFetchedResultsController<NSFetchRequestResult> else { return }
+        self.fetchedResultsControllers = [resultsControllerOne, resultsControllerTwo, resultsControllerThree]
     }
-
+    
+    private func setupCoreData<U>(with request: NSFetchRequest<U>, and predicate: NSPredicate) -> NSFetchedResultsController<U> {
+        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        request.sortDescriptors = [sort]
+        request.predicate = predicate
+        let controller: NSFetchedResultsController<U> = NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return controller
+    }
+    
     private func fetchData() {
-        
-        // Check cache
-        do {
-            try self.taskInvitationsFetchedResultsController.performFetch()
-            try self.tasksInProgressFetchedResultsController.performFetch()
-            try self.tasksCompletedFetchedResultsController.performFetch()
-            
-            self.taskInvitationsFetchedResultsController.delegate = self
-            self.tasksInProgressFetchedResultsController.delegate = self
-            self.tasksCompletedFetchedResultsController.delegate = self
-            
-            self.tableView.reloadData()
-        } catch {
-            print("fetched results controller error: \(error)")
-        }
-        
+        self.checkCache()
         TaskService.getTasksCreated(success: {
-            
-            // If these are not put before saveContext, then animation is still visible and FRC delegate methods get called
-            self.taskInvitationsFetchedResultsController.delegate = nil
-            self.tasksInProgressFetchedResultsController.delegate = nil
-            self.tasksCompletedFetchedResultsController.delegate = nil
-            
+            // If this is not put before saveContext, then animation is still visible and FRC delegate methods get called
+            self.fetchedResultsControllers.forEach({ controller in
+                controller.delegate = nil
+            })
             CoreDataStack.shared.saveContext()
-            
-            do {
-                try self.taskInvitationsFetchedResultsController.performFetch()
-                try self.tasksInProgressFetchedResultsController.performFetch()
-                try self.tasksCompletedFetchedResultsController.performFetch()
-                
-                self.taskInvitationsFetchedResultsController.delegate = self
-                self.tasksInProgressFetchedResultsController.delegate = self
-                self.tasksCompletedFetchedResultsController.delegate = self
-                
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-            
+            self.checkCache()
         }) { (error, statusCode) in
-            // TODO: Handle failure
+            print("Error getting tasks: \(statusCode) \(error.localizedDescription)")
         }
+    }
+    
+    private func checkCache() {
+        for controller in self.fetchedResultsControllers {
+            // Check cache
+            do {
+                try controller.performFetch()
+                controller.delegate = self
+            } catch {
+                print("Fetched results controller error: \(error)")
+            }
+        }
+        self.tableView.reloadData()
     }
     
     private func setupTableView() {
@@ -128,152 +110,54 @@ class CreatedTasksViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
-    
-    func configure(cell: UITableViewCell, at indexPath: IndexPath) {
-        // Setup cell
-        cell.contentView.backgroundColor = self.tableView.backgroundColor
-    }
 }
 
 extension CreatedTasksViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 3 // TODO: Ref some type of frc count
+        return self.fetchedResultsControllers.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return self.taskInvitationsFetchedResultsController.fetchedObjects?.count ?? 0
-        case 1:
-            return self.tasksInProgressFetchedResultsController.fetchedObjects?.count ?? 0
-        case 2:
-            return self.tasksCompletedFetchedResultsController.fetchedObjects?.count ?? 0
-        default: return 0 // TODO: Handle
-        }
+        return self.fetchedResultsControllers[section].fetchedObjects?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
-        
-        switch indexPath.section {
-        case 0:
-            let taskInvitation: TaskInvitation = self.taskInvitationsFetchedResultsController.object(at: indexPath.modify())
-            cell.load(taskInvitation, type: .assigner)
-            return cell
-        case 1:
-            let task = self.tasksInProgressFetchedResultsController.object(at: indexPath.modify())
-            cell.load(task, type: .assigner)
-            return cell
-        case 2:
-            let task = self.tasksCompletedFetchedResultsController.object(at: indexPath.modify())
-            cell.load(task, type: .assigner)
-            return cell
-        default: return UITableViewCell() // TODO: Handle
-        }
+        let item: Any = self.fetchedResultsControllers[indexPath.section].object(at: indexPath.modify())
+        cell.load(item, type: .assignee)
+        return cell
     }
 }
 
 extension CreatedTasksViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
-        var sender: Any?
-        
-        switch indexPath.section {
-        case 0:
-            sender = self.taskInvitationsFetchedResultsController.object(at: indexPath.modify())
-        case 1:
-            sender = self.tasksInProgressFetchedResultsController.object(at: indexPath.modify())
-        case 2:
-            sender = self.tasksCompletedFetchedResultsController.object(at: indexPath.modify())
-        default: break
-        }
-
+        let sender: Any = self.fetchedResultsControllers[indexPath.section].object(at: indexPath.modify())
         taskVC.performSegue(withIdentifier: "editTask", sender: sender)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
-        header.contentView.backgroundColor = self.tableView.backgroundColor
-        
-        switch section {
-        case 0:
-            
-            guard let fetchedObjects = self.taskInvitationsFetchedResultsController.fetchedObjects else {
-                return nil
-            }
-            if fetchedObjects.count != 0 {
-                header.load(status: .pending, type: .assigner)
-                return header
-            } else {
-                return nil
-            }
-            
-        case 1:
-            
-            guard let fetchedObjects = self.tasksInProgressFetchedResultsController.fetchedObjects else {
-                return nil
-            }
-            if fetchedObjects.count != 0 {
-                header.load(status: .inProgress, type: .assigner)
-                return header
-            } else {
-                return nil
-            }
-            
-        case 2:
-            guard let fetchedObjects = self.tasksCompletedFetchedResultsController.fetchedObjects else {
-                return nil
-            }
-            if fetchedObjects.count != 0 {
-                header.load(status: .completed, type: .assigner)
-                return header
-            } else {
-                return nil
-            }
-        default: return nil
+        guard let fetchedObjects = self.fetchedResultsControllers[section].fetchedObjects else { return nil }
+        if fetchedObjects.count > 0 {
+            guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
+            header.contentView.backgroundColor = self.tableView.backgroundColor
+            header.load(status: self.headerStatus[section], type: .assigner)
+            return header
+        } else {
+            return nil
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        switch section {
-        case 0:
-            
-            guard let fetchedObjects = self.taskInvitationsFetchedResultsController.fetchedObjects else {
-                return 0
-            }
-            if fetchedObjects.count != 0 {
-                return 30
-            } else {
-                return 0
-            }
-            
-        case 1:
-            
-            guard let fetchedObjects = self.tasksInProgressFetchedResultsController.fetchedObjects else {
-                return 0
-            }
-            if fetchedObjects.count != 0 {
-                return 30
-            } else {
-                return 0
-            }
-            
-        case 2:
-            
-            guard let fetchedObjects = self.tasksCompletedFetchedResultsController.fetchedObjects else {
-                return 0
-            }
-            if fetchedObjects.count != 0 {
-                return 30
-            } else {
-                return 0
-            }
-            
-        default: return 0
+        guard let fetchedObjects = self.fetchedResultsControllers[section].fetchedObjects else {
+            return 0
+        }
+        if fetchedObjects.count != 0 {
+            return 30
+        } else {
+            return 0
         }
     }
 }
@@ -289,67 +173,26 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard var indexPath: IndexPath = indexPath else { return }
+        guard let indexSection: Int = self.fetchedResultsControllers.index(of: controller) else { return }
+        indexPath.section = indexSection
         
         switch type {
         case .insert:
-            
-            switch controller {
-            case self.taskInvitationsFetchedResultsController:
-                self.tableView.insertRows(at: [newIndexPath!.taskInvitationIndexPath()], with: .fade)
-            case self.tasksInProgressFetchedResultsController:
-                self.tableView.insertRows(at: [newIndexPath!.taskInProgressIndexPath()], with: .fade)
-            case self.tasksCompletedFetchedResultsController:
-                self.tableView.insertRows(at: [newIndexPath!.taskCompletedIndexPath()], with: .fade)
-            default: break
-            }
+            self.tableView.insertRows(at: [indexPath], with: .fade)
             
         case .delete:
-            
-            switch controller {
-            case self.taskInvitationsFetchedResultsController:
-                self.tableView.deleteRows(at: [indexPath!.taskInvitationIndexPath()], with: .fade)
-            case self.tasksInProgressFetchedResultsController:
-                self.tableView.deleteRows(at: [indexPath!.taskInProgressIndexPath()], with: .fade)
-            case self.tasksCompletedFetchedResultsController:
-                self.tableView.deleteRows(at: [indexPath!.taskCompletedIndexPath()], with: .fade)
-            default: break
-            }
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
             
         case .update:
-            
-            guard let indexPath = indexPath else { return }
-            switch controller {
-            case self.taskInvitationsFetchedResultsController:
-                if let cell = self.tableView.cellForRow(at: indexPath.taskInvitationIndexPath()) as? TaskCell {
-                    let taskInvitation = anObject as! TaskInvitation
-                    cell.load(taskInvitation, type: .assigner)
-                }
-                
-            case self.tasksInProgressFetchedResultsController:
-                if let cell = self.tableView.cellForRow(at: indexPath.taskInProgressIndexPath()) as? TaskCell {
-                    let task = anObject as! Task
-                    cell.load(task, type: .assigner)
-                }
-                
-            case self.tasksCompletedFetchedResultsController:
-                if let cell = self.tableView.cellForRow(at: indexPath.taskCompletedIndexPath()) as? TaskCell {
-                    let task = anObject as! Task
-                    cell.load(task, type: .assigner)
-                }
-            default: break
+            if let cell = self.tableView.cellForRow(at: indexPath) as? TaskCell {
+                cell.load(anObject, type: .assignee)
             }
             
         case .move:
-            
-            switch controller {
-            case self.taskInvitationsFetchedResultsController:
-                self.tableView.moveRow(at: indexPath!.taskInvitationIndexPath(), to: newIndexPath!.taskInvitationIndexPath())
-            case self.tasksInProgressFetchedResultsController:
-                self.tableView.moveRow(at: indexPath!.taskInProgressIndexPath(), to: newIndexPath!.taskInProgressIndexPath())
-            case self.tasksCompletedFetchedResultsController:
-                self.tableView.moveRow(at: indexPath!.taskInProgressIndexPath(), to: newIndexPath!.taskCompletedIndexPath())
-            default: break
-            }
+            guard var newIndexPath: IndexPath = newIndexPath else { return }
+            newIndexPath.section = indexSection
+            self.tableView.moveRow(at: indexPath, to: newIndexPath)
         }
     }
     
