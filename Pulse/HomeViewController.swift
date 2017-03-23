@@ -24,7 +24,6 @@ class HomeViewController: UIViewController {
             self.userField.isHidden = true
         }
         
-        self.setupAppearance()
     }
     
     override func viewDidAppear(_ animated: Bool) {
