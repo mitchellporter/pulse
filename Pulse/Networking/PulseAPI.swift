@@ -33,8 +33,8 @@ enum PulseAPI {
     case login(teamName: String, emailAddress: String, password: String) //
     
     // TODO: Can only singup to an existing team right now
-    case signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String?, position: String?) //
-    case signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String?, position: String?) //
+    case signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
+    case signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
     
     // Feed
     case getTasksAssignedToUser(assigneeId: String, offset: Int) //
@@ -199,13 +199,8 @@ extension PulseAPI {
                 "email_address": emailAddress as AnyObject,
                 "password": password as AnyObject
             ]
-            
-            if let fullName = fullName {
-                params["name"] = fullName as AnyObject
-            }
-            if let position = position {
-                params["position"] = position as AnyObject
-            }
+            params["name"] = fullName as AnyObject
+            params["position"] = position as AnyObject
             return params
         case let .signupToExistingTeam(_, username, emailAddress, password, fullName, position):
             var params = [
@@ -213,13 +208,8 @@ extension PulseAPI {
                 "email_address": emailAddress as AnyObject,
                 "password": password as AnyObject
             ]
-            
-            if let fullName = fullName {
-                params["name"] = fullName as AnyObject
-            }
-            if let position = position {
-                params["position"] = position as AnyObject
-            }
+            params["name"] = fullName as AnyObject
+            params["position"] = position as AnyObject
             return params
         case let .getTasksCreatedByUser(assignerId, offset):
             return [

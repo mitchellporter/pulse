@@ -52,8 +52,8 @@ extension User: PulseType {
         let username = json["username"] as! String
         let emailAddress = json["email_address"] as! String
 
-        let name = json["name"] as? String
-        let position = json["position"] as? String
+        let name = json["name"] as! String
+        let position = json["position"] as! String
         let avatarURL = json["avatar_url"] as? String
         
         let user = User(entity: NSEntityDescription.entity(forEntityName: "User", in: context)!, insertInto: context)

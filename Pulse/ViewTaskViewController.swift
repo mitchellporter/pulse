@@ -140,7 +140,7 @@ class ViewTaskViewController: UIViewController {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
             // TODO: Remove bang
-            self.assignedByLabel.text = "Assigned by: " + assigner.name!
+            self.assignedByLabel.text = "Assigned by: " + assigner.name
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }
