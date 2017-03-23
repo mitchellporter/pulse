@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Nuke
+import UIAdditions
 
 // TODO: Setup description cell
 class ViewTaskViewController: UIViewController {
@@ -21,6 +22,7 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var assignedByLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
+    @IBOutlet weak var completedControl: DotControl!
     
     var taskInvite: TaskInvitation? {
         didSet {
@@ -33,8 +35,8 @@ class ViewTaskViewController: UIViewController {
         didSet {
             // self.updateUI()
             if self.task != nil {
-                guard let items = task?.items as? Set<Item> else { return }
-                self.datasource = [Item](items)
+                guard let items: Set<Item> = task?.items as? Set<Item> else { return }
+                self.datasource = Array(items)
             }
         }
     }
@@ -66,8 +68,8 @@ class ViewTaskViewController: UIViewController {
             task = vcTask
         }
         guard let finalTask = task else { return }
-        self.setupCoreData(task: finalTask)
-        self.fetchData(task: finalTask)
+//        self.setupCoreData(task: finalTask)
+//        self.fetchData(task: finalTask)
         self.updateUI()
     }
     
@@ -81,32 +83,30 @@ class ViewTaskViewController: UIViewController {
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
+//        self.fetchedResultsController.delegate = self
     }
     
     private func fetchData(task: Task) {
-        
+        self.checkCache()
+        TaskService.getTask(taskId: task.objectId, success: { (task) in
+            // If this is not put before saveContext, then animation is still visible and FRC delegate methods get called
+            self.fetchedResultsController.delegate = nil
+            CoreDataStack.shared.saveContext()
+            self.checkCache()
+        }) { (error, statusCode) in
+            print("Error getting tasks: \(statusCode) \(error.localizedDescription)")
+        }
+    }
+    
+    private func checkCache() {
         // Check cache
         do {
             try self.fetchedResultsController.performFetch()
-            self.tableView.reloadData()
+//            self.fetchedResultsController.delegate = self
         } catch {
-            print("fetched results controller error: \(error)")
+            print("Fetched results controller error: \(error)")
         }
-        
-        // TODO: Need to update uI again when this finishes? We get the changes in the task model,
-        // but UI is not refreshed
-        TaskService.getTask(taskId: task.objectId, success: { (task) in
-            CoreDataStack.shared.saveContext()
-            
-            do {
-                try self.fetchedResultsController.performFetch()
-                self.tableView.reloadData()
-            } catch {
-                print("fetched results controller error: \(error)")
-            }
-        }) { (error, statusCode) in
-            // TODO: Handle failure
-        }
+        self.tableView.reloadData()
     }
     
     private func setupAppearance() {
@@ -143,13 +143,15 @@ class ViewTaskViewController: UIViewController {
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }
+        var duePercentString: String = ""
         if let dueDate: Date = task.dueDate {
             let formatter = DateFormatter()
             formatter.dateFormat = "MMM dd yyyy"
-            self.dueDateLabel.text = "Due: " + formatter.string(from: dueDate)
+            duePercentString = "Due: " + formatter.string(from: dueDate) + " | "
             if dueDate.timeIntervalSince(Date()) <= 86400 {
                 self.dueDateLabel.textColor = appRed
             }
+            self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% DONE"
         }
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
@@ -293,12 +295,16 @@ class ViewTaskViewController: UIViewController {
 extension ViewTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
+//        return self.fetchedResultsController.sections?.count ?? 1
+        
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects + 1
+//        guard let sectionInfo: NSFetchedResultsSectionInfo = self.fetchedResultsController.sections?[section] else { return 1 }
+//        return sectionInfo.numberOfObjects + 1
+        
+        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -310,7 +316,8 @@ extension ViewTaskViewController: UITableViewDataSource {
             cell.button.alpha = 0
         } else {
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-            let item = self.fetchedResultsController.object(at: realIndexPath)
+//            let item = self.fetchedResultsController.object(at: realIndexPath)
+            let item: Item = self.datasource[realIndexPath.row]
             cell.load(item: item)
             
             if let status = self.status {
@@ -328,5 +335,43 @@ extension ViewTaskViewController: UITableViewDataSource {
             }
         }
         return cell
+    }
+}
+
+extension ViewTaskViewController: NSFetchedResultsControllerDelegate {
+    
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        //
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        guard var indexPath: IndexPath = indexPath else { return }
+        indexPath.row += 1
+        
+        switch type {
+        case .insert:
+            self.tableView.insertRows(at: [indexPath], with: .fade)
+            
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            
+        case .update:
+            if let cell = self.tableView.cellForRow(at: indexPath) as? TaskCell {
+                cell.load(anObject, type: .myTask)
+            }
+            
+        case .move:
+            guard var newIndexPath: IndexPath = newIndexPath else { return }
+            newIndexPath.row += 1
+            self.tableView.moveRow(at: indexPath, to: newIndexPath)
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        self.tableView.endUpdates()
     }
 }
