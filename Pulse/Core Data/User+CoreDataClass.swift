@@ -49,14 +49,19 @@ extension User: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let name = json["name"] as! String
-        let position = json["position"] as! String
-        let avatarURL = json["avatar_url"] as! String
+        let username = json["username"] as! String
+        let emailAddress = json["email_address"] as! String
+
+        let name = json["name"] as? String
+        let position = json["position"] as? String
+        let avatarURL = json["avatar_url"] as? String
         
         let user = User(entity: NSEntityDescription.entity(forEntityName: "User", in: context)!, insertInto: context)
         user.objectId = objectId
         user.createdAt = createdAt
         user.updatedAt = updatedAt
+        user.username = username
+        user.emailAddress = emailAddress
         user.name = name
         user.position = position
         user.avatarURL = avatarURL

@@ -129,7 +129,8 @@ class EditTaskViewController: UIViewController {
     private func updateUI() {
         guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
         if let assigner: User = task.assigner {
-            self.assignedByLabel.text = "Assigned to: " + assigner.name
+            // TODO: Remove bang
+            self.assignedByLabel.text = "Assigned to: " + assigner.name!
             guard let url: URL = URL(string: assigner.avatarURL!) else { return }
             Nuke.loadImage(with: url, into: self.avatarImageView)
         }
