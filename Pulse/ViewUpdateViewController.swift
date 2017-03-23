@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import UIAdditions
 
 class ViewUpdateViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var breakdownButton: UIButton!
+    @IBOutlet weak var completedControl: DotControl!
     
     // Comment View outlets
     @IBOutlet weak var commentCloseButton: UIButton!
@@ -242,7 +244,8 @@ class ViewUpdateViewController: UIViewController {
             guard let update: Update = sender as? Update else { return }
             guard let responses: Set<Response> = update.responses else { return }
             guard let toVC: ViewUpdateBreakdownViewController = segue.destination as? ViewUpdateBreakdownViewController else { return }
-            toVC.datasource = Array(responses)
+//            toVC.datasource = Array(responses)
+            toVC.update = update
         }
     }
 }

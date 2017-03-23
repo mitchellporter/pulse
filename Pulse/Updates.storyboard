@@ -350,7 +350,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-p9-oQT">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DummyStoney" translatesAutoresizingMaskIntoConstraints="NO" id="GqQ-p9-oQT">
                                 <rect key="frame" x="20" y="85" width="34" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="GaL-c8-Jn1"/>
@@ -364,7 +364,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhH-AU-gAu">
-                                <rect key="frame" x="70" y="97" width="293" height="14.5"/>
+                                <rect key="frame" x="70" y="97" width="33" height="14.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -441,15 +441,33 @@
                                     <action selector="breakdownButtonPressed:" destination="MFu-WP-8kJ" eventType="touchUpInside" id="c5c-d8-9MO"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GTg-EC-ibC" customClass="DotControl" customModule="UIAdditions">
+                                <rect key="frame" x="109" y="99" width="46" height="10"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="46" id="Gmv-lw-wBC"/>
+                                    <constraint firstAttribute="height" constant="10" id="yR1-Tq-Pj3"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                        <color key="value" red="0.015686274509803921" green="0.14117647059999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="completedColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.015686274510000001" green="0.17254901959999999" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="GTg-EC-ibC" firstAttribute="centerY" secondItem="uhH-AU-gAu" secondAttribute="centerY" id="1X4-S0-26F"/>
                             <constraint firstAttribute="trailing" secondItem="ey6-tX-Maj" secondAttribute="trailing" constant="12" id="3Ns-ux-DKt"/>
                             <constraint firstItem="uhH-AU-gAu" firstAttribute="top" secondItem="GqQ-p9-oQT" secondAttribute="centerY" constant="-5" id="3YO-Qm-3bX"/>
                             <constraint firstItem="VkK-6A-y9Q" firstAttribute="leading" secondItem="GqQ-p9-oQT" secondAttribute="trailing" constant="16" id="A75-Gk-nOp"/>
                             <constraint firstItem="ey6-tX-Maj" firstAttribute="top" secondItem="uhH-AU-gAu" secondAttribute="bottom" constant="5" id="ApS-ig-1O1"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GTg-EC-ibC" secondAttribute="trailing" constant="12" id="Ctz-uS-pg2"/>
                             <constraint firstItem="uhH-AU-gAu" firstAttribute="leading" secondItem="GqQ-p9-oQT" secondAttribute="trailing" constant="16" id="JQG-zt-KQM"/>
-                            <constraint firstAttribute="trailing" secondItem="uhH-AU-gAu" secondAttribute="trailing" constant="12" id="N9P-IG-7mK"/>
+                            <constraint firstItem="GTg-EC-ibC" firstAttribute="leading" secondItem="uhH-AU-gAu" secondAttribute="trailing" constant="6" id="Nhh-JI-vev"/>
                             <constraint firstAttribute="trailing" secondItem="c8e-Ee-Kq5" secondAttribute="trailing" constant="16" id="R3D-Bn-Ikt"/>
                             <constraint firstItem="Iqh-Aq-Q1w" firstAttribute="top" secondItem="fwv-kD-PmQ" secondAttribute="bottom" constant="25" id="Rlt-A3-Fiw"/>
                             <constraint firstItem="ey6-tX-Maj" firstAttribute="leading" secondItem="uhH-AU-gAu" secondAttribute="leading" id="Wl9-pn-bDt"/>
@@ -481,6 +499,7 @@
                         <outlet property="commentTopBar" destination="USN-nf-paf" id="QKO-gy-ZBP"/>
                         <outlet property="commentView" destination="93R-95-nxZ" id="CbC-ma-t1n"/>
                         <outlet property="commentViewY" destination="4uN-5s-Krd" id="XqV-0v-Dqv"/>
+                        <outlet property="completedControl" destination="GTg-EC-ibC" id="3JW-34-mAi"/>
                         <outlet property="descriptionLabel" destination="ey6-tX-Maj" id="Czo-2S-Vfg"/>
                         <outlet property="dueDateLabel" destination="uhH-AU-gAu" id="Tqz-yA-TDo"/>
                         <outlet property="percentCompletedLabel" destination="xFx-bZ-Vrr" id="Tlp-dk-BBX"/>
