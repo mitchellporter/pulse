@@ -119,9 +119,9 @@
         <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="emailAddress" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="objectId" attributeType="String" syncable="YES"/>
-        <attribute name="position" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="username" attributeType="String" syncable="YES"/>
         <relationship name="createdTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assigner" inverseEntity="Task" syncable="YES"/>

@@ -15,7 +15,7 @@ struct UserService {
     
     // Parse team separately? - probably not
     // TODO: Parse token
-    static func signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String? = nil, position: String? = nil, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+    static func signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String, position: String, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .signupAndCreateTeam(teamName: teamName, username: username, emailAddress: emailAddress, password: password, fullName: fullName, position: position), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
@@ -29,7 +29,7 @@ struct UserService {
     
     // Parse team separately? - probably not
     // TODO: Parse token
-    static func signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String? = nil, position: String? = nil, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+    static func signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String, position: String, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .signupToExistingTeam(teamId: teamId, username: username, emailAddress: emailAddress, password: password, fullName: fullName, position: position), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
