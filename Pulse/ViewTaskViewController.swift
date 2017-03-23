@@ -113,7 +113,7 @@ class ViewTaskViewController: UIViewController {
         let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
-        topGradient.colors = [mainBackgroundColor.withAlphaComponent(1.0).cgColor, mainBackgroundColor.withAlphaComponent(0.0).cgColor]
+        topGradient.colors = [appGreen.withAlphaComponent(1.0).cgColor, appGreen.withAlphaComponent(0.0).cgColor]
         topGradient.locations = [0.0, 1.0]
         
         self.view.layer.addSublayer(topGradient)
@@ -122,8 +122,10 @@ class ViewTaskViewController: UIViewController {
 //        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
         
-        self.view.backgroundColor = mainBackgroundColor
+        self.view.backgroundColor = appGreen
         self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
+        
+        self.bottomMenu.backgroundColor = UIColor("F1F1F1")
     }
 
     private func setupTableView() {
@@ -151,8 +153,9 @@ class ViewTaskViewController: UIViewController {
             if dueDate.timeIntervalSince(Date()) <= 86400 {
                 self.dueDateLabel.textColor = appRed
             }
-            self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% DONE"
+            self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }
+        self.completedControl.percent = CGFloat(task.completionPercentage / 100)
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         self.status = status
@@ -309,12 +312,14 @@ extension ViewTaskViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
-        cell.contentView.backgroundColor = self.tableView.backgroundColor
         
         if indexPath.row == 0 {
+            cell.contentView.backgroundColor = self.view.backgroundColor
             cell.label.text = self.task?.title
             cell.button.alpha = 0
         } else {
+            cell.contentView.backgroundColor = self.tableView.backgroundColor
+            cell.label.textColor = UIColor.black
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
 //            let item = self.fetchedResultsController.object(at: realIndexPath)
             let item: Item = self.datasource[realIndexPath.row]

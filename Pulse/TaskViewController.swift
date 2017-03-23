@@ -17,6 +17,7 @@ class TaskViewController: UIViewController {
         case createdTasks
     }
     
+    @IBOutlet weak var headerNavigationContainer: UIView!
     @IBOutlet weak var addButton: Button!
     @IBOutlet weak var containerView: UIView!
     
@@ -40,6 +41,7 @@ class TaskViewController: UIViewController {
 
         self.setupAppearance()
         self.initializeViewControllers()
+        self.updateView(mode: self.modeSelected)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -111,15 +113,17 @@ class TaskViewController: UIViewController {
     }
     
     private func updateView(mode: ViewMode) {
+        let fadeAlpha: CGFloat = 0.4
         switch mode {
         case .myTasks:
+            self.headerNavigationContainer.backgroundColor = appGreen
             self.myTasksButton.alpha = 1
-            self.updatesButton.alpha = 0.2
-            self.createdTasksButton.alpha = 0.2
+            self.updatesButton.alpha = fadeAlpha
+            self.createdTasksButton.alpha = fadeAlpha
             self.updateContainerView(with: self.viewControllers[0])
             
             guard let buttonTitleFrame: CGRect = self.myTasksButton.titleLabel?.superview?.convert(self.myTasksButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "GreenDot")
+            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
             self.selectionDot.image = image
             self.selectionDot.frame.size = image.size
             let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.myTasksButton.center.y - (self.selectionDot.bounds.height / 2))
@@ -127,13 +131,14 @@ class TaskViewController: UIViewController {
 //            self.selectionDot.center.y = self.myTasksButton.center.y
             self.view.addSubview(self.selectionDot)
         case .updates:
-            self.myTasksButton.alpha = 0.2
+            self.headerNavigationContainer.backgroundColor = appYellow
+            self.myTasksButton.alpha = fadeAlpha
             self.updatesButton.alpha = 1
-            self.createdTasksButton.alpha = 0.2
+            self.createdTasksButton.alpha = fadeAlpha
             self.updateContainerView(with: self.viewControllers[1])
             
             guard let buttonTitleFrame: CGRect = self.updatesButton.titleLabel?.superview?.convert(self.updatesButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "RedDot")
+            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
             self.selectionDot.image = image
             self.selectionDot.frame.size = image.size
             let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.updatesButton.center.y - (self.selectionDot.bounds.height / 2))
@@ -141,13 +146,14 @@ class TaskViewController: UIViewController {
             //            self.selectionDot.center.y = self.myTasksButton.center.y
             self.view.addSubview(self.selectionDot)
         case .createdTasks:
+            self.headerNavigationContainer.backgroundColor = appBlue
             self.createdTasksButton.alpha = 1
-            self.updatesButton.alpha = 0.2
-            self.myTasksButton.alpha = 0.2
+            self.updatesButton.alpha = fadeAlpha
+            self.myTasksButton.alpha = fadeAlpha
             self.updateContainerView(with: self.viewControllers[2])
             
             guard let buttonTitleFrame: CGRect = self.createdTasksButton.titleLabel?.superview?.convert(self.createdTasksButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "BlueDot")
+            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
             self.selectionDot.image = image
             self.selectionDot.frame.size = image.size
             let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.createdTasksButton.center.y - (self.selectionDot.bounds.height / 2))

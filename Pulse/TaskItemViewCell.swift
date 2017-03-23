@@ -41,11 +41,11 @@ class TaskItemViewCell: UITableViewCell, TaskItemCell {
     }
     
     private func update(state: CellState) {
-        self.button.borderColor = state == .selected ? UIColor("2CB585") : UIColor.white
+        self.button.borderColor = state == .selected ? UIColor("26CE93") : UIColor("BBBBBB")
         let image: UIImage? = state == .selected ? #imageLiteral(resourceName: "GreenCheck") : nil
         self.button.setImage(image, for: .normal)
         UIView.animate(withDuration: 0.1, animations: {
-            self.label.alpha = state == .selected ? 0.34 : 1.0
+            self.label.alpha = state == .selected ? 0.22 : 1.0
         })
     }
     
