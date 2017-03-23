@@ -118,6 +118,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="avatarURL" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="emailAddress" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="position" attributeType="String" syncable="YES"/>

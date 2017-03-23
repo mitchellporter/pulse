@@ -33,6 +33,10 @@ enum PulseAPI {
     case login(emailAddress: String, password: String) //
     case signup(emailAddress: String, name: String, position: String) //
     
+    // TODO: Can only singup to an existing team right now
+    case signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
+    case signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
+    
     // Feed
     case getTasksAssignedToUser(assigneeId: String, offset: Int) //
     case getTasksCreatedByUser(assignerId: String, offset: Int) //
@@ -175,6 +179,26 @@ extension PulseAPI {
 extension PulseAPI {
     var parameters: [String: AnyObject]? {
         switch self {
+            
+        case let .signupAndCreateTeam(teamName, username, emailAddress, password, fullName, position):
+            var params = [
+                "team_name": teamName as AnyObject,
+                "username": username as AnyObject,
+                "email_address": emailAddress as AnyObject,
+                "password": password as AnyObject
+            ]
+            params["name"] = fullName as AnyObject
+            params["position"] = position as AnyObject
+            return params
+        case let .signupToExistingTeam(_, username, emailAddress, password, fullName, position):
+            var params = [
+                "username": username as AnyObject,
+                "email_address": emailAddress as AnyObject,
+                "password": password as AnyObject
+            ]
+            params["name"] = fullName as AnyObject
+            params["position"] = position as AnyObject
+            return params
         case let .getTasksCreatedByUser(assignerId, offset):
             return [
                 "assigner": assignerId as AnyObject,
