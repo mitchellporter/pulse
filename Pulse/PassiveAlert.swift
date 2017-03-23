@@ -54,6 +54,7 @@ class PassiveAlert: UIView {
         return view
     }
     
+    @IBOutlet weak var mascotView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var viewButton: Button!
     
@@ -75,34 +76,24 @@ class PassiveAlert: UIView {
         switch(alertType) {
         case .due:
             self.view.backgroundColor = appRed
-            self.titleLabel.textColor = UIColor.white
-            self.titleLabel.text = "You have a task due in 1 day!"
-            self.viewButton.setTitleColor(UIColor.white, for: .normal)
-            self.viewButton.borderColor = UIColor.white
+            self.titleLabel.text = "Your task is due in 24 hrs"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
         case .assigned:
-            self.view.backgroundColor = UIColor.white
-            self.titleLabel.textColor = UIColor.black
-            self.titleLabel.text = "You’ve been assigned a task"
-            self.viewButton.setTitleColor(UIColor("028DF2"), for: .normal)
-            self.viewButton.borderColor = UIColor("028DF2")
+            self.view.backgroundColor = appDark
+            self.titleLabel.text = "You’ve been assigned a new task!"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtNeutral")
         case .completed:
             self.view.backgroundColor = appGreen
-            self.titleLabel.textColor = UIColor.white
-            self.titleLabel.text = "A Task you created has been completed!"
-            self.viewButton.setTitleColor(UIColor.white, for: .normal)
-            self.viewButton.borderColor = UIColor.white
+            self.titleLabel.text = "A Task you created is now completed"
+            self.mascotView.image = #imageLiteral(resourceName: "SherbertUpsideDown")
         case .edited:
             self.view.backgroundColor = appBlue
-            self.titleLabel.textColor = UIColor.white
             self.titleLabel.text = "A task has been edited"
-            self.viewButton.setTitleColor(UIColor.white, for: .normal)
-            self.viewButton.borderColor = UIColor.white
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtSidewaysLeft")
         case .update:
-            self.view.backgroundColor = appYellow
-            self.titleLabel.textColor = UIColor("303030")
-            self.titleLabel.text = "An progress update was sent"
-            self.viewButton.setTitleColor(UIColor("434343"), for: .normal)
-            self.viewButton.borderColor = UIColor("151515")
+            self.view.backgroundColor = appYellow // UIColor("FFBB4A")
+            self.titleLabel.text = "An progress update was sent to you"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
         }
     }
     

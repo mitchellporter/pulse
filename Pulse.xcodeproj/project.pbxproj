@@ -109,7 +109,6 @@
 		C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4C91E5FC5D700E215CF /* NetworkingClient.swift */; };
 		C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */; };
 		C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */; };
-		C385807D1E845DF3009296E4 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C385807C1E845DF3009296E4 /* UserService.swift */; };
 		C39D04171E70D5600054BC93 /* SocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39D04161E70D5600054BC93 /* SocketManager.swift */; };
 		C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */; };
 		C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */; };
@@ -277,7 +276,6 @@
 		C356E4C91E5FC5D700E215CF /* NetworkingClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NetworkingClient.swift; path = Networking/NetworkingClient.swift; sourceTree = "<group>"; };
 		C356E4CB1E5FC8C200E215CF /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataStack.swift; path = "Core Data/CoreDataStack.swift"; sourceTree = "<group>"; };
 		C35FC6AE1E64FF5A000875F1 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateExtensions.swift; path = Utils/DateExtensions.swift; sourceTree = "<group>"; };
-		C385807C1E845DF3009296E4 /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Networking/Services/UserService.swift; sourceTree = "<group>"; };
 		C39D04161E70D5600054BC93 /* SocketManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketManager.swift; sourceTree = "<group>"; };
 		C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskInvitation+CoreDataClass.swift"; path = "Core Data/TaskInvitation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C39FF3FA1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "TaskInvitation+CoreDataProperties.swift"; path = "Core Data/TaskInvitation+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -615,7 +613,6 @@
 				C3522F811E6F8AAE00C689D9 /* TaskInvitationService.swift */,
 				C3A3EDD21E7B48AC00560678 /* FeedService.swift */,
 				C3A8A39F1E83232200C46346 /* AvailabilityService.swift */,
-				C385807C1E845DF3009296E4 /* UserService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1014,7 +1011,6 @@
 				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
-				C385807D1E845DF3009296E4 /* UserService.swift in Sources */,
 				C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */,
 				C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */,
 				C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */,

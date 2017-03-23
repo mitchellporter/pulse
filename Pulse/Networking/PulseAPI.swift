@@ -30,7 +30,8 @@ extension PulseAPI {
 enum PulseAPI {
     
     // Auth
-    case login(teamName: String, emailAddress: String, password: String) //
+    case login(emailAddress: String, password: String) //
+    case signup(emailAddress: String, name: String, position: String) //
     
     // TODO: Can only singup to an existing team right now
     case signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
@@ -50,15 +51,13 @@ enum PulseAPI {
     case sendTaskUpdate(taskId: String, completionPercentage: Float, message: String?) //
     case finishTask(taskId: String) //
     case respondToUpdateRequest(updateId: String, completionPercentage: Float, message: String?)
-    case resendUpdateRequest(updateId: String, responseId: String)
     
     // Task Items
     case markTaskItemCompleted(taskId: String, itemId: String) //
     case markTaskItemInProgress(taskId: String, itemId: String)
     
-    // Teams
+    // Team members
     case getTeamMembers(teamId: String, offset: Int)
-    case searchTeamsByTeamName(teamName: String)
     
     // Experimental
     case getMyTasks
@@ -87,8 +86,7 @@ extension PulseAPI {
                  .getUpdatesFeed,
                  .checkTeamNameAvailability,
                  .checkUsernameAvailability,
-                 .checkEmailAddressAvailability,
-                 .searchTeamsByTeamName:
+                 .checkEmailAddressAvailability:
             return .get
             
         case .editTask,
@@ -100,13 +98,13 @@ extension PulseAPI {
             return .put
         
         case .login,
-             .signupAndCreateTeam,
-             .signupToExistingTeam,
+             .signup,
              .createTask,
              .requestTaskUpdate,
-             .sendTaskUpdate,
-             .resendUpdateRequest:
+             .sendTaskUpdate:
             return .post
+            
+        default: return .get
         }
     }
 }
@@ -116,10 +114,8 @@ extension PulseAPI {
         switch self {
         case .login:
             return "/api/\(PulseAPI.apiVersion)/auth/signin"
-        case .signupAndCreateTeam:
-            return "/api/\(PulseAPI.apiVersion)/teams"
-        case let .signupToExistingTeam(teamId, _, _, _, _, _):
-            return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members"
+        case .signup:
+            return "/api/\(PulseAPI.apiVersion)/users"
         case .createTask:
             return "/api/\(PulseAPI.apiVersion)/tasks"
         case let .getTask(taskId):
@@ -158,10 +154,6 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/usernames"
         case .checkEmailAddressAvailability:
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
-        case let .resendUpdateRequest(updateId, responseId):
-            return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)/responses/\(responseId)/resend"
-        case .searchTeamsByTeamName:
-            return "/api/\(PulseAPI.apiVersion)/teams"
         }
     }
 }
@@ -176,11 +168,7 @@ extension PulseAPI {
     var requiresAuthToken: Bool {
         switch self {
         case .login,
-             .signupAndCreateTeam,
-             .signupToExistingTeam,
-             .checkTeamNameAvailability,
-             .checkUsernameAvailability,
-             .checkEmailAddressAvailability:
+             .signup:
             return false
         default:
             return true
@@ -286,11 +274,6 @@ extension PulseAPI {
         case let .checkEmailAddressAvailability(email):
             return [
                 "email_address": email as AnyObject
-            ]
-            
-        case let .searchTeamsByTeamName(teamName):
-            return [
-                "search": teamName as AnyObject
             ]
                default: return nil
         }

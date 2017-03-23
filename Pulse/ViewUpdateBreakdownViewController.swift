@@ -7,11 +7,19 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewUpdateBreakdownViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var update: Update? {
+        didSet {
+            if self.update != nil {
+                self.fetchFull(update: self.update!)
+            }
+        }
+    }
     var datasource: [Response] = [Response]()
 
     override func viewDidLoad() {
@@ -26,6 +34,21 @@ class ViewUpdateBreakdownViewController: UIViewController {
         self.tableView.register(cell, forCellReuseIdentifier: "progressCell")
         self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 18, right: 0)
     }
+    
+        private func fetchFull(update: Update) {
+            let fetchRequest: NSFetchRequest<Update> = Update.fetchRequest()
+            let predicate = NSPredicate(format: "objectId == %@", update.objectId)
+            fetchRequest.predicate = predicate
+    
+            do {
+                let fullUpdate: [Update] = try CoreDataStack.shared.context.fetch(fetchRequest)
+                guard let update = fullUpdate.first else { return }
+                guard let responses: Set<Response> = update.responses else { return }
+                self.datasource = Array(responses)
+            } catch {
+                print("Failed to fetch employees: \(error)")
+            }
+        }
     
     private func closeView() {
         if self.navigationController == nil {

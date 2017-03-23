@@ -56,9 +56,9 @@ class UpdateCell: UITableViewCell {
         self.type = type
         
         switch self.type! {
-        case .assignee:
+        case .myTask:
             self.loadForAssignee()
-        case .assigner:
+        case .createdTask:
             self.loadForAssigner()
         }
     }

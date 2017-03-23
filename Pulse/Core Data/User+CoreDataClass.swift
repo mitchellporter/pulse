@@ -60,8 +60,6 @@ extension User: PulseType {
         user.objectId = objectId
         user.createdAt = createdAt
         user.updatedAt = updatedAt
-        user.username = username
-        user.emailAddress = emailAddress
         user.name = name
         user.position = position
         user.avatarURL = avatarURL

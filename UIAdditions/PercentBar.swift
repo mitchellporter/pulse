@@ -109,7 +109,6 @@ open class DotControl: UIView {
     private func updateColor(_ color: UIColor, for layer: CALayer) {
         guard let sublayers: [CALayer] = layer.sublayers else { return }
         for (index, layer) in sublayers.enumerated() {
-            print(index)
             layer.backgroundColor = color.cgColor
         }
     }

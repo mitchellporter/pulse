@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import UIAdditions
 
 class ViewUpdateViewController: UIViewController {
 
@@ -20,6 +21,7 @@ class ViewUpdateViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var breakdownButton: UIButton!
+    @IBOutlet weak var completedControl: DotControl!
     
     // Comment View outlets
     @IBOutlet weak var commentCloseButton: UIButton!
@@ -36,8 +38,16 @@ class ViewUpdateViewController: UIViewController {
     private var circleFrame: CGRect = CGRect(x: 11, y: 11, width: 240, height: 240)
     private var percentInterval: CGFloat = 0.1
     
-    var update: Update?
-    
+    var update: Update? {
+        didSet {
+            self.checkForComment()
+        }
+    }
+    private var commentAvailable: Bool = false {
+        didSet {
+            self.commentBadge?.opacity = self.commentAvailable == true ? 1.0 : 0.0
+        }
+    }
     var commentBadge: CALayer?
     
     override func viewDidLoad() {
@@ -150,6 +160,17 @@ class ViewUpdateViewController: UIViewController {
         self.circleView.layer.insertSublayer(self.completedCircle, above: self.circleLayer)
     }
     
+    private func checkForComment() {
+        guard let responses: Set<Response> = self.update?.responses else { return }
+        let responseArray: [Response] = Array(responses)
+        for response in responseArray {
+            if response.message != nil {
+                self.commentAvailable = true
+                return
+            }
+        }
+    }
+    
     private func updateCircleFillbyAdding(percent: CGFloat) {
         let strokeEnd: CGFloat = self.completedCircle.strokeEnd + percent < 1 ? self.completedCircle.strokeEnd + percent : 1
         let newStrokeEnd: CGFloat = self.completedCircle.strokeEnd + percent > 0 ? ((strokeEnd * 100).rounded() / 100) : 0.0
@@ -164,6 +185,14 @@ class ViewUpdateViewController: UIViewController {
     
     private func presentCommentView(_ presenting: Bool) {
         if presenting {
+            guard let responses: Set<Response> = self.update?.responses else { return }
+            let responseArray: [Response] = Array(responses)
+            for response in responseArray {
+                if response.message != nil {
+                    self.commentTextView.text = response.message
+                }
+            }
+            
             self.commentCoverView.backgroundColor = UIColor.black.withAlphaComponent(0.0)
             self.commentCoverView.frame = self.view.bounds
             self.view.addSubview(self.commentCoverView)
@@ -199,7 +228,9 @@ class ViewUpdateViewController: UIViewController {
     }
     
     @IBAction func commentButtonPressed(_ sender: UIButton) {
-        self.presentCommentView(true)
+        if self.commentAvailable {
+            self.presentCommentView(true)
+        }
     }
     
     @IBAction func commentViewClosed(_ sender: UIButton) {
@@ -213,7 +244,8 @@ class ViewUpdateViewController: UIViewController {
             guard let update: Update = sender as? Update else { return }
             guard let responses: Set<Response> = update.responses else { return }
             guard let toVC: ViewUpdateBreakdownViewController = segue.destination as? ViewUpdateBreakdownViewController else { return }
-            toVC.datasource = Array(responses)
+//            toVC.datasource = Array(responses)
+            toVC.update = update
         }
     }
 }
