@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Nuke
+import UIAdditions
 
 
 // TODO: Setup description cell
@@ -25,6 +26,7 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var requestButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var completedControl: DotControl!
     
     var taskInvite: TaskInvitation? {
         didSet {
