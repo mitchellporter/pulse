@@ -47,6 +47,7 @@ enum PulseAPI {
     case sendTaskUpdate(taskId: String, completionPercentage: Float, message: String?) //
     case finishTask(taskId: String) //
     case respondToUpdateRequest(updateId: String, completionPercentage: Float, message: String?)
+    case resendUpdateRequest(updateId: String, responseId: String)
     
     // Task Items
     case markTaskItemCompleted(taskId: String, itemId: String) //
@@ -97,7 +98,8 @@ extension PulseAPI {
              .signup,
              .createTask,
              .requestTaskUpdate,
-             .sendTaskUpdate:
+             .sendTaskUpdate,
+             .resendUpdateRequest:
             return .post
             
         default: return .get
@@ -150,6 +152,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/usernames"
         case .checkEmailAddressAvailability:
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
+        case let .resendUpdateRequest(updateId, responseId):
+            return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)/responses/\(responseId)/resend"
         }
     }
 }
