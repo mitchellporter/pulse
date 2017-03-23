@@ -76,8 +76,9 @@ class NetworkingClient: NSObject {
     private func handleServerFailure(data: Data?, statusCode: Int, success: PulseSuccessCompletion, failure: @escaping PulseFailureCompletion) {
         // Attempts to generate userInfo aka error message for NSError if it's a statusCode we actually care about
         //        let error = self.generateServerError(data!, statusCode: statusCode)
+        let error = NSError(domain: "error", code: 0, userInfo: nil)
         OperationQueue.main.addOperation({
-            //            failure(error: error, statusCode: statusCode)
+                failure(error, statusCode)
         })
     }
     
