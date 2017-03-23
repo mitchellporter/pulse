@@ -38,7 +38,7 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        self.setupAppearance()
         self.initializeViewControllers()
     }
     

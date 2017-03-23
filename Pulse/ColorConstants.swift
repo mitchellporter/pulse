@@ -11,7 +11,8 @@ import UIKit
 let homeScreenBackgroundColor: UIColor = UIColor("EFEFEF")
 
 // This color would be "1FA865" in sRGB colorspace. A solution needs to be identified for colorspace differences.
-let createTaskBackgroundColor: UIColor = UIColor("1FA865")
+//let createTaskBackgroundColor: UIColor = UIColor("1FA865")
+let createTaskBackgroundColor: UIColor = UIColor("3EAEFF")
 
 // This color would be "042C4A" in sRGB colorspace.
 let mainBackgroundColor: UIColor = UIColor("042C4A")
