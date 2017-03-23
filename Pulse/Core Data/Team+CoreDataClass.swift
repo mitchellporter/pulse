@@ -40,7 +40,7 @@ extension Team: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let domain = json["domain"] as! String
+        let domain = json["domain"] as? String
         
         let description = NSEntityDescription.entity(forEntityName: "Team", in: context)!
         let team = Team(entity: description, insertInto: context)

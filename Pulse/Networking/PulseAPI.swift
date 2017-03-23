@@ -30,8 +30,11 @@ extension PulseAPI {
 enum PulseAPI {
     
     // Auth
-    case login(emailAddress: String, password: String) //
-    case signup(emailAddress: String, name: String, position: String) //
+    case login(teamName: String, emailAddress: String, password: String) //
+    
+    // TODO: Can only singup to an existing team right now
+    case signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String?, position: String?) //
+    case signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String?, position: String?) //
     
     // Feed
     case getTasksAssignedToUser(assigneeId: String, offset: Int) //
@@ -95,14 +98,13 @@ extension PulseAPI {
             return .put
         
         case .login,
-             .signup,
+             .signupAndCreateTeam,
+             .signupToExistingTeam,
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
              .resendUpdateRequest:
             return .post
-            
-        default: return .get
         }
     }
 }
@@ -112,8 +114,10 @@ extension PulseAPI {
         switch self {
         case .login:
             return "/api/\(PulseAPI.apiVersion)/auth/signin"
-        case .signup:
-            return "/api/\(PulseAPI.apiVersion)/users"
+        case .signupAndCreateTeam:
+            return "/api/\(PulseAPI.apiVersion)/teams"
+        case let .signupToExistingTeam(teamId, _, _, _, _, _):
+            return "/api/\(PulseAPI.apiVersion)/teams/\(teamId)/members"
         case .createTask:
             return "/api/\(PulseAPI.apiVersion)/tasks"
         case let .getTask(taskId):
@@ -168,7 +172,11 @@ extension PulseAPI {
     var requiresAuthToken: Bool {
         switch self {
         case .login,
-             .signup:
+             .signupAndCreateTeam,
+             .signupToExistingTeam,
+             .checkTeamNameAvailability,
+             .checkUsernameAvailability,
+             .checkEmailAddressAvailability:
             return false
         default:
             return true
@@ -179,6 +187,36 @@ extension PulseAPI {
 extension PulseAPI {
     var parameters: [String: AnyObject]? {
         switch self {
+            
+        case let .signupAndCreateTeam(teamName, username, emailAddress, password, fullName, position):
+            var params = [
+                "team_name": teamName as AnyObject,
+                "username": username as AnyObject,
+                "email_address": emailAddress as AnyObject,
+                "password": password as AnyObject
+            ]
+            
+            if let fullName = fullName {
+                params["name"] = fullName as AnyObject
+            }
+            if let position = position {
+                params["position"] = position as AnyObject
+            }
+            return params
+        case let .signupToExistingTeam(_, username, emailAddress, password, fullName, position):
+            var params = [
+                "username": username as AnyObject,
+                "email_address": emailAddress as AnyObject,
+                "password": password as AnyObject
+            ]
+            
+            if let fullName = fullName {
+                params["name"] = fullName as AnyObject
+            }
+            if let position = position {
+                params["position"] = position as AnyObject
+            }
+            return params
         case let .getTasksCreatedByUser(assignerId, offset):
             return [
                 "assigner": assignerId as AnyObject,
