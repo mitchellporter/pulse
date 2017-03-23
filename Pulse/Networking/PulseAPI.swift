@@ -56,8 +56,9 @@ enum PulseAPI {
     case markTaskItemCompleted(taskId: String, itemId: String) //
     case markTaskItemInProgress(taskId: String, itemId: String)
     
-    // Team members
+    // Teams
     case getTeamMembers(teamId: String, offset: Int)
+    case searchTeamsByTeamName(teamName: String)
     
     // Experimental
     case getMyTasks
@@ -86,7 +87,8 @@ extension PulseAPI {
                  .getUpdatesFeed,
                  .checkTeamNameAvailability,
                  .checkUsernameAvailability,
-                 .checkEmailAddressAvailability:
+                 .checkEmailAddressAvailability,
+                 .searchTeamsByTeamName:
             return .get
             
         case .editTask,
@@ -158,6 +160,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
         case let .resendUpdateRequest(updateId, responseId):
             return "/api/\(PulseAPI.apiVersion)/updates/\(updateId)/responses/\(responseId)/resend"
+        case .searchTeamsByTeamName:
+            return "/api/\(PulseAPI.apiVersion)/teams"
         }
     }
 }
@@ -292,6 +296,11 @@ extension PulseAPI {
         case let .checkEmailAddressAvailability(email):
             return [
                 "email_address": email as AnyObject
+            ]
+            
+        case let .searchTeamsByTeamName(teamName):
+            return [
+                "search": teamName as AnyObject
             ]
                default: return nil
         }
