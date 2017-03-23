@@ -83,7 +83,7 @@ class PassiveAlert: UIView {
             self.titleLabel.text = "You’ve been assigned a new task!"
             self.mascotView.image = #imageLiteral(resourceName: "SherburtNeutral")
         case .completed:
-            self.view.backgroundColor = appGreenAlt
+            self.view.backgroundColor = appGreen
             self.titleLabel.text = "A Task you created is now completed"
             self.mascotView.image = #imageLiteral(resourceName: "SherbertUpsideDown")
         case .edited:
