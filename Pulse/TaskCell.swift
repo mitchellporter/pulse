@@ -11,8 +11,8 @@ import Nuke
 import UIAdditions
 
 enum TaskCellType {
-    case assigner
-    case assignee
+    case myTask
+    case createdTask
 }
 
 class TaskCell: UITableViewCell {
@@ -90,7 +90,7 @@ class TaskCell: UITableViewCell {
         let dateFormatter: DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMM dd yyyy"
         let dueDate: String = date == nil ? "" : " | " + dateFormatter.string(from: date!)
-        self.duePercentLabel.text = type == .assigner ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
+        self.duePercentLabel.text = type == .createdTask ? "TASK ASSIGNED" + dueDate : "YOUR NEW TASK" + dueDate
         self.duePercentLabel.textColor = appRed
         self.completedControl.alpha = 0.0
     }
@@ -113,10 +113,10 @@ class TaskCell: UITableViewCell {
         
         var user: User?
         switch type {
-        case .assignee:
+        case .myTask:
             guard let assigner: User = task.assigner else { print("There was no assigner for the task"); return }
             user = assigner
-        case .assigner:
+        case .createdTask:
             guard let assignee: User = task.assignees?.anyObject() as? User else { print("There were no assignees for the task"); return }
             user = assignee
         }
@@ -127,7 +127,7 @@ class TaskCell: UITableViewCell {
 //        self.completedControl.completedColor = UIColor("FFFFFF")
         
         guard let name: String = user?.name else { return }
-        self.assignedLabel.text = type == .assignee ? "ASSIGNED TO: " + name : "ASSIGNED BY: " + name
+        self.assignedLabel.text = type == .createdTask ? "ASSIGNED TO: " + name : "ASSIGNED BY: " + name
         
         guard let avatarURL: String = user?.avatarURL else { print("No avatar url found"); return }
         guard let url: URL = URL(string: avatarURL) else { return }

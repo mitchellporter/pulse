@@ -128,11 +128,11 @@ extension UpdatesViewController: UITableViewDataSource {
         switch indexPath.section {
         case 0:
             let update: Update = self.assigneeUpdatesFetchedResultsController.object(at: indexPath.modify())
-            cell.load(update.task!, type: .assignee)
+            cell.load(update.task!, type: .myTask)
             return cell
         case 1:
             let update: Update = self.assignerUpdatesFetchedResultsController.object(at: indexPath.modify())
-            cell.load(update.task!, type: .assigner)
+            cell.load(update.task!, type: .createdTask)
             return cell
         default: return UITableViewCell() // TODO: Handle
         }
@@ -261,13 +261,13 @@ extension UpdatesViewController: NSFetchedResultsControllerDelegate {
             case self.assigneeUpdatesFetchedResultsController:
                 if let cell = self.tableView.cellForRow(at: indexPath.updatesAssigneeIndexPath()) as? TaskCell {
                     let update = anObject as! Update
-                    cell.load(update.task!, type: .assignee)
+                    cell.load(update.task!, type: .myTask)
                 }
                 
             case self.assignerUpdatesFetchedResultsController:
                 if let cell = self.tableView.cellForRow(at: indexPath.updatesAssignerIndexPath()) as? TaskCell {
                     let update = anObject as! Update
-                    cell.load(update.task!, type: .assigner)
+                    cell.load(update.task!, type: .createdTask)
                 }
             default: break
             }

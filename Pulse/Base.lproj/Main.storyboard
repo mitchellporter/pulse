@@ -258,21 +258,39 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EJ-Ig-0fV">
-                                        <rect key="frame" x="68" y="98" width="295" height="14.5"/>
+                                        <rect key="frame" x="68" y="98" width="33" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="prP-Vr-Ztf" customClass="DotControl" customModule="UIAdditions">
+                                        <rect key="frame" x="107" y="100.5" width="46" height="10"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="Hby-IH-lI3"/>
+                                            <constraint firstAttribute="width" constant="46" id="qPE-aT-F09"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                                <color key="value" red="0.015686274510000001" green="0.14117647059999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="completedColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666669999999" green="0.1019607843" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="prP-Vr-Ztf" firstAttribute="leading" secondItem="8EJ-Ig-0fV" secondAttribute="trailing" constant="6" id="5ve-Hx-45W"/>
                                     <constraint firstAttribute="trailing" secondItem="7ZC-Zs-hg3" secondAttribute="trailing" constant="12" id="6Jh-fB-nRL"/>
                                     <constraint firstItem="QW6-yp-XTq" firstAttribute="top" secondItem="SPp-V5-vrm" secondAttribute="top" constant="86" id="A8U-4y-m6H"/>
                                     <constraint firstItem="8EJ-Ig-0fV" firstAttribute="leading" secondItem="QW6-yp-XTq" secondAttribute="trailing" constant="16" id="JNY-3A-y46"/>
                                     <constraint firstAttribute="bottom" secondItem="QW6-yp-XTq" secondAttribute="bottom" id="S4a-8d-KjS"/>
                                     <constraint firstItem="QW6-yp-XTq" firstAttribute="leading" secondItem="SPp-V5-vrm" secondAttribute="leading" constant="18" id="TgI-EV-xxK"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="prP-Vr-Ztf" secondAttribute="trailing" constant="12" id="aFH-Lu-R3c"/>
                                     <constraint firstItem="8EJ-Ig-0fV" firstAttribute="top" secondItem="QW6-yp-XTq" secondAttribute="centerY" constant="-5" id="dRt-tv-tbg"/>
-                                    <constraint firstAttribute="trailing" secondItem="8EJ-Ig-0fV" secondAttribute="trailing" constant="12" id="m2C-3O-mlI"/>
+                                    <constraint firstItem="prP-Vr-Ztf" firstAttribute="centerY" secondItem="8EJ-Ig-0fV" secondAttribute="centerY" id="mU1-99-jtN"/>
                                     <constraint firstItem="2D5-s5-LiK" firstAttribute="leading" secondItem="SPp-V5-vrm" secondAttribute="leading" constant="23" id="ma7-T6-cnH"/>
                                     <constraint firstItem="7ZC-Zs-hg3" firstAttribute="leading" secondItem="QW6-yp-XTq" secondAttribute="trailing" constant="16" id="qk4-8W-dg9"/>
                                     <constraint firstItem="7ZC-Zs-hg3" firstAttribute="top" secondItem="QW6-yp-XTq" secondAttribute="top" constant="-5" id="u1i-Dl-GEE"/>
@@ -299,6 +317,7 @@
                         <outlet property="avatarImageView" destination="QW6-yp-XTq" id="VpN-VI-0hn"/>
                         <outlet property="backButton" destination="2D5-s5-LiK" id="ZlK-R1-zgs"/>
                         <outlet property="bottomMenu" destination="45g-oV-QNB" id="fgI-lg-Ych"/>
+                        <outlet property="completedControl" destination="prP-Vr-Ztf" id="Wkl-Nc-JlA"/>
                         <outlet property="doneButton" destination="ziE-z3-f70" id="tsn-yX-7z7"/>
                         <outlet property="dueDateLabel" destination="8EJ-Ig-0fV" id="S36-ud-TA0"/>
                         <outlet property="tableView" destination="WgQ-Lw-ki8" id="ZiC-32-bGI"/>
@@ -308,7 +327,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="joE-xi-VR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1954" y="-524"/>
+            <point key="canvasLocation" x="1952.8" y="-524.8875562218891"/>
         </scene>
         <!--update-->
         <scene sceneID="kLN-N4-L9u">
@@ -499,11 +518,27 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QR5-hq-QFH">
-                                        <rect key="frame" x="68" y="98" width="295" height="14.5"/>
+                                        <rect key="frame" x="68" y="98" width="33" height="14.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XRV-Ud-9Qz" customClass="DotControl" customModule="UIAdditions">
+                                        <rect key="frame" x="107" y="100" width="46" height="10"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="10" id="f7l-Oy-JG6"/>
+                                            <constraint firstAttribute="width" constant="46" id="gKr-QJ-p42"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                                <color key="value" red="0.015686274510000001" green="0.14117647059999999" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="completedColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.10196078431372549" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -512,9 +547,9 @@
                                     <constraint firstAttribute="trailing" secondItem="Nsy-yh-ffe" secondAttribute="trailing" constant="12" id="62A-Gb-T7V"/>
                                     <constraint firstItem="X46-Ac-2Vi" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="25" id="9ii-nt-iIt"/>
                                     <constraint firstItem="X46-Ac-2Vi" firstAttribute="centerX" secondItem="ZRC-ui-Gk0" secondAttribute="centerX" id="HPW-0s-aRl"/>
-                                    <constraint firstAttribute="trailing" secondItem="QR5-hq-QFH" secondAttribute="trailing" constant="12" id="Iy0-0z-lr0"/>
                                     <constraint firstItem="GnN-zj-d4E" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="27" id="JCm-4E-hSm"/>
                                     <constraint firstItem="zSN-35-Vwr" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="20" id="Ns9-CM-VUj"/>
+                                    <constraint firstItem="XRV-Ud-9Qz" firstAttribute="centerY" secondItem="QR5-hq-QFH" secondAttribute="centerY" id="Opg-u8-Eht"/>
                                     <constraint firstItem="QR5-hq-QFH" firstAttribute="leading" secondItem="nej-xA-Fgq" secondAttribute="trailing" constant="16" id="UZK-aj-D4U"/>
                                     <constraint firstAttribute="trailing" secondItem="zSN-35-Vwr" secondAttribute="trailing" constant="13" id="YKi-gA-lyS"/>
                                     <constraint firstItem="Nsy-yh-ffe" firstAttribute="top" secondItem="nej-xA-Fgq" secondAttribute="top" constant="-5" id="Zsr-ph-qYg"/>
@@ -523,7 +558,9 @@
                                     <constraint firstItem="nej-xA-Fgq" firstAttribute="top" secondItem="ZRC-ui-Gk0" secondAttribute="top" constant="86" id="jcL-l8-5DM"/>
                                     <constraint firstAttribute="bottom" secondItem="nej-xA-Fgq" secondAttribute="bottom" id="kCn-DW-aJf"/>
                                     <constraint firstItem="nej-xA-Fgq" firstAttribute="leading" secondItem="ZRC-ui-Gk0" secondAttribute="leading" constant="18" id="lHi-gy-dU8"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XRV-Ud-9Qz" secondAttribute="trailing" constant="12" id="rDX-4g-fTV"/>
                                     <constraint firstItem="Nsy-yh-ffe" firstAttribute="leading" secondItem="nej-xA-Fgq" secondAttribute="trailing" constant="16" id="rlJ-15-Xri"/>
+                                    <constraint firstItem="XRV-Ud-9Qz" firstAttribute="leading" secondItem="QR5-hq-QFH" secondAttribute="trailing" constant="6" id="vr1-gd-rrm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -547,6 +584,7 @@
                         <outlet property="backButton" destination="GnN-zj-d4E" id="Twa-Iz-Adc"/>
                         <outlet property="bottomMenu" destination="RQq-4L-R3F" id="Nxr-4C-tGJ"/>
                         <outlet property="cancelButton" destination="I2Y-eT-tA1" id="WUy-q7-sYQ"/>
+                        <outlet property="completedControl" destination="XRV-Ud-9Qz" id="cAb-N1-1DT"/>
                         <outlet property="dueDateLabel" destination="QR5-hq-QFH" id="ef2-We-f44"/>
                         <outlet property="editButton" destination="3pY-Bh-U9q" id="XIq-mr-tTB"/>
                         <outlet property="requestButton" destination="dQh-k3-T9C" id="2j8-z6-bl8"/>

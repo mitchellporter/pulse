@@ -57,13 +57,13 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         
         switch status {
         case .pending:
-            self.title = type == .assigner ? "PENDING TASKS I ASSIGNED" : "MY NEW TASKS"
+            self.title = type == .createdTask ? "PENDING TASKS I ASSIGNED" : "MY NEW TASKS"
             self.markerColor = appRed
         case .inProgress:
-            self.title = type == .assigner ? "TASKS IN PROGRESS I ASSIGNED" : "MY TASKS IN PROGRESS"
+            self.title = type == .createdTask ? "TASKS IN PROGRESS I ASSIGNED" : "MY TASKS IN PROGRESS"
             self.markerColor = appBlue
         case .completed:
-            self.title = type == .assigner ? "TASKS COMPLETED I ASSIGNED" : "MY COMPLETED TASKS"
+            self.title = type == .createdTask ? "TASKS COMPLETED I ASSIGNED" : "MY COMPLETED TASKS"
             self.markerColor = appGreen
         }
     }

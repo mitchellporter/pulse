@@ -139,7 +139,7 @@ extension MyTasksViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         let item: Any = self.fetchedResultsControllers[indexPath.section].object(at: indexPath.modify())
-        cell.load(item, type: .assignee)
+        cell.load(item, type: .myTask)
         return cell
     }
 }
@@ -157,7 +157,7 @@ extension MyTasksViewController: UITableViewDelegate {
         if fetchedObjects.count > 0 {
             guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
             header.contentView.backgroundColor = self.tableView.backgroundColor
-            header.load(status: self.headerStatus[section], type: .assignee)
+            header.load(status: self.headerStatus[section], type: .myTask)
             return header
         } else {
             return nil
@@ -187,23 +187,29 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        guard var indexPath: IndexPath = indexPath else { return }
         guard let indexSection: Int = self.fetchedResultsControllers.index(of: controller) else { return }
-        indexPath.section = indexSection
         
         switch type {
         case .insert:
-            self.tableView.insertRows(at: [indexPath], with: .fade)
+            guard var newIndexPath: IndexPath = newIndexPath else { return }
+            newIndexPath.section = indexSection
+            self.tableView.insertRows(at: [newIndexPath], with: .fade)
             
         case .delete:
+            guard var indexPath: IndexPath = indexPath else { return }
+            indexPath.section = indexSection
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             
         case .update:
+            guard var indexPath: IndexPath = indexPath else { return }
+            indexPath.section = indexSection
             if let cell = self.tableView.cellForRow(at: indexPath) as? TaskCell {
-                cell.load(anObject, type: .assignee)
+                cell.load(anObject, type: .myTask)
             }
             
         case .move:
+            guard var indexPath: IndexPath = indexPath else { return }
+            indexPath.section = indexSection
             guard var newIndexPath: IndexPath = newIndexPath else { return }
             newIndexPath.section = indexSection
             self.tableView.moveRow(at: indexPath, to: newIndexPath)
