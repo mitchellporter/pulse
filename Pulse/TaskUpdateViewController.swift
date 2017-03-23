@@ -256,11 +256,13 @@ class TaskUpdateViewController: UIViewController {
     }
     
     @IBAction func commentViewClosed(_ sender: UIButton) {
+        self.commentTextView.text = ""
         self.presentCommentView(false)
     }
     
     @IBAction func commentDoneButtonPressed(_ sender: UIButton) {
         // Add comment to task update and dismiss comment view.
+        self.presentCommentView(false)
     }
 }
 
@@ -308,6 +310,7 @@ extension TaskUpdateViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
             textView.text = kUpdateCommentPlaceHolder
+            textView.textColor = UIColor.black.withAlphaComponent(0.24)
         }
         
         if textView.text != "" && textView.text != kUpdateCommentPlaceHolder {
