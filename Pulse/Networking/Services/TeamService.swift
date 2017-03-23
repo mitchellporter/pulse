@@ -29,4 +29,16 @@ struct TeamService {
             failure(error, statusCode)
         }
     }
+    
+    static func searchTeamsByName(teamName: String, success: @escaping (_ team: Team) -> Void, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .searchTeamsByTeamName(teamName: teamName), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let teamJSON = json["team"].dictionaryObject {
+                    let team = Team.from(json: teamJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(team)
+                }
+            }
+        }, failure: failure)
+    }
 }
