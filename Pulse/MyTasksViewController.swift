@@ -102,11 +102,19 @@ class MyTasksViewController: UIViewController {
         self.tableView.register(cell, forCellReuseIdentifier: "taskCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
-//        self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
-        self.tableView.backgroundColor = mainBackgroundColor
+//        self.tableView.contentInset = UIEdgeInsets(top: 13, left: 0, bottom: 0, right: 0)
+        self.tableView.backgroundColor = UIColor("ECEFF1")
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        let frame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 13)
+        let topGradient: CAGradientLayer = CAGradientLayer()
+        topGradient.frame = frame
+        topGradient.colors = [UIColor("ECEFF1").cgColor, UIColor("ECEFF1").withAlphaComponent(0.0).cgColor]
+        topGradient.locations = [0.0, 1.0]
+        
+        self.view.layer.addSublayer(topGradient)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,7 +165,8 @@ extension MyTasksViewController: UITableViewDelegate {
         if fetchedObjects.count > 0 {
             guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
             header.contentView.backgroundColor = self.tableView.backgroundColor
-            header.load(status: self.headerStatus[section], type: .myTask)
+            let position: TaskSectionHeader.CellPosition = section == 0 ? .top : .normal
+            header.load(status: self.headerStatus[section], type: position)
             return header
         } else {
             return nil
@@ -169,7 +178,10 @@ extension MyTasksViewController: UITableViewDelegate {
             return 0
         }
         if fetchedObjects.count != 0 {
-            return 30
+            if section == 0 {
+                return 48
+            }
+            return 35
         } else {
             return 0
         }

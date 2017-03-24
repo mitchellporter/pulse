@@ -32,11 +32,19 @@ class UpdatesViewController: UIViewController {
         self.tableView.register(taskCell, forCellReuseIdentifier: "TaskCell")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
-//        self.tableView.contentInset = UIEdgeInsets(top: 18, left: 0, bottom: 0, right: 0)
-        self.tableView.backgroundColor = mainBackgroundColor
+//        self.tableView.contentInset = UIEdgeInsets(top: 13, left: 0, bottom: 0, right: 0)
+        self.tableView.backgroundColor = UIColor("ECEFF1")
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        let frame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 13)
+        let topGradient: CAGradientLayer = CAGradientLayer()
+        topGradient.frame = frame
+        topGradient.colors = [UIColor("ECEFF1").cgColor, UIColor("ECEFF1").withAlphaComponent(0.0).cgColor]
+        topGradient.locations = [0.0, 1.0]
+        
+        self.view.layer.addSublayer(topGradient)
     }
     
     private func setupAssigneeCoreData() {
@@ -166,8 +174,11 @@ extension UpdatesViewController: UITableViewDelegate {
                 return nil
             }
             if fetchedObjects.count != 0 {
-                header.title = section == 0 ? "PROGRESS UPDATES I NEED TO COMPLETE" : "PROGRESS UPDATES SENT TO ME"
-                header.markerColor = section == 0 ? appRed : appYellow
+                // FIX ALL OF THIS
+                let position: TaskSectionHeader.CellPosition = section == 0 ? .top : .normal
+                header.load(status: .completed, type: position)
+                header.title = section == 0 ? "UPDATE REQUESTS" : "UPDATES SENT TO ME"
+//                header.markerColor = section == 0 ? appRed : appYellow
                 header.contentView.backgroundColor = self.tableView.backgroundColor
                 return header
             } else {
@@ -180,8 +191,11 @@ extension UpdatesViewController: UITableViewDelegate {
                 return nil
             }
             if fetchedObjects.count != 0 {
-                header.title = section == 0 ? "PROGRESS UPDATES I NEED TO COMPLETE" : "PROGRESS UPDATES SENT TO ME"
-                header.markerColor = section == 0 ? appRed : appYellow
+                // FIX ALL OF THIS
+                let position: TaskSectionHeader.CellPosition = section == 0 ? .top : .normal
+                header.load(status: .completed, type: position)
+                header.title = section == 0 ? "UPDATE REQUESTS" : "UPDATES SENT TO ME"
+//                header.markerColor = section == 0 ? appRed : appYellow
                 header.contentView.backgroundColor = self.tableView.backgroundColor
                 return header
             } else {
@@ -201,7 +215,10 @@ extension UpdatesViewController: UITableViewDelegate {
                 return 0
             }
             if fetchedObjects.count != 0 {
-                return 30
+                if section == 0 {
+                    return 48
+                }
+                return 35
             } else {
                 return 0
             }
@@ -212,7 +229,10 @@ extension UpdatesViewController: UITableViewDelegate {
                 return 0
             }
             if fetchedObjects.count != 0 {
-                return 30
+                if section == 0 {
+                    return 48
+                }
+                return 35
             } else {
                 return 0
             }
