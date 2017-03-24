@@ -50,7 +50,7 @@ class UpdateAlertCommentViewController: AlertController {
 
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3
-        self.alertViewHeader.backgroundColor = createTaskBackgroundColor
+        self.alertViewHeader.backgroundColor = appYellow
         
         self.textView.text = kUpdateCommentPlaceHolder
         self.textView.textContainerInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 20)

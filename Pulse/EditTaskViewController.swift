@@ -112,6 +112,8 @@ class EditTaskViewController: UIViewController {
     }
     
     private func setupAppearance() {
+        self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.1)
+        self.completedControl.completedColor = UIColor.white
         let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
         let topGradient: CAGradientLayer = CAGradientLayer()
         topGradient.frame = frame
