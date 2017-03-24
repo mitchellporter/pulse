@@ -46,7 +46,7 @@ class EditTaskViewController: UIViewController {
     }
     
     var datasource: [Item] = [Item]()
-    
+    private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
     
     var tableViewTopInset: CGFloat = 22
@@ -115,12 +115,11 @@ class EditTaskViewController: UIViewController {
         self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.1)
         self.completedControl.completedColor = UIColor.white
         let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
-        let topGradient: CAGradientLayer = CAGradientLayer()
-        topGradient.frame = frame
-        topGradient.colors = [appBlue.withAlphaComponent(1.0).cgColor, appBlue.withAlphaComponent(0.0).cgColor]
-        topGradient.locations = [0.0, 1.0]
+        self.topGradient.frame = frame
+        self.topGradient.colors = [appBlue.withAlphaComponent(1.0).cgColor, appBlue.withAlphaComponent(0.0).cgColor]
+        self.topGradient.locations = [0.0, 1.0]
         
-        self.view.layer.addSublayer(topGradient)
+        self.view.layer.addSublayer(self.topGradient)
         
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
@@ -157,10 +156,17 @@ class EditTaskViewController: UIViewController {
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }
+        if self.taskInvite != nil {
+            self.completedControl.alpha = 0.0
+            self.view.backgroundColor = appRed
+            self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
+        }
         self.completedControl.percent = CGFloat(task.completionPercentage / 100)
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         self.status = status
+        
+        self.titleLabel.text = "TASK CREATED"
         
         switch(status) {
         case .pending:
