@@ -42,7 +42,13 @@ class ViewTaskViewController: UIViewController {
         }
     }
     
-    var datasource: [Item] = [Item]()
+    var datasource: [Item] = [Item]() {
+        didSet {
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
     private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
 
@@ -72,6 +78,8 @@ class ViewTaskViewController: UIViewController {
 //        self.setupCoreData(task: finalTask)
 //        self.fetchData(task: finalTask)
         self.updateUI()
+        
+        self.tableView.reloadData()
     }
     
     private func setupCoreData(task: Task) {
@@ -198,10 +206,12 @@ class ViewTaskViewController: UIViewController {
             self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
             break
         case .completed:
+            self.tableView.backgroundColor = appGreen
             self.titleLabel.text = "COMPLETED TASK"
-            self.dueDateLabel.textColor = appGreen
+//            self.dueDateLabel.textColor = appGreen
             self.bottomMenu.alpha = 0
-            self.dueDateLabel.text = "COMPLETED"
+//            self.dueDateLabel.text = "COMPLETED"
+            self.tableView.reloadData()
             break
         }
     }

@@ -85,6 +85,9 @@ open class DotControl: UIView {
             circle.path = circlePath.cgPath
             circle.fillColor = color.cgColor
             circle.strokeColor = nil
+            if dotLayer == self.backDots {
+                circle.opacity = 0.1
+            }
             dotLayer.addSublayer(circle)
             originX += circleFrame.width + 2
         }

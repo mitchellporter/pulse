@@ -9,7 +9,7 @@
 import UIKit
 
 let kCreateTaskDescriptionPlaceholder: String = "Give this person a quick high level overview of what you need done."
-let kCreateTaskAddItemPlaceHolder: String = "Add Tasks"
+let kCreateTaskAddItemPlaceHolder: String = "Add Sub-Task"
 
 protocol CreateTaskAddItemCellDelegate: CreateTaskCellDelegate {
     func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String)

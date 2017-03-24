@@ -45,7 +45,13 @@ class EditTaskViewController: UIViewController {
         }
     }
     
-    var datasource: [Item] = [Item]()
+    var datasource: [Item] = [Item]() {
+        didSet {
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
     private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
     
@@ -70,10 +76,12 @@ class EditTaskViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if self.task != nil {
-            self.setupCoreData()
-            self.fetchData()
+//            self.setupCoreData()
+//            self.fetchData()
             self.updateUI()
         }
+        
+        self.tableView.reloadData()
     }
 
     private func setupCoreData() {
@@ -158,8 +166,8 @@ class EditTaskViewController: UIViewController {
         }
         if self.taskInvite != nil {
             self.completedControl.alpha = 0.0
-            self.view.backgroundColor = appRed
-            self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
+//            self.view.backgroundColor = appRed
+//            self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
         }
         self.completedControl.percent = CGFloat(task.completionPercentage / 100)
         
@@ -288,12 +296,16 @@ class EditTaskViewController: UIViewController {
 extension EditTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
+//        return self.fetchedResultsController.sections?.count ?? 1
+        
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects + 1
+//        let sectionInfo = self.fetchedResultsController.sections![section]
+//        return sectionInfo.numberOfObjects + 1
+        
+        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -309,7 +321,8 @@ extension EditTaskViewController: UITableViewDataSource {
             cell.delegate = self
             cell.label.textColor = UIColor.black
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-            let item = self.fetchedResultsController.object(at: realIndexPath)
+//            let item = self.fetchedResultsController.object(at: realIndexPath)
+            let item: Item = self.datasource[realIndexPath.row]
             cell.load(item: item)
             
             if let status = self.status {

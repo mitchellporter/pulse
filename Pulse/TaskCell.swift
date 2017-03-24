@@ -96,7 +96,7 @@ class TaskCell: UITableViewCell {
     }
     
     private func load(_ task: Task, type: TaskCellType) {
-        self.duePercentLabel.textColor = task.status == TaskStatus.completed.rawValue ? appGreen : UIColor.white
+//        self.duePercentLabel.textColor = task.status == TaskStatus.completed.rawValue ? appGreen : UIColor.white
         var duePercentString: String = ""
         if task.status != TaskStatus.completed.rawValue {
             if let dueDate = task.dueDate {
@@ -137,7 +137,7 @@ class TaskCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        self.duePercentLabel.textColor = UIColor.white
+//        self.duePercentLabel.textColor = UIColor.white
     }
     
     override func layoutSubviews() {

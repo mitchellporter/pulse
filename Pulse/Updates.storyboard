@@ -424,7 +424,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bf7-cw-MOx" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                <rect key="frame" x="86.5" y="231.5" width="202" height="41"/>
+                                <rect key="frame" x="86.5" y="251" width="202" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="41" id="tTg-1F-1Ml"/>
                                     <constraint firstAttribute="width" constant="202" id="ukX-wq-hlg"/>
@@ -479,7 +479,7 @@
                             <constraint firstAttribute="trailing" secondItem="c8e-Ee-Kq5" secondAttribute="trailing" constant="16" id="R3D-Bn-Ikt"/>
                             <constraint firstItem="Iqh-Aq-Q1w" firstAttribute="top" secondItem="fwv-kD-PmQ" secondAttribute="bottom" constant="25" id="Rlt-A3-Fiw"/>
                             <constraint firstItem="ey6-tX-Maj" firstAttribute="leading" secondItem="uhH-AU-gAu" secondAttribute="leading" id="Wl9-pn-bDt"/>
-                            <constraint firstItem="bf7-cw-MOx" firstAttribute="centerY" secondItem="QUc-uU-H5G" secondAttribute="centerY" multiplier="0.755" id="aW9-RP-M7G"/>
+                            <constraint firstItem="bf7-cw-MOx" firstAttribute="centerY" secondItem="QUc-uU-H5G" secondAttribute="centerY" multiplier="0.814" id="aW9-RP-M7G"/>
                             <constraint firstItem="BAP-Ig-eYj" firstAttribute="centerX" secondItem="QUc-uU-H5G" secondAttribute="centerX" id="byh-Ti-WB4"/>
                             <constraint firstItem="BAP-Ig-eYj" firstAttribute="centerY" secondItem="QUc-uU-H5G" secondAttribute="centerY" multiplier="1.41" id="dA8-Oa-j8r"/>
                             <constraint firstItem="gta-ZR-0Dx" firstAttribute="top" secondItem="fwv-kD-PmQ" secondAttribute="bottom" id="eOJ-Hu-YwG"/>
