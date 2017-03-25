@@ -30,7 +30,7 @@ class CreatedTasksViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let assignerPredicate: NSPredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
 
-        let sort = NSSortDescriptor(key: "createdAt", ascending: false)
+        let sort = NSSortDescriptor(key: "status", ascending: false)
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = assignerPredicate
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: "status", cacheName: nil)
@@ -94,7 +94,8 @@ extension CreatedTasksViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
-        let item: Any = self.fetchedResultsController.object(at: indexPath)
+        let item: Task = self.fetchedResultsController.object(at: indexPath)
+        print("indexPath.section: \(indexPath.section) and task title: \(item.title)")
         cell.load(item, type: .createdTask)
         return cell
     }
@@ -143,30 +144,31 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        
+        switch type {
+        case .insert:
+            self.tableView.insertSections([sectionIndex], with: .fade)
+        case .delete:
+            self.tableView.deleteSections([sectionIndex], with: .fade)
+        case .move:
+            break
+        case .update:
+            break
+        }
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
         switch type {
         case .insert:
-            guard let newIndexPath: IndexPath = newIndexPath else { return }
-            self.tableView.insertRows(at: [newIndexPath], with: .fade)
-            
+            self.tableView.insertRows(at: [newIndexPath!], with: .fade)
         case .delete:
-            guard let indexPath: IndexPath = indexPath else { return }
-            self.tableView.deleteRows(at: [indexPath], with: .fade)
-            
+            self.tableView.deleteRows(at: [indexPath!], with: .fade)
         case .update:
             guard let indexPath: IndexPath = indexPath else { return }
             if let cell = self.tableView.cellForRow(at: indexPath) as? TaskCell {
                 cell.load(anObject, type: .createdTask)
             }
-            
         case .move:
-            guard let indexPath: IndexPath = indexPath else { return }
-            guard let newIndexPath: IndexPath = newIndexPath else { return }
-            self.tableView.moveRow(at: indexPath, to: newIndexPath)
+            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }
     }
     
@@ -174,3 +176,7 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
         self.tableView.endUpdates()
     }
 }
+
+
+
+
