@@ -26,7 +26,6 @@ class CreatedTasksViewController: UIViewController {
     
     private func setupCoreData() {
         
-        
         // Setup Pending FRC
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
         let assignerPredicate: NSPredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
