@@ -254,7 +254,7 @@ extension PulseAPI {
         case let .sendTaskUpdate(_, completionPercentage, message):
             var params = [String: AnyObject]()
             params["completion_percentage"] = completionPercentage as AnyObject
-            
+            params["type"] = "random" as AnyObject
             guard let message = message else { return params }
             params["message"] = message as AnyObject
             return params
