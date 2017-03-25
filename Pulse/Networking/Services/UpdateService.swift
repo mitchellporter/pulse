@@ -12,6 +12,8 @@ import SwiftyJSON
 typealias UpdateSuccessCompletion = (_ update: Update) -> Void
 typealias UpdatesSuccessCompletion = (_ updates: [Update]) -> Void
 
+typealias EmptySuccessCompletion = () -> Void
+
 struct UpdateService {
 //    static func getUpdates(updateRequestId: String, offset: Int, success: @escaping UpdatesSuccessCompletion, failure: @escaping PulseFailureCompletion) {
 //        NetworkingClient.sharedClient.request(target: .get(updateRequestId: updateRequestId, offset: offset), success: { (data) in
@@ -64,4 +66,13 @@ struct UpdateService {
             }
         }, failure: failure)
     }
+    
+    static func resendUpdateRequest(updateId: String, responseId: String, success: @escaping EmptySuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .resendUpdateRequest(updateId: updateId, responseId: responseId), success: { (data) in
+            success()
+        }, failure: failure)
+    }
+    
+    
+    
 }
