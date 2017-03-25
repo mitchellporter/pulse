@@ -12,6 +12,7 @@ import UIAdditions
 
 class ViewUpdateViewController: UIViewController {
 
+    @IBOutlet weak var headerBackground: UIView!
     @IBOutlet weak var circleView: UIView!
     @IBOutlet weak var percentCompletedLabel: UILabel!
     @IBOutlet weak var avatarImageView: UIImageView!
@@ -103,6 +104,9 @@ class ViewUpdateViewController: UIViewController {
 
     private func setupAppearance() {
         self.drawCircle()
+        self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.2)
+        self.completedControl.completedColor = UIColor.white
+        self.headerBackground.backgroundColor = appYellow
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
@@ -124,7 +128,7 @@ class ViewUpdateViewController: UIViewController {
         
         // Setup comment view
         self.commentView.layer.cornerRadius = 3
-        self.commentTopBar.backgroundColor = mainBackgroundColor
+        self.commentTopBar.backgroundColor = appYellow
         self.commentTextView.textContainerInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 20)
     }
     
@@ -146,14 +150,14 @@ class ViewUpdateViewController: UIViewController {
         self.circleLayer.frame = self.circleFrame
         self.circleLayer.path = self.getCirclePath().cgPath
         self.circleLayer.fillColor = self.view.backgroundColor?.cgColor
-        self.circleLayer.strokeColor = UIColor.white.cgColor
+        self.circleLayer.strokeColor = UIColor("ECEFF1").cgColor
         self.circleLayer.lineWidth = self.circleLineWidth
         self.circleView.layer.insertSublayer(self.circleLayer, at: 0)
         
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
         self.completedCircle.fillColor = UIColor.clear.cgColor
-        self.completedCircle.strokeColor = appGreen.cgColor
+        self.completedCircle.strokeColor = appGreenAlt.cgColor
         self.completedCircle.lineWidth = self.circleLineWidth
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0

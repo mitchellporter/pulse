@@ -108,7 +108,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="0.22134524828767124" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.14901960780000001" green="0.29411764709999999" blue="0.39607843139999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="BmA-lf-7gc" firstAttribute="leading" secondItem="dfH-sp-xla" secondAttribute="leading" id="6SQ-fV-wpI"/>
                         <constraint firstItem="BmA-lf-7gc" firstAttribute="top" secondItem="dfH-sp-xla" secondAttribute="top" id="CCf-IJ-cwO"/>
@@ -165,7 +165,7 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="0.21711793664383561" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.14901960784313725" green="0.29411764705882354" blue="0.396078431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="5FL-0a-2tI" firstAttribute="centerY" secondItem="zJg-Ph-wLf" secondAttribute="centerY" id="11N-GT-kSQ"/>
                         <constraint firstAttribute="height" constant="55" id="5AU-V6-bv1"/>

@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CreateTaskAssignViewController: UIViewController {
+class CreateTaskAssignViewController: CreateTask {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -117,6 +117,26 @@ class CreateTaskAssignViewController: UIViewController {
         self.tableView.showsVerticalScrollIndicator = false
     }
     
+    private func create(task: [CreateTaskKeys:[Any]]) {
+        guard let description: String = task[.description]?.first as? String else { return }
+        guard let items: [String] = task[.items] as? [String] else { return }
+        guard let assignees: [User] = task[.assignees] as? [User] else { return }
+        var members: [String] = [String]()
+        for member in assignees {
+            members.append(member.objectId)
+        }
+        let dueDate: Date? = task[.dueDate]?.first as? Date
+        let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
+        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
+            // Successfully created task
+            // Do Something
+            
+            self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
+        }) { (error, statusCode) in
+            // TODO: Handle Error
+            print("There was an error when creating the task. Error: \(statusCode) \(error.localizedDescription)")
+        }
+    }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
@@ -127,7 +147,8 @@ class CreateTaskAssignViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "updates", sender: nil)
+        guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskAssignController"); return }
+        self.create(task: task)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

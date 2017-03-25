@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamUsernameViewController: UIViewController, Onboarding {
+class NewTeamUsernameViewController: Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var takenLabel: UILabel!
@@ -17,7 +17,8 @@ class NewTeamUsernameViewController: UIViewController, Onboarding {
     @IBOutlet weak var messageBottomConstraint: NSLayoutConstraint!
     
     private var keyboardOrigin: CGFloat = 0.0
-
+    private var backgroundColor: UIColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +30,7 @@ class NewTeamUsernameViewController: UIViewController, Onboarding {
         self.setupObserver()
         
         self.textField.becomeFirstResponder()
+        self.backgroundColor = self.view.backgroundColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,7 +39,7 @@ class NewTeamUsernameViewController: UIViewController, Onboarding {
     }
 
     private func setupAppearance() {
-        self.view.backgroundColor = appGreen
+//        self.view.backgroundColor = appGreen
         self.takenLabel.alpha = 0.0
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false
@@ -72,13 +74,34 @@ class NewTeamUsernameViewController: UIViewController, Onboarding {
         }, completion: nil)
     }
     
+    fileprivate func alertBackground(_ shown: Bool) {
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.backgroundColor = shown ? appPink : self.backgroundColor
+            self.takenLabel.alpha = shown ? 1.0 : 0.0
+            self.messageBottomConstraint.constant = shown ? 0.0 : self.view.frame.height - self.keyboardOrigin
+            self.view.layoutIfNeeded()
+        }) { (finished) in
+            //
+        }
+    }
+    
     fileprivate func nextButtonIs(enabled: Bool) {
         self.nextButton.alpha = enabled ? 1.0 : 0.52
         self.nextButton.isEnabled = enabled
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "email", sender: nil)
+        guard let username: String = self.textField.text else { return }
+        AvailabilityService.checkUsernameAvailability(username: username, success: { (username) in
+            // Success means the username is available??
+            
+            self.performSegue(withIdentifier: "email", sender: username)
+        }) { (error, statusCode) in
+            // Error means the username is taken??
+            
+            self.alertBackground(true)
+        }
     }
 
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -87,6 +110,14 @@ class NewTeamUsernameViewController: UIViewController, Onboarding {
         } else {
             _ = self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        guard let username: String = sender as? String else { return }
+        guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
+        toVC.username = username
     }
 }
 

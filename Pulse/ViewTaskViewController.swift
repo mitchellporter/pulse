@@ -23,6 +23,7 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var assignedByLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var completedControl: DotControl!
+    @IBOutlet weak var titleLabel: UILabel!
     
     var taskInvite: TaskInvitation? {
         didSet {
@@ -41,8 +42,14 @@ class ViewTaskViewController: UIViewController {
         }
     }
     
-    var datasource: [Item] = [Item]()
-    
+    var datasource: [Item] = [Item]() {
+        didSet {
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
 
     var tableViewTopInset: CGFloat = 22
@@ -71,6 +78,8 @@ class ViewTaskViewController: UIViewController {
 //        self.setupCoreData(task: finalTask)
 //        self.fetchData(task: finalTask)
         self.updateUI()
+        
+        self.tableView.reloadData()
     }
     
     private func setupCoreData(task: Task) {
@@ -110,13 +119,14 @@ class ViewTaskViewController: UIViewController {
     }
     
     private func setupAppearance() {
+        self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.2)
+        self.completedControl.completedColor = UIColor.white
         let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
-        let topGradient: CAGradientLayer = CAGradientLayer()
-        topGradient.frame = frame
-        topGradient.colors = [appGreen.withAlphaComponent(1.0).cgColor, appGreen.withAlphaComponent(0.0).cgColor]
-        topGradient.locations = [0.0, 1.0]
+        self.topGradient.frame = frame
+        self.topGradient.colors = [appGreen.withAlphaComponent(1.0).cgColor, appGreen.withAlphaComponent(0.0).cgColor]
+        self.topGradient.locations = [0.0, 1.0]
         
-        self.view.layer.addSublayer(topGradient)
+        self.view.layer.addSublayer(self.topGradient)
         
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
@@ -129,13 +139,13 @@ class ViewTaskViewController: UIViewController {
     }
 
     private func setupTableView() {
-        self.tableView.backgroundColor = self.view.backgroundColor
+        self.tableView.backgroundColor = UIColor.white
         let cell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "itemViewCell")
-        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 70
 //        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
         self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     private func updateUI() {
@@ -151,9 +161,15 @@ class ViewTaskViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             duePercentString = "Due: " + formatter.string(from: dueDate) + " | "
             if dueDate.timeIntervalSince(Date()) <= 86400 {
-                self.dueDateLabel.textColor = appRed
+//                self.dueDateLabel.textColor = appRed
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
+        }
+        if self.taskInvite != nil {
+            self.completedControl.alpha = 0.0
+            self.view.backgroundColor = appRed
+            self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
+            self.topGradient.colors = [appRed.withAlphaComponent(1.0).cgColor, appRed.withAlphaComponent(0.0).cgColor]
         }
         self.completedControl.percent = CGFloat(task.completionPercentage / 100)
         
@@ -162,6 +178,7 @@ class ViewTaskViewController: UIViewController {
         
         switch(status) {
         case .pending:
+            self.titleLabel.text = "PENDING TASK"
 //            self.dueDateLabel.textColor = appRed
             self.updateButton.setTitle("DECLINE TASK", for: .normal)
             self.updateButton.setTitleColor(UIColor.black, for: .normal)
@@ -175,6 +192,7 @@ class ViewTaskViewController: UIViewController {
             self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
             break
         case .inProgress:
+            self.titleLabel.text = "IN PROGRESS"
 //            self.dueDateLabel.textColor = appYellow
             self.updateButton.setTitle("GIVE UPDATE", for: .normal)
             self.updateButton.setTitleColor(UIColor.black, for: .normal)
@@ -188,9 +206,12 @@ class ViewTaskViewController: UIViewController {
             self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
             break
         case .completed:
-            self.dueDateLabel.textColor = appGreen
+            self.tableView.backgroundColor = appGreen
+            self.titleLabel.text = "COMPLETED TASK"
+//            self.dueDateLabel.textColor = appGreen
             self.bottomMenu.alpha = 0
-            self.dueDateLabel.text = "COMPLETED"
+//            self.dueDateLabel.text = "COMPLETED"
+            self.tableView.reloadData()
             break
         }
     }
@@ -295,7 +316,7 @@ class ViewTaskViewController: UIViewController {
     }
 }
 
-extension ViewTaskViewController: UITableViewDataSource {
+extension ViewTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
 //        return self.fetchedResultsController.sections?.count ?? 1
@@ -318,7 +339,7 @@ extension ViewTaskViewController: UITableViewDataSource {
             cell.label.text = self.task?.title
             cell.button.alpha = 0
         } else {
-            cell.contentView.backgroundColor = self.tableView.backgroundColor
+            cell.contentView.backgroundColor = UIColor.white
             cell.label.textColor = UIColor.black
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
 //            let item = self.fetchedResultsController.object(at: realIndexPath)
@@ -328,19 +349,30 @@ extension ViewTaskViewController: UITableViewDataSource {
             if let status = self.status {
                 switch(status) {
                 case .pending:
-                    cell.button.alpha = 0
+                    cell.button.alpha = 0.0
+                    cell.dot.alpha = 1.0
                     break
                 case .inProgress:
                     break
                 case .completed:
                     cell.state = .selected
                     cell.button.isEnabled = false
+                    cell.contentView.backgroundColor = appGreen
+                    cell.label.textColor = UIColor.white
                     break
                 }
             }
         }
         return cell
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if scrollView.contentOffset.y > 0.0 {
+//            scrollView.backgroundColor = UIColor.white
+//        } else if scrollView.contentOffset.y < 0.0 {
+//            scrollView.backgroundColor = self.view.backgroundColor
+//        }
+//    }
 }
 
 extension ViewTaskViewController: NSFetchedResultsControllerDelegate {

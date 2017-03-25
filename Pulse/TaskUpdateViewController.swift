@@ -58,20 +58,19 @@ class TaskUpdateViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        self.view.backgroundColor = mainBackgroundColor
-        
+        self.view.backgroundColor = UIColor("ECEFF1")
         self.drawCircle()
         
         // Setup comment badge
         let circle: CALayer = CALayer()
-        circle.frame = CGRect(x: 12, y: -2, width: 12, height: 12)
-        circle.backgroundColor = appRed.cgColor
+        circle.frame = CGRect(x: 11.5, y: -2.5, width: 11, height: 11)
+        circle.backgroundColor = UIColor("FF5E5B").cgColor
         circle.masksToBounds = true
         circle.cornerRadius = circle.frame.width/2
         let border: CAShapeLayer = CAShapeLayer()
-        border.path = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: 10, height: 10)).cgPath
+        border.path = UIBezierPath(ovalIn: CGRect(x: 0.5, y: 0.5, width: 10, height: 10)).cgPath
         border.strokeColor = UIColor.white.cgColor
-        border.lineWidth = 2
+        border.lineWidth = 1
         border.fillColor = nil
         circle.addSublayer(border)
         
@@ -79,7 +78,7 @@ class TaskUpdateViewController: UIViewController {
         
         // Setup comment view
         self.commentView.layer.cornerRadius = 3
-        self.commentTopBar.backgroundColor = mainBackgroundColor
+        self.commentTopBar.backgroundColor = appYellow
         self.commentTextView.textContainerInset = UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 20)
         self.commentTextView.text = kUpdateCommentPlaceHolder
         
@@ -141,7 +140,7 @@ class TaskUpdateViewController: UIViewController {
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
         self.completedCircle.fillColor = UIColor.clear.cgColor
-        self.completedCircle.strokeColor = appGreen.cgColor
+        self.completedCircle.strokeColor = appGreenAlt.cgColor
         self.completedCircle.lineWidth = 27
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0

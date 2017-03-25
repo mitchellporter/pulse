@@ -9,7 +9,7 @@
 import UIKit
 import CalendarPicker
 
-class CreateTaskDateViewController: UIViewController {
+class CreateTaskDateViewController: CreateTask {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -70,12 +70,12 @@ class CreateTaskDateViewController: UIViewController {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "assign", sender: nil)
+        self.performSegue(withIdentifier: "updates", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let dictionary = self.taskDictionary else { return }
-        guard let toVC = segue.destination as? CreateTaskAssignViewController else { return }
+        guard let toVC = segue.destination as? CreateTaskUpdatesViewController else { return }
         toVC.taskDictionary = dictionary
     }
 }

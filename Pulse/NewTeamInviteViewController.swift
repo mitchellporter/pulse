@@ -8,12 +8,15 @@
 
 import UIKit
 
-class NewTeamInviteViewController: UIViewController, Onboarding {
+class NewTeamInviteViewController: Onboarding {
     
     @IBOutlet weak var contactsButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
+    @IBOutlet weak var teamNameLabel: UILabel!
 
+    var teamName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +24,9 @@ class NewTeamInviteViewController: UIViewController, Onboarding {
     }
 
     private func setupAppearance() {
+        self.teamNameLabel.layer.cornerRadius = 5
+        
+        self.teamNameLabel.text = self.teamName ?? ""
         
     }
 

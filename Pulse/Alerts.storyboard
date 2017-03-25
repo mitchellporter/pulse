@@ -302,7 +302,7 @@
                                                     <action selector="doneButtonPressed:" destination="P5I-wq-043" eventType="touchUpInside" id="3M7-ok-VOh"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-zM-7f8" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNc-zM-7f8" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="17" y="18" width="17" height="22"/>
                                                 <state key="normal" image="CloseX"/>
                                                 <userDefinedRuntimeAttributes>

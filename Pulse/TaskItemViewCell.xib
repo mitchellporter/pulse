@@ -44,22 +44,31 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="GreyDot" translatesAutoresizingMaskIntoConstraints="NO" id="13l-wh-0bA">
+                        <rect key="frame" x="27" y="28" width="10" height="10"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.066666666666666666" green="0.10196078431372549" blue="0.21568627450980393" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="ojw-kw-sbk" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="0K6-bV-ohD"/>
+                    <constraint firstItem="13l-wh-0bA" firstAttribute="top" secondItem="fi8-My-VzZ" secondAttribute="top" constant="4" id="BJj-zg-Ygu"/>
                     <constraint firstAttribute="trailing" secondItem="ojw-kw-sbk" secondAttribute="trailing" constant="18" id="O2g-oM-k8K"/>
                     <constraint firstItem="ojw-kw-sbk" firstAttribute="leading" secondItem="fi8-My-VzZ" secondAttribute="trailing" constant="18" id="Owa-as-JL9"/>
                     <constraint firstAttribute="bottom" secondItem="ojw-kw-sbk" secondAttribute="bottom" constant="20" id="Va6-MZ-ZkQ"/>
                     <constraint firstItem="fi8-My-VzZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="dqj-rV-mqS"/>
+                    <constraint firstItem="13l-wh-0bA" firstAttribute="centerX" secondItem="fi8-My-VzZ" secondAttribute="centerX" id="hJ0-O9-pxc"/>
                     <constraint firstItem="fi8-My-VzZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="p5Z-fM-sAY"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="button" destination="fi8-My-VzZ" id="E8O-CI-kl8"/>
+                <outlet property="dot" destination="13l-wh-0bA" id="jl4-bK-6ll"/>
                 <outlet property="label" destination="ojw-kw-sbk" id="PDm-Mp-mbU"/>
             </connections>
             <point key="canvasLocation" x="34.5" y="96.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="GreyDot" width="10" height="10"/>
+    </resources>
 </document>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamNameViewController: UIViewController, Onboarding {
+class NewTeamNameViewController: Onboarding {
     
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -17,7 +17,8 @@ class NewTeamNameViewController: UIViewController, Onboarding {
     @IBOutlet weak var takenLabel: UILabel!
     
     private var keyboardOrigin: CGFloat = 0.0
-
+    private var backgroundColor: UIColor?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,6 +30,7 @@ class NewTeamNameViewController: UIViewController, Onboarding {
         self.setupObserver()
         
         self.textField.becomeFirstResponder()
+        self.backgroundColor = self.view.backgroundColor
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,7 +39,7 @@ class NewTeamNameViewController: UIViewController, Onboarding {
     }
 
     private func setupAppearance() {
-        self.view.backgroundColor = appBlue
+//        self.view.backgroundColor = appBlue
         self.takenLabel.alpha = 0.0
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false
@@ -59,7 +61,7 @@ class NewTeamNameViewController: UIViewController, Onboarding {
     fileprivate func alertBackground(_ shown: Bool) {
         
         UIView.animate(withDuration: 0.25, animations: {
-            self.view.backgroundColor = shown ? appPink : appBlue
+            self.view.backgroundColor = shown ? appPink : self.backgroundColor
             self.takenLabel.alpha = shown ? 1.0 : 0.0
             self.messageViewBottomConstraint.constant = shown ? 0.0 : self.view.frame.height - self.keyboardOrigin
             self.view.layoutIfNeeded()
@@ -79,8 +81,8 @@ class NewTeamNameViewController: UIViewController, Onboarding {
         guard let name: String = name else { self.alertBackground(false); return }
         
         // Check if team name is already taken
-        let showAlert: Bool = name.lowercased().contains("b")
-        self.alertBackground(showAlert)
+//        let showAlert: Bool = name.lowercased().contains("b")
+//        self.alertBackground(showAlert)
     }
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
@@ -92,7 +94,18 @@ class NewTeamNameViewController: UIViewController, Onboarding {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "username", sender: nil)
+        guard let teamName: String = self.textField.text else { return }
+        AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (teamName) in
+            // Success means name is available??
+            
+            self.performSegue(withIdentifier: "username", sender: teamName)
+            
+        }) { (error, statusCode) in
+            print("Error: \(statusCode) \(error.localizedDescription)")
+            // Failure means name is taken??
+            
+//            self.alertBackground(true)
+        }
     }
     
     func adjustForKeyboard(notification: NSNotification) {

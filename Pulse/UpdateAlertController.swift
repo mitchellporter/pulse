@@ -75,7 +75,7 @@ class UpdateAlertController: AlertController {
     
     private func setupAppearance() {
         self.alertView.layer.cornerRadius = 3
-        self.alertViewHeader.backgroundColor = createTaskBackgroundColor
+        self.alertViewHeader.backgroundColor = appYellow
         self.avatarImageView.layer.cornerRadius = 4
         
         self.drawCircle()
@@ -130,7 +130,7 @@ class UpdateAlertController: AlertController {
         self.completedCircle.frame = circleLayer.frame
         self.completedCircle.path = circleLayer.path
         self.completedCircle.fillColor = UIColor.clear.cgColor
-        self.completedCircle.strokeColor = appGreen.cgColor
+        self.completedCircle.strokeColor = appGreenAlt.cgColor
         self.completedCircle.lineWidth = self.circleLineWidth
         self.completedCircle.strokeStart = 0.0
         self.completedCircle.strokeEnd = 0.0

@@ -45,10 +45,10 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-dZ-QRz">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="We need a basic marketing website for the new app can you make sure to make it mobile friendly too (work on phones)" translatesAutoresizingMaskIntoConstraints="NO" id="hhf-dZ-QRz">
                         <rect key="frame" x="62" y="13" width="297" height="95"/>
                         <color key="backgroundColor" red="0.066666666669999999" green="0.1019607843" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>

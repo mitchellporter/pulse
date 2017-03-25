@@ -28,6 +28,7 @@ class TaskItemViewCell: UITableViewCell, TaskItemCell {
     
     @IBOutlet weak var button: Button!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var dot: UIImageView!
 
     var state: CellState = .unselected {
         didSet {

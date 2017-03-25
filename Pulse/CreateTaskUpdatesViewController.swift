@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateTaskUpdatesViewController: UIViewController {
+class CreateTaskUpdatesViewController: CreateTask {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!

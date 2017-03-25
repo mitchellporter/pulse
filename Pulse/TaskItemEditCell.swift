@@ -45,11 +45,11 @@ class TaskItemEditCell: UITableViewCell, TaskItemCell {
         if state == .selected {
             self.button.isEnabled = false
         }
-        self.button.borderColor = state == .selected ? UIColor("2CB585") : UIColor.white
+        self.button.borderColor = state == .selected ? UIColor("26CE93") : UIColor("BBBBBB")
         let image: UIImage? = state == .selected ? #imageLiteral(resourceName: "GreenCheck") : #imageLiteral(resourceName: "Combined Shape")
         self.button.setImage(image, for: .normal)
         UIView.animate(withDuration: 0.1, animations: {
-            self.textView.alpha = state == .selected ? 0.34 : 1.0
+            self.textView.alpha = state == .selected ? 0.22 : 1.0
         })
     }
     

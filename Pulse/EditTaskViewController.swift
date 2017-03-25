@@ -41,12 +41,21 @@ class EditTaskViewController: UIViewController {
             if self.task != nil {
                 guard let items = task?.items as? Set<Item> else { return }
                 self.datasource = [Item](items)
+                
+                print(task?.title)
+                
             }
         }
     }
     
-    var datasource: [Item] = [Item]()
-    
+    var datasource: [Item] = [Item]() {
+        didSet {
+            if self.tableView != nil {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
     
     var tableViewTopInset: CGFloat = 22
@@ -70,10 +79,12 @@ class EditTaskViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if self.task != nil {
-            self.setupCoreData()
-            self.fetchData()
+//            self.setupCoreData()
+//            self.fetchData()
             self.updateUI()
         }
+        
+        self.tableView.reloadData()
     }
 
     private func setupCoreData() {
@@ -112,13 +123,14 @@ class EditTaskViewController: UIViewController {
     }
     
     private func setupAppearance() {
+        self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.1)
+        self.completedControl.completedColor = UIColor.white
         let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
-        let topGradient: CAGradientLayer = CAGradientLayer()
-        topGradient.frame = frame
-        topGradient.colors = [appBlue.withAlphaComponent(1.0).cgColor, appBlue.withAlphaComponent(0.0).cgColor]
-        topGradient.locations = [0.0, 1.0]
+        self.topGradient.frame = frame
+        self.topGradient.colors = [appBlue.withAlphaComponent(1.0).cgColor, appBlue.withAlphaComponent(0.0).cgColor]
+        self.topGradient.locations = [0.0, 1.0]
         
-        self.view.layer.addSublayer(topGradient)
+        self.view.layer.addSublayer(self.topGradient)
         
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
@@ -151,22 +163,29 @@ class EditTaskViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             duePercentString = "Due: " + formatter.string(from: dueDate) + " | "
             if dueDate.timeIntervalSince(Date()) <= 86400 {
-                self.dueDateLabel.textColor = appRed
+//                self.dueDateLabel.textColor = appRed
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
+        }
+        if self.taskInvite != nil {
+            self.completedControl.alpha = 0.0
+//            self.view.backgroundColor = appRed
+//            self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
         }
         self.completedControl.percent = CGFloat(task.completionPercentage / 100)
         
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         self.status = status
         
+        self.titleLabel.text = "TASK CREATED"
+        
         switch(status) {
         case .pending:
-            self.dueDateLabel.textColor = appRed
+//            self.dueDateLabel.textColor = appRed
             self.bottomMenu.alpha = 0
             break
         case .inProgress:
-            self.dueDateLabel.textColor = appYellow
+//            self.dueDateLabel.textColor = appYellow
             self.requestButton.setTitle("ASK FOR UPDATE", for: .normal)
             self.requestButton.setTitleColor(UIColor.black, for: .normal)
             self.requestButton.setTitleColor(UIColor.white, for: .highlighted)
@@ -179,7 +198,7 @@ class EditTaskViewController: UIViewController {
             self.editButton.setBackgroundImage(editBackground, for: .highlighted)
             break
         case .completed:
-            self.dueDateLabel.textColor = appGreen
+//            self.dueDateLabel.textColor = appGreen
             self.bottomMenu.alpha = 0
             break
         }
@@ -280,12 +299,16 @@ class EditTaskViewController: UIViewController {
 extension EditTaskViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.fetchedResultsController.sections?.count ?? 1
+//        return self.fetchedResultsController.sections?.count ?? 1
+        
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let sectionInfo = self.fetchedResultsController.sections![section]
-        return sectionInfo.numberOfObjects + 1
+//        let sectionInfo = self.fetchedResultsController.sections![section]
+//        return sectionInfo.numberOfObjects + 1
+        
+        return self.datasource.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -299,9 +322,10 @@ extension EditTaskViewController: UITableViewDataSource {
         } else {
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             cell.delegate = self
-            cell.label.textColor = UIColor.black
+            cell.textView.textColor = UIColor.black
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-            let item = self.fetchedResultsController.object(at: realIndexPath)
+//            let item = self.fetchedResultsController.object(at: realIndexPath)
+            let item: Item = self.datasource[realIndexPath.row]
             cell.load(item: item)
             
             if let status = self.status {

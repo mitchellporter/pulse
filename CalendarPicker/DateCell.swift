@@ -16,6 +16,7 @@ class DateCell: UICollectionViewCell, UIInputViewAudioFeedback {
         return true
     }
     
+    let defaultTextColor: UIColor = UIColor(red: 0.302, green: 0.302, blue: 0.302, alpha: 1.0)
     var date: Date?
     let circle = UIImageView(image: UIImage(named: "HighlightOval"))
     var cellIsSelected = false {
@@ -41,6 +42,7 @@ class DateCell: UICollectionViewCell, UIInputViewAudioFeedback {
         super.awakeFromNib()
         
         self.circle.frame = self.bounds
+        self.dateLabel.textColor = self.defaultTextColor
     }
     
     
@@ -59,6 +61,7 @@ class DateCell: UICollectionViewCell, UIInputViewAudioFeedback {
     override func prepareForReuse() {
         self.cellIsActive = true
         self.dateLabel.text = ""
+        self.dateLabel.textColor = self.defaultTextColor
         self.date = nil
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamPasswordViewController: UIViewController, Onboarding {
+class NewTeamPasswordViewController: Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var backButton: UIButton!
@@ -38,7 +38,7 @@ class NewTeamPasswordViewController: UIViewController, Onboarding {
     }
     
     private func setupAppearance() {
-        self.view.backgroundColor = UIColor("EEEEEE")
+//        self.view.backgroundColor = UIColor("ECEFF1")
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false
         let color: UIColor = UIColor.black.withAlphaComponent(0.17)
@@ -125,6 +125,10 @@ class NewTeamPasswordViewController: UIViewController, Onboarding {
             }
             self.strengthLabel.alpha = text!.characters.count > 0 ? 1.0 : 0.0
             self.strengthLabel.text = labelText
+            
+            if text == "" {
+                self.strengthLabel.alpha = 0.0
+            }
         }
         
         self.strengthLine.strokeEnd = lineEnd
