@@ -154,6 +154,9 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/usernames"
         case .checkEmailAddressAvailability:
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
+            
+            // TODO: Add signup cases
+        default: return ""
         }
     }
 }
