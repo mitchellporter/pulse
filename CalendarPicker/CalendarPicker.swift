@@ -96,7 +96,7 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
     
     private func setupAppearance() {
         let bundle: Bundle = Bundle(for: type(of: self))
-        let image = UIImage(named: "HighlightOvalGreen", in: bundle, compatibleWith: nil)
+        let image = UIImage(named: "HighlightOvalRed", in: bundle, compatibleWith: nil)
         self.circle.image = image
         self.updateMonth(newDate: self.currentDate)
     }
@@ -180,6 +180,7 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
         if self.circle.superview == cell {
             self.selectedDate = nil
             self.circle.removeFromSuperview()
+            cell.dateLabel.textColor = cell.defaultTextColor
         } else {
             self.selectedDate = date
             cell.insertSubview(self.circle, belowSubview: cell.dateLabel)
@@ -192,7 +193,9 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
                 self.circle.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
                 UIView.animate(withDuration: 0.3, delay: 00, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
                     self.circle.transform = CGAffineTransform.identity
-                }, completion: nil)
+                }, completion: {_ in
+                    cell.dateLabel.textColor = UIColor.white
+                })
                 UIView.animate(withDuration: 0.15, animations: {
                     self.circle.alpha = 1
                 })

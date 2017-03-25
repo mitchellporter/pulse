@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamNameViewController: UIViewController, Onboarding {
+class NewTeamNameViewController: Onboarding {
     
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
@@ -37,7 +37,7 @@ class NewTeamNameViewController: UIViewController, Onboarding {
     }
 
     private func setupAppearance() {
-        self.view.backgroundColor = appBlue
+//        self.view.backgroundColor = appBlue
         self.takenLabel.alpha = 0.0
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false

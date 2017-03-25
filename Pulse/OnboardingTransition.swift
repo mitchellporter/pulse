@@ -8,7 +8,9 @@
 
 import UIKit
 
-protocol Onboarding: class { }
+class Onboarding: UIViewController {
+    
+}
 
 class OnboardingTransition: NSObject, UIViewControllerAnimatedTransitioning {
 

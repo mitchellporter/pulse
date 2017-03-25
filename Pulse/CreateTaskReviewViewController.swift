@@ -14,7 +14,6 @@ class CreateTaskReviewViewController: CreateTask {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var avatarImageView: UIImageView!
-    @IBOutlet weak var assignedLabel: UILabel!
     @IBOutlet weak var dueDateLabel: UILabel!
     
     var taskDictionary: [CreateTaskKeys : [Any]]?
@@ -74,7 +73,6 @@ class CreateTaskReviewViewController: CreateTask {
                 guard let name: String = member.name else { continue }
                 assigneeString = index == 0 ? "\(assigneeString) \(name)" : "\(assigneeString), \(name)"
             }
-            self.assignedLabel.text = assigneeString
         }
         if let date: Date = dictionary[.dueDate]?.first as? Date {
             let formatter = DateFormatter()

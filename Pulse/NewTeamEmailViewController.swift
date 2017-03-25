@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamEmailViewController: UIViewController, Onboarding {
+class NewTeamEmailViewController: Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var backButton: UIButton!
@@ -39,7 +39,7 @@ class NewTeamEmailViewController: UIViewController, Onboarding {
     }
     
     private func setupAppearance() {
-        self.view.backgroundColor = appBlue
+//        self.view.backgroundColor = appBlue
         self.takenLabel.alpha = 0.0
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false

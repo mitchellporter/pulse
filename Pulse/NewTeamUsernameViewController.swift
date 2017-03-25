@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamUsernameViewController: UIViewController, Onboarding {
+class NewTeamUsernameViewController: Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var takenLabel: UILabel!
@@ -37,7 +37,7 @@ class NewTeamUsernameViewController: UIViewController, Onboarding {
     }
 
     private func setupAppearance() {
-        self.view.backgroundColor = appGreen
+//        self.view.backgroundColor = appGreen
         self.takenLabel.alpha = 0.0
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false
