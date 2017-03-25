@@ -13,6 +13,8 @@
 		C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */; };
 		C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */; };
 		C1160E481E7B518E00AC0249 /* PercentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E471E7B518E00AC0249 /* PercentBar.swift */; };
+		C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */; };
+		C1211E2F1E85DE3F00CFC7A6 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -176,6 +178,8 @@
 		C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBreakdownTableViewCell.swift; sourceTree = "<group>"; };
 		C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		C1160E471E7B518E00AC0249 /* PercentBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentBar.swift; sourceTree = "<group>"; };
+		C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskPresentTransition.swift; sourceTree = "<group>"; };
+		C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -363,6 +367,22 @@
 			name = UpdateViews;
 			sourceTree = "<group>";
 		};
+		C1211E2A1E85DE0100CFC7A6 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
+		C1211E2D1E85DE2B00CFC7A6 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */,
+			);
+			name = Transitions;
+			sourceTree = "<group>";
+		};
 		C1629A971E5F712600EC91B0 /* TaskViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +539,7 @@
 				C1DA11811E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift */,
 				C1DA11831E5FA9EB00AF752E /* CreateTaskReviewViewController.swift */,
 				C1DA11791E5FA85300AF752E /* CreateTask.storyboard */,
+				C1211E2A1E85DE0100CFC7A6 /* Transitions */,
 			);
 			name = CreateTask;
 			sourceTree = "<group>";
@@ -555,6 +576,7 @@
 				C356E4541E5E5AC700E215CF /* AppDelegate.swift */,
 				C133AF441E6A27B7008AD201 /* NavigationController.swift */,
 				C133AF421E6A24B1008AD201 /* NavigationManager.swift */,
+				C1211E2D1E85DE2B00CFC7A6 /* Transitions */,
 				C1629A981E5F713200EC91B0 /* Utils */,
 				C1629A971E5F712600EC91B0 /* TaskViews */,
 				C16B5DDB1E6787AF00F5BB58 /* TaskUpdate */,
@@ -1016,6 +1038,7 @@
 				C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */,
 				C1D11C1E1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift in Sources */,
 				C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */,
+				C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */,
 				C1D11C221E79CBFA005D2D18 /* NewTeamPasswordViewController.swift in Sources */,
 				C133AF451E6A27B7008AD201 /* NavigationController.swift in Sources */,
 				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,
@@ -1028,6 +1051,7 @@
 				C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */,
 				C3A8A3A01E83232200C46346 /* AvailabilityService.swift in Sources */,
 				C356E4CA1E5FC5D700E215CF /* NetworkingClient.swift in Sources */,
+				C1211E2F1E85DE3F00CFC7A6 /* FadeTransition.swift in Sources */,
 				C1B993321E66366900A404C9 /* CreateTaskReviewDescriptionCell.swift in Sources */,
 				C15474CF1E72077C000DADD2 /* DefaultActionAlertViewController.swift in Sources */,
 				C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */,

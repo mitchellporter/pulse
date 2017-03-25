@@ -54,7 +54,7 @@
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="6Lc-lU-Tm0"/>
                         </connections>
                     </textView>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Add Tasks" translatesAutoresizingMaskIntoConstraints="NO" id="Rt0-5Y-Ghp">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Add Sub-Task" translatesAutoresizingMaskIntoConstraints="NO" id="Rt0-5Y-Ghp">
                         <rect key="frame" x="70" y="149" width="287" height="49"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -38,6 +38,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
                                         <real key="value" value="50"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="bounces" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="backButtonPressed:" destination="l6Y-1H-bwV" eventType="touchUpInside" id="I1p-Kt-ewd"/>

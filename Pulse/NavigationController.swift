@@ -31,6 +31,14 @@ extension NavigationController: UINavigationControllerDelegate {
             return OnboardingTransition()
         } else if fromVC is TaskViewController && toVC is ViewTaskViewController {
             return self.animator
+        } else if fromVC is TaskViewController && toVC is CreateTaskViewController {
+            let transition: CreateTaskPresentTransition = CreateTaskPresentTransition()
+            transition.presenting = true
+            return transition
+        } else if fromVC is CreateTaskViewController && toVC is TaskViewController {
+            let transition: CreateTaskPresentTransition = CreateTaskPresentTransition()
+            transition.presenting = false
+            return transition
         }
         return nil
     }
