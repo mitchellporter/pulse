@@ -15,6 +15,7 @@
 		C1160E481E7B518E00AC0249 /* PercentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E471E7B518E00AC0249 /* PercentBar.swift */; };
 		C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */; };
 		C1211E2F1E85DE3F00CFC7A6 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */; };
+		C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -180,6 +181,7 @@
 		C1160E471E7B518E00AC0249 /* PercentBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentBar.swift; sourceTree = "<group>"; };
 		C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskPresentTransition.swift; sourceTree = "<group>"; };
 		C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
+		C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -379,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */,
+				C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -1001,6 +1004,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */,
 				C1D11C201E79CBEC005D2D18 /* NewTeamEmailViewController.swift in Sources */,
 				C3A3EDD01E7B399B00560678 /* Response+CoreDataClass.swift in Sources */,
 				C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */,
