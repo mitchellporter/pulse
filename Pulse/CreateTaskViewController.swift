@@ -16,7 +16,11 @@ enum CreateTaskKeys: String {
     case updateInterval = "updateInterval"
 }
 
-class CreateTaskViewController: UIViewController {
+class CreateTask: UIViewController {
+    
+}
+
+class CreateTaskViewController: CreateTask {
     
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!

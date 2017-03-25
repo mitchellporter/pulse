@@ -9,7 +9,7 @@
 import UIKit
 import CalendarPicker
 
-class CreateTaskDateViewController: UIViewController {
+class CreateTaskDateViewController: CreateTask {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!

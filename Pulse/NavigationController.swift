@@ -28,9 +28,11 @@ extension NavigationController: UINavigationControllerDelegate {
     func navigationController(_ animationControllerForfromtonavigationController: UINavigationController, animationControllerFor operation: UINavigationControllerOperation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         
         if fromVC is Onboarding && toVC is Onboarding {
-            return OnboardingTransition()
+            return FadeTransition()
 //        } else if fromVC is TaskViewController && toVC is ViewTaskViewController {
 //            return self.animator
+        } else if fromVC is CreateTask && toVC is CreateTask {
+            return FadeTransition()
         } else if fromVC is TaskViewController && toVC is CreateTaskViewController {
             let transition: CreateTaskPresentTransition = CreateTaskPresentTransition()
             transition.presenting = true

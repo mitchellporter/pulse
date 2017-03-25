@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class CreateTaskAssignViewController: UIViewController {
+class CreateTaskAssignViewController: CreateTask {
 
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
