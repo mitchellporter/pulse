@@ -287,7 +287,7 @@ class ViewTaskViewController: UIViewController {
                     
                     // Update task and UI to reflect the change.
 //                    self.task = task
-//                    self.updateUI()
+                    self.updateUI()
                 }, failure: { (error, statusCode) in
                     // Error
                     
