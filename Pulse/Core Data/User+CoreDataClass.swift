@@ -63,6 +63,8 @@ extension User: PulseType {
         user.name = name
         user.position = position
         user.avatarURL = avatarURL
+        user.username = username
+        user.emailAddress = emailAddress
         
         if let teamJSON = json["team"] as? [String: AnyObject] {
             let team = Team.from(json: teamJSON, context: context) as Team
