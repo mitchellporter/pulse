@@ -36,7 +36,7 @@
                             <constraint firstAttribute="height" constant="30" id="ljA-qn-sGH"/>
                             <constraint firstAttribute="width" constant="30" id="ojt-GO-AKz"/>
                         </constraints>
-                        <state key="normal" image="Combined Shape"/>
+                        <state key="normal" image="Combined Shape White"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="15"/>
@@ -70,6 +70,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Combined Shape" width="11" height="13"/>
+        <image name="Combined Shape White" width="11" height="13"/>
     </resources>
 </document>

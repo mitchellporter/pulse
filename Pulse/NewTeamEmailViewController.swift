@@ -10,7 +10,9 @@ import UIKit
 
 class NewTeamEmailViewController: Onboarding {
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var jobTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var avatarButton: UIButton!
@@ -19,6 +21,9 @@ class NewTeamEmailViewController: Onboarding {
     @IBOutlet weak var messageBottomConstraint: NSLayoutConstraint!
     
     private var keyboardOrigin: CGFloat = 0.0
+    private var backgroundColor: UIColor?
+    
+    var username: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +35,9 @@ class NewTeamEmailViewController: Onboarding {
         super.viewWillAppear(animated)
         self.setupObserver()
         
-        self.textField.becomeFirstResponder()
+        self.nameTextField.becomeFirstResponder()
+        self.backgroundColor = self.view.backgroundColor
+        self.usernameLabel.text = self.username
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -45,7 +52,9 @@ class NewTeamEmailViewController: Onboarding {
         self.nextButton.isEnabled = false
         let color: UIColor = UIColor.white.withAlphaComponent(0.52)
         let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)
-        self.textField.attributedPlaceholder = NSAttributedString(string: " Your Email Address", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.nameTextField.attributedPlaceholder = NSAttributedString(string: " Full Name", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.jobTextField.attributedPlaceholder = NSAttributedString(string: " Job Title", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: " Your Email Address", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
     }
 
     private func setupObserver() {
@@ -74,13 +83,29 @@ class NewTeamEmailViewController: Onboarding {
         }, completion: nil)
     }
     
+    fileprivate func alertBackground(_ shown: Bool) {
+        
+        UIView.animate(withDuration: 0.25, animations: {
+            self.view.backgroundColor = shown ? appPink : self.backgroundColor
+            self.takenLabel.alpha = shown ? 1.0 : 0.0
+            self.messageBottomConstraint.constant = shown ? 0.0 : self.view.frame.height - self.keyboardOrigin
+            self.view.layoutIfNeeded()
+        }) { (finished) in
+            //
+        }
+    }
+    
     fileprivate func nextButtonIs(enabled: Bool) {
         self.nextButton.alpha = enabled ? 1.0 : 0.52
         self.nextButton.isEnabled = enabled
     }
 
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
+    @IBAction func nextButtonPressed(_ sender: UIButton) {        
+        // if email is available advance
         self.performSegue(withIdentifier: "password", sender: nil)
+        
+        // else show alert
+//        self.alertBackground(true)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

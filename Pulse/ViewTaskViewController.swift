@@ -161,7 +161,7 @@ class ViewTaskViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             duePercentString = "Due: " + formatter.string(from: dueDate) + " | "
             if dueDate.timeIntervalSince(Date()) <= 86400 {
-                self.dueDateLabel.textColor = appRed
+//                self.dueDateLabel.textColor = appRed
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }

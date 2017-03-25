@@ -83,6 +83,7 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
     }
     
     private let circle: UIImageView = UIImageView()
+    private var circleText: UILabel = UILabel()
     
     open var enableInputClicksWhenVisible: Bool {
         return true
@@ -177,25 +178,24 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
     }
 
     fileprivate func setCellSelected(cell: DateCell, date: Date, animation: Bool) {
+        self.circleText.textColor = cell.defaultTextColor
+        self.circleText = cell.dateLabel
         if self.circle.superview == cell {
             self.selectedDate = nil
             self.circle.removeFromSuperview()
-            cell.dateLabel.textColor = cell.defaultTextColor
         } else {
             self.selectedDate = date
-            cell.insertSubview(self.circle, belowSubview: cell.dateLabel)
 //            cell.addSubview(self.circle)
             self.circle.frame.size = CGSize(width: cell.bounds.width*0.7169, height: cell.bounds.width*0.7169)
             self.circle.center = CGPoint(x: cell.bounds.midX, y: cell.bounds.midY)
-            
+            cell.contentView.insertSubview(self.circle, belowSubview: cell.dateLabel)
+            cell.dateLabel.textColor = UIColor.white
             if animation {
                 self.circle.alpha = 0
                 self.circle.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
                 UIView.animate(withDuration: 0.3, delay: 00, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
                     self.circle.transform = CGAffineTransform.identity
-                }, completion: {_ in
-                    cell.dateLabel.textColor = UIColor.white
-                })
+                }, completion: nil)
                 UIView.animate(withDuration: 0.15, animations: {
                     self.circle.alpha = 1
                 })

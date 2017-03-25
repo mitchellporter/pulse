@@ -118,26 +118,26 @@ class CreateTaskReviewViewController: CreateTask {
         return itemsArray
     }
     
-    private func create(task: [CreateTaskKeys:[Any]]) {
-        guard let description: String = task[.description]?.first as? String else { return }
-        guard let items: [String] = task[.items] as? [String] else { return }
-        guard let assignees: [User] = task[.assignees] as? [User] else { return }
-        var members: [String] = [String]()
-        for member in assignees {
-            members.append(member.objectId)
-        }
-        let dueDate: Date? = task[.dueDate]?.first as? Date
-        let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
-        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
-            // Successfully created task
-            // Do Something
-            
-            self.performSegue(withIdentifier: "completeCreation", sender: nil)
-        }) { (error, statusCode) in
-            // TODO: Handle Error
-            print("There was an error when creating the task. Error: \(statusCode) \(error.localizedDescription)")
-        }
-    }
+//    private func create(task: [CreateTaskKeys:[Any]]) {
+//        guard let description: String = task[.description]?.first as? String else { return }
+//        guard let items: [String] = task[.items] as? [String] else { return }
+//        guard let assignees: [User] = task[.assignees] as? [User] else { return }
+//        var members: [String] = [String]()
+//        for member in assignees {
+//            members.append(member.objectId)
+//        }
+//        let dueDate: Date? = task[.dueDate]?.first as? Date
+//        let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
+//        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
+//            // Successfully created task
+//            // Do Something
+//            
+//            self.performSegue(withIdentifier: "assign", sender: nil)
+//        }) { (error, statusCode) in
+//            // TODO: Handle Error
+//            print("There was an error when creating the task. Error: \(statusCode) \(error.localizedDescription)")
+//        }
+//    }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController != nil {
@@ -148,8 +148,13 @@ class CreateTaskReviewViewController: CreateTask {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskReviewController"); return }
-        self.create(task: task)
+        self.performSegue(withIdentifier: "assign", sender: self.taskDictionary)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let dictionary = self.taskDictionary else { return }
+        guard let toVC = segue.destination as? CreateTaskAssignViewController else { return }
+        toVC.taskDictionary = dictionary
     }
 }
 

@@ -47,6 +47,10 @@ class TaskViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.updateView(mode: self.modeSelected)
+        
+        Delay.wait(0.1) { 
+            self.updateView(mode: self.modeSelected)
+        }
     }
     
     private func initializeViewControllers() {

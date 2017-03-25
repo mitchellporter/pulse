@@ -200,7 +200,7 @@
                         <outlet property="backButton" destination="psl-HK-oOx" id="Bxc-2f-VWk"/>
                         <outlet property="calendarPicker" destination="Rh6-EP-2QC" id="b6S-jW-MvJ"/>
                         <outlet property="nextButton" destination="6Fe-Bf-CaB" id="e2W-MG-TZF"/>
-                        <segue destination="4rw-ai-A9X" kind="show" identifier="assign" id="CbG-YA-Ma2"/>
+                        <segue destination="cO5-8q-fZy" kind="show" identifier="updates" id="0yQ-Tt-YpA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HrL-R1-vyT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -242,20 +242,18 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FXb-5h-ou9" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="293" y="20" width="69" height="28"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="cBD-4n-rNn"/>
                                     <constraint firstAttribute="width" constant="69" id="nqy-WA-39V"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="NEXT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="SEND">
+                                    <color key="titleColor" red="0.24313725489999999" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="3"/>
@@ -284,14 +282,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="38" translatesAutoresizingMaskIntoConstraints="NO" id="NJW-CY-gfl">
-                                <rect key="frame" x="23.5" y="214" width="328" height="36"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJW-CY-gfl">
+                                <rect key="frame" x="65" y="214" width="245" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="322-KY-ugq" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="145" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="245" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="2VU-ZX-uin"/>
-                                            <constraint firstAttribute="width" constant="145" id="5bs-S2-Bha"/>
+                                            <constraint firstAttribute="width" constant="245" id="5bs-S2-Bha"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <state key="normal" title="SEND VIA TEXT">
@@ -310,9 +308,9 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-hB-CqO" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="183" y="0.0" width="145" height="36"/>
+                                        <rect key="frame" x="245" y="0.0" width="0.0" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="145" id="9BR-vh-V11"/>
+                                            <constraint firstAttribute="width" id="9BR-vh-V11"/>
                                             <constraint firstAttribute="height" constant="36" id="WQd-GC-wHf"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
@@ -355,17 +353,19 @@
                             <constraint firstItem="0Dk-S1-VPv" firstAttribute="centerX" secondItem="rz6-vP-Ov9" secondAttribute="centerX" id="xqQ-Gr-vdy"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="assignDescriptionLabel" destination="3hX-uo-gFw" id="gSi-Kw-01t"/>
                         <outlet property="backButton" destination="ISY-wA-ZMU" id="BJY-Fh-UpQ"/>
                         <outlet property="nextButton" destination="FXb-5h-ou9" id="eik-7h-sua"/>
                         <outlet property="tableView" destination="IAe-ie-jbu" id="nfq-5r-Tfv"/>
-                        <segue destination="cO5-8q-fZy" kind="show" identifier="updates" id="zQP-fT-eXs"/>
+                        <segue destination="GBR-kb-1bd" kind="unwind" identifier="completeCreateTask" unwindAction="unwindToTaskViewController:" id="ZTg-Ds-NGZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJX-gn-FhP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GBR-kb-1bd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1149.5999999999999" y="108.39580209895054"/>
+            <point key="canvasLocation" x="3806" y="109"/>
         </scene>
         <!--Create Task Updates View Controller-->
         <scene sceneID="SQC-bp-nhR">
@@ -580,8 +580,8 @@
                                     <constraint firstAttribute="width" constant="69" id="AhD-Yu-hlk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                <state key="normal" title="SEND">
-                                    <color key="titleColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" red="0.24313725489999999" green="0.68235294120000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -641,17 +641,17 @@
                             <constraint firstItem="evV-so-fPa" firstAttribute="top" secondItem="4Bk-aU-dWd" secondAttribute="bottom" constant="24" id="p1c-Rd-Dp1"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="avatarImageView" destination="ueR-fW-8Ew" id="4KI-wd-EH8"/>
                         <outlet property="backButton" destination="evV-so-fPa" id="243-jm-Ejm"/>
                         <outlet property="dueDateLabel" destination="DSS-cG-ogZ" id="5yv-82-oGr"/>
                         <outlet property="nextButton" destination="vVc-GP-tI2" id="DNq-7a-xsM"/>
                         <outlet property="tableView" destination="3L0-rl-Tba" id="7r1-AT-mk3"/>
-                        <segue destination="KTa-pF-sWP" kind="unwind" identifier="completeCreation" unwindAction="unwindToTaskViewController:" id="OS8-0E-7So"/>
+                        <segue destination="4rw-ai-A9X" kind="show" identifier="assign" id="RST-Bq-nG3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ymg-az-vMn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="KTa-pF-sWP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2957.5999999999999" y="108.39580209895054"/>
         </scene>

@@ -41,6 +41,7 @@
 		C19B742E1E5F950D002D9352 /* UIAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C19B742C1E5F950D002D9352 /* UIAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C19B74311E5F950D002D9352 /* UIAdditions.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C19B742A1E5F950C002D9352 /* UIAdditions.framework */; };
 		C19B74321E5F950D002D9352 /* UIAdditions.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C19B742A1E5F950C002D9352 /* UIAdditions.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C1A82C241E86109600DC2618 /* NoAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A82C231E86109600DC2618 /* NoAnimationTransition.swift */; };
 		C1AD36671E689F4A00C5A9AA /* MyTasksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD36651E689F4A00C5A9AA /* MyTasksViewController.swift */; };
 		C1AD36681E689F4A00C5A9AA /* MyTasksViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1AD36661E689F4A00C5A9AA /* MyTasksViewController.xib */; };
 		C1AD366D1E689F6C00C5A9AA /* UpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1AD366B1E689F6C00C5A9AA /* UpdatesViewController.swift */; };
@@ -207,6 +208,7 @@
 		C19B742A1E5F950C002D9352 /* UIAdditions.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIAdditions.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C19B742C1E5F950D002D9352 /* UIAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIAdditions.h; sourceTree = "<group>"; };
 		C19B742D1E5F950D002D9352 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1A82C231E86109600DC2618 /* NoAnimationTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoAnimationTransition.swift; sourceTree = "<group>"; };
 		C1AD36651E689F4A00C5A9AA /* MyTasksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTasksViewController.swift; sourceTree = "<group>"; };
 		C1AD36661E689F4A00C5A9AA /* MyTasksViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyTasksViewController.xib; sourceTree = "<group>"; };
 		C1AD366B1E689F6C00C5A9AA /* UpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdatesViewController.swift; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			children = (
 				C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */,
 				C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */,
+				C1A82C231E86109600DC2618 /* NoAnimationTransition.swift */,
 			);
 			name = Transitions;
 			sourceTree = "<group>";
@@ -1048,6 +1051,7 @@
 				C356E4B71E5F67FA00E215CF /* Task+CoreDataClass.swift in Sources */,
 				C356E4BC1E5F681A00E215CF /* PulseType.swift in Sources */,
 				C19B74241E5F9491002D9352 /* Button.swift in Sources */,
+				C1A82C241E86109600DC2618 /* NoAnimationTransition.swift in Sources */,
 				C1AD366D1E689F6C00C5A9AA /* UpdatesViewController.swift in Sources */,
 				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,

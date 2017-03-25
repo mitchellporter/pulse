@@ -57,6 +57,8 @@ extension NavigationController: UINavigationControllerDelegate {
             let transition: ModalTransition = ModalTransition()
             transition.presenting = fromVC is TaskViewController ? true : false
             return transition
+        } else if fromVC is HomeViewController {
+            return NoAnimationTransition()
         }
         return nil
     }

@@ -125,6 +125,10 @@ class NewTeamPasswordViewController: Onboarding {
             }
             self.strengthLabel.alpha = text!.characters.count > 0 ? 1.0 : 0.0
             self.strengthLabel.text = labelText
+            
+            if text == "" {
+                self.strengthLabel.alpha = 0.0
+            }
         }
         
         self.strengthLine.strokeEnd = lineEnd

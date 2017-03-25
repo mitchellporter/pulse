@@ -41,6 +41,9 @@ class EditTaskViewController: UIViewController {
             if self.task != nil {
                 guard let items = task?.items as? Set<Item> else { return }
                 self.datasource = [Item](items)
+                
+                print(task?.title)
+                
             }
         }
     }
@@ -160,7 +163,7 @@ class EditTaskViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             duePercentString = "Due: " + formatter.string(from: dueDate) + " | "
             if dueDate.timeIntervalSince(Date()) <= 86400 {
-                self.dueDateLabel.textColor = appRed
+//                self.dueDateLabel.textColor = appRed
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }
@@ -178,11 +181,11 @@ class EditTaskViewController: UIViewController {
         
         switch(status) {
         case .pending:
-            self.dueDateLabel.textColor = appRed
+//            self.dueDateLabel.textColor = appRed
             self.bottomMenu.alpha = 0
             break
         case .inProgress:
-            self.dueDateLabel.textColor = appYellow
+//            self.dueDateLabel.textColor = appYellow
             self.requestButton.setTitle("ASK FOR UPDATE", for: .normal)
             self.requestButton.setTitleColor(UIColor.black, for: .normal)
             self.requestButton.setTitleColor(UIColor.white, for: .highlighted)
@@ -195,7 +198,7 @@ class EditTaskViewController: UIViewController {
             self.editButton.setBackgroundImage(editBackground, for: .highlighted)
             break
         case .completed:
-            self.dueDateLabel.textColor = appGreen
+//            self.dueDateLabel.textColor = appGreen
             self.bottomMenu.alpha = 0
             break
         }
@@ -319,7 +322,7 @@ extension EditTaskViewController: UITableViewDataSource {
         } else {
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             cell.delegate = self
-            cell.label.textColor = UIColor.black
+            cell.textView.textColor = UIColor.black
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
 //            let item = self.fetchedResultsController.object(at: realIndexPath)
             let item: Item = self.datasource[realIndexPath.row]
