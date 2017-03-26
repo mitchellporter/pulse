@@ -74,6 +74,12 @@ extension SocketManager: PNObjectEventListener {
         print("received message for channel: \(message.data.subscription)")
         print("message: \(message.data.message)")
         
+        OperationQueue.main.addOperation {
+            self.processReceived(message: message)
+        }
+    }
+    
+    func processReceived(message: PNMessageResult) {
         let json = message.data.message as! [String: AnyObject]
         let type = json["type"] as! String
         let notificationType = NotificationType(rawValue: type)!
@@ -92,31 +98,6 @@ extension SocketManager: PNObjectEventListener {
             let updateJSON = json["update"] as! [String: AnyObject]
             self.processUpdateReceivedNotification(json: updateJSON)
         }
-        
-        
-//        let messageJSON = message.data.message as! [String: AnyObject]
-//        let conversationJSON = messageJSON["conversation"] as! [String: AnyObject]
-//        let message = Message.from(json: messageJSON) as! Message
-//        let conversation = Conversation.from(json: conversationJSON) as! Conversation
-//        conversation.objectId = "823974987234"
-//        DataModelManager
-        // type: new_message
-        // conversation: conversation
-        // message: message
-        
-        // 1. Parse the conversation
-        // 2. Parse the message
-        // 3. Send the conversation to the inbox controller
-        // 4. Send the message to the conversation controller
-        
-        // I think 3 and 4 are wrong. I think you need to stop looking at this as "send these things to the controllers",
-        // and instead look at it as "send these new things to our universal store, where the view controllers will fetch from anyways"
-        // That way if they're in memory they get the update right away, and if not then it doesn't matter because they'll just pull it later anyways
-//        DataModelManager.sharedInstance.updateModel(conversation)
-//        DataModelManager.sharedInstance.updateModel(conversation)
-//        CollectionDataProvider<Conversation>.append([conversation], cacheKey: CacheKey.inbox.key, dataModelManager: DataModelManager.sharedInstance)
-//        CollectionDataProvider<Message>.append([message], cacheKey: CacheKey.conversation(id: conversation.objectId).key, dataModelManager: DataModelManager.sharedInstance)
-//        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "lol"), object: nil, userInfo: message.data.message as! [AnyHashable : Any]?)
     }
     
     func processTaskCompletedNotification(json: [String: AnyObject]) {
