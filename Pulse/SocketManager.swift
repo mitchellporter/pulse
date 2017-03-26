@@ -121,28 +121,27 @@ extension SocketManager: PNObjectEventListener {
     
     func processTaskCompletedNotification(json: [String: AnyObject]) {
         let task = Task.from(json: json, context: CoreDataStack.shared.context)
-        print(task)
+        CoreDataStack.shared.saveContext()
         AlertManager.presentPassiveAlert(of: .completed, with: task)
     }
     
     func processTaskAssignedNotification(json: [String: AnyObject]) {
         let taskInvitation = TaskInvitation.from(json: json, context: CoreDataStack.shared.context)
-        print(taskInvitation)
+        CoreDataStack.shared.saveContext()
         AlertManager.presentPassiveAlert(of: .assigned, with: taskInvitation)
     }
     
     func processUpdateReceivedNotification(json: [String: AnyObject]) {
         let update = Update.from(json: json, context: CoreDataStack.shared.context)
-        print(update)
+        CoreDataStack.shared.saveContext()
         AlertManager.presentAlert(ofType: .update, with: update)
     }
     
     func processUpdateResponseReceivedNotification(json: [String: AnyObject]) {
         let update = Update.from(json: json, context: CoreDataStack.shared.context)
-        print(update)
+        CoreDataStack.shared.saveContext()
         AlertManager.presentPassiveAlert(of: .update, with: update)
     }
-    
     
     func client(client: PubNub, didReceiveStatus status: PNStatus) {
         print("Did receive status: \(status)")
