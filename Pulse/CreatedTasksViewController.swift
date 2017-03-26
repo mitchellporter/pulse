@@ -95,7 +95,6 @@ extension CreatedTasksViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         let item: Task = self.fetchedResultsController.object(at: indexPath)
-        print("indexPath.section: \(indexPath.section) and task title: \(item.title)")
         cell.load(item, type: .createdTask)
         return cell
     }
@@ -115,7 +114,9 @@ extension CreatedTasksViewController: UITableViewDelegate {
             guard let header: TaskSectionHeader = tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") as? TaskSectionHeader else { return tableView.dequeueReusableHeaderFooterView(withIdentifier: "taskHeader") }
             header.contentView.backgroundColor = self.tableView.backgroundColor
             let position: TaskSectionHeader.CellPosition = section == 0 ? .top : .normal
-            header.load(status: self.headerStatus[section], type: position)
+            let sectionInfo = self.fetchedResultsController.sections![section]
+            
+            header.load(status: TaskStatus(rawValue: sectionInfo.name)!, type: position)
             return header
         } else {
             return nil
