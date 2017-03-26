@@ -169,7 +169,8 @@ extension CreatedTasksViewController: NSFetchedResultsControllerDelegate {
                 cell.load(anObject, type: .createdTask)
             }
         case .move:
-            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
+            self.tableView.deleteRows(at: [indexPath!], with: .fade)
+            self.tableView.insertRows(at: [newIndexPath!], with: .fade)
         }
     }
     
