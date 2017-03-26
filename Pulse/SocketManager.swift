@@ -95,10 +95,10 @@ extension SocketManager: PNObjectEventListener {
             self.processTaskAssignedNotification(json: taskInvitationJSON)
         case .updateRequestReceived:
             let updateJSON = json["update"] as! [String: AnyObject]
-            self.processUpdateResponseReceivedNotification(json: updateJSON)
+            self.processUpdateReceivedNotification(json: updateJSON)
         case .updateReceived:
             let updateJSON = json["update"] as! [String: AnyObject]
-            self.processUpdateReceivedNotification(json: updateJSON)
+            self.processUpdateResponseReceivedNotification(json: updateJSON)
         }
     }
     
