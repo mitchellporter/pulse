@@ -24,6 +24,11 @@ class MyTasksViewController: UIViewController {
         
         self.setupTableView()
         self.setupCoreData()
+//        self.fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.fetchData()
     }
     
