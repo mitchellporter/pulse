@@ -235,10 +235,10 @@
                                         <state key="normal" image="BackDownArrow"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
-                                                <real key="value" value="50"/>
+                                                <real key="value" value="75"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
-                                                <real key="value" value="50"/>
+                                                <real key="value" value="75"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
@@ -488,10 +488,10 @@
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
-                                                <real key="value" value="50"/>
+                                                <real key="value" value="75"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestHeight">
-                                                <real key="value" value="50"/>
+                                                <real key="value" value="75"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>

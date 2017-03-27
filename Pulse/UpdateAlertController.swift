@@ -24,6 +24,8 @@ class UpdateAlertController: AlertController {
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var commentBubbleButton: UIButton!
     
+    private let requestMessage: String = " would like a progress update now :)"
+    
     var holdTimer: Timer?
     private var completedCircle: CAShapeLayer = CAShapeLayer()
     private var circleLayer: CAShapeLayer = CAShapeLayer()
@@ -52,6 +54,7 @@ class UpdateAlertController: AlertController {
         guard let update: Update = self.data as? Update else { return }
         guard let task: Task = update.task else { return }
         if let assigner: User = task.assigner {
+            self.updateTitleLabel.text = assigner.name + self.requestMessage
             self.assignedToLabel.text = "Assigned by: \(assigner.name)"
         } else {
             self.assignedToLabel.text = "Assigned by:"
