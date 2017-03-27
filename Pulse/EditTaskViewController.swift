@@ -317,7 +317,7 @@ extension EditTaskViewController: UITableViewDataSource {
         
         if indexPath.row == 0 {
             cell.contentView.backgroundColor = self.view.backgroundColor
-            cell.label.text = self.task?.title
+            cell.textView.text = self.task?.title
             cell.button.alpha = 0
         } else {
             cell.contentView.backgroundColor = self.tableView.backgroundColor
