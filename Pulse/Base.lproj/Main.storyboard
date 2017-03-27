@@ -79,7 +79,7 @@
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JX6-Yc-b4G" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="304" y="598" width="55" height="55"/>
-                                <color key="backgroundColor" red="0.10196078431372549" green="0.69411764705882351" blue="0.48627450980392156" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.1176470588" green="0.75686274509999996" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="SwV-xI-3fj"/>
                                     <constraint firstAttribute="width" constant="55" id="tqn-hP-ZBd"/>
@@ -634,6 +634,6 @@
         <image name="ReminderButton" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5Ph-PG-ed7"/>
+        <segue reference="D5z-bH-Cm9"/>
     </inferredMetricsTieBreakers>
 </document>

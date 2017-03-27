@@ -86,14 +86,14 @@ class UpdateAlertController: AlertController {
         // Setup comment badge
         let circle: CALayer = CALayer()
         circle.frame = CGRect(x: 12, y: -2, width: 12, height: 12)
-        circle.backgroundColor = appRed.cgColor
+        circle.backgroundColor = nil
         circle.masksToBounds = true
         circle.cornerRadius = circle.frame.width/2
         let border: CAShapeLayer = CAShapeLayer()
         border.path = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: 10, height: 10)).cgPath
         border.strokeColor = UIColor.white.cgColor
         border.lineWidth = 2
-        border.fillColor = nil
+        border.fillColor = appRed.cgColor
         circle.addSublayer(border)
         
         self.commentBadge = circle

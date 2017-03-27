@@ -113,7 +113,14 @@ class TaskViewController: UIViewController {
     }
     
     private func setupAppearance() {
-        self.addButton.backgroundColor = createTaskBackgroundColor
+        self.addButton.layer.backgroundColor = createTaskBackgroundColor.cgColor
+        
+        let antiAliasingRing: CAShapeLayer = CAShapeLayer()
+        antiAliasingRing.fillColor = UIColor.clear.cgColor
+        antiAliasingRing.strokeColor = UIColor.white.cgColor
+        antiAliasingRing.lineWidth = 1.0
+        antiAliasingRing.path = UIBezierPath(roundedRect: self.addButton.bounds, cornerRadius: self.addButton.layer.cornerRadius).cgPath
+        self.addButton.layer.addSublayer(antiAliasingRing)
     }
     
     private func updateView(mode: ViewMode) {

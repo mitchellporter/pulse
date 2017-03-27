@@ -64,14 +64,14 @@ class TaskUpdateViewController: UIViewController {
         // Setup comment badge
         let circle: CALayer = CALayer()
         circle.frame = CGRect(x: 11.5, y: -2.5, width: 11, height: 11)
-        circle.backgroundColor = UIColor("FF5E5B").cgColor
+        circle.backgroundColor = nil
         circle.masksToBounds = true
         circle.cornerRadius = circle.frame.width/2
         let border: CAShapeLayer = CAShapeLayer()
         border.path = UIBezierPath(ovalIn: CGRect(x: 0.5, y: 0.5, width: 10, height: 10)).cgPath
         border.strokeColor = UIColor.white.cgColor
         border.lineWidth = 1
-        border.fillColor = nil
+        border.fillColor = UIColor("FF5E5B").cgColor
         circle.addSublayer(border)
         
         self.commentBadge = circle
