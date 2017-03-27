@@ -204,6 +204,8 @@ class UpdateAlertController: AlertController {
             UpdateService.respondToUpdateRequest(updateId: updateRequest.objectId, completionPercentage: percentage, message: comment, success: { (update) in
                 // Success, do something
                 
+                CoreDataStack.shared.saveContext()
+                
             }, failure: { (error, statusCode) in
                 print("Error: \(statusCode) \(error.localizedDescription)")
             })
