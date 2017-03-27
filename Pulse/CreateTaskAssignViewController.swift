@@ -128,8 +128,8 @@ class CreateTaskAssignViewController: CreateTask {
         let dueDate: Date? = task[.dueDate]?.first as? Date
         let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
         TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
-            // Successfully created task
-            // Do Something
+            
+            CoreDataStack.shared.saveContext()
             
             self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
         }) { (error, statusCode) in

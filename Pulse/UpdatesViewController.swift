@@ -63,9 +63,11 @@ class UpdatesViewController: UIViewController {
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
         let taskAssignerPredicate = NSPredicate(format: "task.assigner.objectId == %@", User.currentUserId())
+        let hasResponsesPredicate = NSPredicate(format: "ANY responses.status == %@", "sent")
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [taskAssignerPredicate, hasResponsesPredicate])
         
         fetchRequest.sortDescriptors = [sort]
-        fetchRequest.predicate = taskAssignerPredicate
+        fetchRequest.predicate = compoundPredicate
         
         self.assignerUpdatesFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }

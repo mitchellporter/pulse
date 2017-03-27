@@ -195,7 +195,16 @@ extension MyTasksViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        //
+        switch type {
+        case .insert:
+            self.tableView.insertSections([sectionIndex], with: .fade)
+        case .delete:
+            self.tableView.deleteSections([sectionIndex], with: .fade)
+        case .move:
+            break
+        case .update:
+            break
+        }
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {

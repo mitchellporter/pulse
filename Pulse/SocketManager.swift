@@ -8,6 +8,7 @@
 
 import UIKit
 import PubNub
+import CoreData
 
 enum UpdateType: String {
     case newMessage = "new_message"
@@ -74,6 +75,13 @@ extension SocketManager: PNObjectEventListener {
         print("received message for channel: \(message.data.subscription)")
         print("message: \(message.data.message)")
         
+        // Make sure we're on the main thread
+        OperationQueue.main.addOperation {
+            self.process(message: message)
+        }
+    }
+    
+    func process(message: PNMessageResult) {
         let json = message.data.message as! [String: AnyObject]
         let type = json["type"] as! String
         let notificationType = NotificationType(rawValue: type)!
@@ -87,62 +95,85 @@ extension SocketManager: PNObjectEventListener {
             self.processTaskAssignedNotification(json: taskInvitationJSON)
         case .updateRequestReceived:
             let updateJSON = json["update"] as! [String: AnyObject]
-            self.processUpdateResponseReceivedNotification(json: updateJSON)
+            self.processUpdateReceivedNotification(json: updateJSON)
         case .updateReceived:
             let updateJSON = json["update"] as! [String: AnyObject]
-            self.processUpdateReceivedNotification(json: updateJSON)
+            self.processUpdateResponseReceivedNotification(json: updateJSON)
         }
-        
-        
-//        let messageJSON = message.data.message as! [String: AnyObject]
-//        let conversationJSON = messageJSON["conversation"] as! [String: AnyObject]
-//        let message = Message.from(json: messageJSON) as! Message
-//        let conversation = Conversation.from(json: conversationJSON) as! Conversation
-//        conversation.objectId = "823974987234"
-//        DataModelManager
-        // type: new_message
-        // conversation: conversation
-        // message: message
-        
-        // 1. Parse the conversation
-        // 2. Parse the message
-        // 3. Send the conversation to the inbox controller
-        // 4. Send the message to the conversation controller
-        
-        // I think 3 and 4 are wrong. I think you need to stop looking at this as "send these things to the controllers",
-        // and instead look at it as "send these new things to our universal store, where the view controllers will fetch from anyways"
-        // That way if they're in memory they get the update right away, and if not then it doesn't matter because they'll just pull it later anyways
-//        DataModelManager.sharedInstance.updateModel(conversation)
-//        DataModelManager.sharedInstance.updateModel(conversation)
-//        CollectionDataProvider<Conversation>.append([conversation], cacheKey: CacheKey.inbox.key, dataModelManager: DataModelManager.sharedInstance)
-//        CollectionDataProvider<Message>.append([message], cacheKey: CacheKey.conversation(id: conversation.objectId).key, dataModelManager: DataModelManager.sharedInstance)
-//        NotificationCenter.default.post(name: NSNotification.Name.init(rawValue: "lol"), object: nil, userInfo: message.data.message as! [AnyHashable : Any]?)
     }
     
     func processTaskCompletedNotification(json: [String: AnyObject]) {
-        let task = Task.from(json: json, context: CoreDataStack.shared.context)
-        print(task)
-        AlertManager.presentPassiveAlert(of: .completed, with: task)
+        let taskId = Task.from(json: json, context: CoreDataStack.shared.context).objectId
+        
+        CoreDataStack.shared.saveContext()
+        
+        let fetchRequest = NSFetchRequest<Task>(entityName: "Task")
+        let predicate = NSPredicate(format: "objectId == %@", taskId)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let tasks = try CoreDataStack.shared.context.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [Task]
+            let task = tasks.first!
+            AlertManager.presentPassiveAlert(of: .completed, with: task)
+        } catch {
+            print("core data socket error: \(error)")
+        }
     }
+
     
     func processTaskAssignedNotification(json: [String: AnyObject]) {
-        let taskInvitation = TaskInvitation.from(json: json, context: CoreDataStack.shared.context)
-        print(taskInvitation)
-        AlertManager.presentPassiveAlert(of: .assigned, with: taskInvitation)
+        let taskInvitationId = TaskInvitation.from(json: json, context: CoreDataStack.shared.context).objectId
+        
+        CoreDataStack.shared.saveContext()
+        
+        let fetchRequest = NSFetchRequest<TaskInvitation>(entityName: "TaskInvitation")
+        let predicate = NSPredicate(format: "objectId == %@", taskInvitationId)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let taskInvitations = try CoreDataStack.shared.context.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [TaskInvitation]
+            let taskInvitation = taskInvitations.first!
+            AlertManager.presentPassiveAlert(of: .assigned, with: taskInvitation)
+        } catch {
+            print("core data socket error: \(error)")
+        }
     }
     
     func processUpdateReceivedNotification(json: [String: AnyObject]) {
-        let update = Update.from(json: json, context: CoreDataStack.shared.context)
-        print(update)
-        AlertManager.presentAlert(ofType: .update, with: update)
+        let updateId = Update.from(json: json, context: CoreDataStack.shared.context).objectId
+        
+        CoreDataStack.shared.saveContext()
+        
+        let fetchRequest = NSFetchRequest<Update>(entityName: "Update")
+        let predicate = NSPredicate(format: "objectId == %@", updateId)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let updates = try CoreDataStack.shared.context.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [Update]
+            let update = updates.first!
+            AlertManager.presentAlert(ofType: .update, with: update)
+        } catch {
+            print("core data socket error: \(error)")
+        }
     }
     
     func processUpdateResponseReceivedNotification(json: [String: AnyObject]) {
-        let update = Update.from(json: json, context: CoreDataStack.shared.context)
-        print(update)
-        AlertManager.presentPassiveAlert(of: .update, with: update)
+        let updateId = Update.from(json: json, context: CoreDataStack.shared.context).objectId
+        
+        CoreDataStack.shared.saveContext()
+        
+        let fetchRequest = NSFetchRequest<Update>(entityName: "Update")
+        let predicate = NSPredicate(format: "objectId == %@", updateId)
+        fetchRequest.predicate = predicate
+        
+        do {
+            let updates = try CoreDataStack.shared.context.fetch(fetchRequest as! NSFetchRequest<NSFetchRequestResult>) as! [Update]
+            let update = updates.first!
+            AlertManager.presentPassiveAlert(of: .update, with: update)
+        } catch {
+            print("core data socket error: \(error)")
+        }
     }
-    
     
     func client(client: PubNub, didReceiveStatus status: PNStatus) {
         print("Did receive status: \(status)")
