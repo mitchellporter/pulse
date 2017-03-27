@@ -197,7 +197,8 @@ class UpdateAlertController: AlertController {
     @IBAction func submitButtonPressed(_ sender: UIButton) {
         if let updateRequest: Update = self.data as? Update {
             let comment: String? = self.comment == "" ? nil : self.comment
-            UpdateService.respondToUpdateRequest(updateId: updateRequest.objectId, completionPercentage: Float(self.completedCircle.strokeEnd), message: comment, success: { (update) in
+            let percentage = Float(self.completedCircle.strokeEnd * 100)
+            UpdateService.respondToUpdateRequest(updateId: updateRequest.objectId, completionPercentage: percentage, message: comment, success: { (update) in
                 // Success, do something
                 
             }, failure: { (error, statusCode) in

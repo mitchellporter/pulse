@@ -84,7 +84,7 @@ class ViewUpdateViewController: UIViewController {
         for response in responses {
             percentage += response.completionPercentage
         }
-        percentage = (percentage / Float(responses.count)) * 100
+        percentage = (percentage / Float(responses.count))
 //        guard let response: Response = update.mostRecentResponse else { return }
         
         let circlePercentage = percentage / 100
