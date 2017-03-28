@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UIAdditions
 
 class TaskViewController: UIViewController {
     
@@ -17,7 +18,7 @@ class TaskViewController: UIViewController {
         case createdTasks
     }
     
-    @IBOutlet weak var headerNavigationContainer: UIView!
+    @IBOutlet weak var headerNavigation: HeaderNavigation!
     @IBOutlet weak var addButton: Button!
     @IBOutlet weak var containerView: UIView!
     
@@ -35,7 +36,9 @@ class TaskViewController: UIViewController {
             }
         }
     }
-
+    
+    fileprivate var headerTitles: [String] = ["MY TASKS", "UPDATES", "TASK CREATED", "TEAM"]
+    fileprivate var headerColors: [UIColor] = [appGreen, appYellow, appBlue, appPurple]
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -121,57 +124,65 @@ class TaskViewController: UIViewController {
         antiAliasingRing.lineWidth = 1.0
         antiAliasingRing.path = UIBezierPath(roundedRect: self.addButton.bounds, cornerRadius: self.addButton.layer.cornerRadius).cgPath
         self.addButton.layer.addSublayer(antiAliasingRing)
+        
+        self.setupHeaderNavigation()
+    }
+    
+    private func setupHeaderNavigation() {
+        self.headerNavigation.delegate = self
+        self.headerNavigation.color = self.headerColors[0]
+        self.headerNavigation.reloadTitles()
     }
     
     private func updateView(mode: ViewMode) {
-        let fadeAlpha: CGFloat = 0.4
-        switch mode {
-        case .myTasks:
-            self.headerNavigationContainer.backgroundColor = appGreen
-            self.myTasksButton.alpha = 1
-            self.updatesButton.alpha = fadeAlpha
-            self.createdTasksButton.alpha = fadeAlpha
-            self.updateContainerView(with: self.viewControllers[0])
-            
-            guard let buttonTitleFrame: CGRect = self.myTasksButton.titleLabel?.superview?.convert(self.myTasksButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
-            self.selectionDot.image = image
-            self.selectionDot.frame.size = image.size
-            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.myTasksButton.center.y - (self.selectionDot.bounds.height / 2))
-            self.selectionDot.frame.origin = dotOrigin
-//            self.selectionDot.center.y = self.myTasksButton.center.y
-            self.view.addSubview(self.selectionDot)
-        case .updates:
-            self.headerNavigationContainer.backgroundColor = appYellow
-            self.myTasksButton.alpha = fadeAlpha
-            self.updatesButton.alpha = 1
-            self.createdTasksButton.alpha = fadeAlpha
-            self.updateContainerView(with: self.viewControllers[1])
-            
-            guard let buttonTitleFrame: CGRect = self.updatesButton.titleLabel?.superview?.convert(self.updatesButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
-            self.selectionDot.image = image
-            self.selectionDot.frame.size = image.size
-            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.updatesButton.center.y - (self.selectionDot.bounds.height / 2))
-            self.selectionDot.frame.origin = dotOrigin
-            //            self.selectionDot.center.y = self.myTasksButton.center.y
-            self.view.addSubview(self.selectionDot)
-        case .createdTasks:
-            self.headerNavigationContainer.backgroundColor = appBlue
-            self.createdTasksButton.alpha = 1
-            self.updatesButton.alpha = fadeAlpha
-            self.myTasksButton.alpha = fadeAlpha
-            self.updateContainerView(with: self.viewControllers[2])
-            
-            guard let buttonTitleFrame: CGRect = self.createdTasksButton.titleLabel?.superview?.convert(self.createdTasksButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
-            self.selectionDot.image = image
-            self.selectionDot.frame.size = image.size
-            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.createdTasksButton.center.y - (self.selectionDot.bounds.height / 2))
-            self.selectionDot.frame.origin = dotOrigin
-            //            self.selectionDot.center.y = self.myTasksButton.center.y
-            self.view.addSubview(self.selectionDot)
-        }
+//        let fadeAlpha: CGFloat = 0.4
+//        switch mode {
+//        case .myTasks:
+//            self.headerNavigationContainer.backgroundColor = appGreen
+//            self.myTasksButton.alpha = 1
+//            self.updatesButton.alpha = fadeAlpha
+//            self.createdTasksButton.alpha = fadeAlpha
+//            self.updateContainerView(with: self.viewControllers[0])
+//            
+//            guard let buttonTitleFrame: CGRect = self.myTasksButton.titleLabel?.superview?.convert(self.myTasksButton.titleLabel!.frame, to: nil) else { return }
+//            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
+//            self.selectionDot.image = image
+//            self.selectionDot.frame.size = image.size
+//            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.myTasksButton.center.y - (self.selectionDot.bounds.height / 2))
+//            self.selectionDot.frame.origin = dotOrigin
+////            self.selectionDot.center.y = self.myTasksButton.center.y
+//            self.view.addSubview(self.selectionDot)
+//        case .updates:
+//            self.headerNavigationContainer.backgroundColor = appYellow
+//            self.myTasksButton.alpha = fadeAlpha
+//            self.updatesButton.alpha = 1
+//            self.createdTasksButton.alpha = fadeAlpha
+//            self.updateContainerView(with: self.viewControllers[1])
+//            
+//            guard let buttonTitleFrame: CGRect = self.updatesButton.titleLabel?.superview?.convert(self.updatesButton.titleLabel!.frame, to: nil) else { return }
+//            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
+//            self.selectionDot.image = image
+//            self.selectionDot.frame.size = image.size
+//            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.updatesButton.center.y - (self.selectionDot.bounds.height / 2))
+//            self.selectionDot.frame.origin = dotOrigin
+//            //            self.selectionDot.center.y = self.myTasksButton.center.y
+//            self.view.addSubview(self.selectionDot)
+//        case .createdTasks:
+//            self.headerNavigationContainer.backgroundColor = appBlue
+//            self.createdTasksButton.alpha = 1
+//            self.updatesButton.alpha = fadeAlpha
+//            self.myTasksButton.alpha = fadeAlpha
+//            self.updateContainerView(with: self.viewControllers[2])
+//            
+//            guard let buttonTitleFrame: CGRect = self.createdTasksButton.titleLabel?.superview?.convert(self.createdTasksButton.titleLabel!.frame, to: nil) else { return }
+//            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
+//            self.selectionDot.image = image
+//            self.selectionDot.frame.size = image.size
+//            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.createdTasksButton.center.y - (self.selectionDot.bounds.height / 2))
+//            self.selectionDot.frame.origin = dotOrigin
+//            //            self.selectionDot.center.y = self.myTasksButton.center.y
+//            self.view.addSubview(self.selectionDot)
+//        }
     }
 
     @IBAction func myTasksPressed(_ sender: UIButton) {
@@ -191,4 +202,24 @@ class TaskViewController: UIViewController {
     }
     
     @IBAction func unwindToTaskViewController(_ segue: UIStoryboardSegue) {}
+}
+
+extension TaskViewController: HeaderNavigationDelegate {
+    
+    func numberOfSections(in headerNavigation: HeaderNavigation) -> Int {
+        return 1
+    }
+    
+    func headerNavigation(_ headerNavigation: HeaderNavigation, numberOfItemsInSection section: Int) -> Int {
+        return self.headerTitles.count
+    }
+    
+    func headerNavigation(_ headerNavigation: HeaderNavigation, titleForIndex indexPath: IndexPath) -> String? {
+        return self.headerTitles[indexPath.row]
+    }
+    
+    func headerNavigation(_ headerNavigation: HeaderNavigation, changedSelectedIndex indexPath: IndexPath) {
+        // Do something with the view
+        self.headerNavigation.color = self.headerColors[indexPath.row]
+    }
 }

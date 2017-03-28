@@ -22,10 +22,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eL-nv-gE8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eL-nv-gE8" customClass="HeaderNavigation" customModule="UIAdditions">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWi-Oh-d3b" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWi-Oh-d3b" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="124" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="MY TASKS">
@@ -35,7 +35,7 @@
                                             <action selector="myTasksPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HrE-6v-Y8x"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-pU-dIT" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-pU-dIT" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                         <rect key="frame" x="236" y="0.0" width="139" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="TASKS CREATED">
@@ -45,7 +45,7 @@
                                             <action selector="createdTasksPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s7c-UN-dq5"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-2k-txQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-2k-txQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                         <rect key="frame" x="116" y="0.0" width="124" height="62"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                         <state key="normal" title="UPDATES">
@@ -119,7 +119,7 @@
                         <outlet property="addButton" destination="JX6-Yc-b4G" id="fjU-Jq-IWQ"/>
                         <outlet property="containerView" destination="2Sn-MV-xn7" id="bW3-FC-RSW"/>
                         <outlet property="createdTasksButton" destination="T3l-pU-dIT" id="Rdj-XC-E0a"/>
-                        <outlet property="headerNavigationContainer" destination="9eL-nv-gE8" id="Y75-0J-WJB"/>
+                        <outlet property="headerNavigation" destination="9eL-nv-gE8" id="gQE-pR-DXl"/>
                         <outlet property="myTasksButton" destination="gWi-Oh-d3b" id="cvS-jc-wgj"/>
                         <outlet property="updatesButton" destination="lxn-2k-txQ" id="a9L-CH-Rp4"/>
                         <segue destination="Pzw-db-Dix" kind="show" identifier="viewTask" id="XVE-wZ-co4"/>
