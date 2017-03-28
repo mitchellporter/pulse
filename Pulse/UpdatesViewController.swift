@@ -21,6 +21,11 @@ class UpdatesViewController: UIViewController {
         self.setupTableView()
         self.setupAssigneeCoreData()
         self.setupAssignerCoreData()
+//        self.fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.fetchData()
     }
     
