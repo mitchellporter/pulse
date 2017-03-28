@@ -98,7 +98,7 @@ class NewTeamNameViewController: Onboarding {
         AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (teamName) in
             // Success means name is available??
             
-            self.performSegue(withIdentifier: "username", sender: teamName)
+            self.performSegue(withIdentifier: "email", sender: teamName)
             
         }) { (error, statusCode) in
             print("Error: \(statusCode) \(error.localizedDescription)")
