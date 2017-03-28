@@ -20,6 +20,7 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var badge: UIView!
     @IBOutlet weak var assignedLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     // Revisit if this should be one or two labels.
     @IBOutlet weak var duePercentLabel: UILabel!
@@ -73,6 +74,8 @@ class TaskCell: UITableViewCell {
         antiAliasingRing.lineWidth = 1.0
         antiAliasingRing.path = UIBezierPath(roundedRect: self.badge.bounds, cornerRadius: self.badge.layer.cornerRadius).cgPath
         self.badge.layer.addSublayer(antiAliasingRing)
+        
+        self.containerView.layer.cornerRadius = 8.0
     }
     
     func load(_ object: Any, type: TaskCellType) {
@@ -142,7 +145,7 @@ class TaskCell: UITableViewCell {
         guard let url: URL = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatar)
         
-        self.configureState(for: task)
+//        self.configureState(for: task)
     }
     
     override func prepareForReuse() {

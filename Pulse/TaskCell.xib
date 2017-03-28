@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jVp-G7-Ke7">
-                        <rect key="frame" x="0.0" y="7" width="320" height="112.5"/>
+                        <rect key="frame" x="8" y="7" width="304" height="112.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bgb-yP-qnj">
                                 <rect key="frame" x="23" y="31" width="34" height="34"/>
@@ -105,10 +105,10 @@
                 </subviews>
                 <color key="backgroundColor" red="0.92549019607843142" green="0.93725490196078431" blue="0.94509803921568625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="jVp-G7-Ke7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="5FQ-5k-UwM"/>
+                    <constraint firstItem="jVp-G7-Ke7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="5FQ-5k-UwM"/>
                     <constraint firstAttribute="bottom" secondItem="jVp-G7-Ke7" secondAttribute="bottom" constant="7" id="l4J-GW-c13"/>
                     <constraint firstItem="jVp-G7-Ke7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="lAJ-lf-Ra3"/>
-                    <constraint firstAttribute="trailing" secondItem="jVp-G7-Ke7" secondAttribute="trailing" id="s80-To-bGv"/>
+                    <constraint firstAttribute="trailing" secondItem="jVp-G7-Ke7" secondAttribute="trailing" constant="8" id="s80-To-bGv"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -116,6 +116,7 @@
                 <outlet property="avatar" destination="bgb-yP-qnj" id="6dK-Ng-d7G"/>
                 <outlet property="badge" destination="5ch-13-fjd" id="dIs-wQ-KYx"/>
                 <outlet property="completedControl" destination="Ici-tI-iHA" id="Eme-EF-iT8"/>
+                <outlet property="containerView" destination="jVp-G7-Ke7" id="fqJ-Dh-yaV"/>
                 <outlet property="descriptionLabel" destination="dXS-Av-ItM" id="B8r-MW-Ply"/>
                 <outlet property="duePercentLabel" destination="P17-NK-Kpp" id="viX-Vm-tqg"/>
             </connections>
