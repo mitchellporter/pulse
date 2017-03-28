@@ -136,7 +136,7 @@ extension HeaderNavigation: UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedIndex = indexPath
         self.delegate?.headerNavigation(self, changedSelectedIndex: indexPath)
+        self.selectedIndex = indexPath
     }
 }

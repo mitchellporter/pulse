@@ -6,7 +6,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -24,53 +23,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eL-nv-gE8" customClass="HeaderNavigation" customModule="UIAdditions">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
-                                <subviews>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gWi-Oh-d3b" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="62"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <state key="normal" title="MY TASKS">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="myTasksPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HrE-6v-Y8x"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T3l-pU-dIT" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="236" y="0.0" width="139" height="62"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <state key="normal" title="TASKS CREATED">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="createdTasksPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="s7c-UN-dq5"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lxn-2k-txQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="116" y="0.0" width="124" height="62"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <state key="normal" title="UPDATES">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="updatesPresssed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GOi-xB-YpH"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.078431372549019607" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="width" secondItem="9eL-nv-gE8" secondAttribute="width" multiplier="0.33" id="FGN-a9-7Hi"/>
                                     <constraint firstAttribute="height" constant="62" id="FIn-OK-oAn"/>
-                                    <constraint firstItem="gWi-Oh-d3b" firstAttribute="leading" secondItem="9eL-nv-gE8" secondAttribute="leading" id="Hpk-nW-57o"/>
-                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="JDt-sx-K9c"/>
-                                    <constraint firstItem="gWi-Oh-d3b" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="MgK-F2-UDr"/>
-                                    <constraint firstItem="T3l-pU-dIT" firstAttribute="leading" secondItem="lxn-2k-txQ" secondAttribute="trailing" constant="-4" id="Vou-Ng-Lsy"/>
-                                    <constraint firstAttribute="bottom" secondItem="lxn-2k-txQ" secondAttribute="bottom" id="W2w-U7-HfQ"/>
-                                    <constraint firstItem="gWi-Oh-d3b" firstAttribute="width" secondItem="9eL-nv-gE8" secondAttribute="width" multiplier="0.33" id="WGo-C5-Hgg"/>
-                                    <constraint firstItem="lxn-2k-txQ" firstAttribute="leading" secondItem="gWi-Oh-d3b" secondAttribute="trailing" constant="-8" id="Xr9-vh-6Tj"/>
-                                    <constraint firstAttribute="bottom" secondItem="T3l-pU-dIT" secondAttribute="bottom" id="bCL-uH-3fw"/>
-                                    <constraint firstAttribute="bottom" secondItem="gWi-Oh-d3b" secondAttribute="bottom" id="nUl-ez-tjd"/>
-                                    <constraint firstAttribute="trailing" secondItem="T3l-pU-dIT" secondAttribute="trailing" id="r4D-Iv-mhJ"/>
-                                    <constraint firstItem="T3l-pU-dIT" firstAttribute="top" secondItem="9eL-nv-gE8" secondAttribute="top" id="zdl-iY-bqW"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sn-MV-xn7">
@@ -118,10 +73,7 @@
                     <connections>
                         <outlet property="addButton" destination="JX6-Yc-b4G" id="fjU-Jq-IWQ"/>
                         <outlet property="containerView" destination="2Sn-MV-xn7" id="bW3-FC-RSW"/>
-                        <outlet property="createdTasksButton" destination="T3l-pU-dIT" id="Rdj-XC-E0a"/>
                         <outlet property="headerNavigation" destination="9eL-nv-gE8" id="gQE-pR-DXl"/>
-                        <outlet property="myTasksButton" destination="gWi-Oh-d3b" id="cvS-jc-wgj"/>
-                        <outlet property="updatesButton" destination="lxn-2k-txQ" id="a9L-CH-Rp4"/>
                         <segue destination="Pzw-db-Dix" kind="show" identifier="viewTask" id="XVE-wZ-co4"/>
                         <segue destination="8rE-5M-G2m" kind="show" identifier="editTask" id="JlE-aY-mzx"/>
                         <segue destination="G4V-dw-zpV" kind="show" identifier="create" id="Fyo-YP-oKR"/>
