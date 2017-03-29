@@ -41,9 +41,6 @@ class EditTaskViewController: UIViewController {
             if self.task != nil {
                 guard let items = task?.items as? Set<Item> else { return }
                 self.datasource = [Item](items)
-                
-                print(task?.title)
-                
             }
         }
     }
@@ -221,8 +218,8 @@ class EditTaskViewController: UIViewController {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
-        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+//        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+//        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         if sender == self.requestButton {
             sender.layer.borderColor = appBlue.cgColor
         } else if sender == self.editButton {
@@ -231,8 +228,8 @@ class EditTaskViewController: UIViewController {
     }
     
     @IBAction func buttonRelease(_ sender: UIButton) {
-        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
-        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+//        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+//        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         sender.layer.borderColor = UIColor.black.cgColor
     }
     
@@ -259,7 +256,7 @@ class EditTaskViewController: UIViewController {
     }
     
     @IBAction func editButtonPressed(_ sender: UIButton) {
-        guard let task: Task = self.task else { print("No task"); return }
+//        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:

@@ -109,7 +109,7 @@ class UpdateAlertController: AlertController {
     }
     
     private func getCirclePath() -> UIBezierPath {
-        let path: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: self.circleFrame.width/2, y: self.circleFrame.height/2), radius: self.circleFrame.width/2, startAngle: CGFloat(M_PI_2), endAngle: CGFloat(M_PI*2.5), clockwise: true)
+        let path: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: self.circleFrame.width/2, y: self.circleFrame.height/2), radius: self.circleFrame.width/2, startAngle: CGFloat(Double.pi / 2), endAngle: CGFloat(Double.pi*2.5), clockwise: true)
         return path
     }
     
@@ -207,7 +207,7 @@ class UpdateAlertController: AlertController {
                 CoreDataStack.shared.saveContext()
                 
             }, failure: { (error, statusCode) in
-                print("Error: \(statusCode) \(error.localizedDescription)")
+                print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
             })
             AlertManager.dismissAlert()
         }

@@ -115,8 +115,8 @@ class NewTeamEmailViewController: Onboarding {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let username: String = sender as? String else { return }
-        guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
+//        guard let username: String = sender as? String else { return }
+//        guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
         
     }
 }

@@ -78,7 +78,7 @@ open class DotControl: UIView {
         self.layer.addSublayer(dotLayer)
         
         var originX: CGFloat = 0.0
-        for i in 0...3 {
+        for _ in 0...3 {
             let circleFrame: CGRect = CGRect(x: originX, y: 0, width: 10, height: 10)
             let circlePath: UIBezierPath = UIBezierPath(ovalIn: circleFrame)
             let circle: CAShapeLayer = CAShapeLayer()
@@ -111,7 +111,7 @@ open class DotControl: UIView {
     
     private func updateColor(_ color: UIColor, for layer: CALayer) {
         guard let sublayers: [CALayer] = layer.sublayers else { return }
-        for (index, layer) in sublayers.enumerated() {
+        for layer in sublayers {
             layer.backgroundColor = color.cgColor
         }
     }

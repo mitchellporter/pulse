@@ -67,14 +67,14 @@ class ViewTaskViewController: UIViewController {
         super.viewWillAppear(animated)
         
         
-        var task: Task?
-        if let vcTask = self.task {
-            task = vcTask
-        }
-        if let vcTask = self.taskInvite?.task {
-            task = vcTask
-        }
-        guard let finalTask = task else { return }
+//        var task: Task?
+//        if let vcTask = self.task {
+//            task = vcTask
+//        }
+//        if let vcTask = self.taskInvite?.task {
+//            task = vcTask
+//        }
+//        guard let finalTask = task else { return }
 //        self.setupCoreData(task: finalTask)
 //        self.fetchData(task: finalTask)
         self.updateUI()
@@ -103,7 +103,7 @@ class ViewTaskViewController: UIViewController {
             CoreDataStack.shared.saveContext()
             self.checkCache()
         }) { (error, statusCode) in
-            print("Error getting tasks: \(statusCode) \(error.localizedDescription)")
+            print("Error getting tasks: \(statusCode ?? 000) \(error.localizedDescription)")
         }
     }
     
@@ -227,13 +227,13 @@ class ViewTaskViewController: UIViewController {
     }
     
     @IBAction func buttonRelease(_ sender: UIButton) {
-        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
-        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+//        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+//        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         sender.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
-        guard let task: Task = self.task else { print("No task"); return }
+//        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:

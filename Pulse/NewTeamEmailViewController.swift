@@ -97,7 +97,7 @@ class NewTeamPositionViewController: Onboarding {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == "password" {
-            guard let destination: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
+//            guard let destination: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
             
         }
     }

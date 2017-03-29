@@ -12,7 +12,7 @@ public protocol HeaderNavigationDelegate: class {
     func numberOfSections(in headerNavigation: HeaderNavigation) -> Int
     func headerNavigation(_ headerNavigation: HeaderNavigation, numberOfItemsInSection section: Int) -> Int
     func headerNavigation(_ headerNavigation: HeaderNavigation, titleForIndex indexPath: IndexPath) -> String?
-    func headerNavigation(_ headerNavigation: HeaderNavigation, changedSelectedIndex indexPath: IndexPath)
+    func headerNavigation(_ headerNavigation: HeaderNavigation, changedSelectedIndex indexPath: IndexPath, from oldIndexPath: IndexPath)
 }
 
 open class HeaderNavigation: UIView {
@@ -26,15 +26,15 @@ open class HeaderNavigation: UIView {
         set {
             UIView.animate(withDuration: 0.1, animations: {
                 self.collectionView.backgroundColor = newValue
-                self.collectionView.visibleCells.forEach({ (cell) in
-                    cell.contentView.backgroundColor = newValue
-                })
+//                self.collectionView.visibleCells.forEach({ (cell) in
+//                    cell.contentView.backgroundColor = newValue
+//                })
             })
         }
     }
     open var delegate: HeaderNavigationDelegate?
     private var marker: UIImageView = UIImageView(image: #imageLiteral(resourceName: "WhiteDot"))
-    fileprivate var selectedIndex: IndexPath = IndexPath(row: 0, section: 0) {
+    public var selectedIndex: IndexPath = IndexPath(row: 0, section: 0) {
         didSet {
             guard let cell: HeaderNavigationCell = self.collectionView.cellForItem(at: self.selectedIndex) as? HeaderNavigationCell else {
                 print("Attempting to set index out of range. Setting to previous value.")
@@ -81,7 +81,7 @@ open class HeaderNavigation: UIView {
         self.collectionView.register(cell, forCellWithReuseIdentifier: "cell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 18, bottom: 0, right: 18)
+        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         self.collectionView.reloadData()
     }
     
@@ -96,7 +96,9 @@ open class HeaderNavigation: UIView {
     }
     
     private func showCellFor(index: IndexPath) {
-        self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//        if !self.collectionView.indexPathsForVisibleItems.contains(index) {
+            self.collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
+//        }
     }
     
     public func reloadTitles() {
@@ -111,12 +113,11 @@ open class HeaderNavigation: UIView {
 extension HeaderNavigation: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let label = UILabel()
-        label.text = self.delegate?.headerNavigation(self, titleForIndex: indexPath)
-        label.sizeToFit()
-        let margin: CGFloat = 8.0
-        
-        return CGSize(width: label.frame.width + (margin * 2), height: self.collectionView.frame.height)
+        guard let string: String = self.delegate?.headerNavigation(self, titleForIndex: indexPath) else { return CGSize.zero }
+        let nsString: NSString = string as NSString
+        let stringSize: CGSize = nsString.size(attributes: [NSFontAttributeName: UIFont.boldSystemFont(ofSize: 12)])
+        let margin: CGFloat = 18.0
+        return CGSize(width: stringSize.width + (margin * 2), height: self.collectionView.frame.height)
     }
     
     public func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -129,14 +130,15 @@ extension HeaderNavigation: UICollectionViewDataSource, UICollectionViewDelegate
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: HeaderNavigationCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! HeaderNavigationCell
-        cell.contentView.backgroundColor = collectionView.backgroundColor
         cell.label.text = self.delegate?.headerNavigation(self, titleForIndex: indexPath)
-        self.setSelected(cell: cell, for: indexPath)
+        if self.selectedIndex == indexPath {
+            self.setSelected(cell: cell, for: indexPath)
+        }
         return cell
     }
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.delegate?.headerNavigation(self, changedSelectedIndex: indexPath)
+        self.delegate?.headerNavigation(self, changedSelectedIndex: indexPath, from: self.selectedIndex)
         self.selectedIndex = indexPath
     }
 }

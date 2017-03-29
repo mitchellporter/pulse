@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,6 +31,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sn-MV-xn7">
                                 <rect key="frame" x="0.0" y="62" width="375" height="605"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="BHW-DM-0Zq" appends="YES" id="wsd-Up-Www"/>
+                                    <outletCollection property="gestureRecognizers" destination="ha2-hi-RAt" appends="YES" id="ytT-gy-eHR"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JX6-Yc-b4G" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="304" y="598" width="55" height="55"/>
@@ -74,6 +79,8 @@
                         <outlet property="addButton" destination="JX6-Yc-b4G" id="fjU-Jq-IWQ"/>
                         <outlet property="containerView" destination="2Sn-MV-xn7" id="bW3-FC-RSW"/>
                         <outlet property="headerNavigation" destination="9eL-nv-gE8" id="gQE-pR-DXl"/>
+                        <outlet property="swipeLeftGesture" destination="BHW-DM-0Zq" id="OKE-YS-xiT"/>
+                        <outlet property="swipeRightGesture" destination="ha2-hi-RAt" id="8hg-Rf-zIf"/>
                         <segue destination="Pzw-db-Dix" kind="show" identifier="viewTask" id="XVE-wZ-co4"/>
                         <segue destination="8rE-5M-G2m" kind="show" identifier="editTask" id="JlE-aY-mzx"/>
                         <segue destination="G4V-dw-zpV" kind="show" identifier="create" id="Fyo-YP-oKR"/>
@@ -82,6 +89,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="BHW-DM-0Zq">
+                    <connections>
+                        <action selector="swiped:" destination="BYZ-38-t0r" id="FyE-RK-CZO"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="ha2-hi-RAt">
+                    <connections>
+                        <action selector="swiped:" destination="BYZ-38-t0r" id="VDj-bZ-ue8"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="888.79999999999995" y="138.98050974512745"/>
         </scene>

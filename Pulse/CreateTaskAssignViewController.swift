@@ -134,7 +134,7 @@ class CreateTaskAssignViewController: CreateTask {
             self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
         }) { (error, statusCode) in
             // TODO: Handle Error
-            print("There was an error when creating the task. Error: \(statusCode) \(error.localizedDescription)")
+            print("There was an error when creating the task. Error: \(statusCode ?? 000) \(error.localizedDescription)")
         }
     }
     

@@ -70,7 +70,7 @@ class CreateTaskReviewViewController: CreateTask {
         if let assignees: [User] = dictionary[.assignees] as? [User] {
             var assigneeString: String = "Assigned to:"
             for (index, member) in assignees.enumerated() {
-                guard let name: String = member.name else { continue }
+                let name: String = member.name
                 assigneeString = index == 0 ? "\(assigneeString) \(name)" : "\(assigneeString), \(name)"
             }
         }
