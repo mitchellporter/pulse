@@ -30,12 +30,12 @@ extension PulseAPI {
 enum PulseAPI {
     
     // Auth
-    case login(emailAddress: String, password: String) //
-    case signup(emailAddress: String, name: String, position: String) //
+    case login(email: String, password: String) //
+    case signup(email: String, name: String, position: String) //
     
     // TODO: Can only singup to an existing team right now
-    case signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
-    case signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String, position: String) //
+    case signupToExistingTeam(teamId: String, username: String, email: String, password: String, fullName: String, position: String) //
+    case signupAndCreateTeam(teamName: String, username: String, email: String, password: String, fullName: String, position: String) //
     
     // Feed
     case getTasksAssignedToUser(assigneeId: String, offset: Int) //
@@ -71,7 +71,7 @@ enum PulseAPI {
     // Availability
     case checkTeamNameAvailability(teamName: String)
     case checkUsernameAvailability(username: String)
-    case checkEmailAddressAvailability(emailAddress: String)
+    case checkEmailAvailability(email: String)
 
 }
 
@@ -87,7 +87,7 @@ extension PulseAPI {
                  .getUpdatesFeed,
                  .checkTeamNameAvailability,
                  .checkUsernameAvailability,
-                 .checkEmailAddressAvailability:
+                 .checkEmailAvailability:
             return .get
             
         case .editTask,
@@ -156,7 +156,7 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/teams"
         case .checkUsernameAvailability:
             return "/api/\(PulseAPI.apiVersion)/availability/usernames"
-        case .checkEmailAddressAvailability:
+        case .checkEmailAvailability:
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
             
             // TODO: Add signup cases
@@ -187,20 +187,20 @@ extension PulseAPI {
     var parameters: [String: AnyObject]? {
         switch self {
             
-        case let .signupAndCreateTeam(teamName, username, emailAddress, password, fullName, position):
+        case let .signupAndCreateTeam(teamName, username, email, password, fullName, position):
             var params = [
                 "team_name": teamName as AnyObject,
                 "username": username as AnyObject,
-                "email_address": emailAddress as AnyObject,
+                "email": email as AnyObject,
                 "password": password as AnyObject
             ]
             params["name"] = fullName as AnyObject
             params["position"] = position as AnyObject
             return params
-        case let .signupToExistingTeam(_, username, emailAddress, password, fullName, position):
+        case let .signupToExistingTeam(_, username, email, password, fullName, position):
             var params = [
                 "username": username as AnyObject,
-                "email_address": emailAddress as AnyObject,
+                "email": email as AnyObject,
                 "password": password as AnyObject
             ]
             params["name"] = fullName as AnyObject
@@ -278,9 +278,9 @@ extension PulseAPI {
             return [
                 "username": username as AnyObject
             ]
-        case let .checkEmailAddressAvailability(email):
+        case let .checkEmailAvailability(email):
             return [
-                "email_address": email as AnyObject
+                "email": email as AnyObject
             ]
                default: return nil
         }
