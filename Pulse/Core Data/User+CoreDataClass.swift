@@ -49,7 +49,7 @@ extension User: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let emailAddress = json["email_address"] as! String
+        let email = json["email"] as! String
 
         let name = json["name"] as! String
         let position = json["position"] as! String
@@ -62,7 +62,7 @@ extension User: PulseType {
         user.name = name
         user.position = position
         user.avatarURL = avatarURL
-        user.emailAddress = emailAddress
+        user.email = email
         
         if let teamJSON = json["team"] as? [String: AnyObject] {
             let team = Team.from(json: teamJSON, context: context) as Team
