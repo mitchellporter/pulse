@@ -33,6 +33,7 @@ extension User {
     @NSManaged public var sentUpdates: NSSet?
     @NSManaged public var team: Team?
     @NSManaged public var responses: NSSet?
+    @NSManaged public var mostRecentUpdateResponse: Response?
 
 }
 
