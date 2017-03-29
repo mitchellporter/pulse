@@ -79,6 +79,10 @@
 		C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993341E66368500A404C9 /* CreateTaskReviewItemCell.swift */; };
 		C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1B993351E66368500A404C9 /* CreateTaskReviewItemCell.xib */; };
 		C1B993391E6655C800A404C9 /* ColorConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B993381E6655C800A404C9 /* ColorConstants.swift */; };
+		C1BD9E1B1E8C2A6B00DDEB88 /* TeamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BD9E191E8C2A6B00DDEB88 /* TeamViewController.swift */; };
+		C1BD9E1C1E8C2A6B00DDEB88 /* TeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1BD9E1A1E8C2A6B00DDEB88 /* TeamViewController.xib */; };
+		C1BD9E1F1E8C567D00DDEB88 /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BD9E1D1E8C567D00DDEB88 /* TeamMemberCell.swift */; };
+		C1BD9E201E8C567D00DDEB88 /* TeamMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1BD9E1E1E8C567D00DDEB88 /* TeamMemberCell.xib */; };
 		C1D11C151E771763005D2D18 /* UpdateAlertCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C141E771763005D2D18 /* UpdateAlertCommentViewController.swift */; };
 		C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */; };
 		C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D11C191E789252005D2D18 /* Onboarding.storyboard */; };
@@ -251,6 +255,10 @@
 		C1B993341E66368500A404C9 /* CreateTaskReviewItemCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskReviewItemCell.swift; sourceTree = "<group>"; };
 		C1B993351E66368500A404C9 /* CreateTaskReviewItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateTaskReviewItemCell.xib; sourceTree = "<group>"; };
 		C1B993381E6655C800A404C9 /* ColorConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorConstants.swift; sourceTree = "<group>"; };
+		C1BD9E191E8C2A6B00DDEB88 /* TeamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamViewController.swift; sourceTree = "<group>"; };
+		C1BD9E1A1E8C2A6B00DDEB88 /* TeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamViewController.xib; sourceTree = "<group>"; };
+		C1BD9E1D1E8C567D00DDEB88 /* TeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberCell.swift; sourceTree = "<group>"; };
+		C1BD9E1E1E8C567D00DDEB88 /* TeamMemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamMemberCell.xib; sourceTree = "<group>"; };
 		C1D11C141E771763005D2D18 /* UpdateAlertCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentViewController.swift; sourceTree = "<group>"; };
 		C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentAnimator.swift; sourceTree = "<group>"; };
 		C1D11C191E789252005D2D18 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -422,6 +430,8 @@
 				C1B86B221E60B51000A3182A /* TaskItemEditCell.xib */,
 				C3A398B61E68E533007E3BD8 /* UpdateCell.swift */,
 				C3A398B81E68E70C007E3BD8 /* UpdateCell.xib */,
+				C1BD9E1D1E8C567D00DDEB88 /* TeamMemberCell.swift */,
+				C1BD9E1E1E8C567D00DDEB88 /* TeamMemberCell.xib */,
 			);
 			name = TaskViews;
 			sourceTree = "<group>";
@@ -498,6 +508,8 @@
 				C1AD366C1E689F6C00C5A9AA /* UpdatesViewController.xib */,
 				C1AD366F1E689F7900C5A9AA /* CreatedTasksViewController.swift */,
 				C1AD36701E689F7900C5A9AA /* CreatedTasksViewController.xib */,
+				C1BD9E191E8C2A6B00DDEB88 /* TeamViewController.swift */,
+				C1BD9E1A1E8C2A6B00DDEB88 /* TeamViewController.xib */,
 				C19502251E8091C30051E1BC /* Transitions */,
 			);
 			name = TaskViewController;
@@ -884,10 +896,12 @@
 			files = (
 				C1AD36811E68EBF300C5A9AA /* PassiveAlert.xib in Resources */,
 				C1B86B241E60B51000A3182A /* TaskItemEditCell.xib in Resources */,
+				C1BD9E201E8C567D00DDEB88 /* TeamMemberCell.xib in Resources */,
 				C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */,
 				C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */,
 				C356E45F1E5E5AC700E215CF /* LaunchScreen.storyboard in Resources */,
 				C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */,
+				C1BD9E1C1E8C2A6B00DDEB88 /* TeamViewController.xib in Resources */,
 				C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */,
 				C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */,
 				C16B5DDD1E6787D700F5BB58 /* Updates.storyboard in Resources */,
@@ -1044,6 +1058,7 @@
 				C19502271E8092020051E1BC /* MyTasksToViewTaskTransition.swift in Sources */,
 				C39D04171E70D5600054BC93 /* SocketManager.swift in Sources */,
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
+				C1BD9E1B1E8C2A6B00DDEB88 /* TeamViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */,
@@ -1083,6 +1098,7 @@
 				C1AD366D1E689F6C00C5A9AA /* UpdatesViewController.swift in Sources */,
 				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,
+				C1BD9E1F1E8C567D00DDEB88 /* TeamMemberCell.swift in Sources */,
 				C1AD36741E68CC4E00C5A9AA /* ViewUpdateViewController.swift in Sources */,
 				C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */,
 				C3A8A3A01E83232200C46346 /* AvailabilityService.swift in Sources */,

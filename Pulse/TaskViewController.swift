@@ -51,8 +51,7 @@ class TaskViewController: UIViewController {
         
         let teamTitle: String = "TEAM"
         let teamColor: UIColor = appPurple
-        let team = UIViewController()
-        team.view.backgroundColor = teamColor
+        let team = TeamViewController(nibName: "TeamViewController", bundle: nil)
         self.datasource.append((title: teamTitle, color: teamColor, viewController: team))
     }
     
