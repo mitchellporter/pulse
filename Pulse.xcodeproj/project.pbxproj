@@ -13,6 +13,9 @@
 		C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */; };
 		C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */; };
 		C1160E481E7B518E00AC0249 /* PercentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E471E7B518E00AC0249 /* PercentBar.swift */; };
+		C116F6DD1E8D7B26003AEAA1 /* SendTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6DC1E8D7B26003AEAA1 /* SendTaskViewController.swift */; };
+		C116F6DF1E8D7B3B003AEAA1 /* AddressBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6DE1E8D7B3B003AEAA1 /* AddressBookViewController.swift */; };
+		C116F6E11E8D7B49003AEAA1 /* SendTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C116F6E01E8D7B49003AEAA1 /* SendTask.storyboard */; };
 		C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */; };
 		C1211E2F1E85DE3F00CFC7A6 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */; };
 		C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */; };
@@ -191,6 +194,9 @@
 		C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBreakdownTableViewCell.swift; sourceTree = "<group>"; };
 		C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		C1160E471E7B518E00AC0249 /* PercentBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentBar.swift; sourceTree = "<group>"; };
+		C116F6DC1E8D7B26003AEAA1 /* SendTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTaskViewController.swift; sourceTree = "<group>"; };
+		C116F6DE1E8D7B3B003AEAA1 /* AddressBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookViewController.swift; sourceTree = "<group>"; };
+		C116F6E01E8D7B49003AEAA1 /* SendTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SendTask.storyboard; sourceTree = "<group>"; };
 		C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskPresentTransition.swift; sourceTree = "<group>"; };
 		C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
@@ -391,6 +397,16 @@
 				C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */,
 			);
 			name = UpdateViews;
+			sourceTree = "<group>";
+		};
+		C116F6DB1E8D789F003AEAA1 /* SendTask */ = {
+			isa = PBXGroup;
+			children = (
+				C116F6DC1E8D7B26003AEAA1 /* SendTaskViewController.swift */,
+				C116F6DE1E8D7B3B003AEAA1 /* AddressBookViewController.swift */,
+				C116F6E01E8D7B49003AEAA1 /* SendTask.storyboard */,
+			);
+			name = SendTask;
 			sourceTree = "<group>";
 		};
 		C1211E2A1E85DE0100CFC7A6 /* Transitions */ = {
@@ -626,6 +642,7 @@
 				C1629A971E5F712600EC91B0 /* TaskViews */,
 				C16B5DDB1E6787AF00F5BB58 /* TaskUpdate */,
 				C1DA11781E5FA7C100AF752E /* CreateTask */,
+				C116F6DB1E8D789F003AEAA1 /* SendTask */,
 				C1AD36641E689F2900C5A9AA /* TaskViewController */,
 				C1B86B251E60C0FA00A3182A /* ViewTaskViewController.swift */,
 				C1B86B271E60E85200A3182A /* EditTaskViewController.swift */,
@@ -922,6 +939,7 @@
 				C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */,
 				C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */,
 				C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */,
+				C116F6E11E8D7B49003AEAA1 /* SendTask.storyboard in Resources */,
 				C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */,
 				C1AD366E1E689F6C00C5A9AA /* UpdatesViewController.xib in Resources */,
 			);
@@ -1066,6 +1084,7 @@
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
 				C1BD9E1B1E8C2A6B00DDEB88 /* TeamViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
+				C116F6DD1E8D7B26003AEAA1 /* SendTaskViewController.swift in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
@@ -1094,6 +1113,7 @@
 				C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */,
 				C1BD9E241E8C8C8600DDEB88 /* ViewTeamMemberTaskViewController.swift in Sources */,
 				C1D11C1E1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift in Sources */,
+				C116F6DF1E8D7B3B003AEAA1 /* AddressBookViewController.swift in Sources */,
 				C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */,
 				C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */,
 				C1D11C221E79CBFA005D2D18 /* NewTeamPasswordViewController.swift in Sources */,
