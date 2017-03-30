@@ -19,20 +19,16 @@ extension User {
     @NSManaged public var avatarURL: String?
     @NSManaged public var createdAt: Date?
     @NSManaged public var name: String
-    @NSManaged public var emailAddress: String
+    @NSManaged public var email: String
     @NSManaged public var objectId: String
     @NSManaged public var position: String
     @NSManaged public var updatedAt: Date?
     @NSManaged public var createdTasks: NSSet?
     @NSManaged public var receivedTaskInvitations: NSSet?
     @NSManaged public var receivedTasks: NSSet?
-    @NSManaged public var receivedUpdateRequests: NSSet?
-    @NSManaged public var receivedUpdates: NSSet?
     @NSManaged public var sentTaskInvitations: NSSet?
-    @NSManaged public var sentUpdateRequests: NSSet?
-    @NSManaged public var sentUpdates: NSSet?
     @NSManaged public var team: Team?
-    @NSManaged public var responses: NSSet?
+    @NSManaged public var responses: Set<Response>?
 
 }
 
@@ -87,23 +83,6 @@ extension User {
 
 }
 
-// MARK: Generated accessors for receivedUpdates
-extension User {
-
-    @objc(addReceivedUpdatesObject:)
-    @NSManaged public func addToReceivedUpdates(_ value: Update)
-
-    @objc(removeReceivedUpdatesObject:)
-    @NSManaged public func removeFromReceivedUpdates(_ value: Update)
-
-    @objc(addReceivedUpdates:)
-    @NSManaged public func addToReceivedUpdates(_ values: NSSet)
-
-    @objc(removeReceivedUpdates:)
-    @NSManaged public func removeFromReceivedUpdates(_ values: NSSet)
-
-}
-
 // MARK: Generated accessors for sentTaskInvitations
 extension User {
 
@@ -118,23 +97,6 @@ extension User {
 
     @objc(removeSentTaskInvitations:)
     @NSManaged public func removeFromSentTaskInvitations(_ values: NSSet)
-
-}
-
-// MARK: Generated accessors for sentUpdates
-extension User {
-
-    @objc(addSentUpdatesObject:)
-    @NSManaged public func addToSentUpdates(_ value: Update)
-
-    @objc(removeSentUpdatesObject:)
-    @NSManaged public func removeFromSentUpdates(_ value: Update)
-
-    @objc(addSentUpdates:)
-    @NSManaged public func addToSentUpdates(_ values: NSSet)
-
-    @objc(removeSentUpdates:)
-    @NSManaged public func removeFromSentUpdates(_ values: NSSet)
 
 }
 

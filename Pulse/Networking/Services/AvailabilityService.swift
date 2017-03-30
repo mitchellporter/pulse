@@ -33,11 +33,11 @@ struct AvailabilityService {
     }
     
     static func checkEmailAvailability(email: String, success: @escaping (_ email: String) -> Void, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .checkEmailAddressAvailability(emailAddress: email), success: { (data) in
+        NetworkingClient.sharedClient.request(target: .checkEmailAvailability(email: email), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
-                if let emailAddress = json["email_address"].string {
-                    success(emailAddress)
+                if let email = json["email"].string {
+                    success(email)
                 }
             }
         }, failure: failure)

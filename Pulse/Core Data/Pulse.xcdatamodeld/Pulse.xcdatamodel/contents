@@ -118,7 +118,7 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="avatarURL" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="emailAddress" attributeType="String" syncable="YES"/>
+        <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="position" attributeType="String" syncable="YES"/>
@@ -126,10 +126,8 @@
         <relationship name="createdTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assigner" inverseEntity="Task" syncable="YES"/>
         <relationship name="receivedTaskInvitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="receiver" inverseEntity="TaskInvitation" syncable="YES"/>
         <relationship name="receivedTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignees" inverseEntity="Task" syncable="YES"/>
-        <relationship name="receivedUpdates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" syncable="YES"/>
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="assignee" inverseEntity="Response" syncable="YES"/>
         <relationship name="sentTaskInvitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="sender" inverseEntity="TaskInvitation" syncable="YES"/>
-        <relationship name="sentUpdates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="members" inverseEntity="Team" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -149,6 +147,6 @@
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="270"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="240"/>
     </elements>
 </model>

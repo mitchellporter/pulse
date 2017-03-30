@@ -11,7 +11,16 @@ import CoreData
 
 @objc(User)
 public class User: NSManagedObject {
-
+    
+    func mostRecentUpdateResponse() -> Response? {
+        return self.responsesSortedByRecency()?.first
+    }
+    
+    func responsesSortedByRecency() -> [Response]? {
+        guard let responses = self.responses else { return nil }
+        return responses.sorted { $0.createdAt! > $1.createdAt! }
+    }
+    
 }
 
 extension User {
@@ -49,7 +58,7 @@ extension User: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let emailAddress = json["email"] as! String
+        let email = json["email"] as! String
 
         let name = json["name"] as! String
         let position = json["position"] as! String
@@ -62,11 +71,16 @@ extension User: PulseType {
         user.name = name
         user.position = position
         user.avatarURL = avatarURL
-        user.emailAddress = emailAddress
+        user.email = email
         
         if let teamJSON = json["team"] as? [String: AnyObject] {
             let team = Team.from(json: teamJSON, context: context) as Team
             user.team = team
+        }
+        
+        if let responseJSON = json["most_recent_update_response"] as? [String: AnyObject] {
+            let response = Response.from(json: responseJSON, context: context) as Response
+            user.addToResponses(response)
         }
         
         // TODO: No current use for both of these

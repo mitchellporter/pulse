@@ -1930,7 +1930,7 @@
 				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
-				APP_DISPLAY_NAME = "Pulse Debug";
+				APP_DISPLAY_NAME = "Ellroi Debug";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1955,7 +1955,7 @@
 				API_BASE_URL = "";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
-				APP_DISPLAY_NAME = Pulse;
+				APP_DISPLAY_NAME = Ellroi;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -2061,7 +2061,7 @@
 				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
-				APP_DISPLAY_NAME = "Pulse Staging";
+				APP_DISPLAY_NAME = "Ellroi Staging";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2152,7 +2152,7 @@
 				API_BASE_URL = "192.168.1.103:3000";
 				API_PROTOCOL = "http://";
 				API_VERSION = v1;
-				APP_DISPLAY_NAME = "Pulse Local";
+				APP_DISPLAY_NAME = "Ellroi Local";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2243,7 +2243,7 @@
 				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
-				APP_DISPLAY_NAME = "Pulse Production";
+				APP_DISPLAY_NAME = "Ellroi Production";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2327,7 +2327,7 @@
 				API_BASE_URL = "teamship-api-staging.herokuapp.com";
 				API_PROTOCOL = "https://";
 				API_VERSION = v1;
-				APP_DISPLAY_NAME = "Pulse Beta";
+				APP_DISPLAY_NAME = "Ellroi Beta";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
