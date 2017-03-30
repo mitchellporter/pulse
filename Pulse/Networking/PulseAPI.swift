@@ -38,8 +38,8 @@ enum PulseAPI {
     case signupAndCreateTeam(teamName: String, username: String, email: String, password: String, fullName: String, position: String) //
     
     // Feed
-    case getTasksAssignedToUser(assigneeId: String, offset: Int) //
-    case getTasksCreatedByUser(assignerId: String, offset: Int) //
+    case getTasksAssignedToUser(assigneeId: String, offset: Int, status: String?) //
+    case getTasksCreatedByUser(assignerId: String, offset: Int, status: String?) //
     
     // Create task
     case createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?) //
@@ -206,18 +206,24 @@ extension PulseAPI {
             params["name"] = fullName as AnyObject
             params["position"] = position as AnyObject
             return params
-        case let .getTasksCreatedByUser(assignerId, offset):
-            return [
+        case let .getTasksCreatedByUser(assignerId, offset, status):
+            var params =  [
                 "assigner": assignerId as AnyObject,
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject
             ]
-        case let .getTasksAssignedToUser(assigneeId, offset):
-            return [
+            guard let status = status else { return params }
+            params["status"] = status as AnyObject
+            return params
+        case let .getTasksAssignedToUser(assigneeId, offset, status):
+            var params =  [
                 "assignee": assigneeId as AnyObject,
                 "offset": offset as AnyObject,
                 "limit": 25 as AnyObject
             ]
+            guard let status = status else { return params }
+            params["status"] = status as AnyObject
+            return params
         case let .createTask(title, items, assignees, dueDate, updateDays):
             var params = [
                 "title": title as AnyObject,
