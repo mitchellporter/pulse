@@ -72,7 +72,10 @@ enum PulseAPI {
     case checkTeamNameAvailability(teamName: String)
     case checkUsernameAvailability(username: String)
     case checkEmailAvailability(email: String)
-
+    
+    // Invites
+    case inviteContactsToTask(taskId: String, contacts: [[String: AnyObject]])
+    
 }
 
 extension PulseAPI {
@@ -103,7 +106,8 @@ extension PulseAPI {
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
-             .resendUpdateRequest:
+             .resendUpdateRequest,
+             .inviteContactsToTask:
             return .post
             
         default: return .get
@@ -158,6 +162,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/usernames"
         case .checkEmailAvailability:
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
+        case let .inviteContactsToTask(taskId, _):
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/invites"
             
             // TODO: Add signup cases
         default: return ""
@@ -287,6 +293,10 @@ extension PulseAPI {
         case let .checkEmailAvailability(email):
             return [
                 "email": email as AnyObject
+            ]
+        case let .inviteContactsToTask(_, contacts):
+            return [
+                "invitees": contacts as AnyObject
             ]
                default: return nil
         }

@@ -27,8 +27,9 @@ extension User {
     @NSManaged public var receivedTaskInvitations: NSSet?
     @NSManaged public var receivedTasks: NSSet?
     @NSManaged public var sentTaskInvitations: NSSet?
-    @NSManaged public var team: Team?
+    @NSManaged public var sentInvites: Set<Invite>?
     @NSManaged public var responses: Set<Response>?
+    @NSManaged public var team: Team?
 
 }
 
@@ -115,4 +116,21 @@ extension User {
     @objc(removeResponses:)
     @NSManaged public func removeFromResponses(_ values: NSSet)
 
+}
+
+// MARK: Generated accessors for sentInvites
+extension User {
+    
+    @objc(addSentInvitesObject:)
+    @NSManaged public func addToSentInvites(_ value: Invite)
+    
+    @objc(removeSentInvitesObject:)
+    @NSManaged public func removeFromSentInvites(_ value: Invite)
+    
+    @objc(addSentInvites:)
+    @NSManaged public func addToSentInvites(_ values: NSSet)
+    
+    @objc(removeSentInvites:)
+    @NSManaged public func removeFromSentInvites(_ values: NSSet)
+    
 }

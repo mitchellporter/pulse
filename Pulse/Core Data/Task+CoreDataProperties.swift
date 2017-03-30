@@ -30,7 +30,7 @@ extension Task {
     @NSManaged public var items: NSSet?
     @NSManaged public var updateRequests: NSSet?
     @NSManaged public var updates: Set<Update>?
-
+    @NSManaged public var invites: Set<Invite>?
 }
 
 // MARK: Generated accessors for assignees
@@ -99,4 +99,21 @@ extension Task {
     @objc(removeUpdates:)
     @NSManaged public func removeFromUpdates(_ values: NSSet)
 
+}
+
+// MARK: Generated accessors for invites
+extension Task {
+    
+    @objc(addInvitesObject:)
+    @NSManaged public func addToInvites(_ value: Invite)
+    
+    @objc(removeInvitesObject:)
+    @NSManaged public func removeFromInvites(_ value: Invite)
+    
+    @objc(addInvites:)
+    @NSManaged public func addToInvites(_ values: NSSet)
+    
+    @objc(removeInvites:)
+    @NSManaged public func removeFromInvites(_ values: NSSet)
+    
 }
