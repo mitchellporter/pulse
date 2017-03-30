@@ -106,7 +106,8 @@ extension PulseAPI {
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
-             .resendUpdateRequest:
+             .resendUpdateRequest,
+             .inviteContactsToTask:
             return .post
             
         default: return .get
@@ -295,7 +296,7 @@ extension PulseAPI {
             ]
         case let .inviteContactsToTask(_, contacts):
             return [
-                "contacts": contacts as AnyObject
+                "invitees": contacts as AnyObject
             ]
                default: return nil
         }
