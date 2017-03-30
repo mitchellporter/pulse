@@ -17,7 +17,6 @@ extension Team {
     }
 
     @NSManaged public var createdAt: Date?
-    @NSManaged public var domain: String?
     @NSManaged public var objectId: String
     @NSManaged public var updatedAt: Date?
     @NSManaged public var members: NSSet?

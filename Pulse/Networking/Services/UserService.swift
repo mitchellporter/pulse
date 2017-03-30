@@ -15,9 +15,10 @@ struct UserService {
     
     // Parse team separately? - probably not
     // TODO: Parse token
-    static func signupAndCreateTeam(teamName: String, username: String, emailAddress: String, password: String, fullName: String, position: String, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .signupAndCreateTeam(teamName: teamName, username: username, emailAddress: emailAddress, password: password, fullName: fullName, position: position), success: { (data) in
+    static func signupAndCreateTeam(teamName: String, email: String, password: String, fullName: String, position: String, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .signupAndCreateTeam(teamName: teamName, email: email, password: password, fullName: fullName, position: position), success: { (data) in
             let json = JSON(data: data)
+            print(json)
             if json["success"].boolValue {
                 if let userJSON = json["user"].dictionaryObject {
                     let user = User.from(json: userJSON as [String : AnyObject], context: CoreDataStack.shared.context)
@@ -29,9 +30,10 @@ struct UserService {
     
     // Parse team separately? - probably not
     // TODO: Parse token
-    static func signupToExistingTeam(teamId: String, username: String, emailAddress: String, password: String, fullName: String, position: String, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .signupToExistingTeam(teamId: teamId, username: username, emailAddress: emailAddress, password: password, fullName: fullName, position: position), success: { (data) in
+    static func signupToExistingTeam(teamId: String, email: String, password: String, fullName: String, position: String, success: @escaping UserSuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .signupToExistingTeam(teamId: teamId, email: email, password: password, fullName: fullName, position: position), success: { (data) in
             let json = JSON(data: data)
+            print(json)
             if json["success"].boolValue {
                 if let userJSON = json["user"].dictionaryObject {
                     let user = User.from(json: userJSON as [String : AnyObject], context: CoreDataStack.shared.context)
