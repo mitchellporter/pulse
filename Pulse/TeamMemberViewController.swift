@@ -62,9 +62,10 @@ class TeamMemberViewController: UIViewController {
         let cell: UINib = UINib(nibName: "TaskCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "taskCell")
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         self.tableView.backgroundColor = UIColor("ECEFF1")
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.estimatedRowHeight = 120
+        self.tableView.estimatedRowHeight = 124
     }
     
     private func setupCoreData(with user: User) {
@@ -131,6 +132,24 @@ class TeamMemberViewController: UIViewController {
     @IBAction func createdTasksButtonPressed(_ sender: UIButton) {
         self.selectedSection = 1
     }
+    
+    @IBAction func backButtonPressed(_ sender: UIButton) {
+        if self.navigationController != nil {
+            _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "viewTask" {
+            guard let task: Task = sender as? Task else { return }
+            guard let destinationVC: ViewTeamMemberTaskViewController = segue.destination as? ViewTeamMemberTaskViewController else { return }
+            destinationVC.task = task
+        }
+    }
 }
 
 extension TeamMemberViewController: UITableViewDataSource, UITableViewDelegate {
@@ -166,7 +185,8 @@ extension TeamMemberViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Do Something
+        guard let sender: Any = self.assignedFetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] else { return }
+        self.performSegue(withIdentifier: "viewTask", sender: sender)
     }
 }
 
