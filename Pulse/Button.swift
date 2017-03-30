@@ -10,7 +10,7 @@ import UIKit
 import KGHitTestingViews
 
 @IBDesignable
-class Button: KGHitTestingButton {
+open class Button: KGHitTestingButton {
     
     // ImageView is present unless this is a system button, then it is nil.
     // Temp solution here to remove optional.
@@ -21,7 +21,7 @@ class Button: KGHitTestingButton {
 //        return super.imageView!
 //    }
     
-    override func prepareForInterfaceBuilder() {
+    override open func prepareForInterfaceBuilder() {
         
         //
         
@@ -29,7 +29,7 @@ class Button: KGHitTestingButton {
     
     @IBInspectable var bounces: Bool = true
     
-    override var adjustsImageWhenHighlighted: Bool {
+    override open var adjustsImageWhenHighlighted: Bool {
         get {
             if self.bounces {
                 return false
@@ -45,21 +45,21 @@ class Button: KGHitTestingButton {
         super.init(frame: frame)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.animatePress()
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         self.animateRelease()
     }
     
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override open func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
         self.animateRelease()
     }

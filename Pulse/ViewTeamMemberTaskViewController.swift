@@ -1,8 +1,8 @@
 //
-//  ViewTaskViewController.swift
+//  ViewTeamMemberTaskViewController.swift
 //  Pulse
 //
-//  Created by Design First Apps on 2/24/17.
+//  Created by Design First Apps on 3/29/17.
 //  Copyright © 2017 Mentor Ventures, Inc. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import Nuke
 import UIAdditions
 
 // TODO: Setup description cell
-class ViewTaskViewController: UIViewController {
+class ViewTeamMemberTaskViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var bottomMenu: UIView!
@@ -51,14 +51,14 @@ class ViewTaskViewController: UIViewController {
     }
     private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
-
+    
     var tableViewTopInset: CGFloat = 22
     
     var fetchedResultsController: NSFetchedResultsController<Item>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.setupAppearance()
         self.setupTableView()
     }
@@ -67,16 +67,16 @@ class ViewTaskViewController: UIViewController {
         super.viewWillAppear(animated)
         
         
-//        var task: Task?
-//        if let vcTask = self.task {
-//            task = vcTask
-//        }
-//        if let vcTask = self.taskInvite?.task {
-//            task = vcTask
-//        }
-//        guard let finalTask = task else { return }
-//        self.setupCoreData(task: finalTask)
-//        self.fetchData(task: finalTask)
+        //        var task: Task?
+        //        if let vcTask = self.task {
+        //            task = vcTask
+        //        }
+        //        if let vcTask = self.taskInvite?.task {
+        //            task = vcTask
+        //        }
+        //        guard let finalTask = task else { return }
+        //        self.setupCoreData(task: finalTask)
+        //        self.fetchData(task: finalTask)
         self.updateUI()
         
         self.tableView.reloadData()
@@ -86,13 +86,13 @@ class ViewTaskViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Item> = Item.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
-       
+        
         let predicate = NSPredicate(format: "task.objectId == %@", task.objectId)
         
         fetchRequest.sortDescriptors = [sort]
         fetchRequest.predicate = predicate
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
-//        self.fetchedResultsController.delegate = self
+        //        self.fetchedResultsController.delegate = self
     }
     
     private func fetchData(task: Task) {
@@ -111,7 +111,7 @@ class ViewTaskViewController: UIViewController {
         // Check cache
         do {
             try self.fetchedResultsController.performFetch()
-//            self.fetchedResultsController.delegate = self
+            //            self.fetchedResultsController.delegate = self
         } catch {
             print("Fetched results controller error: \(error)")
         }
@@ -128,8 +128,8 @@ class ViewTaskViewController: UIViewController {
         
         self.view.layer.addSublayer(self.topGradient)
         
-//        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
-//        self.avatarImageView.layer.borderWidth = 2
+        //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
+        //        self.avatarImageView.layer.borderWidth = 2
         self.avatarImageView.layer.cornerRadius = 4
         
         self.view.backgroundColor = appGreen
@@ -137,13 +137,13 @@ class ViewTaskViewController: UIViewController {
         
         self.bottomMenu.backgroundColor = UIColor("F1F1F1")
     }
-
+    
     private func setupTableView() {
         self.tableView.backgroundColor = UIColor.white
         let cell: UINib = UINib(nibName: "TaskItemViewCell", bundle: nil)
         self.tableView.register(cell, forCellReuseIdentifier: "itemViewCell")
         self.tableView.estimatedRowHeight = 70
-//        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
+        //        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -161,7 +161,7 @@ class ViewTaskViewController: UIViewController {
             formatter.dateFormat = "MMM dd yyyy"
             duePercentString = "Due: " + formatter.string(from: dueDate) + " | "
             if dueDate.timeIntervalSince(Date()) <= 86400 {
-//                self.dueDateLabel.textColor = appRed
+                //                self.dueDateLabel.textColor = appRed
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }
@@ -176,44 +176,45 @@ class ViewTaskViewController: UIViewController {
         guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         self.status = status
         
-        switch(status) {
-        case .pending:
-            self.titleLabel.text = "PENDING TASK"
-//            self.dueDateLabel.textColor = appRed
-            self.updateButton.setTitle("DECLINE TASK", for: .normal)
-            self.updateButton.setTitleColor(UIColor.black, for: .normal)
-            self.updateButton.setTitleColor(UIColor.white, for: .highlighted)
-            guard let updateBackground: UIImage = ImageWith(color: appRed) else { return }
-            self.updateButton.setBackgroundImage(updateBackground, for: .highlighted)
-            self.doneButton.setTitle("ACCEPT TASK", for: .normal)
-            self.doneButton.setTitleColor(UIColor.black, for: .normal)
-            self.doneButton.setTitleColor(UIColor.white, for: .highlighted)
-            guard let doneBackground: UIImage = ImageWith(color: appGreen) else { return }
-            self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
-            break
-        case .inProgress:
+//        switch(status) {
+//        case .pending:
+//            self.titleLabel.text = "PENDING TASK"
+//            //            self.dueDateLabel.textColor = appRed
+//            self.updateButton.setTitle("DECLINE TASK", for: .normal)
+//            self.updateButton.setTitleColor(UIColor.black, for: .normal)
+//            self.updateButton.setTitleColor(UIColor.white, for: .highlighted)
+//            guard let updateBackground: UIImage = ImageWith(color: appRed) else { return }
+//            self.updateButton.setBackgroundImage(updateBackground, for: .highlighted)
+//            self.doneButton.setTitle("ACCEPT TASK", for: .normal)
+//            self.doneButton.setTitleColor(UIColor.black, for: .normal)
+//            self.doneButton.setTitleColor(UIColor.white, for: .highlighted)
+//            guard let doneBackground: UIImage = ImageWith(color: appGreen) else { return }
+//            self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
+//            break
+//        case .inProgress:
             self.titleLabel.text = "IN PROGRESS"
-//            self.dueDateLabel.textColor = appYellow
-            self.updateButton.setTitle("GIVE UPDATE", for: .normal)
-            self.updateButton.setTitleColor(UIColor.black, for: .normal)
-            self.updateButton.setTitleColor(UIColor.white, for: .highlighted)
-            guard let updateBackground: UIImage = ImageWith(color: appBlue) else { return }
-            self.updateButton.setBackgroundImage(updateBackground, for: .highlighted)
-            self.doneButton.setTitle("TASK IS DONE", for: .normal)
-            self.doneButton.setTitleColor(UIColor.black, for: .normal)
-            self.doneButton.setTitleColor(UIColor.white, for: .highlighted)
-            guard let doneBackground: UIImage = ImageWith(color: appGreen) else { return }
-            self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
-            break
-        case .completed:
-            self.tableView.backgroundColor = appGreen
-            self.titleLabel.text = "COMPLETED TASK"
-//            self.dueDateLabel.textColor = appGreen
             self.bottomMenu.alpha = 0
-//            self.dueDateLabel.text = "COMPLETED"
-            self.tableView.reloadData()
-            break
-        }
+            //            self.dueDateLabel.textColor = appYellow
+//            self.updateButton.setTitle("GIVE UPDATE", for: .normal)
+//            self.updateButton.setTitleColor(UIColor.black, for: .normal)
+//            self.updateButton.setTitleColor(UIColor.white, for: .highlighted)
+//            guard let updateBackground: UIImage = ImageWith(color: appBlue) else { return }
+//            self.updateButton.setBackgroundImage(updateBackground, for: .highlighted)
+//            self.doneButton.setTitle("TASK IS DONE", for: .normal)
+//            self.doneButton.setTitleColor(UIColor.black, for: .normal)
+//            self.doneButton.setTitleColor(UIColor.white, for: .highlighted)
+//            guard let doneBackground: UIImage = ImageWith(color: appGreen) else { return }
+//            self.doneButton.setBackgroundImage(doneBackground, for: .highlighted)
+//            break
+//        case .completed:
+//            self.tableView.backgroundColor = appGreen
+//            self.titleLabel.text = "COMPLETED TASK"
+//            //            self.dueDateLabel.textColor = appGreen
+//            self.bottomMenu.alpha = 0
+//            //            self.dueDateLabel.text = "COMPLETED"
+//            self.tableView.reloadData()
+//            break
+//        }
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -227,13 +228,13 @@ class ViewTaskViewController: UIViewController {
     }
     
     @IBAction func buttonRelease(_ sender: UIButton) {
-//        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
-//        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
+        //        guard let task: Task = self.task else { print("Error: no task on ViewTaskViewController"); return }
+        //        guard let status: TaskStatus = TaskStatus(rawValue: task.status) else { print("Error: no status on task"); return }
         sender.layer.borderColor = UIColor.black.cgColor
     }
     
     @IBAction func updateButtonPressed(_ sender: UIButton) {
-//        guard let task: Task = self.task else { print("No task"); return }
+        //        guard let task: Task = self.task else { print("No task"); return }
         if let status = self.status {
             switch(status) {
             case .pending:
@@ -286,7 +287,7 @@ class ViewTaskViewController: UIViewController {
                     CoreDataStack.shared.saveContext()
                     
                     // Update task and UI to reflect the change.
-//                    self.task = task
+                    //                    self.task = task
                     self.updateUI()
                 }, failure: { (error, statusCode) in
                     // Error
@@ -316,17 +317,17 @@ class ViewTaskViewController: UIViewController {
     }
 }
 
-extension ViewTaskViewController: UITableViewDataSource, UITableViewDelegate {
+extension ViewTeamMemberTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-//        return self.fetchedResultsController.sections?.count ?? 1
+        //        return self.fetchedResultsController.sections?.count ?? 1
         
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let sectionInfo: NSFetchedResultsSectionInfo = self.fetchedResultsController.sections?[section] else { return 1 }
-//        return sectionInfo.numberOfObjects + 1
+        //        guard let sectionInfo: NSFetchedResultsSectionInfo = self.fetchedResultsController.sections?[section] else { return 1 }
+        //        return sectionInfo.numberOfObjects + 1
         
         return self.datasource.count + 1
     }
@@ -342,40 +343,40 @@ extension ViewTaskViewController: UITableViewDataSource, UITableViewDelegate {
             cell.contentView.backgroundColor = UIColor.white
             cell.label.textColor = UIColor.black
             let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
-//            let item = self.fetchedResultsController.object(at: realIndexPath)
+            //            let item = self.fetchedResultsController.object(at: realIndexPath)
             let item: Item = self.datasource[realIndexPath.row]
             cell.load(item: item)
             
-            if let status = self.status {
-                switch(status) {
-                case .pending:
+//            if let status = self.status {
+//                switch(status) {
+//                case .pending:
                     cell.button.alpha = 0.0
-                    cell.dot.alpha = 1.0
-                    break
-                case .inProgress:
-                    break
-                case .completed:
-                    cell.state = .selected
-                    cell.button.isEnabled = false
-                    cell.contentView.backgroundColor = appGreen
-                    cell.label.textColor = UIColor.white
-                    break
-                }
-            }
+                    cell.dot.alpha = 0.0
+//                    break
+//                case .inProgress:
+//                    break
+//                case .completed:
+//                    cell.state = .selected
+//                    cell.button.isEnabled = false
+//                    cell.contentView.backgroundColor = appGreen
+//                    cell.label.textColor = UIColor.white
+//                    break
+//                }
+//            }
         }
         return cell
     }
     
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if scrollView.contentOffset.y > 0.0 {
-//            scrollView.backgroundColor = UIColor.white
-//        } else if scrollView.contentOffset.y < 0.0 {
-//            scrollView.backgroundColor = self.view.backgroundColor
-//        }
-//    }
+    //    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    //        if scrollView.contentOffset.y > 0.0 {
+    //            scrollView.backgroundColor = UIColor.white
+    //        } else if scrollView.contentOffset.y < 0.0 {
+    //            scrollView.backgroundColor = self.view.backgroundColor
+    //        }
+    //    }
 }
 
-extension ViewTaskViewController: NSFetchedResultsControllerDelegate {
+extension ViewTeamMemberTaskViewController: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.beginUpdates()

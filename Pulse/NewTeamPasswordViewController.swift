@@ -39,7 +39,7 @@ class NewTeamPasswordViewController: Onboarding {
     
     private func setupAppearance() {
 //        self.view.backgroundColor = UIColor("ECEFF1")
-        self.nextButton.alpha = 0.52
+        self.nextButton.alpha = 0.14
         self.nextButton.isEnabled = false
         let color: UIColor = UIColor.black.withAlphaComponent(0.17)
         let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)

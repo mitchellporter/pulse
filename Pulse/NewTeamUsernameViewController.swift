@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewTeamUsernameViewController: Onboarding {
+class NewTeamEmailViewController: Onboarding {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var takenLabel: UILabel!
@@ -45,7 +45,7 @@ class NewTeamUsernameViewController: Onboarding {
         self.nextButton.isEnabled = false
         let color: UIColor = UIColor.white.withAlphaComponent(0.52)
         let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)
-        self.textField.attributedPlaceholder = NSAttributedString(string: " Your Username", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.textField.attributedPlaceholder = NSAttributedString(string: " Your Email Address", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
     }
     
     private func setupObserver() {
@@ -96,7 +96,7 @@ class NewTeamUsernameViewController: Onboarding {
         AvailabilityService.checkUsernameAvailability(username: username, success: { (username) in
             // Success means the username is available??
             
-            self.performSegue(withIdentifier: "email", sender: username)
+            self.performSegue(withIdentifier: "name", sender: username)
         }) { (error, statusCode) in
             // Error means the username is taken??
             
@@ -115,13 +115,13 @@ class NewTeamUsernameViewController: Onboarding {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        guard let username: String = sender as? String else { return }
-        guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
-        toVC.username = username
+//        guard let username: String = sender as? String else { return }
+//        guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
+        
     }
 }
 
-extension NewTeamUsernameViewController: UITextFieldDelegate {
+extension NewTeamEmailViewController: UITextFieldDelegate {
     
     @IBAction func textFieldDidChange(_ textField: UITextField) {
         self.nextButtonIs(enabled: !(textField.text == nil || textField.text == ""))

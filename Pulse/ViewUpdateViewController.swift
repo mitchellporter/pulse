@@ -113,17 +113,18 @@ class ViewUpdateViewController: UIViewController {
         // Setup comment badge
         let circle: CALayer = CALayer()
         circle.frame = CGRect(x: 12, y: -2, width: 12, height: 12)
-        circle.backgroundColor = appRed.cgColor
+        circle.backgroundColor = nil
         circle.masksToBounds = true
         circle.cornerRadius = circle.frame.width/2
         let border: CAShapeLayer = CAShapeLayer()
         border.path = UIBezierPath(ovalIn: CGRect(x: 1, y: 1, width: 10, height: 10)).cgPath
         border.strokeColor = UIColor.white.cgColor
         border.lineWidth = 2
-        border.fillColor = nil
+        border.fillColor = appRed.cgColor
         circle.addSublayer(border)
         
         self.commentBadge = circle
+        self.commentButton.layer.addSublayer(circle)
         
         // Setup comment view
         self.commentView.layer.cornerRadius = 3
@@ -132,7 +133,7 @@ class ViewUpdateViewController: UIViewController {
     }
     
     private func getCirclePath() -> UIBezierPath {
-        let path: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: self.circleFrame.width/2, y: self.circleFrame.height/2), radius: self.circleFrame.width/2, startAngle: CGFloat(M_PI_2), endAngle: CGFloat(M_PI*2.5), clockwise: true)
+        let path: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: self.circleFrame.width/2, y: self.circleFrame.height/2), radius: self.circleFrame.width/2, startAngle: CGFloat(Double.pi / 2), endAngle: CGFloat(Double.pi*2.5), clockwise: true)
         return path
     }
     
@@ -245,7 +246,7 @@ class ViewUpdateViewController: UIViewController {
         
         if segue.identifier == "breakdown" {
             guard let update: Update = sender as? Update else { return }
-            guard let responses: Set<Response> = update.responses else { return }
+//            guard let responses: Set<Response> = update.responses else { return }
             guard let toVC: ViewUpdateBreakdownViewController = segue.destination as? ViewUpdateBreakdownViewController else { return }
 //            toVC.datasource = Array(responses)
             toVC.update = update

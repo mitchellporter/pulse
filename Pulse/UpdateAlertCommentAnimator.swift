@@ -36,7 +36,7 @@ class UpdateAlertCommentAnimator: NSObject, UIViewControllerAnimatedTransitionin
         
         let backingView: UIView = UIView(frame: UIScreen.main.bounds)
         backingView.backgroundColor = UIColor(black: 1, alpha: 0.74)
-        backingView.layer.zPosition = -CGFloat(FLT_MAX)
+        backingView.layer.zPosition = -CGFloat(Float.greatestFiniteMagnitude)
         context.containerView.addSubview(backingView)
         
         UIGraphicsBeginImageContextWithOptions(fromVC.alertView.bounds.size, false, 0.0)
@@ -63,8 +63,8 @@ class UpdateAlertCommentAnimator: NSObject, UIViewControllerAnimatedTransitionin
         
         var rotationAndPerspectiveTransform: CATransform3D = CATransform3DIdentity
         rotationAndPerspectiveTransform.m34 = self.m34
-        let rotationAndPerspectiveTransform1: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, -CGFloat(M_PI) / 2, 0.0, 1.0, 0.0)
-        let rotationAndPerspectiveTransform2: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, CGFloat(M_PI) / 2, 0.0, 1.0, 0.0)
+        let rotationAndPerspectiveTransform1: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, -CGFloat(Double.pi) / 2, 0.0, 1.0, 0.0)
+        let rotationAndPerspectiveTransform2: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, CGFloat(Double.pi) / 2, 0.0, 1.0, 0.0)
         viewtwo.layer.transform = rotationAndPerspectiveTransform2
         
         UIView.animateKeyframes(withDuration: self.duration, delay: 0.0, options: .calculationModeCubic, animations: {
@@ -93,7 +93,7 @@ class UpdateAlertCommentAnimator: NSObject, UIViewControllerAnimatedTransitionin
         
         let backingView: UIView = UIView(frame: UIScreen.main.bounds)
         backingView.backgroundColor = UIColor(black: 1, alpha: 0.74)
-        backingView.layer.zPosition = -CGFloat(FLT_MAX)
+        backingView.layer.zPosition = -CGFloat(Float.greatestFiniteMagnitude)
         context.containerView.addSubview(backingView)
         
         UIGraphicsBeginImageContextWithOptions(fromVC.alertView.bounds.size, false, 0.0)
@@ -120,8 +120,8 @@ class UpdateAlertCommentAnimator: NSObject, UIViewControllerAnimatedTransitionin
         
         var rotationAndPerspectiveTransform: CATransform3D = CATransform3DIdentity
         rotationAndPerspectiveTransform.m34 = self.m34
-        let rotationAndPerspectiveTransform1: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, CGFloat(M_PI) / 2, 0.0, 1.0, 0.0)
-        let rotationAndPerspectiveTransform2: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, -CGFloat(M_PI) / 2, 0.0, 1.0, 0.0)
+        let rotationAndPerspectiveTransform1: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, CGFloat(Double.pi) / 2, 0.0, 1.0, 0.0)
+        let rotationAndPerspectiveTransform2: CATransform3D = CATransform3DRotate(rotationAndPerspectiveTransform, -CGFloat(Double.pi) / 2, 0.0, 1.0, 0.0)
         viewtwo.layer.transform = rotationAndPerspectiveTransform2
         
         UIView.animateKeyframes(withDuration: self.duration, delay: 0.0, options: .calculationModeCubic, animations: {

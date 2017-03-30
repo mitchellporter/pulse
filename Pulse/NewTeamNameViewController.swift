@@ -78,7 +78,7 @@ class NewTeamNameViewController: Onboarding {
     fileprivate func checkTeamName(_ name: String?) {
         self.nextButtonIs(enabled: !(name == nil || name == ""))
         
-        guard let name: String = name else { self.alertBackground(false); return }
+//        guard let name: String = name else { self.alertBackground(false); return }
         
         // Check if team name is already taken
 //        let showAlert: Bool = name.lowercased().contains("b")
@@ -98,10 +98,10 @@ class NewTeamNameViewController: Onboarding {
         AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (teamName) in
             // Success means name is available??
             
-            self.performSegue(withIdentifier: "username", sender: teamName)
+            self.performSegue(withIdentifier: "email", sender: teamName)
             
         }) { (error, statusCode) in
-            print("Error: \(statusCode) \(error.localizedDescription)")
+            print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
             // Failure means name is taken??
             
 //            self.alertBackground(true)

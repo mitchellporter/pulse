@@ -20,6 +20,7 @@ class TaskCell: UITableViewCell {
     @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var badge: UIView!
     @IBOutlet weak var assignedLabel: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     // Revisit if this should be one or two labels.
     @IBOutlet weak var duePercentLabel: UILabel!
@@ -61,9 +62,20 @@ class TaskCell: UITableViewCell {
 //        self.avatar.layer.borderColor = UIColor.white.cgColor
 //        self.avatar.layer.borderWidth = 2
         
+        self.badge.layer.backgroundColor = appRed.cgColor
         self.badge.layer.borderColor = UIColor.white.cgColor
         self.badge.layer.borderWidth = 2
         self.badge.alpha = 0
+        self.badge.layer.cornerRadius = 7
+        
+        let antiAliasingRing: CAShapeLayer = CAShapeLayer()
+        antiAliasingRing.fillColor = UIColor.clear.cgColor
+        antiAliasingRing.strokeColor = UIColor.white.cgColor
+        antiAliasingRing.lineWidth = 1.0
+        antiAliasingRing.path = UIBezierPath(roundedRect: self.badge.bounds, cornerRadius: self.badge.layer.cornerRadius).cgPath
+        self.badge.layer.addSublayer(antiAliasingRing)
+        
+        self.containerView.layer.cornerRadius = 8.0
     }
     
     func load(_ object: Any, type: TaskCellType) {
@@ -132,18 +144,14 @@ class TaskCell: UITableViewCell {
         guard let avatarURL: String = user?.avatarURL else { print("No avatar url found"); return }
         guard let url: URL = URL(string: avatarURL) else { return }
         Nuke.loadImage(with: url, into: self.avatar)
+        
+//        self.configureState(for: task)
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
 //        self.duePercentLabel.textColor = UIColor.white
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        
-        self.badge.layer.cornerRadius = self.badge.frame.width / 2
     }
     
     func configureState(for task: Task) {

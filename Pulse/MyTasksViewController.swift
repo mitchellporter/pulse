@@ -84,7 +84,7 @@ class MyTasksViewController: UIViewController {
             CoreDataStack.shared.saveContext()
             self.checkCache()
         }) { (error, statusCode) in
-            print("Error getting tasks: \(statusCode) \(error.localizedDescription)")
+            print("Error getting tasks: \(statusCode ?? 000) \(error.localizedDescription)")
         }
     }
     

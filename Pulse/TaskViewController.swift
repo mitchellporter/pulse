@@ -8,57 +8,51 @@
 
 import UIKit
 import CoreData
+import UIAdditions
 
 class TaskViewController: UIViewController {
     
-    enum ViewMode: Int {
-        case myTasks
-        case updates
-        case createdTasks
-    }
-    
-    @IBOutlet weak var headerNavigationContainer: UIView!
+    @IBOutlet weak var headerNavigation: HeaderNavigation!
     @IBOutlet weak var addButton: Button!
     @IBOutlet weak var containerView: UIView!
     
-    @IBOutlet weak var myTasksButton: Button!
-    @IBOutlet weak var updatesButton: Button!
-    @IBOutlet weak var createdTasksButton: Button!
+    @IBOutlet weak var swipeRightGesture: UISwipeGestureRecognizer!
+    @IBOutlet weak var swipeLeftGesture: UISwipeGestureRecognizer!
     
-
-    private var viewControllers: [UIViewController] = [UIViewController]()
-    private var selectionDot: UIImageView = UIImageView()
-    fileprivate var modeSelected: ViewMode = .myTasks {
-        didSet {
-            if oldValue != self.modeSelected {
-                self.updateView(mode: self.modeSelected)
-            }
-        }
-    }
-
+    var datasource: [(title: String, color: UIColor, viewController: UIViewController) ] = [(title: String, color: UIColor, viewController: UIViewController)]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.setupAppearance()
         self.initializeViewControllers()
-        self.updateView(mode: self.modeSelected)
+        self.setupAppearance()
+        self.updateView(with: IndexPath(row: 0, section: 0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.updateView(mode: self.modeSelected)
-        
-        Delay.wait(0.1) { 
-            self.updateView(mode: self.modeSelected)
-        }
     }
     
     private func initializeViewControllers() {
+        let myTasksTitle: String = "MY TASKS"
+        let myTasksColor: UIColor = appGreen
         let myTasks = MyTasksViewController(nibName: "MyTasksViewController", bundle: nil)
-        let updates = UpdatesViewController(nibName: "UpdatesViewController", bundle: nil)
-        let createdTasks = CreatedTasksViewController(nibName: "CreatedTasksViewController", bundle: nil)
+        self.datasource.append((title: myTasksTitle, color: myTasksColor, viewController: myTasks))
         
-        self.viewControllers.append(contentsOf: [myTasks, updates, createdTasks])
+        let updatesTitle: String = "UPDATES"
+        let updatesColor: UIColor = appYellow
+        let updates = UpdatesViewController(nibName: "UpdatesViewController", bundle: nil)
+        self.datasource.append((title: updatesTitle, color: updatesColor, viewController: updates))
+        
+        let tasksCreatedTitle: String = "TASKS CREATED"
+        let tasksCreatedColor: UIColor = appBlue
+        let tasksCreated = CreatedTasksViewController(nibName: "CreatedTasksViewController", bundle: nil)
+        self.datasource.append((title: tasksCreatedTitle, color: tasksCreatedColor, viewController: tasksCreated))
+        
+        let teamTitle: String = "TEAM"
+        let teamColor: UIColor = appPurple
+        let team = TeamViewController(nibName: "TeamViewController", bundle: nil)
+        self.datasource.append((title: teamTitle, color: teamColor, viewController: team))
     }
     
     private func updateContainerView(with viewController: UIViewController) {
@@ -71,6 +65,63 @@ class TaskViewController: UIViewController {
         self.containerView.addSubview(viewController.view)
         viewController.view.frame = self.containerView.bounds
         viewController.didMove(toParentViewController: self)
+    }
+    
+    fileprivate func scrollViewControllerIntoView(viewController: UIViewController) {
+        let previousIndex: Int = self.headerNavigation.selectedIndex.row
+        var newIndex: Int = 0
+        for (i, item) in self.datasource.enumerated() {
+            if item.viewController == viewController {
+                newIndex = i
+            }
+        }
+        
+        let previousVC: UIViewController = self.datasource[previousIndex].viewController
+        viewController.view.frame = self.containerView.bounds
+        
+        let newX: CGFloat = previousIndex > newIndex ? -previousVC.view.frame.width : previousVC.view.frame.width
+        let newViewFrame: CGRect = CGRect(x: newX, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+        viewController.view.frame = newViewFrame
+        
+        self.addChildViewController(viewController)
+        self.containerView.addSubview(viewController.view)
+        viewController.didMove(toParentViewController: self)
+        
+        let oldX: CGFloat = previousIndex > newIndex ? previousVC.view.frame.width : -previousVC.view.frame.width
+        let oldViewFrame: CGRect = CGRect(x: oldX, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            viewController.view.frame = self.containerView.bounds
+            previousVC.view.frame = oldViewFrame
+            
+        }, completion: { _ in
+            previousVC.view.removeFromSuperview()
+        })
+    }
+    
+    private func setupAppearance() {
+        self.addButton.layer.backgroundColor = createTaskBackgroundColor.cgColor
+        
+        let antiAliasingRing: CAShapeLayer = CAShapeLayer()
+        antiAliasingRing.fillColor = UIColor.clear.cgColor
+        antiAliasingRing.strokeColor = UIColor.white.cgColor
+        antiAliasingRing.lineWidth = 1.0
+        antiAliasingRing.path = UIBezierPath(roundedRect: self.addButton.bounds, cornerRadius: self.addButton.layer.cornerRadius).cgPath
+        self.addButton.layer.addSublayer(antiAliasingRing)
+        
+        self.setupHeaderNavigation()
+    }
+    
+    private func setupHeaderNavigation() {
+        self.headerNavigation.delegate = self
+        self.headerNavigation.color = self.datasource[0].color
+        self.headerNavigation.reloadTitles()
+    }
+    
+    fileprivate func updateView(with indexPath: IndexPath) {
+        let viewController: UIViewController = self.datasource[indexPath.row].viewController
+        self.updateContainerView(with: viewController)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -110,78 +161,57 @@ class TaskViewController: UIViewController {
                 destination.update = update
             }
         }
-    }
-    
-    private func setupAppearance() {
-        self.addButton.backgroundColor = createTaskBackgroundColor
-    }
-    
-    private func updateView(mode: ViewMode) {
-        let fadeAlpha: CGFloat = 0.4
-        switch mode {
-        case .myTasks:
-            self.headerNavigationContainer.backgroundColor = appGreen
-            self.myTasksButton.alpha = 1
-            self.updatesButton.alpha = fadeAlpha
-            self.createdTasksButton.alpha = fadeAlpha
-            self.updateContainerView(with: self.viewControllers[0])
-            
-            guard let buttonTitleFrame: CGRect = self.myTasksButton.titleLabel?.superview?.convert(self.myTasksButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
-            self.selectionDot.image = image
-            self.selectionDot.frame.size = image.size
-            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.myTasksButton.center.y - (self.selectionDot.bounds.height / 2))
-            self.selectionDot.frame.origin = dotOrigin
-//            self.selectionDot.center.y = self.myTasksButton.center.y
-            self.view.addSubview(self.selectionDot)
-        case .updates:
-            self.headerNavigationContainer.backgroundColor = appYellow
-            self.myTasksButton.alpha = fadeAlpha
-            self.updatesButton.alpha = 1
-            self.createdTasksButton.alpha = fadeAlpha
-            self.updateContainerView(with: self.viewControllers[1])
-            
-            guard let buttonTitleFrame: CGRect = self.updatesButton.titleLabel?.superview?.convert(self.updatesButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
-            self.selectionDot.image = image
-            self.selectionDot.frame.size = image.size
-            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.updatesButton.center.y - (self.selectionDot.bounds.height / 2))
-            self.selectionDot.frame.origin = dotOrigin
-            //            self.selectionDot.center.y = self.myTasksButton.center.y
-            self.view.addSubview(self.selectionDot)
-        case .createdTasks:
-            self.headerNavigationContainer.backgroundColor = appBlue
-            self.createdTasksButton.alpha = 1
-            self.updatesButton.alpha = fadeAlpha
-            self.myTasksButton.alpha = fadeAlpha
-            self.updateContainerView(with: self.viewControllers[2])
-            
-            guard let buttonTitleFrame: CGRect = self.createdTasksButton.titleLabel?.superview?.convert(self.createdTasksButton.titleLabel!.frame, to: nil) else { return }
-            let image: UIImage = #imageLiteral(resourceName: "WhiteDot")
-            self.selectionDot.image = image
-            self.selectionDot.frame.size = image.size
-            let dotOrigin: CGPoint = CGPoint(x: buttonTitleFrame.origin.x - 6 - self.selectionDot.bounds.width, y: self.createdTasksButton.center.y - (self.selectionDot.bounds.height / 2))
-            self.selectionDot.frame.origin = dotOrigin
-            //            self.selectionDot.center.y = self.myTasksButton.center.y
-            self.view.addSubview(self.selectionDot)
+        
+        if segue.identifier == "teamMember" {
+            guard let user: User = sender as? User else { return }
+            guard let destinationVC: TeamMemberViewController = segue.destination as? TeamMemberViewController else { return }
+            destinationVC.user = user
         }
-    }
-
-    @IBAction func myTasksPressed(_ sender: UIButton) {
-        self.modeSelected = .myTasks
-    }
-    
-    @IBAction func updatesPresssed(_ sender: UIButton!) {
-        self.modeSelected = .updates
-    }
-    
-    @IBAction func createdTasksPressed(_ sender: UIButton) {
-        self.modeSelected = .createdTasks
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "create", sender: nil)
     }
     
+    @IBAction func swiped(_ sender: UISwipeGestureRecognizer) {
+        if sender == self.swipeLeftGesture {
+            let index: IndexPath = IndexPath(row: self.headerNavigation.selectedIndex.row + 1, section: 0)
+            if index.row < self.datasource.count {
+                self.headerNavigation(self.headerNavigation, changedSelectedIndex: index, from: self.headerNavigation.selectedIndex)
+                self.headerNavigation.selectedIndex = index
+            }
+        } else if sender == self.swipeRightGesture {
+            let index: IndexPath = IndexPath(row: self.headerNavigation.selectedIndex.row - 1, section: 0)
+            if index.row >= 0 {
+                self.headerNavigation(self.headerNavigation, changedSelectedIndex: index, from: self.headerNavigation.selectedIndex)
+                self.headerNavigation.selectedIndex = index
+            }
+        }
+    }
+    
     @IBAction func unwindToTaskViewController(_ segue: UIStoryboardSegue) {}
+}
+
+extension TaskViewController: HeaderNavigationDelegate {
+    
+    func numberOfSections(in headerNavigation: HeaderNavigation) -> Int {
+        return 1
+    }
+    
+    func headerNavigation(_ headerNavigation: HeaderNavigation, numberOfItemsInSection section: Int) -> Int {
+        return self.datasource.count
+    }
+    
+    func headerNavigation(_ headerNavigation: HeaderNavigation, titleForIndex indexPath: IndexPath) -> String? {
+        return self.datasource[indexPath.row].title
+    }
+    
+    func headerNavigation(_ headerNavigation: HeaderNavigation, changedSelectedIndex indexPath: IndexPath, from oldIndexPath: IndexPath) {
+        self.headerNavigation.color = self.datasource[indexPath.row].color
+//        self.updateView(with: indexPath)
+        if indexPath != oldIndexPath {
+            let viewController: UIViewController = self.datasource[indexPath.row].viewController
+            self.scrollViewControllerIntoView(viewController: viewController)
+        }
+    }
 }

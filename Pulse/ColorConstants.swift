@@ -41,3 +41,6 @@ let appPink: UIColor = UIColor("FF4C79")
 
 // This color would be "042C4A" in sRGB colorspace.
 let appDark: UIColor = UIColor("042C4A")
+
+// This color would be "9155F6" in sRGB colorspace.
+let appPurple: UIColor = UIColor("9155F6")
