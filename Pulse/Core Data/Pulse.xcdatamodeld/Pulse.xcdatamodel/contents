@@ -8,7 +8,7 @@
         <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" syncable="YES"/>
+        <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentInvites" inverseEntity="User" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" syncable="YES"/>
         <compoundIndexes>
@@ -149,6 +149,7 @@
         <relationship name="receivedTaskInvitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="receiver" inverseEntity="TaskInvitation" syncable="YES"/>
         <relationship name="receivedTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignees" inverseEntity="Task" syncable="YES"/>
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="assignee" inverseEntity="Response" syncable="YES"/>
+        <relationship name="sentInvites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Invite" inverseName="sender" inverseEntity="Invite" syncable="YES"/>
         <relationship name="sentTaskInvitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="sender" inverseEntity="TaskInvitation" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="members" inverseEntity="Team" syncable="YES"/>
         <compoundIndexes>
@@ -169,7 +170,7 @@
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="Invite" positionX="-45" positionY="126" width="128" height="195"/>
     </elements>
 </model>
