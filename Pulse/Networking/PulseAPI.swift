@@ -30,8 +30,7 @@ extension PulseAPI {
 enum PulseAPI {
     
     // Auth
-    case login(email: String, password: String) //
-    case signup(email: String, name: String, position: String) //
+    case signin(teamId: String, email: String, password: String) //
     
     // TODO: Can only singup to an existing team right now
     case signupToExistingTeam(teamId: String, email: String, password: String, fullName: String, position: String) //
@@ -101,8 +100,7 @@ extension PulseAPI {
              .markTaskItemCompleted:
             return .put
         
-        case .login,
-             .signup,
+        case .signin,
              .createTask,
              .requestTaskUpdate,
              .sendTaskUpdate,
@@ -120,7 +118,7 @@ extension PulseAPI {
 extension PulseAPI {
     var path: String {
         switch self {
-        case .login:
+        case .signin:
             return "/api/\(PulseAPI.apiVersion)/auth/signin"
         case .signupAndCreateTeam:
             return "/api/\(PulseAPI.apiVersion)/teams"
@@ -183,8 +181,12 @@ extension PulseAPI {
 extension PulseAPI {
     var requiresAuthToken: Bool {
         switch self {
-        case .login,
-             .signup:
+        case .signin,
+             .signupAndCreateTeam,
+             .signupToExistingTeam,
+             .checkTeamNameAvailability,
+             .checkEmailAvailability,
+             .checkUsernameAvailability:
             return false
         default:
             return true
@@ -195,7 +197,14 @@ extension PulseAPI {
 extension PulseAPI {
     var parameters: [String: AnyObject]? {
         switch self {
-            
+        
+        case let .signin(teamId, email, password):
+            let params = [
+                "team": teamId as AnyObject,
+                "email": email as AnyObject,
+                "password": password as AnyObject
+            ]
+            return params
         case let .signupAndCreateTeam(teamName, email, password, fullName, position):
             var params = [
                 "team_name": teamName as AnyObject,
