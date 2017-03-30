@@ -48,8 +48,8 @@ struct TaskService {
         }, failure: failure)
     }
     
-    static func getTasksCreatedByUser(assignerId: String, offset: Int, success: @escaping TasksServiceSuccess, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .getTasksCreatedByUser(assignerId: assignerId, offset: offset), success: { (data) in
+    static func getTasksCreatedByUser(assignerId: String, offset: Int, status: String? = nil, success: @escaping TasksServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getTasksCreatedByUser(assignerId: assignerId, offset: offset, status: status), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let tasksJSON = json["tasks"].arrayObject {
@@ -66,8 +66,8 @@ struct TaskService {
         }
     }
     
-    static func getTasksAssignedToUser(assigneeId: String, offset: Int, success: @escaping TasksServiceSuccess, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .getTasksAssignedToUser(assigneeId: assigneeId, offset: offset), success: { (data) in
+    static func getTasksAssignedToUser(assigneeId: String, offset: Int, status: String? = nil, success: @escaping TasksServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .getTasksAssignedToUser(assigneeId: assigneeId, offset: offset, status: status), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let tasksJSON = json["tasks"].arrayObject {
