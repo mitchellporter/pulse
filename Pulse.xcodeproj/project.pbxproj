@@ -135,6 +135,7 @@
 		C3A54BEC1E8D8507004E0E1B /* InviteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BEB1E8D8507004E0E1B /* InviteService.swift */; };
 		C3A54BEF1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BED1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift */; };
 		C3A54BF01E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BEE1E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift */; };
+		C3A54BF21E8DA0E6004E0E1B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BF11E8DA0E6004E0E1B /* UserService.swift */; };
 		C3A8A3A01E83232200C46346 /* AvailabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A8A39F1E83232200C46346 /* AvailabilityService.swift */; };
 		C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */; };
 		C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */; };
@@ -320,6 +321,7 @@
 		C3A54BEB1E8D8507004E0E1B /* InviteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteService.swift; path = Networking/Services/InviteService.swift; sourceTree = "<group>"; };
 		C3A54BED1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invite+CoreDataClass.swift"; path = "Core Data/Invite+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3A54BEE1E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invite+CoreDataProperties.swift"; path = "Core Data/Invite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C3A54BF11E8DA0E6004E0E1B /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Networking/Services/UserService.swift; sourceTree = "<group>"; };
 		C3A8A39F1E83232200C46346 /* AvailabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityService.swift; path = Networking/Services/AvailabilityService.swift; sourceTree = "<group>"; };
 		C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateService.swift; path = Networking/Services/UpdateService.swift; sourceTree = "<group>"; };
 		C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Update+CoreDataClass.swift"; path = "Core Data/Update+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 				C3A3EDD21E7B48AC00560678 /* FeedService.swift */,
 				C3A8A39F1E83232200C46346 /* AvailabilityService.swift */,
 				C3A54BEB1E8D8507004E0E1B /* InviteService.swift */,
+				C3A54BF11E8DA0E6004E0E1B /* UserService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -1138,6 +1141,7 @@
 				C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */,
 				C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */,
 				C1AD36831E68EC0600C5A9AA /* PassiveAlert.swift in Sources */,
+				C3A54BF21E8DA0E6004E0E1B /* UserService.swift in Sources */,
 				C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */,
 				C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */,
 				C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */,

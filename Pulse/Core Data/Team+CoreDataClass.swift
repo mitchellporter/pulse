@@ -40,14 +40,11 @@ extension Team: PulseType {
             updatedAt = Date.from(updatedAtTime)
         }
         
-        let domain = json["domain"] as! String
-        
         let description = NSEntityDescription.entity(forEntityName: "Team", in: context)!
         let team = Team(entity: description, insertInto: context)
         team.objectId = objectId
         team.createdAt = createdAt
         team.updatedAt = updatedAt
-        team.domain = domain
         
         if let invitesJSON = json["invites"] as? [[String: AnyObject]] {
             invitesJSON.forEach({ inviteJSON in
