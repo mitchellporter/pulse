@@ -21,13 +21,15 @@ class TeamMemberViewController: UIViewController {
     @IBOutlet weak var createdTasksButton: UIButton!
     
     var user: User?
-    var assignedFetchedResultsController: NSFetchedResultsController<Task>!
-    var createdFetchedResultsController: NSFetchedResultsController<Task>!
+    fileprivate var assignedFetchedResultsController: NSFetchedResultsController<Task>!
+    fileprivate var createdFetchedResultsController: NSFetchedResultsController<Task>!
+    private var marker: UIImageView = UIImageView(image: #imageLiteral(resourceName: "GreenCircleMarker"))
     
     fileprivate var selectedSection: Int = 0 {
         didSet {
             if self.assignedFetchedResultsController != nil && self.createdFetchedResultsController != nil {
                 self.fetchData(in: self.selectedSection)
+                self.updateButtonSelection()
             }
         }
     }
@@ -46,6 +48,7 @@ class TeamMemberViewController: UIViewController {
     
     private func setupAppearance() {
         self.avatarImageView.layer.cornerRadius = 7
+        self.marker.frame.origin = CGPoint(x: 25, y: 26)
     }
     
     private func load(user: User) {
@@ -56,6 +59,7 @@ class TeamMemberViewController: UIViewController {
         Nuke.loadImage(with: avatarURL, into: self.avatarImageView)
         self.setupCoreData(with: user)
         self.fetchData(in: self.selectedSection)
+        self.selectedSection = 0
     }
     
     private func setupTableView() {
@@ -66,6 +70,7 @@ class TeamMemberViewController: UIViewController {
         self.tableView.backgroundColor = UIColor("ECEFF1")
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 124
+        self.tableView.contentInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
     }
     
     private func setupCoreData(with user: User) {
@@ -123,6 +128,20 @@ class TeamMemberViewController: UIViewController {
             print("Fetched results controller error: \(error)")
         }
         self.tableView.reloadData()
+    }
+    
+    private func updateButtonSelection() {
+        if self.selectedSection == 0 {
+            self.inProgressButton.addSubview(self.marker)
+            self.inProgressButton.titleLabel?.textColor = UIColor("636363")
+            
+            self.createdTasksButton.titleLabel?.textColor = UIColor("C4C4C4")
+        } else if self.selectedSection == 1 {
+            self.createdTasksButton.addSubview(self.marker)
+            self.createdTasksButton.titleLabel?.textColor = UIColor("636363")
+            
+            self.inProgressButton.titleLabel?.textColor = UIColor("C4C4C4")
+        }
     }
     
     @IBAction func assignedTasksButtonPressed(_ sender: UIButton) {

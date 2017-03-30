@@ -57,6 +57,12 @@ extension NavigationController: UINavigationControllerDelegate {
             let transition: ModalTransition = ModalTransition()
             transition.presenting = fromVC is TaskViewController ? true : false
             return transition
+        } else if (fromVC is TaskViewController && toVC is TeamMemberViewController) || (fromVC is TeamMemberViewController && toVC is TaskViewController) {
+            let transition: ModalTransition = ModalTransition()
+            transition.presenting = fromVC is TaskViewController ? true : false
+            return transition
+        } else if (fromVC is ViewTeamMemberTaskViewController && toVC is TeamMemberViewController) || (fromVC is TeamMemberViewController && toVC is ViewTeamMemberTaskViewController) {
+            return FadeTransition()
         } else if fromVC is HomeViewController {
             return NoAnimationTransition()
         }
