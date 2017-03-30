@@ -83,6 +83,7 @@
 		C1BD9E1C1E8C2A6B00DDEB88 /* TeamViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1BD9E1A1E8C2A6B00DDEB88 /* TeamViewController.xib */; };
 		C1BD9E1F1E8C567D00DDEB88 /* TeamMemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BD9E1D1E8C567D00DDEB88 /* TeamMemberCell.swift */; };
 		C1BD9E201E8C567D00DDEB88 /* TeamMemberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1BD9E1E1E8C567D00DDEB88 /* TeamMemberCell.xib */; };
+		C1BD9E221E8C6EBD00DDEB88 /* TeamMemberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1BD9E211E8C6EBD00DDEB88 /* TeamMemberViewController.swift */; };
 		C1D11C151E771763005D2D18 /* UpdateAlertCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C141E771763005D2D18 /* UpdateAlertCommentViewController.swift */; };
 		C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */; };
 		C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D11C191E789252005D2D18 /* Onboarding.storyboard */; };
@@ -259,6 +260,7 @@
 		C1BD9E1A1E8C2A6B00DDEB88 /* TeamViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamViewController.xib; sourceTree = "<group>"; };
 		C1BD9E1D1E8C567D00DDEB88 /* TeamMemberCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberCell.swift; sourceTree = "<group>"; };
 		C1BD9E1E1E8C567D00DDEB88 /* TeamMemberCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TeamMemberCell.xib; sourceTree = "<group>"; };
+		C1BD9E211E8C6EBD00DDEB88 /* TeamMemberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeamMemberViewController.swift; sourceTree = "<group>"; };
 		C1D11C141E771763005D2D18 /* UpdateAlertCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentViewController.swift; sourceTree = "<group>"; };
 		C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentAnimator.swift; sourceTree = "<group>"; };
 		C1D11C191E789252005D2D18 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
@@ -625,6 +627,7 @@
 				C1AD36641E689F2900C5A9AA /* TaskViewController */,
 				C1B86B251E60C0FA00A3182A /* ViewTaskViewController.swift */,
 				C1B86B271E60E85200A3182A /* EditTaskViewController.swift */,
+				C1BD9E211E8C6EBD00DDEB88 /* TeamMemberViewController.swift */,
 				C356E4581E5E5AC700E215CF /* Main.storyboard */,
 				C1D11C181E789217005D2D18 /* Onboarding */,
 				C133AF401E6A1BB5008AD201 /* HomeViewController.swift */,
@@ -1096,6 +1099,7 @@
 				C19B74241E5F9491002D9352 /* Button.swift in Sources */,
 				C1A82C241E86109600DC2618 /* NoAnimationTransition.swift in Sources */,
 				C1AD366D1E689F6C00C5A9AA /* UpdatesViewController.swift in Sources */,
+				C1BD9E221E8C6EBD00DDEB88 /* TeamMemberViewController.swift in Sources */,
 				C356E4B81E5F67FA00E215CF /* Task+CoreDataProperties.swift in Sources */,
 				C356E4C81E5FC52600E215CF /* TaskService.swift in Sources */,
 				C1BD9E1F1E8C567D00DDEB88 /* TeamMemberCell.swift in Sources */,

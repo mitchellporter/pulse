@@ -80,7 +80,7 @@ class TaskViewController: UIViewController {
         viewController.view.frame = self.containerView.bounds
         
         let newX: CGFloat = previousIndex > newIndex ? -previousVC.view.frame.width : previousVC.view.frame.width
-        let newViewFrame: CGRect = CGRect(x: newX, y: 0, width: viewController.view.frame.width, height: viewController.view.frame.height)
+        let newViewFrame: CGRect = CGRect(x: newX, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
         viewController.view.frame = newViewFrame
         
         self.addChildViewController(viewController)
@@ -88,7 +88,7 @@ class TaskViewController: UIViewController {
         viewController.didMove(toParentViewController: self)
         
         let oldX: CGFloat = previousIndex > newIndex ? previousVC.view.frame.width : -previousVC.view.frame.width
-        let oldViewFrame: CGRect = CGRect(x: oldX, y: 0, width: previousVC.view.frame.width, height: previousVC.view.frame.height)
+        let oldViewFrame: CGRect = CGRect(x: oldX, y: 0, width: self.containerView.frame.width, height: self.containerView.frame.height)
         
         UIView.animate(withDuration: 0.3, animations: {
             
@@ -161,6 +161,12 @@ class TaskViewController: UIViewController {
                 destination.update = update
             }
         }
+        
+        if segue.identifier == "teamMember" {
+            guard let user: User = sender as? User else { return }
+            guard let destinationVC: TeamMemberViewController = segue.destination as? TeamMemberViewController else { return }
+            destinationVC.user = user
+        }
     }
     
     @IBAction func addButtonPressed(_ sender: UIButton) {
@@ -203,8 +209,9 @@ extension TaskViewController: HeaderNavigationDelegate {
     func headerNavigation(_ headerNavigation: HeaderNavigation, changedSelectedIndex indexPath: IndexPath, from oldIndexPath: IndexPath) {
         self.headerNavigation.color = self.datasource[indexPath.row].color
 //        self.updateView(with: indexPath)
-        
-        let viewController: UIViewController = self.datasource[indexPath.row].viewController
-        self.scrollViewControllerIntoView(viewController: viewController)
+        if indexPath != oldIndexPath {
+            let viewController: UIViewController = self.datasource[indexPath.row].viewController
+            self.scrollViewControllerIntoView(viewController: viewController)
+        }
     }
 }

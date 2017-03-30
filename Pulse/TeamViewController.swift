@@ -32,8 +32,11 @@ class TeamViewController: UIViewController {
     }
     
     private func setupTableView() {
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cel")
-        
+        self.tableView.backgroundColor = UIColor("ECEFF1")
+        let cell: UINib = UINib(nibName: "TeamMemberCell", bundle: nil)
+        self.tableView.register(cell, forCellReuseIdentifier: "teamCell")
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 120
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -92,14 +95,17 @@ extension TeamViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "cel", for: indexPath)
-        guard let item: User = self.fetchedResultsController.fetchedObjects?[indexPath.row] else { return cell }
-        cell.textLabel?.text = item.name
+        let cell: TeamMemberCell = tableView.dequeueReusableCell(withIdentifier: "teamCell", for: indexPath) as! TeamMemberCell
+        cell.contentView.backgroundColor = self.tableView.backgroundColor
+        guard let user: User = self.fetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] as? User else { return cell }
+        cell.load(user: user)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // Do something
+        guard let taskVC: TaskViewController = self.parent as? TaskViewController else { return }
+        guard let user: User = self.fetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] as? User else { return }
+        taskVC.performSegue(withIdentifier: "teamMember", sender: user)
     }
 }
 
@@ -146,5 +152,4 @@ extension TeamViewController: NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         self.tableView.endUpdates()
     }
-    
 }
