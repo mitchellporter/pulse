@@ -11,7 +11,16 @@ import CoreData
 
 @objc(User)
 public class User: NSManagedObject {
-   
+    
+    func mostRecentUpdateResponse() -> Response? {
+        return self.responsesSortedByRecency()?.first
+    }
+    
+    func responsesSortedByRecency() -> [Response]? {
+        guard let responses = self.responses else { return nil }
+        return responses.sorted { $0.createdAt! > $1.createdAt! }
+    }
+    
 }
 
 extension User {
