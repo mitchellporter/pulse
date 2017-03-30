@@ -11,7 +11,7 @@ import CoreData
 
 @objc(User)
 public class User: NSManagedObject {
-
+   
 }
 
 extension User {
@@ -71,7 +71,7 @@ extension User: PulseType {
         
         if let responseJSON = json["most_recent_update_response"] as? [String: AnyObject] {
             let response = Response.from(json: responseJSON, context: context) as Response
-            user.mostRecentUpdateResponse = response
+            user.addToResponses(response)
         }
         
         // TODO: No current use for both of these
