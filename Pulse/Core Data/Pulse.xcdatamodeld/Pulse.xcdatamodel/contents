@@ -10,7 +10,7 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentInvites" inverseEntity="User" syncable="YES"/>
         <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="invites" inverseEntity="Task" syncable="YES"/>
-        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="invites" inverseEntity="Team" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
                 <index value="objectId"/>
@@ -111,6 +111,7 @@
         <attribute name="domain" attributeType="String" syncable="YES"/>
         <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="invites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Invite" inverseName="team" inverseEntity="Invite" syncable="YES"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="team" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -169,7 +170,7 @@
         <element name="Response" positionX="-45" positionY="135" width="128" height="165"/>
         <element name="Task" positionX="-54" positionY="36" width="128" height="255"/>
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
-        <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
+        <element name="Team" positionX="-45" positionY="117" width="128" height="135"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
         <element name="User" positionX="-63" positionY="-18" width="128" height="255"/>
         <element name="Invite" positionX="-45" positionY="126" width="128" height="195"/>
