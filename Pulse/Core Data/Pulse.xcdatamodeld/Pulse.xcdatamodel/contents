@@ -9,7 +9,7 @@
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentInvites" inverseEntity="User" syncable="YES"/>
-        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="invites" inverseEntity="Task" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" syncable="YES"/>
         <compoundIndexes>
             <compoundIndex>
@@ -73,6 +73,7 @@
         <relationship name="assignees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="receivedTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="assigner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="invitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="task" inverseEntity="TaskInvitation" syncable="YES"/>
+        <relationship name="invites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Invite" inverseName="task" inverseEntity="Invite" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="task" inverseEntity="Item" syncable="YES"/>
         <relationship name="updates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" inverseName="task" inverseEntity="Update" syncable="YES"/>
         <compoundIndexes>
@@ -166,7 +167,7 @@
     <elements>
         <element name="Item" positionX="-9" positionY="144" width="128" height="150"/>
         <element name="Response" positionX="-45" positionY="135" width="128" height="165"/>
-        <element name="Task" positionX="-54" positionY="36" width="128" height="240"/>
+        <element name="Task" positionX="-54" positionY="36" width="128" height="255"/>
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
