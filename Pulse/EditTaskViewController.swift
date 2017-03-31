@@ -27,6 +27,7 @@ class EditTaskViewController: UIViewController {
     @IBOutlet weak var requestButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var completedControl: DotControl!
+    @IBOutlet weak var taskDescriptionLabel: UILabel!
     
     var taskInvite: TaskInvitation? {
         didSet {
@@ -52,7 +53,7 @@ class EditTaskViewController: UIViewController {
             }
         }
     }
-    private var topGradient: CAGradientLayer = CAGradientLayer()
+//    private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
     
     var tableViewTopInset: CGFloat = 22
@@ -122,12 +123,12 @@ class EditTaskViewController: UIViewController {
     private func setupAppearance() {
         self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.1)
         self.completedControl.completedColor = UIColor.white
-        let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
-        self.topGradient.frame = frame
-        self.topGradient.colors = [appBlue.withAlphaComponent(1.0).cgColor, appBlue.withAlphaComponent(0.0).cgColor]
-        self.topGradient.locations = [0.0, 1.0]
-        
-        self.view.layer.addSublayer(self.topGradient)
+//        let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+//        self.topGradient.frame = frame
+//        self.topGradient.colors = [appBlue.withAlphaComponent(1.0).cgColor, appBlue.withAlphaComponent(0.0).cgColor]
+//        self.topGradient.locations = [0.0, 1.0]
+//        
+//        self.view.layer.addSublayer(self.topGradient)
         
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
@@ -164,6 +165,9 @@ class EditTaskViewController: UIViewController {
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }
+        
+        self.taskDescriptionLabel.text = task.title
+        
         if self.taskInvite != nil {
             self.completedControl.alpha = 0.0
 //            self.view.backgroundColor = appRed
@@ -305,22 +309,24 @@ extension EditTaskViewController: UITableViewDataSource {
 //        let sectionInfo = self.fetchedResultsController.sections![section]
 //        return sectionInfo.numberOfObjects + 1
         
-        return self.datasource.count + 1
+//        return self.datasource.count + 1
+        return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskItemEditCell", for: indexPath) as! TaskItemEditCell
         
-        if indexPath.row == 0 {
-            cell.contentView.backgroundColor = self.view.backgroundColor
-            cell.textView.text = self.task?.title
-            cell.button.alpha = 0
-        } else {
+//        if indexPath.row == 0 {
+//            cell.contentView.backgroundColor = self.view.backgroundColor
+//            cell.textView.text = self.task?.title
+//            cell.button.alpha = 0
+//        } else {
             cell.contentView.backgroundColor = self.tableView.backgroundColor
             cell.delegate = self
             cell.textView.textColor = UIColor.black
-            let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        let realIndexPath: IndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
+//            let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
 //            let item = self.fetchedResultsController.object(at: realIndexPath)
             let item: Item = self.datasource[realIndexPath.row]
             cell.load(item: item)
@@ -338,7 +344,7 @@ extension EditTaskViewController: UITableViewDataSource {
                     break
                 }
             }
-        }
+//        }
         return cell
     }
 }

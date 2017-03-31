@@ -24,6 +24,7 @@ class ViewTaskViewController: UIViewController {
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var completedControl: DotControl!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var taskDescriptionLabel: UILabel!
     
     var taskInvite: TaskInvitation? {
         didSet {
@@ -49,7 +50,7 @@ class ViewTaskViewController: UIViewController {
             }
         }
     }
-    private var topGradient: CAGradientLayer = CAGradientLayer()
+//    private var topGradient: CAGradientLayer = CAGradientLayer()
     var status: TaskStatus?
 
     var tableViewTopInset: CGFloat = 22
@@ -121,12 +122,12 @@ class ViewTaskViewController: UIViewController {
     private func setupAppearance() {
         self.completedControl.emptyColor = UIColor.black.withAlphaComponent(0.2)
         self.completedControl.completedColor = UIColor.white
-        let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
-        self.topGradient.frame = frame
-        self.topGradient.colors = [appGreen.withAlphaComponent(1.0).cgColor, appGreen.withAlphaComponent(0.0).cgColor]
-        self.topGradient.locations = [0.0, 1.0]
-        
-        self.view.layer.addSublayer(self.topGradient)
+//        let frame: CGRect = CGRect(x: 0, y: 120, width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+//        self.topGradient.frame = frame
+//        self.topGradient.colors = [appGreen.withAlphaComponent(1.0).cgColor, appGreen.withAlphaComponent(0.0).cgColor]
+//        self.topGradient.locations = [0.0, 1.0]
+//        
+//        self.view.layer.addSublayer(self.topGradient)
         
 //        self.avatarImageView.layer.borderColor = UIColor.white.cgColor
 //        self.avatarImageView.layer.borderWidth = 2
@@ -165,11 +166,14 @@ class ViewTaskViewController: UIViewController {
             }
             self.dueDateLabel.text = task.status == TaskStatus.completed.rawValue ? "COMPLETED" : duePercentString + "\(Int(task.completionPercentage))% COMPLETED"
         }
+        
+        self.taskDescriptionLabel.text = task.title
+        
         if self.taskInvite != nil {
             self.completedControl.alpha = 0.0
             self.view.backgroundColor = appRed
             self.avatarImageView.superview!.backgroundColor = self.view.backgroundColor
-            self.topGradient.colors = [appRed.withAlphaComponent(1.0).cgColor, appRed.withAlphaComponent(0.0).cgColor]
+//            self.topGradient.colors = [appRed.withAlphaComponent(1.0).cgColor, appRed.withAlphaComponent(0.0).cgColor]
         }
         self.completedControl.percent = CGFloat(task.completionPercentage / 100)
         
@@ -328,20 +332,23 @@ extension ViewTaskViewController: UITableViewDataSource, UITableViewDelegate {
 //        guard let sectionInfo: NSFetchedResultsSectionInfo = self.fetchedResultsController.sections?[section] else { return 1 }
 //        return sectionInfo.numberOfObjects + 1
         
-        return self.datasource.count + 1
+//        return self.datasource.count + 1
+        
+        return self.datasource.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "itemViewCell", for: indexPath) as! TaskItemViewCell
         
-        if indexPath.row == 0 {
-            cell.contentView.backgroundColor = self.view.backgroundColor
-            cell.label.text = self.task?.title
-            cell.button.alpha = 0
-        } else {
+//        if indexPath.row == 0 {
+//            cell.contentView.backgroundColor = self.view.backgroundColor
+//            cell.label.text = self.task?.title
+//            cell.button.alpha = 0
+//        } else {
             cell.contentView.backgroundColor = UIColor.white
             cell.label.textColor = UIColor.black
-            let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+//            let realIndexPath: IndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+        let realIndexPath: IndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
 //            let item = self.fetchedResultsController.object(at: realIndexPath)
             let item: Item = self.datasource[realIndexPath.row]
             cell.load(item: item)
@@ -362,7 +369,7 @@ extension ViewTaskViewController: UITableViewDataSource, UITableViewDelegate {
                     break
                 }
             }
-        }
+//        }
         return cell
     }
     
