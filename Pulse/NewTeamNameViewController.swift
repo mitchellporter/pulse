@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum NewUserKeys: String {
+    case teamName = "team_name"
+    case email = "email"
+    case name = "name"
+    case position = "position"
+}
+
 class NewTeamNameViewController: Onboarding {
     
     @IBOutlet weak var closeButton: UIButton!
@@ -15,9 +22,12 @@ class NewTeamNameViewController: Onboarding {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var messageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var takenLabel: UILabel!
+    @IBOutlet weak var meassageLabel: UILabel!
     
     private var keyboardOrigin: CGFloat = 0.0
     private var backgroundColor: UIColor?
+    
+    var creatingTeam: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +55,15 @@ class NewTeamNameViewController: Onboarding {
         self.nextButton.isEnabled = false
         let color: UIColor = UIColor.white.withAlphaComponent(0.52)
         let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)
-        self.textField.attributedPlaceholder = NSAttributedString(string: " Your Team Name", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        
+        
+        if self.creatingTeam {
+            self.meassageLabel.text = "Try using your company name, or if its not for work, name it something people you invite will understand."
+            self.textField.attributedPlaceholder = NSAttributedString(string: " Name Your Team", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        } else {
+            self.meassageLabel.text = "Enter the name of the team you would like to join."
+            self.textField.attributedPlaceholder = NSAttributedString(string: " Your Team Name", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        }
     }
     
     private func setupObserver() {
@@ -77,12 +95,22 @@ class NewTeamNameViewController: Onboarding {
     
     fileprivate func checkTeamName(_ name: String?) {
         self.nextButtonIs(enabled: !(name == nil || name == ""))
-        
+        self.alertBackground(false)
 //        guard let name: String = name else { self.alertBackground(false); return }
         
         // Check if team name is already taken
 //        let showAlert: Bool = name.lowercased().contains("b")
 //        self.alertBackground(showAlert)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "email" {
+            guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
+            guard let teamName: String = sender as? String else { return }
+            toVC.newUserDictionary.updateValue(teamName, forKey: .teamName)
+        }
     }
     
     @IBAction func closeButtonPressed(_ sender: UIButton) {
@@ -95,16 +123,14 @@ class NewTeamNameViewController: Onboarding {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         guard let teamName: String = self.textField.text else { return }
-        AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (teamName) in
-            // Success means name is available??
-            
-            self.performSegue(withIdentifier: "email", sender: teamName)
-            
+        AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (success, teamName) in
+            if success {
+                self.performSegue(withIdentifier: "email", sender: teamName)
+            } else {
+                self.alertBackground(true)
+            }
         }) { (error, statusCode) in
             print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
-            // Failure means name is taken??
-            
-//            self.alertBackground(true)
         }
     }
     

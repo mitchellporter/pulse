@@ -10,6 +10,19 @@ import UIKit
 
 class NavigationManager {
     
+    class func loadFeed() {
+        OperationQueue.main.addOperation({
+            if User.currentUser() != nil {
+                guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else {return}
+                if navigationController.viewControllers.count == 1 {
+                    guard let rootViewController = navigationController.viewControllers.first as? HomeViewController else {return}
+                    guard let feed = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController() else {return}
+                    navigationController.setViewControllers([rootViewController, feed], animated: false)
+                }
+            }
+        })
+    }
+    
     static func getPreviousViewController(_ ofType: AnyClass, from viewController: UIViewController) -> UIViewController? {
         if let navigationController = viewController.navigationController {
             return navigationController.viewControllers.last
@@ -35,6 +48,13 @@ class NavigationManager {
                 return true
             }
         }
+//        let className: String = NSStringFromClass(viewControllerClass)
+//        guard let aClass = NSClassFromString(className) as? UIViewController.Type else { return false }
+//        let vc = UIStoryboard(name: String, bundle: Bundle?)
+//        let viewController: UIViewController = aClass.init()
+//        navigationStack.append(viewController)
+//        guard let vc = viewController as? TaskViewController else { return false }
+//        print("Successfully initialized an instance of TaskViewController")
         return false
     }
     

@@ -151,7 +151,7 @@ class TaskCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-//        self.duePercentLabel.textColor = UIColor.white
+        self.duePercentLabel.textColor = UIColor("3F3F3F")
     }
     
     func configureState(for task: Task) {

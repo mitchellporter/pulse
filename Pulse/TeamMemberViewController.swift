@@ -19,6 +19,7 @@ class TeamMemberViewController: UIViewController {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var inProgressButton: UIButton!
     @IBOutlet weak var createdTasksButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
     
     var user: User?
     fileprivate var assignedFetchedResultsController: NSFetchedResultsController<Task>!
@@ -49,6 +50,7 @@ class TeamMemberViewController: UIViewController {
     private func setupAppearance() {
         self.avatarImageView.layer.cornerRadius = 7
         self.marker.frame.origin = CGPoint(x: 25, y: 26)
+        self.backgroundView.backgroundColor = UIColor("ECEFF1")
     }
     
     private func load(user: User) {
@@ -104,6 +106,7 @@ class TeamMemberViewController: UIViewController {
                 CoreDataStack.shared.saveContext()
                 
                 self.checkCache(resultsController)
+                self.fadeAndAnimateTable()
             }) { (error, statusCode) in
                 print("Error getting tasks: \(statusCode ?? 000) \(error.localizedDescription)")
             }
@@ -113,6 +116,7 @@ class TeamMemberViewController: UIViewController {
                 CoreDataStack.shared.saveContext()
                 
                 self.checkCache(resultsController)
+                self.fadeAndAnimateTable()
             }, failure: { (error, statusCode) in
                 print("Error getting tasks: \(statusCode ?? 000) \(error.localizedDescription)")
             })
@@ -127,7 +131,25 @@ class TeamMemberViewController: UIViewController {
         } catch {
             print("Fetched results controller error: \(error)")
         }
-        self.tableView.reloadData()
+        
+    }
+    
+    private func fadeAndAnimateTable() {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.tableView.alpha = 0.0
+        }) { _ in
+            self.tableView.frame.origin.y += self.tableView.frame.height
+            self.tableView.alpha = 1.0
+            self.tableView.reloadData()
+            //            UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            //                self.tableView.frame.origin.y -= self.tableView.frame.height
+            //            }, completion: nil)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.tableView.frame.origin.y -= self.tableView.frame.height
+            }, completion: { _ in
+                // Animation complete
+            })
+        }
     }
     
     private func updateButtonSelection() {

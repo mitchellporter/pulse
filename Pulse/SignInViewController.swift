@@ -1,5 +1,5 @@
 //
-//  NewTeamUsernameViewController.swift
+//  SignInViewController.swift
 //  Pulse
 //
 //  Created by Design First Apps on 3/31/17.
@@ -8,7 +8,12 @@
 
 import UIKit
 
-class NewTeamUsernameViewController: UIViewController {
+class SignInViewController: UIViewController {
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var teamTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
