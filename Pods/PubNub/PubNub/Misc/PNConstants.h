@@ -3,7 +3,7 @@
 
  @author Sergey Mamontov
  @since 4.0
- @copyright © 2009-2016 PubNub, Inc.
+ @copyright © 2009-2017 PubNub, Inc.
  */
 #import <Foundation/Foundation.h>
 #import "PNStructures.h"
@@ -15,10 +15,10 @@
 #pragma mark General information constants
 
 // Stores client library version number
-static NSString * const kPNLibraryVersion = @"4.5.13";
+static NSString * const kPNLibraryVersion = @"4.5.15";
 
 // Stores information about SDK codebase
-static NSString * const kPNCommit = @"3c5c14c73ea28bc1b871a5022c7af3aa1807fd60";
+static NSString * const kPNCommit = @"0ca22f9e3ffed956db16080be8dc66ff246981f1";
 
 /**
  @brief  Stores reference on unique identifier which is used to identify \b PubNub client among other 
