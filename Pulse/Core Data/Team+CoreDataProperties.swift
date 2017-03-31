@@ -16,9 +16,10 @@ extension Team {
         return NSFetchRequest<Team>(entityName: "Team");
     }
 
-    @NSManaged public var createdAt: Date?
     @NSManaged public var objectId: String
+    @NSManaged public var createdAt: Date?
     @NSManaged public var updatedAt: Date?
+    @NSManaged public var name: String
     @NSManaged public var members: NSSet?
     @NSManaged public var invites: Set<Invite>?
 }

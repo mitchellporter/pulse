@@ -46,6 +46,10 @@ extension Team: PulseType {
         team.createdAt = createdAt
         team.updatedAt = updatedAt
         
+        if let name = json["name"] as? String {
+            team.name = name
+        }
+        
         if let invitesJSON = json["invites"] as? [[String: AnyObject]] {
             invitesJSON.forEach({ inviteJSON in
                 let invite = Invite.from(json: inviteJSON, context: context)
