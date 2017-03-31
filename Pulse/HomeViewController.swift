@@ -42,6 +42,7 @@ class HomeViewController: UIViewController {
     
     @IBAction func joinButtonPressed(_ sender: UIButton) {
 //        self.performSegue(withIdentifier: "toLogin", sender: nil)
+        _ = NavigationManager.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self)
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
