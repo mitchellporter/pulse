@@ -35,16 +35,14 @@ extension User {
     
     static func currentUser() -> User? {
         let token = AuthToken()
-        guard let objectId = token.userId else { return nil }
+        guard let objectId = token.userId, let name = token.name, let email = token.email, let position = token.position else { return nil }
         
-        //  TODO: These fields should be optional
         let user = User(entity: NSEntityDescription.entity(forEntityName: "User", in: CoreDataStack.shared.context)!, insertInto: CoreDataStack.shared.context)
         user.objectId = objectId
-        user.name = token.name!
-        user.email = token.email!
-        user.position = token.position!
+        user.name = name
+        user.email = email
+        user.position = position
         return user
-//        user.avatarURL = avatarURL
     }
 }
 
