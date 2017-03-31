@@ -122,6 +122,13 @@ extension Task: PulseType {
             })
         }
         
+        if let invitesJSON = json["invites"] as? [[String: AnyObject]] {
+            invitesJSON.forEach({ inviteJSON in
+                let invite = Invite.from(json: inviteJSON, context: context)
+                task.addToInvites(invite)
+            })
+        }
+        
         return task
     }
 }

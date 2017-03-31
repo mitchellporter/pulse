@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16D32" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Invite" representedClassName="Invite" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="objectId" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="sender" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="sentInvites" inverseEntity="User" syncable="YES"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Task" inverseName="invites" inverseEntity="Task" syncable="YES"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="invites" inverseEntity="Team" syncable="YES"/>
+        <compoundIndexes>
+            <compoundIndex>
+                <index value="objectId"/>
+            </compoundIndex>
+        </compoundIndexes>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="objectId"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="Item" representedClassName="Item" syncable="YES">
         <attribute name="completed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -51,6 +73,7 @@
         <relationship name="assignees" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="receivedTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="assigner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="createdTasks" inverseEntity="User" syncable="YES"/>
         <relationship name="invitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="task" inverseEntity="TaskInvitation" syncable="YES"/>
+        <relationship name="invites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Invite" inverseName="task" inverseEntity="Invite" syncable="YES"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Item" inverseName="task" inverseEntity="Item" syncable="YES"/>
         <relationship name="updates" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Update" inverseName="task" inverseEntity="Update" syncable="YES"/>
         <compoundIndexes>
@@ -85,9 +108,9 @@
     </entity>
     <entity name="Team" representedClassName="Team" syncable="YES">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="domain" attributeType="String" syncable="YES"/>
         <attribute name="objectId" attributeType="String" syncable="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="invites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Invite" inverseName="team" inverseEntity="Invite" syncable="YES"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="team" inverseEntity="User" syncable="YES"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
@@ -127,6 +150,7 @@
         <relationship name="receivedTaskInvitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="receiver" inverseEntity="TaskInvitation" syncable="YES"/>
         <relationship name="receivedTasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="assignees" inverseEntity="Task" syncable="YES"/>
         <relationship name="responses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Response" inverseName="assignee" inverseEntity="Response" syncable="YES"/>
+        <relationship name="sentInvites" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Invite" inverseName="sender" inverseEntity="Invite" syncable="YES"/>
         <relationship name="sentTaskInvitations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TaskInvitation" inverseName="sender" inverseEntity="TaskInvitation" syncable="YES"/>
         <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="members" inverseEntity="Team" syncable="YES"/>
         <compoundIndexes>
@@ -141,12 +165,13 @@
         </uniquenessConstraints>
     </entity>
     <elements>
+        <element name="Invite" positionX="-45" positionY="126" width="128" height="195"/>
         <element name="Item" positionX="-9" positionY="144" width="128" height="150"/>
         <element name="Response" positionX="-45" positionY="135" width="128" height="165"/>
-        <element name="Task" positionX="-54" positionY="36" width="128" height="240"/>
+        <element name="Task" positionX="-54" positionY="36" width="128" height="255"/>
         <element name="TaskInvitation" positionX="-45" positionY="135" width="128" height="150"/>
         <element name="Team" positionX="-45" positionY="117" width="128" height="120"/>
         <element name="Update" positionX="-45" positionY="126" width="128" height="165"/>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="240"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="255"/>
     </elements>
 </model>

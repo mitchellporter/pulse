@@ -141,6 +141,10 @@
 		C3A3EDD01E7B399B00560678 /* Response+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */; };
 		C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */; };
 		C3A3EDD31E7B48AC00560678 /* FeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A3EDD21E7B48AC00560678 /* FeedService.swift */; };
+		C3A54BEC1E8D8507004E0E1B /* InviteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BEB1E8D8507004E0E1B /* InviteService.swift */; };
+		C3A54BEF1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BED1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift */; };
+		C3A54BF01E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BEE1E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift */; };
+		C3A54BF21E8DA0E6004E0E1B /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A54BF11E8DA0E6004E0E1B /* UserService.swift */; };
 		C3A8A3A01E83232200C46346 /* AvailabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A8A39F1E83232200C46346 /* AvailabilityService.swift */; };
 		C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */; };
 		C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */; };
@@ -332,6 +336,10 @@
 		C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Response+CoreDataClass.swift"; path = "Core Data/Response+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Response+CoreDataProperties.swift"; path = "Core Data/Response+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C3A3EDD21E7B48AC00560678 /* FeedService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FeedService.swift; path = Networking/Services/FeedService.swift; sourceTree = "<group>"; };
+		C3A54BEB1E8D8507004E0E1B /* InviteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InviteService.swift; path = Networking/Services/InviteService.swift; sourceTree = "<group>"; };
+		C3A54BED1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invite+CoreDataClass.swift"; path = "Core Data/Invite+CoreDataClass.swift"; sourceTree = "<group>"; };
+		C3A54BEE1E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Invite+CoreDataProperties.swift"; path = "Core Data/Invite+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C3A54BF11E8DA0E6004E0E1B /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserService.swift; path = Networking/Services/UserService.swift; sourceTree = "<group>"; };
 		C3A8A39F1E83232200C46346 /* AvailabilityService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AvailabilityService.swift; path = Networking/Services/AvailabilityService.swift; sourceTree = "<group>"; };
 		C3A98BAB1E663EE40064D2E9 /* UpdateService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UpdateService.swift; path = Networking/Services/UpdateService.swift; sourceTree = "<group>"; };
 		C3DBA95C1E67920900859D4E /* Update+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Update+CoreDataClass.swift"; path = "Core Data/Update+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -725,6 +733,8 @@
 				C3522F811E6F8AAE00C689D9 /* TaskInvitationService.swift */,
 				C3A3EDD21E7B48AC00560678 /* FeedService.swift */,
 				C3A8A39F1E83232200C46346 /* AvailabilityService.swift */,
+				C3A54BEB1E8D8507004E0E1B /* InviteService.swift */,
+				C3A54BF11E8DA0E6004E0E1B /* UserService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -732,6 +742,8 @@
 		C3A398BB1E690335007E3BD8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				C3A54BED1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift */,
+				C3A54BEE1E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift */,
 				C3A3EDCE1E7B399B00560678 /* Response+CoreDataClass.swift */,
 				C3A3EDCF1E7B399B00560678 /* Response+CoreDataProperties.swift */,
 				C39FF3F91E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift */,
@@ -1135,6 +1147,7 @@
 				C1AD36791E68D44100C5A9AA /* AlertManager.swift in Sources */,
 				C1B993391E6655C800A404C9 /* ColorConstants.swift in Sources */,
 				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
+				C3A54BF01E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift in Sources */,
 				C116F6ED1E8D8A95003AEAA1 /* AddressBookCell.swift in Sources */,
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
@@ -1171,6 +1184,7 @@
 				C356E4551E5E5AC700E215CF /* AppDelegate.swift in Sources */,
 				C1160E411E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift in Sources */,
 				C16B5DDF1E678F2400F5BB58 /* TaskUpdateViewController.swift in Sources */,
+				C3A54BEC1E8D8507004E0E1B /* InviteService.swift in Sources */,
 				C116F6E91E8D8A7E003AEAA1 /* SendTaskCell.swift in Sources */,
 				C1B993281E64CD1F00A404C9 /* CreateTaskAddItemCell.swift in Sources */,
 				C19B74221E5F9337002D9352 /* TaskViewController.swift in Sources */,
@@ -1179,6 +1193,7 @@
 				C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */,
 				C116F6E51E8D8A34003AEAA1 /* SendTaskEmailCell.swift in Sources */,
 				C1AD36831E68EC0600C5A9AA /* PassiveAlert.swift in Sources */,
+				C3A54BF21E8DA0E6004E0E1B /* UserService.swift in Sources */,
 				C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */,
 				C1DA11861E5FC03500AF752E /* TaskViewControllerDatasource.swift in Sources */,
 				C1B86B281E60E85200A3182A /* EditTaskViewController.swift in Sources */,
@@ -1186,6 +1201,7 @@
 				C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */,
 				C1DA11801E5FA9C900AF752E /* CreateTaskAssignViewController.swift in Sources */,
 				C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */,
+				C3A54BEF1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift in Sources */,
 				C1B86B261E60C0FA00A3182A /* ViewTaskViewController.swift in Sources */,
 				C3A98BAC1E663EE40064D2E9 /* UpdateService.swift in Sources */,
 				C3A398B71E68E533007E3BD8 /* UpdateCell.swift in Sources */,

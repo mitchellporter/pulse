@@ -17,11 +17,10 @@ extension Team {
     }
 
     @NSManaged public var createdAt: Date?
-    @NSManaged public var domain: String?
     @NSManaged public var objectId: String
     @NSManaged public var updatedAt: Date?
     @NSManaged public var members: NSSet?
-
+    @NSManaged public var invites: Set<Invite>?
 }
 
 // MARK: Generated accessors for members
@@ -39,4 +38,21 @@ extension Team {
     @objc(removeMembers:)
     @NSManaged public func removeFromMembers(_ values: NSSet)
 
+}
+
+// MARK: Generated accessors for invites
+extension Team {
+    
+    @objc(addInvitesObject:)
+    @NSManaged public func addToInvites(_ value: Invite)
+    
+    @objc(removeInvitesObject:)
+    @NSManaged public func removeFromInvites(_ value: Invite)
+    
+    @objc(addInvites:)
+    @NSManaged public func addToInvites(_ values: NSSet)
+    
+    @objc(removeInvites:)
+    @NSManaged public func removeFromInvites(_ values: NSSet)
+    
 }
