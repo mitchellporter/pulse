@@ -1,5 +1,5 @@
 //
-//  NewTeamEmailViewController.swift
+//  NewTeamPositionViewController.swift
 //  Pulse
 //
 //  Created by Design First Apps on 3/15/17.
@@ -8,12 +8,14 @@
 
 import UIKit
 
-class NewTeamEmailViewController: Onboarding {
+class NewTeamPositionViewController: Onboarding {
     
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet weak var takenLabel: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var jobTextField: UITextField!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var avatarButton: UIButton!
+    @IBOutlet weak var avatarAddButton: UIButton!
     @IBOutlet weak var messageBottomConstraint: NSLayoutConstraint!
     
     private var keyboardOrigin: CGFloat = 0.0
@@ -31,7 +33,7 @@ class NewTeamEmailViewController: Onboarding {
         super.viewWillAppear(animated)
         self.setupObserver()
         
-        self.textField.becomeFirstResponder()
+        self.nameTextField.becomeFirstResponder()
         self.backgroundColor = self.view.backgroundColor
     }
     
@@ -39,17 +41,17 @@ class NewTeamEmailViewController: Onboarding {
         super.viewWillDisappear(animated)
         self.removeObserver()
     }
-
+    
     private func setupAppearance() {
-//        self.view.backgroundColor = appGreen
-        self.takenLabel.alpha = 0.0
+//        self.view.backgroundColor = appBlue
         self.nextButton.alpha = 0.52
         self.nextButton.isEnabled = false
         let color: UIColor = UIColor.white.withAlphaComponent(0.52)
         let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)
-        self.textField.attributedPlaceholder = NSAttributedString(string: " Your Email Address", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.nameTextField.attributedPlaceholder = NSAttributedString(string: " Full Name", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.jobTextField.attributedPlaceholder = NSAttributedString(string: " Job Title", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
     }
-    
+
     private func setupObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.adjustForKeyboard), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.adjustForKeyboard), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -76,37 +78,19 @@ class NewTeamEmailViewController: Onboarding {
         }, completion: nil)
     }
     
-    fileprivate func alertBackground(_ shown: Bool) {
-        
-        UIView.animate(withDuration: 0.25, animations: {
-            self.view.backgroundColor = shown ? appPink : self.backgroundColor
-            self.takenLabel.alpha = shown ? 1.0 : 0.0
-            self.messageBottomConstraint.constant = shown ? 0.0 : self.view.frame.height - self.keyboardOrigin
-            self.view.layoutIfNeeded()
-        }) { (finished) in
-            //
-        }
-    }
-    
     fileprivate func nextButtonIs(enabled: Bool) {
         self.nextButton.alpha = enabled ? 1.0 : 0.52
         self.nextButton.isEnabled = enabled
     }
-    
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
-        guard let email: String = self.textField.text else { return }
-        AvailabilityService.checkEmailAvailability(email: email, success: { (success, email) in
-            if success {
-                self.newUserDictionary.updateValue(email, forKey: .email)
-                self.performSegue(withIdentifier: "name", sender: self.newUserDictionary)
-            } else {
-                self.alertBackground(true)
-            }
-        }) { (error, statusCode) in
-            print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
-        }
-    }
 
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        guard let name: String = self.nameTextField.text else { return }
+        self.newUserDictionary.updateValue(name, forKey: .name)
+        guard let job: String = self.jobTextField.text else { return }
+        self.newUserDictionary.updateValue(job, forKey: .position)
+        self.performSegue(withIdentifier: "password", sender: self.newUserDictionary)
+    }
+    
     @IBAction func backButtonPressed(_ sender: UIButton) {
         if self.navigationController == nil {
             self.dismiss(animated: true, completion: nil)
@@ -118,18 +102,17 @@ class NewTeamEmailViewController: Onboarding {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "name" {
-            guard let toVC: NewTeamPositionViewController = segue.destination as? NewTeamPositionViewController else { return }
+        if segue.identifier == "password" {
+            guard let toVC: NewTeamPasswordViewController = segue.destination as? NewTeamPasswordViewController else { return }
             guard let newUser: [NewUserKeys : String] = sender as? [NewUserKeys : String] else { return }
             toVC.newUserDictionary = newUser
         }
     }
 }
 
-extension NewTeamEmailViewController: UITextFieldDelegate {
+extension NewTeamPositionViewController: UITextFieldDelegate {
     
     @IBAction func textFieldDidChange(_ textField: UITextField) {
-        self.alertBackground(false)
-        self.nextButtonIs(enabled: !(textField.text == nil || textField.text == ""))
+        self.nextButtonIs(enabled: !((self.nameTextField.text == nil || self.nameTextField.text == "") && (self.jobTextField.text == nil || self.jobTextField.text == "")))
     }
 }

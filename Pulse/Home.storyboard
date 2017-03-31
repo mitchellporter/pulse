@@ -24,7 +24,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="EllroiLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bNM-Eg-z8e">
                                 <rect key="frame" x="89.5" y="195" width="215" height="124"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1La-4b-2rQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                            <button opaque="NO" alpha="0.34999999999999998" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1La-4b-2rQ" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="52" y="476" width="271" height="52"/>
                                 <color key="backgroundColor" red="1" green="0.36470588235294116" blue="0.53725490196078429" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -253,6 +253,6 @@
         <image name="StarsButtonLayer" width="271" height="52"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pSQ-GY-2kH"/>
+        <segue reference="XGd-gS-HMG"/>
     </inferredMetricsTieBreakers>
 </document>

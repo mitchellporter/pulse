@@ -37,17 +37,28 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func createButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "create", sender: nil)
+        let creating: Bool = true
+        self.performSegue(withIdentifier: "create", sender: creating)
     }
     
     @IBAction func joinButtonPressed(_ sender: UIButton) {
-//        self.performSegue(withIdentifier: "toLogin", sender: nil)
-        _ = NavigationManager.willSearchAndSetNavigationStackFor(viewControllerClass: TaskViewController.self)
+        let creating: Bool = false
+        self.performSegue(withIdentifier: "create", sender: creating)
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
         self.performSegue(withIdentifier: "skipSignin", sender: nil)
 //        self.performSegue(withIdentifier: "toLogin", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "create" {
+            guard let toVC: NewTeamNameViewController = segue.destination as? NewTeamNameViewController else { return }
+            guard let creating: Bool = sender as? Bool else { return }
+            toVC.creatingTeam = creating
+        }
     }
     
     func updateUserDefaults() {

@@ -54,21 +54,24 @@ class TaskItemViewCell: UITableViewCell, TaskItemCell {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
+        let state: CellState = self.state
         self.state = self.state == .selected ? .unselected : .selected
         guard let item: Item = self.item else { return }
         guard let task: Task = item.task else { return }
-        if self.state == .unselected {
+        if state == .unselected {
             TaskService.markTaskItemCompleted(taskId: task.objectId, itemId: item.objectId, success: { (task) in
                 self.state = .selected
             }, failure: { (error, statusCode) in
                 // Handle error
+                print("Item update error: \(statusCode ?? 000) \(error.localizedDescription)")
                 self.state = .unselected
             })
-        } else if self.state == .selected {
+        } else if state == .selected {
             TaskService.markTaskItemInProgress(taskId: task.objectId, itemId: item.objectId, success: { (task) in
                 self.state = .unselected
             }, failure: { (error, statusCode) in
                 // Handle error
+                print("Item update error: \(statusCode ?? 000) \(error.localizedDescription)")
                 self.state = .selected
             })
         }

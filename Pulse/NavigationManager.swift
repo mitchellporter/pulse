@@ -12,7 +12,7 @@ class NavigationManager {
     
     class func loadFeed() {
         OperationQueue.main.addOperation({
-            if User.currentUserId() != nil {
+            if User.currentUser() != nil {
                 guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? NavigationController else {return}
                 if navigationController.viewControllers.count == 1 {
                     guard let rootViewController = navigationController.viewControllers.first as? HomeViewController else {return}
