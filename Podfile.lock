@@ -6,9 +6,9 @@ PODS:
   - KeychainAccess (3.0.1)
   - KGHitTestingViews (0.9.5)
   - Nuke (5.0.1)
-  - PubNub (4.5.13):
-    - PubNub/Core (= 4.5.13)
-  - PubNub/Core (4.5.13)
+  - PubNub (4.5.15):
+    - PubNub/Core (= 4.5.15)
+  - PubNub/Core (4.5.15)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
@@ -28,7 +28,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
   KGHitTestingViews: 34a1c05a3ec0778ca8c46fadf994c9292c56f374
   Nuke: d47030a761bdd0f7589a734a90819d71eda2500d
-  PubNub: 53711c37f9bcd8f927f154ca91774910a6b552ed
+  PubNub: 5080a9cb739435e1efe0b47a00fd45d1188b5150
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
 PODFILE CHECKSUM: 0a4a7a623b5bac0918073d02e599872f24ccb278
