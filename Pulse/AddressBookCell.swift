@@ -9,16 +9,19 @@
 import UIKit
 
 class AddressBookCell: UITableViewCell {
+    
+    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var addButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+        self.setupAppearance()
     }
     
+    private func setupAppearance() {
+        self.avatarImageView.layer.cornerRadius = 4
+    }
 }
