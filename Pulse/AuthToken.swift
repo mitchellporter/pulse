@@ -52,8 +52,8 @@ public struct AuthToken {
     }
     
     public var position: String? {
-        get { return keychain.email }
-        set { keychain.email = newValue }
+        get { return keychain.position }
+        set { keychain.position = newValue }
     }
     
     public static func storeToken(data: Data) {
