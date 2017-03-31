@@ -21,17 +21,6 @@ struct AvailabilityService {
         }, failure: failure)
     }
     
-    static func checkUsernameAvailability(username: String, success: @escaping (_ username: String) -> Void, failure: @escaping PulseFailureCompletion) {
-        NetworkingClient.sharedClient.request(target: .checkUsernameAvailability(username: username), success: { (data) in
-            let json = JSON(data: data)
-            if json["success"].boolValue {
-                if let username = json["username"].string {
-                    success(username)
-                }
-            }
-        }, failure: failure)
-    }
-    
     static func checkEmailAvailability(email: String, success: @escaping (_ email: String) -> Void, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .checkEmailAvailability(email: email), success: { (data) in
             let json = JSON(data: data)
