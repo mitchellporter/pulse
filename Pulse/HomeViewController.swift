@@ -46,7 +46,8 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "toLogin", sender: nil)
+        self.performSegue(withIdentifier: "skipSignin", sender: nil)
+//        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
     
     func updateUserDefaults() {

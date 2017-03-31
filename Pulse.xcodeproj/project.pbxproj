@@ -25,6 +25,7 @@
 		C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */; };
 		C1211E2F1E85DE3F00CFC7A6 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */; };
 		C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */; };
+		C12127DB1E8EF7770073EC0F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12127DA1E8EF7770073EC0F /* SignInViewController.swift */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -218,6 +219,7 @@
 		C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskPresentTransition.swift; sourceTree = "<group>"; };
 		C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
+		C12127DA1E8EF7770073EC0F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -691,6 +693,7 @@
 				C356E4581E5E5AC700E215CF /* Main.storyboard */,
 				C1D11C181E789217005D2D18 /* Onboarding */,
 				C133AF401E6A1BB5008AD201 /* HomeViewController.swift */,
+				C12127DA1E8EF7770073EC0F /* SignInViewController.swift */,
 				C133AF3E1E6A1B99008AD201 /* Home.storyboard */,
 				C356E45B1E5E5AC700E215CF /* Assets.xcassets */,
 				C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */,
@@ -1207,6 +1210,7 @@
 				C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */,
 				C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */,
 				C1DA11801E5FA9C900AF752E /* CreateTaskAssignViewController.swift in Sources */,
+				C12127DB1E8EF7770073EC0F /* SignInViewController.swift in Sources */,
 				C3A54BF61E8DAEA4004E0E1B /* AuthToken.swift in Sources */,
 				C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */,
 				C3A54BEF1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift in Sources */,
