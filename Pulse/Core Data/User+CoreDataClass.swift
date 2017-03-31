@@ -32,6 +32,18 @@ extension User {
         }
         return userId!
     }
+    
+    static func currentUser() -> User? {
+        let token = AuthToken()
+        guard let objectId = token.userId, let name = token.name, let email = token.email, let position = token.position else { return nil }
+        
+        let user = User(entity: NSEntityDescription.entity(forEntityName: "User", in: CoreDataStack.shared.context)!, insertInto: CoreDataStack.shared.context)
+        user.objectId = objectId
+        user.name = name
+        user.email = email
+        user.position = position
+        return user
+    }
 }
 
 extension User: PulseType {

@@ -15,7 +15,8 @@ extension User {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
         return NSFetchRequest<User>(entityName: "User");
     }
-
+    
+    //  TODO: These fields should be optional
     @NSManaged public var avatarURL: String?
     @NSManaged public var createdAt: Date?
     @NSManaged public var name: String
@@ -30,7 +31,7 @@ extension User {
     @NSManaged public var sentInvites: Set<Invite>?
     @NSManaged public var responses: Set<Response>?
     @NSManaged public var team: Team?
-
+    
 }
 
 // MARK: Generated accessors for createdTasks
