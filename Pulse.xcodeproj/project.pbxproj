@@ -13,9 +13,20 @@
 		C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */; };
 		C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */; };
 		C1160E481E7B518E00AC0249 /* PercentBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1160E471E7B518E00AC0249 /* PercentBar.swift */; };
+		C116F6DD1E8D7B26003AEAA1 /* SendTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6DC1E8D7B26003AEAA1 /* SendTaskViewController.swift */; };
+		C116F6DF1E8D7B3B003AEAA1 /* AddressBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6DE1E8D7B3B003AEAA1 /* AddressBookViewController.swift */; };
+		C116F6E11E8D7B49003AEAA1 /* SendTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C116F6E01E8D7B49003AEAA1 /* SendTask.storyboard */; };
+		C116F6E51E8D8A34003AEAA1 /* SendTaskEmailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6E31E8D8A34003AEAA1 /* SendTaskEmailCell.swift */; };
+		C116F6E61E8D8A34003AEAA1 /* SendTaskEmailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C116F6E41E8D8A34003AEAA1 /* SendTaskEmailCell.xib */; };
+		C116F6E91E8D8A7E003AEAA1 /* SendTaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6E71E8D8A7E003AEAA1 /* SendTaskCell.swift */; };
+		C116F6EA1E8D8A7E003AEAA1 /* SendTaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C116F6E81E8D8A7E003AEAA1 /* SendTaskCell.xib */; };
+		C116F6ED1E8D8A95003AEAA1 /* AddressBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C116F6EB1E8D8A95003AEAA1 /* AddressBookCell.swift */; };
+		C116F6EE1E8D8A95003AEAA1 /* AddressBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C116F6EC1E8D8A95003AEAA1 /* AddressBookCell.xib */; };
 		C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */; };
 		C1211E2F1E85DE3F00CFC7A6 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */; };
 		C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */; };
+		C12127DB1E8EF7770073EC0F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12127DA1E8EF7770073EC0F /* SignInViewController.swift */; };
+		C12127DD1E8F09520073EC0F /* NewTeamUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12127DC1E8F09520073EC0F /* NewTeamUsernameViewController.swift */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -89,8 +100,8 @@
 		C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */; };
 		C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C1D11C191E789252005D2D18 /* Onboarding.storyboard */; };
 		C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1B1E7892A5005D2D18 /* NewTeamNameViewController.swift */; };
-		C1D11C1E1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1D1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift */; };
-		C1D11C201E79CBEC005D2D18 /* NewTeamEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1F1E79CBEC005D2D18 /* NewTeamEmailViewController.swift */; };
+		C1D11C1E1E79CBD1005D2D18 /* NewTeamEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1D1E79CBD1005D2D18 /* NewTeamEmailViewController.swift */; };
+		C1D11C201E79CBEC005D2D18 /* NewTeamPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C1F1E79CBEC005D2D18 /* NewTeamPositionViewController.swift */; };
 		C1D11C221E79CBFA005D2D18 /* NewTeamPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C211E79CBFA005D2D18 /* NewTeamPasswordViewController.swift */; };
 		C1D11C241E79CC14005D2D18 /* NewTeamInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C231E79CC14005D2D18 /* NewTeamInviteViewController.swift */; };
 		C1D11C291E7A0D44005D2D18 /* OnboardingTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D11C281E7A0D44005D2D18 /* OnboardingTransition.swift */; };
@@ -197,9 +208,20 @@
 		C1160E431E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateBreakdownTableViewCell.swift; sourceTree = "<group>"; };
 		C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UpdateBreakdownTableViewCell.xib; sourceTree = "<group>"; };
 		C1160E471E7B518E00AC0249 /* PercentBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PercentBar.swift; sourceTree = "<group>"; };
+		C116F6DC1E8D7B26003AEAA1 /* SendTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTaskViewController.swift; sourceTree = "<group>"; };
+		C116F6DE1E8D7B3B003AEAA1 /* AddressBookViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookViewController.swift; sourceTree = "<group>"; };
+		C116F6E01E8D7B49003AEAA1 /* SendTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SendTask.storyboard; sourceTree = "<group>"; };
+		C116F6E31E8D8A34003AEAA1 /* SendTaskEmailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTaskEmailCell.swift; sourceTree = "<group>"; };
+		C116F6E41E8D8A34003AEAA1 /* SendTaskEmailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendTaskEmailCell.xib; sourceTree = "<group>"; };
+		C116F6E71E8D8A7E003AEAA1 /* SendTaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendTaskCell.swift; sourceTree = "<group>"; };
+		C116F6E81E8D8A7E003AEAA1 /* SendTaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SendTaskCell.xib; sourceTree = "<group>"; };
+		C116F6EB1E8D8A95003AEAA1 /* AddressBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookCell.swift; sourceTree = "<group>"; };
+		C116F6EC1E8D8A95003AEAA1 /* AddressBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressBookCell.xib; sourceTree = "<group>"; };
 		C1211E2B1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateTaskPresentTransition.swift; sourceTree = "<group>"; };
 		C1211E2E1E85DE3F00CFC7A6 /* FadeTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
+		C12127DA1E8EF7770073EC0F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		C12127DC1E8F09520073EC0F /* NewTeamUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamUsernameViewController.swift; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -273,8 +295,8 @@
 		C1D11C161E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateAlertCommentAnimator.swift; sourceTree = "<group>"; };
 		C1D11C191E789252005D2D18 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		C1D11C1B1E7892A5005D2D18 /* NewTeamNameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamNameViewController.swift; sourceTree = "<group>"; };
-		C1D11C1D1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamUsernameViewController.swift; sourceTree = "<group>"; };
-		C1D11C1F1E79CBEC005D2D18 /* NewTeamEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamEmailViewController.swift; sourceTree = "<group>"; };
+		C1D11C1D1E79CBD1005D2D18 /* NewTeamEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamEmailViewController.swift; sourceTree = "<group>"; };
+		C1D11C1F1E79CBEC005D2D18 /* NewTeamPositionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamPositionViewController.swift; sourceTree = "<group>"; };
 		C1D11C211E79CBFA005D2D18 /* NewTeamPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamPasswordViewController.swift; sourceTree = "<group>"; };
 		C1D11C231E79CC14005D2D18 /* NewTeamInviteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamInviteViewController.swift; sourceTree = "<group>"; };
 		C1D11C281E7A0D44005D2D18 /* OnboardingTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTransition.swift; sourceTree = "<group>"; };
@@ -403,6 +425,30 @@
 				C1160E441E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib */,
 			);
 			name = UpdateViews;
+			sourceTree = "<group>";
+		};
+		C116F6DB1E8D789F003AEAA1 /* SendTask */ = {
+			isa = PBXGroup;
+			children = (
+				C116F6E21E8D8490003AEAA1 /* SendTaskViews */,
+				C116F6DC1E8D7B26003AEAA1 /* SendTaskViewController.swift */,
+				C116F6DE1E8D7B3B003AEAA1 /* AddressBookViewController.swift */,
+				C116F6E01E8D7B49003AEAA1 /* SendTask.storyboard */,
+			);
+			name = SendTask;
+			sourceTree = "<group>";
+		};
+		C116F6E21E8D8490003AEAA1 /* SendTaskViews */ = {
+			isa = PBXGroup;
+			children = (
+				C116F6E31E8D8A34003AEAA1 /* SendTaskEmailCell.swift */,
+				C116F6E41E8D8A34003AEAA1 /* SendTaskEmailCell.xib */,
+				C116F6E71E8D8A7E003AEAA1 /* SendTaskCell.swift */,
+				C116F6E81E8D8A7E003AEAA1 /* SendTaskCell.xib */,
+				C116F6EB1E8D8A95003AEAA1 /* AddressBookCell.swift */,
+				C116F6EC1E8D8A95003AEAA1 /* AddressBookCell.xib */,
+			);
+			name = SendTaskViews;
 			sourceTree = "<group>";
 		};
 		C1211E2A1E85DE0100CFC7A6 /* Transitions */ = {
@@ -568,10 +614,11 @@
 			isa = PBXGroup;
 			children = (
 				C1D11C1B1E7892A5005D2D18 /* NewTeamNameViewController.swift */,
-				C1D11C1D1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift */,
-				C1D11C1F1E79CBEC005D2D18 /* NewTeamEmailViewController.swift */,
+				C1D11C1D1E79CBD1005D2D18 /* NewTeamEmailViewController.swift */,
+				C1D11C1F1E79CBEC005D2D18 /* NewTeamPositionViewController.swift */,
 				C1D11C211E79CBFA005D2D18 /* NewTeamPasswordViewController.swift */,
 				C1D11C231E79CC14005D2D18 /* NewTeamInviteViewController.swift */,
+				C12127DC1E8F09520073EC0F /* NewTeamUsernameViewController.swift */,
 				C1D11C191E789252005D2D18 /* Onboarding.storyboard */,
 				C1D11C271E7A0D1A005D2D18 /* Transitions */,
 			);
@@ -640,6 +687,7 @@
 				C1629A971E5F712600EC91B0 /* TaskViews */,
 				C16B5DDB1E6787AF00F5BB58 /* TaskUpdate */,
 				C1DA11781E5FA7C100AF752E /* CreateTask */,
+				C116F6DB1E8D789F003AEAA1 /* SendTask */,
 				C1AD36641E689F2900C5A9AA /* TaskViewController */,
 				C1B86B251E60C0FA00A3182A /* ViewTaskViewController.swift */,
 				C1B86B271E60E85200A3182A /* EditTaskViewController.swift */,
@@ -648,6 +696,7 @@
 				C356E4581E5E5AC700E215CF /* Main.storyboard */,
 				C1D11C181E789217005D2D18 /* Onboarding */,
 				C133AF401E6A1BB5008AD201 /* HomeViewController.swift */,
+				C12127DA1E8EF7770073EC0F /* SignInViewController.swift */,
 				C133AF3E1E6A1B99008AD201 /* Home.storyboard */,
 				C356E45B1E5E5AC700E215CF /* Assets.xcassets */,
 				C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */,
@@ -923,16 +972,19 @@
 				C1BD9E201E8C567D00DDEB88 /* TeamMemberCell.xib in Resources */,
 				C1B993291E64CD1F00A404C9 /* CreateTaskAddItemCell.xib in Resources */,
 				C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */,
+				C116F6EE1E8D8A95003AEAA1 /* AddressBookCell.xib in Resources */,
 				C356E45F1E5E5AC700E215CF /* LaunchScreen.storyboard in Resources */,
 				C356E45C1E5E5AC700E215CF /* Assets.xcassets in Resources */,
 				C1BD9E1C1E8C2A6B00DDEB88 /* TeamViewController.xib in Resources */,
 				C356E45A1E5E5AC700E215CF /* Main.storyboard in Resources */,
+				C116F6E61E8D8A34003AEAA1 /* SendTaskEmailCell.xib in Resources */,
 				C1B993251E64B90100A404C9 /* CreateTaskItemCell.xib in Resources */,
 				C16B5DDD1E6787D700F5BB58 /* Updates.storyboard in Resources */,
 				C1DA117A1E5FA85300AF752E /* CreateTask.storyboard in Resources */,
 				C1AD36681E689F4A00C5A9AA /* MyTasksViewController.xib in Resources */,
 				C1B86B201E60B4BF00A3182A /* TaskItemViewCell.xib in Resources */,
 				C1B993371E66368500A404C9 /* CreateTaskReviewItemCell.xib in Resources */,
+				C116F6EA1E8D8A7E003AEAA1 /* SendTaskCell.xib in Resources */,
 				C3A398B91E68E70C007E3BD8 /* UpdateCell.xib in Resources */,
 				C1AD36721E689F7900C5A9AA /* CreatedTasksViewController.xib in Resources */,
 				C1B9932D1E660CE100A404C9 /* CreateTaskAssignCell.xib in Resources */,
@@ -940,6 +992,7 @@
 				C1AD367D1E68D4C700C5A9AA /* Alerts.storyboard in Resources */,
 				C1160E461E7B458200AC0249 /* UpdateBreakdownTableViewCell.xib in Resources */,
 				C1D11C1A1E789252005D2D18 /* Onboarding.storyboard in Resources */,
+				C116F6E11E8D7B49003AEAA1 /* SendTask.storyboard in Resources */,
 				C1B993331E66366900A404C9 /* CreateTaskReviewDescriptionCell.xib in Resources */,
 				C1AD366E1E689F6C00C5A9AA /* UpdatesViewController.xib in Resources */,
 			);
@@ -1074,7 +1127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */,
-				C1D11C201E79CBEC005D2D18 /* NewTeamEmailViewController.swift in Sources */,
+				C1D11C201E79CBEC005D2D18 /* NewTeamPositionViewController.swift in Sources */,
 				C3A3EDD01E7B399B00560678 /* Response+CoreDataClass.swift in Sources */,
 				C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */,
 				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
@@ -1084,6 +1137,7 @@
 				C1DA11841E5FA9EB00AF752E /* CreateTaskReviewViewController.swift in Sources */,
 				C1BD9E1B1E8C2A6B00DDEB88 /* TeamViewController.swift in Sources */,
 				C356E4B21E5F64C800E215CF /* Pulse.xcdatamodeld in Sources */,
+				C116F6DD1E8D7B26003AEAA1 /* SendTaskViewController.swift in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
@@ -1102,18 +1156,21 @@
 				C3DBA95F1E67920900859D4E /* Update+CoreDataProperties.swift in Sources */,
 				C1B86B231E60B51000A3182A /* TaskItemEditCell.swift in Sources */,
 				C1B993221E64B20600A404C9 /* CreateTaskItemCell.swift in Sources */,
+				C12127DD1E8F09520073EC0F /* NewTeamUsernameViewController.swift in Sources */,
 				C1AD36791E68D44100C5A9AA /* AlertManager.swift in Sources */,
 				C1B993391E6655C800A404C9 /* ColorConstants.swift in Sources */,
 				C356E4BA1E5F67FA00E215CF /* User+CoreDataProperties.swift in Sources */,
 				C3A54BF51E8DAEA4004E0E1B /* PulseKeychain.swift in Sources */,
 				C3A54BF01E8D8ABC004E0E1B /* Invite+CoreDataProperties.swift in Sources */,
+				C116F6ED1E8D8A95003AEAA1 /* AddressBookCell.swift in Sources */,
 				C356E4CC1E5FC8C200E215CF /* CoreDataStack.swift in Sources */,
 				C1DA117E1E5FA9BB00AF752E /* CreateTaskDateViewController.swift in Sources */,
 				C1DA11821E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift in Sources */,
 				C1B993361E66368500A404C9 /* CreateTaskReviewItemCell.swift in Sources */,
 				C1D11C1C1E7892A5005D2D18 /* NewTeamNameViewController.swift in Sources */,
 				C1BD9E241E8C8C8600DDEB88 /* ViewTeamMemberTaskViewController.swift in Sources */,
-				C1D11C1E1E79CBD1005D2D18 /* NewTeamUsernameViewController.swift in Sources */,
+				C1D11C1E1E79CBD1005D2D18 /* NewTeamEmailViewController.swift in Sources */,
+				C116F6DF1E8D7B3B003AEAA1 /* AddressBookViewController.swift in Sources */,
 				C39FF3FB1E6B65AC00811718 /* TaskInvitation+CoreDataClass.swift in Sources */,
 				C1211E2C1E85DE2200CFC7A6 /* CreateTaskPresentTransition.swift in Sources */,
 				C1D11C221E79CBFA005D2D18 /* NewTeamPasswordViewController.swift in Sources */,
@@ -1142,11 +1199,13 @@
 				C1160E411E7B412900AC0249 /* ViewUpdateBreakdownViewController.swift in Sources */,
 				C16B5DDF1E678F2400F5BB58 /* TaskUpdateViewController.swift in Sources */,
 				C3A54BEC1E8D8507004E0E1B /* InviteService.swift in Sources */,
+				C116F6E91E8D8A7E003AEAA1 /* SendTaskCell.swift in Sources */,
 				C1B993281E64CD1F00A404C9 /* CreateTaskAddItemCell.swift in Sources */,
 				C19B74221E5F9337002D9352 /* TaskViewController.swift in Sources */,
 				C1629A9A1E5F715E00EC91B0 /* TaskSectionHeader.swift in Sources */,
 				C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */,
 				C1B86B1F1E60B4BF00A3182A /* TaskItemViewCell.swift in Sources */,
+				C116F6E51E8D8A34003AEAA1 /* SendTaskEmailCell.swift in Sources */,
 				C1AD36831E68EC0600C5A9AA /* PassiveAlert.swift in Sources */,
 				C3A54BF21E8DA0E6004E0E1B /* UserService.swift in Sources */,
 				C1DA117C1E5FA9A900AF752E /* CreateTaskViewController.swift in Sources */,
@@ -1155,6 +1214,7 @@
 				C1160E451E7B458200AC0249 /* UpdateBreakdownTableViewCell.swift in Sources */,
 				C39FF3FC1E6B65AC00811718 /* TaskInvitation+CoreDataProperties.swift in Sources */,
 				C1DA11801E5FA9C900AF752E /* CreateTaskAssignViewController.swift in Sources */,
+				C12127DB1E8EF7770073EC0F /* SignInViewController.swift in Sources */,
 				C3A54BF61E8DAEA4004E0E1B /* AuthToken.swift in Sources */,
 				C3A3EDD11E7B399B00560678 /* Response+CoreDataProperties.swift in Sources */,
 				C3A54BEF1E8D8ABC004E0E1B /* Invite+CoreDataClass.swift in Sources */,

@@ -29,6 +29,8 @@ class TaskItemViewCell: UITableViewCell, TaskItemCell {
     @IBOutlet weak var button: Button!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var dot: UIImageView!
+    
+    var item: Item?
 
     var state: CellState = .unselected {
         didSet {
@@ -37,6 +39,7 @@ class TaskItemViewCell: UITableViewCell, TaskItemCell {
     }
     
     func load(item: Item) {
+        self.item = item
         self.state = item.itemStatus == .completed ? .selected : .unselected
         self.label.text = item.text
     }
@@ -51,7 +54,26 @@ class TaskItemViewCell: UITableViewCell, TaskItemCell {
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
+        let state: CellState = self.state
         self.state = self.state == .selected ? .unselected : .selected
+        guard let item: Item = self.item else { return }
+        guard let task: Task = item.task else { return }
+        if state == .unselected {
+            TaskService.markTaskItemCompleted(taskId: task.objectId, itemId: item.objectId, success: { (task) in
+                self.state = .selected
+            }, failure: { (error, statusCode) in
+                // Handle error
+                print("Item update error: \(statusCode ?? 000) \(error.localizedDescription)")
+                self.state = .unselected
+            })
+        } else if state == .selected {
+            TaskService.markTaskItemInProgress(taskId: task.objectId, itemId: item.objectId, success: { (task) in
+                self.state = .unselected
+            }, failure: { (error, statusCode) in
+                // Handle error
+                print("Item update error: \(statusCode ?? 000) \(error.localizedDescription)")
+                self.state = .selected
+            })
+        }
     }
-    
 }

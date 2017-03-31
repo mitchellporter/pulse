@@ -18,6 +18,8 @@ class NewTeamPasswordViewController: Onboarding {
     
     private var keyboardOrigin: CGFloat = 0.0
     private var strengthLine: CAShapeLayer = CAShapeLayer()
+    
+    var newUserDictionary: [NewUserKeys : String] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -140,7 +142,20 @@ class NewTeamPasswordViewController: Onboarding {
     }
 
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "invite", sender: nil)
+        guard let teamName: String = self.newUserDictionary[.teamName] else { return }
+        guard let email: String = self.newUserDictionary[.email] else { return }
+        guard let name: String = self.newUserDictionary[.name] else { return }
+        guard let position: String = self.newUserDictionary[.position] else { return }
+        guard let password: String = self.textField.text else { return }
+        
+        UserService.signupToExistingTeam(teamId: teamName, email: email, password: password, fullName: name, position: position, success: { (user) in
+            
+//            self.performSegue(withIdentifier: "invite", sender: nil)
+            NavigationManager.dismissOnboarding()
+            
+        }) { (error, statusCode) in
+            print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
