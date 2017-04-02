@@ -42,7 +42,8 @@ enum PulseAPI {
     
     // Create task
     case createTask(title: String, items: [String], assignees: [String]?, dueDate: Date?, updateDays: [WeekDay]?) //
-    case editTask(params: [String: AnyObject]) //
+    case editTask(params: [String: AnyObject])
+    case addAssigneesToTask(taskId: String, assignees: [String])
     
     // Task Updates
     case getTask(taskId: String) //
@@ -107,7 +108,8 @@ extension PulseAPI {
              .resendUpdateRequest,
              .inviteContactsToTask,
              .signupAndCreateTeam,
-             .signupToExistingTeam:
+             .signupToExistingTeam,
+             .addAssigneesToTask:
             return .post
             
         default: return .get
@@ -166,6 +168,8 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/availability/emails"
         case let .inviteContactsToTask(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/invites"
+        case let .addAssigneesToTask(taskId, _):
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/assignees"
          
         default: return ""
         }
@@ -311,6 +315,11 @@ extension PulseAPI {
         case let .inviteContactsToTask(_, contacts):
             return [
                 "invitees": contacts as AnyObject
+            ]
+            
+        case let .addAssigneesToTask(_, assignees):
+            return [
+                "assignees": assignees as AnyObject
             ]
                default: return nil
         }
