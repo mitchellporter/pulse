@@ -64,8 +64,10 @@ class CreateTaskAssignViewController: CreateTask {
         } catch {
             print("fetched results controller error: \(error)")
         }
+        
         // TODO: Remove hardcoded team id
-        TeamService.getTeamMembers(teamId: "58b080b2356e913f3a3af182", offset: 0, success: { (teamMembers) in
+        guard let teamId = User.currentUser()?.team?.objectId else { return }
+        TeamService.getTeamMembers(teamId: teamId, offset: 0, success: { (teamMembers) in
             CoreDataStack.shared.saveContext()
             
             do {
@@ -103,10 +105,10 @@ class CreateTaskAssignViewController: CreateTask {
     }
     
     private func nextButtonToggle() {
-        let nextAlpha: CGFloat = self.assignees.count > 0 ? 1.0 : 0.0
-        UIView.animate(withDuration: 0.1, animations: {
-            self.nextButton.alpha = nextAlpha
-        })
+//        let nextAlpha: CGFloat = self.assignees.count > 0 ? 1.0 : 0.0
+//        UIView.animate(withDuration: 0.1, animations: {
+//            self.nextButton.alpha = nextAlpha
+//        })
     }
     
     private func setupTableView() {

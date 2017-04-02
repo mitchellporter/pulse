@@ -136,6 +136,7 @@ class CreateTaskReviewViewController: CreateTask {
             
             CoreDataStack.shared.saveContext()
             
+            print(task)
             self.performSegue(withIdentifier: "assign", sender: task)
         }) { (error, statusCode) in
             print("There was an error when creating the task. Error: \(statusCode ?? 000) \(error.localizedDescription)")
