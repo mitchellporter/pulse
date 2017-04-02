@@ -125,7 +125,7 @@ class NewTeamNameViewController: Onboarding {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         guard let teamName: String = self.textField.text else { return }
-        AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (success, teamName) in
+        AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (success, teamName, teamId) in
             if self.creatingTeam {
                 if success {
                     self.performSegue(withIdentifier: "email", sender: teamName)

@@ -108,7 +108,7 @@ extension SignInViewController: UITextFieldDelegate {
         if string == "\n" {
             if textField == self.teamTextField {
                 guard let teamName: String = textField.text else { return false }
-                AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (available, teamName) in
+                AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (available, teamName, teamId) in
                     if !available {
                         self.presentLogin()
                     }
