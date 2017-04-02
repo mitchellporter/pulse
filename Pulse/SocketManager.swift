@@ -19,8 +19,6 @@ class SocketManager: NSObject {
     private var pubnub: PubNub?
     private let publishKey = "pub-c-874ce7f4-a1ce-4e25-bbc5-c3fb8e4c1a24"
     private let subscribeKey = "sub-c-007d8d40-d9fc-11e6-b6b1-02ee2ddab7fe"
-    private let testSubChannel = "nodejs_channel" // messages coming from API
-    private let testPubChannel = "ios_channel" // messages sent to the API - with permissions working this should NEVER work
     
     private override init() {
         super.init()
@@ -32,34 +30,29 @@ class SocketManager: NSObject {
         self.setup()
     }
     
-    private func setup() {
-    }
+    private func setup() {}
     
     func connect(userId: String) {
+        
         let config = PNConfiguration(publishKey: self.publishKey, subscribeKey: self.subscribeKey)
         config.uuid = userId // TODO: I feel like both uuid and authKey should be set to user's objectId
         config.authKey = userId // ????
         config.presenceHeartbeatInterval = 20
         config.presenceHeartbeatValue = 60
         
-        self.pubnub = PubNub.clientWithConfiguration(config)
-        self.pubnub?.logger.setLogLevel(0)
-        self.pubnub?.addListener(self)
+        // Deprecated but fixes annoying sdk log warning for now
+        config.stripMobilePayload = false
         
-        let rooms = [self.testSubChannel, "hello_world", userId]
+        self.pubnub = PubNub.clientWithConfiguration(config)
+        self.pubnub?.addListener(self)
+    
+        let rooms = [userId]
         self.pubnub?.subscribeToChannels(rooms, withPresence: true)
     }
     
     func disconnect() {
         // TODO: Not sure if i ever want to disconnect it's too much fun
         self.pubnub?.unsubscribeFromAll()
-    }
-    
-    // TODO: Remove after testing
-    func sendTestMessage() {
-        self.pubnub?.publish("Hello from iOS ;)", toChannel: self.testPubChannel, withCompletion: { (status) in
-            print("Sent test message with status: \(status.isError)")
-        })
     }
 }
 
