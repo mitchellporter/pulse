@@ -21,6 +21,8 @@ class AddressBookViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
+    fileprivate var assignees: Set<CNContact> = Set<CNContact>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +91,7 @@ class AddressBookViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
+        // Do something with self.assignees set of CNContacts
         
     }
     
@@ -117,6 +120,22 @@ extension AddressBookViewController: UITableViewDataSource {
             guard let image: UIImage = UIImage(data: imageData) else { return cell }
             cell.avatarImageView.image = image
          }
+        cell.delegate = self
         return cell
+    }
+}
+
+extension AddressBookViewController: AddressBookCellDelegate {
+    
+    func contactWasSelected(_ cell: AddressBookCell) {
+        guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
+        let contact: CNContact = self.datasource[indexPath.row]
+        if self.assignees.contains(contact) {
+            self.assignees.remove(contact)
+            cell.state = .unselected
+        } else {
+            self.assignees.insert(contact)
+            cell.state = .selected
+        }
     }
 }

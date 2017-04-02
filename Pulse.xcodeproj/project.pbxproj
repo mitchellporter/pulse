@@ -27,6 +27,7 @@
 		C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */; };
 		C12127DB1E8EF7770073EC0F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12127DA1E8EF7770073EC0F /* SignInViewController.swift */; };
 		C12127DD1E8F09520073EC0F /* NewTeamUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12127DC1E8F09520073EC0F /* NewTeamUsernameViewController.swift */; };
+		C12127DF1E9074C30073EC0F /* SignInTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12127DE1E9074C30073EC0F /* SignInTransition.swift */; };
 		C133AF3F1E6A1B99008AD201 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C133AF3E1E6A1B99008AD201 /* Home.storyboard */; };
 		C133AF411E6A1BB5008AD201 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF401E6A1BB5008AD201 /* HomeViewController.swift */; };
 		C133AF431E6A24B1008AD201 /* NavigationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C133AF421E6A24B1008AD201 /* NavigationManager.swift */; };
@@ -222,6 +223,7 @@
 		C1211E301E85F2DD00CFC7A6 /* ModalTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalTransition.swift; sourceTree = "<group>"; };
 		C12127DA1E8EF7770073EC0F /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		C12127DC1E8F09520073EC0F /* NewTeamUsernameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTeamUsernameViewController.swift; sourceTree = "<group>"; };
+		C12127DE1E9074C30073EC0F /* SignInTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTransition.swift; sourceTree = "<group>"; };
 		C133AF3E1E6A1B99008AD201 /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		C133AF401E6A1BB5008AD201 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C133AF421E6A24B1008AD201 /* NavigationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationManager.swift; sourceTree = "<group>"; };
@@ -697,6 +699,7 @@
 				C1D11C181E789217005D2D18 /* Onboarding */,
 				C133AF401E6A1BB5008AD201 /* HomeViewController.swift */,
 				C12127DA1E8EF7770073EC0F /* SignInViewController.swift */,
+				C12127DE1E9074C30073EC0F /* SignInTransition.swift */,
 				C133AF3E1E6A1B99008AD201 /* Home.storyboard */,
 				C356E45B1E5E5AC700E215CF /* Assets.xcassets */,
 				C356E45D1E5E5AC700E215CF /* LaunchScreen.storyboard */,
@@ -1145,6 +1148,7 @@
 				C1AD36851E68F0DB00C5A9AA /* Utilities.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */,
+				C12127DF1E9074C30073EC0F /* SignInTransition.swift in Sources */,
 				C356E4BF1E5F6C9D00E215CF /* Item+CoreDataClass.swift in Sources */,
 				C1D11C241E79CC14005D2D18 /* NewTeamInviteViewController.swift in Sources */,
 				C1AD367F1E68D60000C5A9AA /* UpdateAlertController.swift in Sources */,

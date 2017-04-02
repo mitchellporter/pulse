@@ -58,9 +58,11 @@ class NewTeamNameViewController: Onboarding {
         
         
         if self.creatingTeam {
+            self.takenLabel.text = "This team name does not exist."
             self.meassageLabel.text = "Try using your company name, or if its not for work, name it something people you invite will understand."
             self.textField.attributedPlaceholder = NSAttributedString(string: " Name Your Team", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
         } else {
+            self.takenLabel.text = "This name is taken, sorry!"
             self.meassageLabel.text = "Enter the name of the team you would like to join."
             self.textField.attributedPlaceholder = NSAttributedString(string: " Your Team Name", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
         }
@@ -124,10 +126,18 @@ class NewTeamNameViewController: Onboarding {
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         guard let teamName: String = self.textField.text else { return }
         AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (success, teamName) in
-            if success {
-                self.performSegue(withIdentifier: "email", sender: teamName)
+            if self.creatingTeam {
+                if success {
+                    self.performSegue(withIdentifier: "email", sender: teamName)
+                } else {
+                    self.alertBackground(true)
+                }
             } else {
-                self.alertBackground(true)
+                if !success {
+                    self.performSegue(withIdentifier: "email", sender: teamName)
+                } else {
+                    self.alertBackground(true)
+                }
             }
         }) { (error, statusCode) in
             print("Error: \(statusCode ?? 000) \(error.localizedDescription)")

@@ -98,7 +98,7 @@ class NewTeamEmailViewController: Onboarding {
         AvailabilityService.checkEmailAvailability(email: email, success: { (success, email) in
             if success {
                 self.newUserDictionary.updateValue(email, forKey: .email)
-                self.performSegue(withIdentifier: "name", sender: self.newUserDictionary)
+                self.performSegue(withIdentifier: "name", sender: nil)
             } else {
                 self.alertBackground(true)
             }
@@ -120,8 +120,7 @@ class NewTeamEmailViewController: Onboarding {
         
         if segue.identifier == "name" {
             guard let toVC: NewTeamPositionViewController = segue.destination as? NewTeamPositionViewController else { return }
-            guard let newUser: [NewUserKeys : String] = sender as? [NewUserKeys : String] else { return }
-            toVC.newUserDictionary = newUser
+            toVC.newUserDictionary = self.newUserDictionary
         }
     }
 }

@@ -47,14 +47,14 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "skipSignin", sender: nil)
-//        self.performSegue(withIdentifier: "toLogin", sender: nil)
+//        self.performSegue(withIdentifier: "skipSignin", sender: nil)
+        self.performSegue(withIdentifier: "toLogin", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "create" {
+        if segue.identifier == "create" || segue.identifier == "toLogin" {
             guard let toVC: NewTeamNameViewController = segue.destination as? NewTeamNameViewController else { return }
             guard let creating: Bool = sender as? Bool else { return }
             toVC.creatingTeam = creating

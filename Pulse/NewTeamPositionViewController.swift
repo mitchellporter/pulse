@@ -88,7 +88,7 @@ class NewTeamPositionViewController: Onboarding {
         self.newUserDictionary.updateValue(name, forKey: .name)
         guard let job: String = self.jobTextField.text else { return }
         self.newUserDictionary.updateValue(job, forKey: .position)
-        self.performSegue(withIdentifier: "password", sender: self.newUserDictionary)
+        self.performSegue(withIdentifier: "password", sender: nil)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -104,8 +104,7 @@ class NewTeamPositionViewController: Onboarding {
         
         if segue.identifier == "password" {
             guard let toVC: NewTeamPasswordViewController = segue.destination as? NewTeamPasswordViewController else { return }
-            guard let newUser: [NewUserKeys : String] = sender as? [NewUserKeys : String] else { return }
-            toVC.newUserDictionary = newUser
+            toVC.newUserDictionary = self.newUserDictionary
         }
     }
 }

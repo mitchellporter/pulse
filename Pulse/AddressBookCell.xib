@@ -24,7 +24,7 @@
                             <constraint firstAttribute="height" constant="32" id="gVh-vP-29N"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYg-yX-kEK" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYg-yX-kEK" customClass="Button" customModule="Pulse" customModuleProvider="target">
                         <rect key="frame" x="255" y="1.5" width="37" height="37"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="37" id="0dM-5B-eS2"/>
@@ -46,6 +46,9 @@
                                 <real key="value" value="18.5"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="buttonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Cj2-iW-gOY"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Jz-ln-czF">
                         <rect key="frame" x="66" y="4" width="37.5" height="17"/>
