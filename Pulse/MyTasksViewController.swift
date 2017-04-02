@@ -38,10 +38,10 @@ class MyTasksViewController: UIViewController {
         
         // Setup Invitation FRC
         let invitationsFetchRequest: NSFetchRequest<TaskInvitation> = TaskInvitation.createFetchRequest()
-        let invitationsPredicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUserId(), "pending")
+        let invitationsPredicate = NSPredicate(format: "receiver.objectId == %@ AND status == %@", User.currentUser()!.objectId, "pending")
         self.taskInvitationsFetchedResultsController = self.setupCoreData(with: invitationsFetchRequest, and: invitationsPredicate)
         
-        let assigneePredicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUserId())
+        let assigneePredicate = NSPredicate(format: "ANY assignees.objectId == %@", User.currentUser()!.objectId)
         
         // Setup InProgress FRC
         let inProgressFetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()

@@ -33,7 +33,7 @@ class CreatedTasksViewController: UIViewController {
         
         // Setup Pending FRC
         let fetchRequest: NSFetchRequest<Task> = Task.createFetchRequest()
-        let assignerPredicate: NSPredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUserId())
+        let assignerPredicate: NSPredicate = NSPredicate(format: "assigner.objectId == %@", User.currentUser()!.objectId)
 
         let sort = NSSortDescriptor(key: "status", ascending: false)
         fetchRequest.sortDescriptors = [sort]

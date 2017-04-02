@@ -43,7 +43,7 @@ class TeamViewController: UIViewController {
     
     private func getCurrentUser() -> User? {
         let fetchRequest: NSFetchRequest<User> = User.createFetchRequest()
-        let predicate: NSPredicate = NSPredicate(format: "objectId == %@", User.currentUserId())
+        let predicate: NSPredicate = NSPredicate(format: "objectId == %@", User.currentUser()!.objectId)
         fetchRequest.predicate = predicate
         
         do {
