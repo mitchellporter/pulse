@@ -9,16 +9,15 @@
 import UIKit
 
 class SendTaskEmailCell: UITableViewCell {
+    
+    @IBOutlet weak var emailTextField: UITextField!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let color: UIColor = UIColor.black
+        let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)
+        
+        self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Type an email to invite to task", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

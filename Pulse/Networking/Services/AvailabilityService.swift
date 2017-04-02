@@ -10,12 +10,12 @@ import Foundation
 import SwiftyJSON
 
 struct AvailabilityService {
-    static func checkTeamAvailability(teamName: String, success: @escaping (_ available: Bool, _ teamName: String) -> Void, failure: @escaping PulseFailureCompletion) {
+    static func checkTeamAvailability(teamName: String, success: @escaping (_ available: Bool, _ teamName: String, _ teamId: String) -> Void, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .checkTeamNameAvailability(teamName: teamName), success: { (data) in
             let json = JSON(data: data)
             if let available = json["success"].bool {
-                if let teamName = json["team_name"].string {
-                    success(available, teamName)
+                if let teamName = json["team_name"].string, let teamId = json["team"].string {
+                    success(available, teamName, teamId)
                 }
             }
         }, failure: failure)

@@ -468,7 +468,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQE-Wd-n15" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="16" y="21" width="22" height="22"/>
-                                <state key="normal" image="BackArrow"/>
+                                <state key="normal" image="BackArrowDark"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="minimumHitTestWidth">
                                         <real key="value" value="50"/>
@@ -667,6 +667,7 @@
     </scenes>
     <resources>
         <image name="BackArrow" width="22" height="17"/>
+        <image name="BackArrowDark" width="22" height="17"/>
         <image name="BackgroundInvite" width="375" height="182"/>
         <image name="Bert" width="120" height="108"/>
         <image name="CloseX" width="17" height="15"/>

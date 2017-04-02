@@ -15,22 +15,26 @@ class CreateTaskAssignViewController: CreateTask {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var assignDescriptionLabel: UILabel!
-    var taskDictionary: [CreateTaskKeys : [Any]]?
+    @IBOutlet weak var emailButton: UIButton!
+//    var taskDictionary: [CreateTaskKeys : [Any]]?
     var tableViewTopInset: CGFloat = 42
     
+    var task: Task?
+    
     var fetchedResultsController: NSFetchedResultsController<User>!
-    var assignees: Set<User> {
-        get {
-            guard let assignees: [User] = self.taskDictionary?[.assignees] as? [User] else { return Set<User>() }
-            let set = Set<User>(assignees)
-            return set
-        }
-        set {
-            let assigneesArray: [User] = [User](newValue)
-            _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
-            self.nextButtonToggle()
-        }
-    }
+    var assignees: Set<User> = Set<User>()
+//    var assignees: Set<User> {
+//        get {
+//            guard let assignees: [User] = self.taskDictionary?[.assignees] as? [User] else { return Set<User>() }
+//            let set = Set<User>(assignees)
+//            return set
+//        }
+//        set {
+//            let assigneesArray: [User] = [User](newValue)
+//            _ = self.taskDictionary?.updateValue(assigneesArray, forKey: CreateTaskKeys.assignees)
+//            self.nextButtonToggle()
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,11 +82,11 @@ class CreateTaskAssignViewController: CreateTask {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        if self.isMovingFromParentViewController || self.isBeingDismissed {
-            guard let previousViewController: CreateTaskDateViewController = NavigationManager.getPreviousViewController(CreateTaskDateViewController.self, from: self) as? CreateTaskDateViewController else { return }
-            guard let taskDictionary = self.taskDictionary else { return }
-            previousViewController.taskDictionary = taskDictionary
-        }
+//        if self.isMovingFromParentViewController || self.isBeingDismissed {
+//            guard let previousViewController: CreateTaskDateViewController = NavigationManager.getPreviousViewController(CreateTaskDateViewController.self, from: self) as? CreateTaskDateViewController else { return }
+//            guard let taskDictionary = self.taskDictionary else { return }
+//            previousViewController.taskDictionary = taskDictionary
+//        }
     }
     
     private func setupAppearance() {
@@ -117,25 +121,13 @@ class CreateTaskAssignViewController: CreateTask {
         self.tableView.showsVerticalScrollIndicator = false
     }
     
-    private func create(task: [CreateTaskKeys:[Any]]) {
-        guard let description: String = task[.description]?.first as? String else { return }
-        guard let items: [String] = task[.items] as? [String] else { return }
-        guard let assignees: [User] = task[.assignees] as? [User] else { return }
-        var members: [String] = [String]()
-        for member in assignees {
-            members.append(member.objectId)
-        }
-        let dueDate: Date? = task[.dueDate]?.first as? Date
-        let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
-        TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in
-            
-            CoreDataStack.shared.saveContext()
-            
-            self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
-        }) { (error, statusCode) in
-            // TODO: Handle Error
-            print("There was an error when creating the task. Error: \(statusCode ?? 000) \(error.localizedDescription)")
-        }
+    private func inviteTo(task: Task) {
+        guard let task: Task = self.task else { return }
+        let assignees: [User] = Array(self.assignees)
+        
+        // TODO: Invite to task
+        
+        self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -147,14 +139,25 @@ class CreateTaskAssignViewController: CreateTask {
     }
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        guard let task: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { print("No task dictionary on CreateTaskAssignController"); return }
-        self.create(task: task)
+        guard let task: Task = self.task else { print("No task on CreateTaskAssignController"); return }
+        self.inviteTo(task: task)
+    }
+    
+    @IBAction func emailButtonPressed(_ sender: UIButton) {
+        guard let task: Task = self.task else { return }
+        self.performSegue(withIdentifier: "invite", sender: task)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let dictionary = self.taskDictionary else { return }
-        guard let toVC = segue.destination as? CreateTaskUpdatesViewController else { return }
-        toVC.taskDictionary = dictionary
+//        guard let dictionary = self.taskDictionary else { return }
+//        guard let toVC = segue.destination as? CreateTaskUpdatesViewController else { return }
+//        toVC.taskDictionary = dictionary
+        
+        if segue.identifier == "invite" {
+            guard let task: Task = sender as? Task else { return }
+            guard let toVC: SendTaskViewController = segue.destination as? SendTaskViewController else { return }
+            toVC.task = task
+        }
     }
 
 }
