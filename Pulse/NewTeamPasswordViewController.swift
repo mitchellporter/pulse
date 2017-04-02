@@ -142,13 +142,13 @@ class NewTeamPasswordViewController: Onboarding {
     }
 
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        guard let teamName: String = self.newUserDictionary[.teamName] else { return }
+        guard let teamId: String = self.newUserDictionary[.teamId] else { return }
         guard let email: String = self.newUserDictionary[.email] else { return }
         guard let name: String = self.newUserDictionary[.name] else { return }
         guard let position: String = self.newUserDictionary[.position] else { return }
         guard let password: String = self.textField.text else { return }
         
-        UserService.signupToExistingTeam(teamId: teamName, email: email, password: password, fullName: name, position: position, success: { (user) in
+        UserService.signupToExistingTeam(teamId: teamId, email: email, password: password, fullName: name, position: position, success: { (user) in
             
 //            self.performSegue(withIdentifier: "invite", sender: nil)
             NavigationManager.dismissOnboarding()

@@ -99,6 +99,8 @@ extension TeamViewController: UITableViewDataSource, UITableViewDelegate {
         cell.contentView.backgroundColor = self.tableView.backgroundColor
         guard let user: User = self.fetchedResultsController.sections?[indexPath.section].objects?[indexPath.row] as? User else { return cell }
         cell.load(user: user)
+        print(user.name)
+        print(user.email)
         return cell
     }
     
