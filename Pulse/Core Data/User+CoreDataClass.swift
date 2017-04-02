@@ -44,6 +44,11 @@ extension User {
         user.position = position
         return user
     }
+    
+    // TODO: Combine this with currentUser - shouldn't be separate
+    static func currentUserTeamId() -> String? {
+        return AuthToken().teamId
+    }
 }
 
 extension User: PulseType {

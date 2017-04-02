@@ -65,8 +65,7 @@ class CreateTaskAssignViewController: CreateTask {
             print("fetched results controller error: \(error)")
         }
         
-        // TODO: Remove hardcoded team id
-        guard let teamId = User.currentUser()?.team?.objectId else { return }
+        guard let teamId = User.currentUserTeamId() else { return }
         TeamService.getTeamMembers(teamId: teamId, offset: 0, success: { (teamMembers) in
             CoreDataStack.shared.saveContext()
             
