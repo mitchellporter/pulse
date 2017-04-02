@@ -69,6 +69,10 @@ extension NavigationController: UINavigationControllerDelegate {
             return FadeTransition()
         } else if fromVC is HomeViewController || fromVC is SignInViewController {
             return NoAnimationTransition()
+        } else if (fromVC is SendTaskViewController || toVC is SendTaskViewController) {
+            return FadeTransition()
+        } else if (fromVC is AddressBookViewController || toVC is AddressBookViewController) {
+            return FadeTransition()
         }
         return nil
     }

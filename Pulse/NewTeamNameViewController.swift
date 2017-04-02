@@ -10,6 +10,7 @@ import UIKit
 
 enum NewUserKeys: String {
     case teamName = "team_name"
+    case teamId = "teamId"
     case email = "email"
     case name = "name"
     case position = "position"
@@ -110,8 +111,14 @@ class NewTeamNameViewController: Onboarding {
         
         if segue.identifier == "email" {
             guard let toVC: NewTeamEmailViewController = segue.destination as? NewTeamEmailViewController else { return }
-            guard let teamName: String = sender as? String else { return }
-            toVC.newUserDictionary.updateValue(teamName, forKey: .teamName)
+            if let castSender: (String, String) = sender as? (String, String) {
+                toVC.newUserDictionary.updateValue(castSender.0, forKey: .teamName)
+                toVC.newUserDictionary.updateValue(castSender.1, forKey: .teamId)
+            }
+            
+            if let teamName: String = sender as? String {
+                toVC.newUserDictionary.updateValue(teamName, forKey: .teamName)
+            }
         }
     }
     
@@ -134,7 +141,7 @@ class NewTeamNameViewController: Onboarding {
                 }
             } else {
                 if !success {
-                    self.performSegue(withIdentifier: "email", sender: teamName)
+                    self.performSegue(withIdentifier: "email", sender: (teamName, teamId))
                 } else {
                     self.alertBackground(true)
                 }

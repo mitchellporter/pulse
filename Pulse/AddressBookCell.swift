@@ -40,6 +40,7 @@ class AddressBookCell: UITableViewCell {
         self.addButton.borderColor = state == .selected ? UIColor.clear : UIColor("C0C0C0")
         let image: UIImage? = state == .selected ? #imageLiteral(resourceName: "GreenCheck") : nil
         self.addButton.setImage(image, for: .normal)
+        self.addButton.titleLabel?.text = state == .selected ? nil : "+"
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {

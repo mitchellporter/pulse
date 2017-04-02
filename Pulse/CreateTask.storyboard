@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="l6Y-1H-bwV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="l6Y-1H-bwV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -207,6 +207,14 @@
             </objects>
             <point key="canvasLocation" x="229.59999999999999" y="108.39580209895054"/>
         </scene>
+        <!--SendTask-->
+        <scene sceneID="sro-T6-FNr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SendTask" id="Md6-Jx-EGB" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P5Z-um-Tch" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4502" y="109"/>
+        </scene>
         <!--Create Task Assign View Controller-->
         <scene sceneID="DMe-Hs-qdO">
             <objects>
@@ -283,16 +291,16 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NJW-CY-gfl">
-                                <rect key="frame" x="65" y="214" width="245" height="36"/>
+                                <rect key="frame" x="76" y="214" width="223" height="36"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="322-KY-ugq" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="245" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="223" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="36" id="2VU-ZX-uin"/>
-                                            <constraint firstAttribute="width" constant="245" id="5bs-S2-Bha"/>
+                                            <constraint firstAttribute="width" constant="223" id="5bs-S2-Bha"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                                        <state key="normal" title="SEND VIA TEXT">
+                                        <state key="normal" title="EMAIL TASK TO SOMEONE">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -306,9 +314,12 @@
                                                 <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="emailButtonPressed:" destination="4rw-ai-A9X" eventType="touchUpInside" id="YIm-3K-J0p"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xGX-hB-CqO" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                                        <rect key="frame" x="245" y="0.0" width="0.0" height="36"/>
+                                        <rect key="frame" x="223" y="0.0" width="0.0" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" id="9BR-vh-V11"/>
                                             <constraint firstAttribute="height" constant="36" id="WQd-GC-wHf"/>
@@ -357,9 +368,11 @@
                     <connections>
                         <outlet property="assignDescriptionLabel" destination="3hX-uo-gFw" id="gSi-Kw-01t"/>
                         <outlet property="backButton" destination="ISY-wA-ZMU" id="BJY-Fh-UpQ"/>
+                        <outlet property="emailButton" destination="322-KY-ugq" id="Lt6-1F-COv"/>
                         <outlet property="nextButton" destination="FXb-5h-ou9" id="eik-7h-sua"/>
                         <outlet property="tableView" destination="IAe-ie-jbu" id="nfq-5r-Tfv"/>
                         <segue destination="GBR-kb-1bd" kind="unwind" identifier="completeCreateTask" unwindAction="unwindToTaskViewController:" id="ZTg-Ds-NGZ"/>
+                        <segue destination="Md6-Jx-EGB" kind="show" identifier="invite" id="y50-BT-JZu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cJX-gn-FhP" userLabel="First Responder" sceneMemberID="firstResponder"/>

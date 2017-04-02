@@ -18,6 +18,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
     
     private var signInFadeAlpha: CGFloat = 0.17
+    
+    fileprivate var teamId: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,11 +71,11 @@ class SignInViewController: UIViewController {
     }
 
     @IBAction func signInButtonPressed(_ sender: UIButton) {
-        guard let teamName: String = self.teamTextField.text else { return }
+        guard let teamId: String = self.teamId else { return }
         guard let email: String = self.emailTextField.text else { return }
         guard let password: String  = self.passwordTextField.text else { return }
      
-        UserService.signin(teamId: teamName, email: email, password: password, success: { (user) in
+        UserService.signin(teamId: teamId, email: email, password: password, success: { (user) in
             
             self.performSegue(withIdentifier: "toMain", sender: nil)
             
@@ -110,6 +112,7 @@ extension SignInViewController: UITextFieldDelegate {
                 guard let teamName: String = textField.text else { return false }
                 AvailabilityService.checkTeamAvailability(teamName: teamName, success: { (available, teamName, teamId) in
                     if !available {
+                        self.teamId = teamId
                         self.presentLogin()
                     }
                 }, failure: { (error, statusCode) in

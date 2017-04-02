@@ -16,6 +16,8 @@ class AddressBookViewController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
 //    @IBOutlet weak var searchBar: UISearchBar!
     
+    var task: Task?
+    
     fileprivate var datasource: [CNContact] = [] {
         didSet {
             self.tableView.reloadData()
@@ -91,8 +93,24 @@ class AddressBookViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        // Do something with self.assignees set of CNContacts
         
+
+        guard let task: Task = self.task else { return }
+        
+        var contactsArray: [[String : AnyObject]] = []
+        for contact in self.assignees {
+            let name: NSString = contact.givenName + " " + contact.familyName as NSString
+            guard let email: NSString = contact.emailAddresses.first?.value else { continue }
+            let dictionary: [String : AnyObject] = ["name" : name, "email" : email]
+            contactsArray.append(dictionary)
+        }
+        InviteService.inviteContactsToTask(taskId: task.objectId, contacts: contactsArray, success: { (invite) in
+            
+            self.performSegue(withIdentifier: "endCreateFlow", sender: nil)
+            
+        }) { (error, statusCode) in
+            print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
