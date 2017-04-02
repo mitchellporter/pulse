@@ -41,7 +41,7 @@ enum PulseAPI {
     case getTasksCreatedByUser(assignerId: String, offset: Int, status: String?) //
     
     // Create task
-    case createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?) //
+    case createTask(title: String, items: [String], assignees: [String]?, dueDate: Date?, updateDays: [WeekDay]?) //
     case editTask(params: [String: AnyObject]) //
     
     // Task Updates
@@ -240,11 +240,11 @@ extension PulseAPI {
             guard let status = status else { return params }
             params["status"] = status as AnyObject
             return params
+            
         case let .createTask(title, items, assignees, dueDate, updateDays):
             var params = [
                 "title": title as AnyObject,
-                "items": items as AnyObject,
-                "assignees": assignees as AnyObject
+                "items": items as AnyObject
             ] as [String : AnyObject]
             if let dueDate = dueDate {
                 params["due_date"] = dueDate.timeIntervalSince1970 as AnyObject
@@ -252,7 +252,11 @@ extension PulseAPI {
             if let updateDays = updateDays {
                 params["update_days"] = updateDays.flatMap { return $0.rawValue } as AnyObject
             }
+            if let assignees = assignees {
+                params["assignees"] = assignees as AnyObject
+            }
             return params as [String : AnyObject]
+            
         case let .getTeamMembers(_, offset):
             return [
                 "offset": offset as AnyObject,
