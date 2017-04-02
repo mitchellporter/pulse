@@ -125,13 +125,9 @@ class CreateTaskAssignViewController: CreateTask {
     private func inviteTo(task: Task) {
         guard let task: Task = self.task else { return }
         let assignees: [User] = Array(self.assignees)
+        
+        // TODO: full assignees shoudln't be stored in the first place?
         let assigneeIds: [String] = assignees.map { return $0.objectId }
-        print(assigneeIds)
-        // TODO: Clean this up
-        
-        
-        
-        // TODO: Invite to task
         TaskService.addAssigneesToTask(taskId: task.objectId, assignees: assigneeIds, success: { (task) in
             
             CoreDataStack.shared.saveContext()
