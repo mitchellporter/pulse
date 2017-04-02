@@ -124,10 +124,21 @@ class CreateTaskAssignViewController: CreateTask {
     private func inviteTo(task: Task) {
         guard let task: Task = self.task else { return }
         let assignees: [User] = Array(self.assignees)
+        let assigneeIds: [String] = assignees.map { return $0.objectId }
+        print(assigneeIds)
+        // TODO: Clean this up
+        
+        
         
         // TODO: Invite to task
-        
-        self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
+        TaskService.addAssigneesToTask(taskId: task.objectId, assignees: assigneeIds, success: { (task) in
+            
+            CoreDataStack.shared.saveContext()
+            
+            self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
+        }) { (error, statusCode) in
+            // TODO: Handle error
+        }
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
