@@ -121,11 +121,15 @@ class CreateTaskReviewViewController: CreateTask {
     private func create(task: [CreateTaskKeys:[Any]]) {
         guard let description: String = task[.description]?.first as? String else { return }
         guard let items: [String] = task[.items] as? [String] else { return }
-        guard let assignees: [User] = task[.assignees] as? [User] else { return }
-        var members: [String] = [String]()
-        for member in assignees {
-            members.append(member.objectId)
+        
+        var members: [String]?
+        if let assignees: [User] = task[.assignees] as? [User] {
+            members = [String]()
+            for assignee in assignees {
+                members?.append(assignee.objectId)
+            }
         }
+        
         let dueDate: Date? = task[.dueDate]?.first as? Date
         let updateInterval: [WeekDay] = task[.updateInterval] == nil ? [WeekDay]() : task[.updateInterval]! as! [WeekDay]
         TaskService.createTask(title: description, items: items, assignees: members, dueDate: dueDate, updateDays: updateInterval, success: { (task) in

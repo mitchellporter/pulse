@@ -46,7 +46,7 @@ class CreateTaskUpdatesViewController: CreateTask {
         if self.isMovingFromParentViewController || self.isBeingDismissed {
             guard let previousViewController: CreateTaskAssignViewController = NavigationManager.getPreviousViewController(CreateTaskAssignViewController.self, from: self) as? CreateTaskAssignViewController else { return }
             guard let taskDictionary = self.taskDictionary else { return }
-            previousViewController.taskDictionary = taskDictionary
+//            previousViewController.taskDictionary = taskDictionary
         }
     }
     

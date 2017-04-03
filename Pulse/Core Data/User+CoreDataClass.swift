@@ -24,14 +24,6 @@ public class User: NSManagedObject {
 }
 
 extension User {
-    static func currentUserId() -> String {
-        let defaults = UserDefaults.standard
-        var userId = defaults.object(forKey: "user_id") as? String
-        if (userId == nil) {
-            userId = "586ecdc0213f22d94db5ef7f"
-        }
-        return userId!
-    }
     
     static func currentUser() -> User? {
         let token = AuthToken()
@@ -43,6 +35,15 @@ extension User {
         user.email = email
         user.position = position
         return user
+    }
+    
+    // TODO: Combine this with currentUser - shouldn't be separate
+    static func currentUserTeamId() -> String? {
+        return AuthToken().teamId
+    }
+    
+    static func logout() {
+        AuthToken.reset()
     }
 }
 

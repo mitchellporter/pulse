@@ -13,6 +13,7 @@ public protocol KeychainType {
     var name: String? { get set }
     var email: String? { get set }
     var position: String? { get set }
+    var teamId: String? { get set }
 }
 
 private let PushToken = "PulsePushToken"
@@ -24,6 +25,8 @@ private let AuthUserId = "PulseAuthUserId"
 private let AuthName = "PulseAuthName"
 private let AuthEmail = "PulseAuthEmail"
 private let AuthPosition = "PulseAuthPosition"
+private let AuthTeamId = "PulseAuthTeamId"
+
 
 public struct PulseKeychain: KeychainType {
     
@@ -71,5 +74,10 @@ public struct PulseKeychain: KeychainType {
     public var position: String? {
         get { return keychain[AuthPosition] }
         set { keychain[AuthPosition] = newValue }
+    }
+    
+    public var teamId: String? {
+        get { return keychain[AuthTeamId] }
+        set { keychain[AuthTeamId] = newValue }
     }
 }
