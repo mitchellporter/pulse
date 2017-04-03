@@ -60,7 +60,7 @@ class TeamMemberViewController: UIViewController {
         guard let avatarURL: URL = URL(string: user.avatarURL ?? "") else { return }
         Nuke.loadImage(with: avatarURL, into: self.avatarImageView)
         self.setupCoreData(with: user)
-        self.fetchData(in: self.selectedSection)
+//        self.fetchData(in: self.selectedSection)
         self.selectedSection = 0
     }
     

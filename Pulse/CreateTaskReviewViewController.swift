@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 class CreateTaskReviewViewController: CreateTask {
 
@@ -65,6 +66,14 @@ class CreateTaskReviewViewController: CreateTask {
     }
     
     private func displayTask() {
+        if let user: User = User.currentUser() {
+            if let avatarURL: String = user.avatarURL {
+                print(avatarURL)
+                if let avatarUrl: URL = URL(string: user.avatarURL ?? "") {
+                    Nuke.loadImage(with: avatarUrl, into: self.avatarImageView)
+                }
+            } else { print("No avatarUrl") }
+        }
         self.dueDateLabel.text = ""
         guard let dictionary: Dictionary<CreateTaskKeys,[Any]> = self.taskDictionary else { return }
         if let assignees: [User] = dictionary[.assignees] as? [User] {

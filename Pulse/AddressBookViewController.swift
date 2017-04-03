@@ -71,25 +71,25 @@ class AddressBookViewController: UIViewController {
     }
     
     func fetchContacts() {
-//        
-//        let store = CNContactStore()
-//        guard let keysToFetch = [CNContactEmailAddressesKey, CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactThumbnailImageDataKey] as? [CNKeyDescriptor] else { return }
-//        let request = CNContactFetchRequest(keysToFetch: keysToFetch)
-//        var cnContacts = [CNContact]()
-//        
-//        do {
-//            try store.enumerateContacts(with: request) {
-//                (contact, cursor) -> Void in
-//                if !contact.emailAddresses.isEmpty {
-//                    cnContacts.append(contact)
-//                }
-//            }
-//        } catch let error {
-//            print("Fetch contact error: \(error.localizedDescription)")
-//        }
-//        OperationQueue.main.addOperation { 
-//            self.datasource = cnContacts
-//        }
+        
+        let store = CNContactStore()
+        guard let keysToFetch = [CNContactEmailAddressesKey, CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactThumbnailImageDataKey] as? [CNKeyDescriptor] else { return }
+        let request = CNContactFetchRequest(keysToFetch: keysToFetch)
+        var cnContacts = [CNContact]()
+        
+        do {
+            try store.enumerateContacts(with: request) {
+                (contact, cursor) -> Void in
+                if !contact.emailAddresses.isEmpty {
+                    cnContacts.append(contact)
+                }
+            }
+        } catch let error {
+            print("Fetch contact error: \(error.localizedDescription)")
+        }
+        OperationQueue.main.addOperation { 
+            self.datasource = cnContacts
+        }
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {

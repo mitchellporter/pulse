@@ -128,7 +128,7 @@ class CreateTaskAssignViewController: CreateTask {
         guard let task: Task = self.task else { return }
         let assignees: [User] = Array(self.assignees)
         
-        // TODO: full assignees shoudln't be stored in the first place?
+        // TODO: full assignees shouldn't be stored in the first place?
         let assigneeIds: [String] = assignees.map { return $0.objectId }
         TaskService.addAssigneesToTask(taskId: task.objectId, assignees: assigneeIds, success: { (task) in
             
@@ -187,6 +187,7 @@ extension CreateTaskAssignViewController: UITableViewDataSource, UITableViewDele
         header.contentView.backgroundColor = createTaskBackgroundColor
         header.title = "MY TEAM"
         header.markerWidth = 5.0
+        header.titleColor = UIColor.white
         return header
     }
     

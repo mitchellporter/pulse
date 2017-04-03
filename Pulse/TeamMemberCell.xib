@@ -39,7 +39,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.43594820205479451" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vc7-1C-v7N">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vc7-1C-v7N">
                                 <rect key="frame" x="17" y="72.5" width="33" height="14.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                 <color key="textColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,19 +52,12 @@
                                     <constraint firstAttribute="height" constant="10" id="hhw-Pn-4hf"/>
                                     <constraint firstAttribute="width" constant="46" id="ohV-dG-63D"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
-                                        <color key="value" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="completedColor">
-                                        <color key="value" red="0.14901960784313725" green="0.80784313725490198" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="103" id="7VD-62-Izp"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Med-zr-xOg" secondAttribute="trailing" constant="12" id="GnG-Fz-SeH"/>
                             <constraint firstItem="lK0-tf-EoX" firstAttribute="leading" secondItem="Wxy-OG-df2" secondAttribute="leading" constant="17" id="Qup-GV-aTn"/>
                             <constraint firstAttribute="bottom" secondItem="Vc7-1C-v7N" secondAttribute="bottom" constant="16" id="cPf-bz-Kv8"/>
                             <constraint firstItem="Vc7-1C-v7N" firstAttribute="leading" secondItem="lK0-tf-EoX" secondAttribute="leading" id="f2K-BA-RAi"/>

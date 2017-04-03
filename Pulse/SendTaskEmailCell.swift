@@ -16,7 +16,7 @@ class SendTaskEmailCell: UITableViewCell {
         super.awakeFromNib()
         
         let color: UIColor = UIColor.black
-        let font: UIFont = UIFont.systemFont(ofSize: 20.0, weight: UIFontWeightMedium)
+        let font: UIFont = UIFont.systemFont(ofSize: 12.0, weight: UIFontWeightMedium)
         
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Type an email to invite to task", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
     }
