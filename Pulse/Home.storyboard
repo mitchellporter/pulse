@@ -84,7 +84,7 @@
                                     <action selector="signInButtonPressed:" destination="xo4-k2-SZh" eventType="touchUpInside" id="Ee8-Gc-C1y"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2de-9o-SOJ">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2de-9o-SOJ">
                                 <rect key="frame" x="87.5" y="378.5" width="200" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="aG9-9f-V8P"/>
@@ -295,6 +295,6 @@
         <image name="StarsButtonLayer" width="271" height="52"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pSQ-GY-2kH"/>
+        <segue reference="XGd-gS-HMG"/>
     </inferredMetricsTieBreakers>
 </document>
