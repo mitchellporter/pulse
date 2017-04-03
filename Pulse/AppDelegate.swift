@@ -20,12 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Needs review
         
         // Simulate logout
-        User.logout()
+//        User.logout()
         
         // Diff initial screen for existing user
-//        if User.currentUser() != nil {
-//            NavigationManager.loadFeed()
-//        }   
+        if User.currentUser() != nil {
+            NavigationManager.loadFeed()
+        }   
         
         return true
     }
