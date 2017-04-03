@@ -56,29 +56,36 @@ public struct AuthToken {
         set { keychain.position = newValue }
     }
     
+    public var teamId: String? {
+        get { return keychain.teamId }
+        set { keychain.teamId = newValue }
+    }
+    
     public static func storeToken(data: Data) {
         
         let json = JSON(data: data)
-        
-        print(json["user"]["_id"].stringValue)
-        print(json["user"]["name"].stringValue)
-        print(json["user"]["email"].stringValue)
-        print(json["user"]["position"].stringValue)
-        print(json["token"].string)
         
         var authToken = AuthToken()
         authToken.userId = json["user"]["_id"].stringValue
         authToken.name = json["user"]["name"].stringValue
         authToken.email = json["user"]["email"].stringValue
         authToken.position = json["user"]["position"].stringValue
+        
 //        token.password = ?? //TODO: password
+        
         if let token = json["token"].string {
             authToken.token = token
         }
         
-        print(authToken.token)
-        print(authToken.userId)
+        if let teamId = json["user"]["team"].string {
+            authToken.teamId = teamId
+        }
         
+        if let team = json["user"]["team"].dictionary {
+            authToken.teamId = team["_id"]?.string
+        }
+        
+        SocketManager.sharedManager.connect(userId: authToken.userId!)
     }
     
     static func reset() {

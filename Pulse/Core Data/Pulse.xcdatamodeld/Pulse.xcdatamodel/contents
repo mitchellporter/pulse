@@ -140,7 +140,7 @@
         </uniquenessConstraints>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="avatarURL" attributeType="String" syncable="YES"/>
+        <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="email" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>

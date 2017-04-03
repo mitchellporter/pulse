@@ -14,14 +14,16 @@ typealias TasksServiceSuccess = (_ tasks: [Task]) -> ()
 typealias MyTasksSuccess = () -> ()
 
 struct TaskService {
-    static func createTask(title: String, items: [String], assignees: [String], dueDate: Date?, updateDays: [WeekDay]?, success: @escaping MyTasksSuccess, failure: @escaping PulseFailureCompletion) {
+    static func createTask(title: String, items: [String], assignees: [String]?, dueDate: Date?, updateDays: [WeekDay]?, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .createTask(title: title, items: items, assignees: assignees, dueDate: dueDate, updateDays: updateDays), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let taskJSON = json["task"].dictionaryObject {
                     let task = Task.from(json: taskJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(task)
                 }
                 
+                // TODO: Remove task invitation parsing
                 if let taskInvitationsJSON = json["task_invitations"].arrayObject {
                     var taskInvitations = [TaskInvitation]()
                     taskInvitationsJSON.forEach({ (taskInvitationJSON) in
@@ -29,7 +31,6 @@ struct TaskService {
                         taskInvitations.append(taskInvitation)
                     })
                 }
-                success()
             }
         }) { (error, statusCode) in
             failure(error, statusCode)
@@ -166,6 +167,18 @@ struct TaskService {
     
     static func markTaskItemCompleted(taskId: String, itemId: String, success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
         NetworkingClient.sharedClient.request(target: .markTaskItemCompleted(taskId: taskId, itemId: itemId), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                if let taskJSON = json["task"].dictionaryObject {
+                    let task = Task.from(json: taskJSON as [String : AnyObject], context: CoreDataStack.shared.context)
+                    success(task)
+                }
+            }
+        }, failure: failure)
+    }
+    
+    static func addAssigneesToTask(taskId: String, assignees: [String], success: @escaping TaskServiceSuccess, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .addAssigneesToTask(taskId: taskId, assignees: assignees), success: { (data) in
             let json = JSON(data: data)
             if json["success"].boolValue {
                 if let taskJSON = json["task"].dictionaryObject {

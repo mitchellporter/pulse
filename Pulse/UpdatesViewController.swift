@@ -67,7 +67,7 @@ class UpdatesViewController: UIViewController {
         let fetchRequest: NSFetchRequest<Update> = Update.createFetchRequest()
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         
-        let taskAssignerPredicate = NSPredicate(format: "task.assigner.objectId == %@", User.currentUserId())
+        let taskAssignerPredicate = NSPredicate(format: "task.assigner.objectId == %@", User.currentUser()!.objectId)
         let hasResponsesPredicate = NSPredicate(format: "ANY responses.status == %@", "sent")
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [taskAssignerPredicate, hasResponsesPredicate])
         

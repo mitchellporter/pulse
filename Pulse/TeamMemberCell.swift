@@ -29,8 +29,13 @@ class TeamMemberCell: UITableViewCell {
     func load(user: User) {
         self.nameLabel.text = user.name
         self.positionLabel.text = user.position
-        self.updateLabel.text = "Undefined"
         self.progressControl.percent = 0.5
+        
+        if let mostRecentUpdateResponse = user.mostRecentUpdateResponse() {
+            self.updateLabel.text = "Last Update: \(mostRecentUpdateResponse.createdAt!) | \(mostRecentUpdateResponse.completionPercentage)% Done"
+        } else {
+            self.updateLabel.text = ""
+        }
         
         guard let avatarURL: URL = URL(string: user.avatarURL ?? "") else { return }
         Nuke.loadImage(with: avatarURL, into: self.avatarImageView)
