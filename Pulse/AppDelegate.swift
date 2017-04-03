@@ -18,9 +18,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // TODO: Needs review
-        if User.currentUser() != nil {
-            NavigationManager.loadFeed()
-        }   
+        
+        // Simulate logout
+        AuthToken.reset()
+        
+        // Diff initial screen for existing user
+//        if User.currentUser() != nil {
+//            NavigationManager.loadFeed()
+//        }   
         
         return true
     }

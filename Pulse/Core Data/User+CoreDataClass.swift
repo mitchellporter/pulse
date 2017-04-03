@@ -41,6 +41,10 @@ extension User {
     static func currentUserTeamId() -> String? {
         return AuthToken().teamId
     }
+    
+    static func logout() {
+        AuthToken.reset()
+    }
 }
 
 extension User: PulseType {
