@@ -14,6 +14,7 @@ target 'Pulse' do
   pod 'Nuke'
   pod 'Device'
   pod 'PubNub'
+  
 
   target 'PulseTests' do
     inherit! :search_paths

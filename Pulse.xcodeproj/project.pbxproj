@@ -855,6 +855,7 @@
 				17F883A83FDF5F03B7ABAB84 /* [CP] Embed Pods Frameworks */,
 				5B92594D8DFF0190E2D06C47 /* [CP] Copy Pods Resources */,
 				C1629AB01E5F8E1B00EC91B0 /* Embed Frameworks */,
+				C35BFD831E930505008B83B3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1100,6 +1101,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PulseTests/Pods-PulseTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C35BFD831E930505008B83B3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 820eb4d9dea08e5fd460ceb3233970f07a62348f da9f02e3094dd5ea6017e430e9d515156e8de0aabaf0cf6c1eee82ecb4507130";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -1,5 +1,5 @@
 PODS:
-  - Crashlytics (3.8.3):
+  - Crashlytics (3.8.4):
     - Fabric (~> 1.6.3)
   - Device (2.0.1)
   - Fabric (1.6.11)
@@ -22,7 +22,7 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Crashlytics: 2b6dbe138a42395577cfa73dfa1aa7248cadf39e
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   Device: 7dd12a4fc8a72a90211f2c9ac8975a728322a148
   Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   KeychainAccess: 017ea25e313a49eda10bb19b0bb0760fb1edfe1a
@@ -31,6 +31,6 @@ SPEC CHECKSUMS:
   PubNub: 5080a9cb739435e1efe0b47a00fd45d1188b5150
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 0a4a7a623b5bac0918073d02e599872f24ccb278
+PODFILE CHECKSUM: a6d6c40ef293d4748a113a8e5ee5f65a74954376
 
 COCOAPODS: 1.0.1
