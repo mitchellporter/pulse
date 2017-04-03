@@ -27,6 +27,10 @@ class TeamViewController: UIViewController {
         let fetchRequest: NSFetchRequest<User> = User.createFetchRequest()
         let sortDescriptor: NSSortDescriptor = NSSortDescriptor(key: "name", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        let predicate = NSPredicate(format: "objectId != %@", User.currentUser()!.objectId)
+        fetchRequest.predicate = predicate
+        
         let fetchedResultsController: NSFetchedResultsController<User> = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
         self.fetchedResultsController = fetchedResultsController
     }
@@ -41,28 +45,9 @@ class TeamViewController: UIViewController {
         self.tableView.delegate = self
     }
     
-    private func getCurrentUser() -> User? {
-        let fetchRequest: NSFetchRequest<User> = User.createFetchRequest()
-        let predicate: NSPredicate = NSPredicate(format: "objectId == %@", User.currentUser()!.objectId)
-        fetchRequest.predicate = predicate
-        
-        do {
-            let result = try CoreDataStack.shared.context.fetch(fetchRequest)
-            if result.count == 1 {
-                return result[0]
-            }
-            return nil
-        } catch {
-            print("No team available")
-            return nil
-        }
-    }
-    
     private func fetchData() {
         self.checkCache()
-        guard let user: User = self.getCurrentUser() else { return }
-        guard let team: Team = user.team else { return }
-        TeamService.getTeamMembers(teamId: team.objectId, offset: 0, success: { (users) in
+        TeamService.getTeamMembers(teamId: User.currentUserTeamId()!, offset: 0, success: { (users) in
             // If this is not put before saveContext, then animation is still visible and FRC delegate methods get called
             self.fetchedResultsController.delegate = nil
             CoreDataStack.shared.saveContext()
