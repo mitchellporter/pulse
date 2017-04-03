@@ -65,20 +65,14 @@ public struct AuthToken {
         
         let json = JSON(data: data)
         
-        print(json["user"]["_id"].stringValue)
-        print(json["user"]["name"].stringValue)
-        print(json["user"]["email"].stringValue)
-        print(json["user"]["position"].stringValue)
-        print(json["token"].string)
-        
-
-        
         var authToken = AuthToken()
         authToken.userId = json["user"]["_id"].stringValue
         authToken.name = json["user"]["name"].stringValue
         authToken.email = json["user"]["email"].stringValue
         authToken.position = json["user"]["position"].stringValue
+        
 //        token.password = ?? //TODO: password
+        
         if let token = json["token"].string {
             authToken.token = token
         }
