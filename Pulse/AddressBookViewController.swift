@@ -73,7 +73,7 @@ class AddressBookViewController: UIViewController {
     func fetchContacts() {
         
         let store = CNContactStore()
-        guard let keysToFetch = [CNContactEmailAddressesKey, CNContactFormatter.descriptorForRequiredKeys(for: .fullName), CNContactThumbnailImageDataKey] as? [CNKeyDescriptor] else { return }
+        let keysToFetch = [CNContactEmailAddressesKey as CNKeyDescriptor, CNContactFormatter.descriptorForRequiredKeys(for: .fullName) as CNKeyDescriptor, CNContactThumbnailImageDataKey as CNKeyDescriptor]
         let request = CNContactFetchRequest(keysToFetch: keysToFetch)
         var cnContacts = [CNContact]()
         
