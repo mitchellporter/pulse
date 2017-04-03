@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // TODO: Needs review
         
         // Simulate logout
-        AuthToken.reset()
+        User.logout()
         
         // Diff initial screen for existing user
 //        if User.currentUser() != nil {
