@@ -16,14 +16,14 @@ open class DotControl: UIView {
     private var backDots: CALayer = CALayer()
     
     /*This is the color the control will display to represent the uncompleted percentage of the control.*/
-    @IBInspectable open var emptyColor: UIColor = UIColor.black {
+    @IBInspectable open var emptyColor: UIColor = UIColor.black.withAlphaComponent(0.1) {
         didSet {
             self.updateColor(self.emptyColor, for: self.backDots)
         }
     }
     
     /*This is the color the control will display to represent the completed percentage of the control.*/
-    @IBInspectable open var completedColor: UIColor = UIColor.white {
+    @IBInspectable open var completedColor: UIColor = UIColor.blue {
         didSet {
             self.updateColor(self.completedColor, for: self.frontDots)
         }
@@ -78,16 +78,16 @@ open class DotControl: UIView {
         self.layer.addSublayer(dotLayer)
         
         var originX: CGFloat = 0.0
-        for _ in 0...3 {
+        for i in 0...3 {
             let circleFrame: CGRect = CGRect(x: originX, y: 0, width: 10, height: 10)
             let circlePath: UIBezierPath = UIBezierPath(ovalIn: circleFrame)
             let circle: CAShapeLayer = CAShapeLayer()
             circle.path = circlePath.cgPath
             circle.fillColor = color.cgColor
             circle.strokeColor = nil
-            if dotLayer == self.backDots {
-                circle.opacity = 0.1
-            }
+//            if dotLayer == self.backDots {
+//                circle.opacity = 0.1
+//            }
             dotLayer.addSublayer(circle)
             originX += circleFrame.width + 2
         }
@@ -111,8 +111,9 @@ open class DotControl: UIView {
     
     private func updateColor(_ color: UIColor, for layer: CALayer) {
         guard let sublayers: [CALayer] = layer.sublayers else { return }
-        for layer in sublayers {
-            layer.backgroundColor = color.cgColor
+        for (index, layer) in sublayers.enumerated() {
+            guard let shapeLayer: CAShapeLayer = layer as? CAShapeLayer else { layer.backgroundColor = color.cgColor; return }
+            shapeLayer.fillColor = color.cgColor
         }
     }
 }

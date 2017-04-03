@@ -32,6 +32,14 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         }
     }
     
+    var titleColor: UIColor = UIColor.black {
+        didSet {
+            if self.titleLabel != nil {
+                self.titleLabel.textColor = self.titleColor
+            }
+        }
+    }
+    
     var markerView: UIView!
     var markerColor: UIColor = UIColor.white {
         didSet {
@@ -108,6 +116,7 @@ class TaskSectionHeader: UITableViewHeaderFooterView {
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textColor = UIColor("191919")
         self.titleLabel = label
+        self.titleColor = UIColor("191919")
         self.contentView.addSubview(label)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 20).isActive = true

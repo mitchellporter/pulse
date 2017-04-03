@@ -116,10 +116,12 @@ extension SendTaskViewController: UITableViewDataSource, UITableViewDelegate {
 extension SendTaskViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string.contains(".") && string.contains("@") {
-            self.sendButtonEnabled(true)
-        } else {
-            self.sendButtonEnabled(false)
+        if let email: String = textField.text {
+            if email.contains(".") && email.contains("@") {
+                self.sendButtonEnabled(true)
+            } else {
+                self.sendButtonEnabled(false)
+            }
         }
         
         if string == "\n" {

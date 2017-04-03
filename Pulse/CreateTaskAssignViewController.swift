@@ -187,6 +187,7 @@ extension CreateTaskAssignViewController: UITableViewDataSource, UITableViewDele
         header.contentView.backgroundColor = createTaskBackgroundColor
         header.title = "MY TEAM"
         header.markerWidth = 5.0
+        header.titleColor = UIColor.white
         return header
     }
     

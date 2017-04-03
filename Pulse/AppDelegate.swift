@@ -23,9 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        User.logout()
         
         // Diff initial screen for existing user
-        if User.currentUser() != nil {
-            NavigationManager.loadFeed()
-        }   
+        
+        NavigationManager.loadFeed()
         
         return true
     }

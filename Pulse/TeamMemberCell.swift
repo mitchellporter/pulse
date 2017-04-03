@@ -24,15 +24,24 @@ class TeamMemberCell: UITableViewCell {
         
         self.containerView.layer.cornerRadius = 4
         self.avatarImageView.layer.cornerRadius = 7
+        
+        self.progressControl.emptyColor = UIColor("EBEBEB")
+        self.progressControl.completedColor = UIColor("26CE93")
+        self.progressControl.percent = 0.7
     }
     
     func load(user: User) {
         self.nameLabel.text = user.name
         self.positionLabel.text = user.position
-        self.progressControl.percent = 0.5
         
         if let mostRecentUpdateResponse = user.mostRecentUpdateResponse() {
-            self.updateLabel.text = "Last Update: \(mostRecentUpdateResponse.createdAt!) | \(mostRecentUpdateResponse.completionPercentage)% Done"
+            let formatter: DateFormatter = DateFormatter()
+            formatter.dateFormat = "MMM dd yyyy"
+            guard let date: Date = mostRecentUpdateResponse.createdAt else { return }
+            let dateString: String = formatter.string(from: date)
+            
+            self.updateLabel.text = "Last Update: " + dateString + " | " + "\(Int(mostRecentUpdateResponse.completionPercentage))% Done"
+            self.progressControl.percent = CGFloat(mostRecentUpdateResponse.completionPercentage) / 100
         } else {
             self.updateLabel.text = ""
         }
