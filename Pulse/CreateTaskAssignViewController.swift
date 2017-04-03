@@ -51,6 +51,8 @@ class CreateTaskAssignViewController: CreateTask {
         let sort = NSSortDescriptor(key: "createdAt", ascending: false)
         // TODO: Needs team predicate
         
+        let predicate = NSPredicate(format: "objectId != %@", User.currentUser()!.objectId)
+        fetchRequest.predicate = predicate
         fetchRequest.sortDescriptors = [sort]
         self.fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: CoreDataStack.shared.context, sectionNameKeyPath: nil, cacheName: nil)
     }
