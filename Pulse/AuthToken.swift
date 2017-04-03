@@ -84,6 +84,8 @@ public struct AuthToken {
         if let team = json["user"]["team"].dictionary {
             authToken.teamId = team["_id"]?.string
         }
+        
+        SocketManager.sharedManager.connect(userId: authToken.userId!)
     }
     
     static func reset() {
