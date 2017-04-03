@@ -204,7 +204,7 @@ extension PulseAPI {
         
         case let .signin(teamId, email, password):
             let params = [
-                "team": teamId as AnyObject,
+                "team_id": teamId as AnyObject,
                 "email": email as AnyObject,
                 "password": password as AnyObject
             ]
