@@ -32,7 +32,7 @@ class TeamMemberCell: UITableViewCell {
         self.progressControl.percent = 0.5
         
         if let mostRecentUpdateResponse = user.mostRecentUpdateResponse() {
-            self.updateLabel.text = "Last Update: \(mostRecentUpdateResponse.createdAt) | \(mostRecentUpdateResponse.completionPercentage) Done"
+            self.updateLabel.text = "Last Update: \(mostRecentUpdateResponse.createdAt!) | \(mostRecentUpdateResponse.completionPercentage)% Done"
         } else {
             self.updateLabel.text = ""
         }
