@@ -29,6 +29,7 @@ class CreateTaskItemCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        self.textView.delegate = self
     }
     
     func load(text: String?, at indexPath:IndexPath) {

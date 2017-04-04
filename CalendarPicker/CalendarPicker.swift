@@ -180,7 +180,7 @@ open class CalendarPicker: UIView, UIInputViewAudioFeedback {
     fileprivate func setCellSelected(cell: DateCell, date: Date, animation: Bool) {
         self.circleText.textColor = cell.defaultTextColor
         self.circleText = cell.dateLabel
-        if self.circle.superview == cell {
+        if self.circle.superview == cell.contentView {
             self.selectedDate = nil
             self.circle.removeFromSuperview()
         } else {

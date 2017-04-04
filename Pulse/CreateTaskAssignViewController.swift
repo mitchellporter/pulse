@@ -134,7 +134,7 @@ class CreateTaskAssignViewController: CreateTask {
             
             CoreDataStack.shared.saveContext()
             
-            self.performSegue(withIdentifier: "completeCreateTask", sender: nil)
+            self.performSegue(withIdentifier: "endCreateFlow", sender: nil)
         }) { (error, statusCode) in
             // TODO: Handle error
         }

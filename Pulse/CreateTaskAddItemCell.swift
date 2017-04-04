@@ -13,6 +13,7 @@ let kCreateTaskAddItemPlaceHolder: String = "Add Sub-Task"
 
 protocol CreateTaskAddItemCellDelegate: CreateTaskCellDelegate {
     func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String)
+    func addItemCell(cell: CreateTaskAddItemCell, didUpdateItem text: String)
     func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String)
 }
 
@@ -96,10 +97,11 @@ extension CreateTaskAddItemCell: UITextViewDelegate {
         if textView == self.newItemTextView {
 //            let string: NSString = self.newItemTextView.text as NSString
 //            let stringSize = string.size(attributes: [NSFontAttributeName : UIFont.boldSystemFont(ofSize: 20)])
-            if self.addItemHeight != textView.contentSize.height {
-                self.addItemHeight = textView.frame.height
+//            if self.addItemHeight != textView.contentSize.height {
+//                self.addItemHeight = textView.frame.height
 //                self.delegate?.cellNeedsResize(self)
-            }
+//            }
+           self.delegate?.addItemCell(cell: self, didUpdateItem: textView.text)
         }
         
         if textView.text == "" {

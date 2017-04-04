@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,11 +15,11 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2V-xh-iiZ" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                        <rect key="frame" x="20" y="155" width="34" height="34"/>
+                        <rect key="frame" x="20" y="158" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="36j-l3-uTl"/>
                             <constraint firstAttribute="width" constant="34" id="uJh-en-66Y"/>
@@ -55,7 +56,7 @@
                         </connections>
                     </textView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Add Sub-Task" translatesAutoresizingMaskIntoConstraints="NO" id="Rt0-5Y-Ghp">
-                        <rect key="frame" x="70" y="149" width="287" height="49"/>
+                        <rect key="frame" x="70" y="158" width="287" height="40"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" white="1" alpha="0.56367722602739723" colorSpace="calibratedWhite"/>
@@ -70,13 +71,15 @@
                 <constraints>
                     <constraint firstItem="fiu-lO-BxZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="1RK-pk-lzU"/>
                     <constraint firstAttribute="bottom" secondItem="Rt0-5Y-Ghp" secondAttribute="bottom" constant="7" id="94L-E4-S7O"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="fiu-lO-BxZ" secondAttribute="bottom" constant="125" id="BsF-dX-Dr1"/>
                     <constraint firstItem="fiu-lO-BxZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="COB-Ie-eCe"/>
                     <constraint firstAttribute="trailing" secondItem="fiu-lO-BxZ" secondAttribute="trailing" constant="18" id="DjE-Jo-X61"/>
-                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="149" id="P0r-Di-UTC"/>
+                    <constraint firstItem="f2V-xh-iiZ" firstAttribute="top" secondItem="Rt0-5Y-Ghp" secondAttribute="top" id="M4N-PO-g9v"/>
+                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="149" id="P0r-Di-UTC"/>
                     <constraint firstAttribute="trailing" secondItem="Rt0-5Y-Ghp" secondAttribute="trailing" constant="18" id="PqQ-CK-uTF"/>
                     <constraint firstItem="f2V-xh-iiZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Tgr-Jx-IoI"/>
                     <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="leading" secondItem="f2V-xh-iiZ" secondAttribute="trailing" constant="16" id="bQ3-09-4fb"/>
-                    <constraint firstItem="f2V-xh-iiZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="155" id="qSr-TF-0kG"/>
+                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" secondItem="fiu-lO-BxZ" secondAttribute="bottom" constant="86" id="et2-xV-Xql"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
