@@ -137,7 +137,13 @@ extension AddressBookViewController: UITableViewDataSource {
         if let imageData: Data = contact.thumbnailImageData {
             guard let image: UIImage = UIImage(data: imageData) else { return cell }
             cell.avatarImageView.image = image
-         }
+        } else {
+            let randomNumber: Int = (indexPath.row % 6) + 1
+            let avatarString: String = "AvatarRandom\(randomNumber)"
+            if let image: UIImage = UIImage(named: avatarString) {
+                cell.avatarImageView.image = image
+            }
+        }
         cell.delegate = self
         return cell
     }
