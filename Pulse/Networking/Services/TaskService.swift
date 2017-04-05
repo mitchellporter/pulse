@@ -188,4 +188,13 @@ struct TaskService {
             }
         }, failure: failure)
     }
+    
+    static func deleteTask(taskId: String, success: @escaping EmptySuccessCompletion, failure: @escaping PulseFailureCompletion) {
+        NetworkingClient.sharedClient.request(target: .deleteTask(taskId: taskId), success: { (data) in
+            let json = JSON(data: data)
+            if json["success"].boolValue {
+                success()
+            }
+        }, failure: failure)
+    }
 }
