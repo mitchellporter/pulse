@@ -44,6 +44,7 @@ enum PulseAPI {
     case createTask(title: String, items: [String], assignees: [String]?, dueDate: Date?, updateDays: [WeekDay]?) //
     case editTask(params: [String: AnyObject])
     case addAssigneesToTask(taskId: String, assignees: [String])
+    case deleteTask(taskId: String)
     
     // Task Updates
     case getTask(taskId: String) //
@@ -112,6 +113,9 @@ extension PulseAPI {
              .addAssigneesToTask:
             return .post
             
+        case .deleteTask:
+            return .delete
+            
         default: return .get
         }
     }
@@ -170,7 +174,9 @@ extension PulseAPI {
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/invites"
         case let .addAssigneesToTask(taskId, _):
             return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)/assignees"
-         
+        case let .deleteTask(taskId):
+            return "/api/\(PulseAPI.apiVersion)/tasks/\(taskId)"
+            
         default: return ""
         }
     }
