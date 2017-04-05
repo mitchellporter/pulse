@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol SendTaskEmailCellDelegate: class {
+    func sendTaskEmailCell(_ cell: SendTaskEmailCell, didChangeText text: String?)
+}
+
 class SendTaskEmailCell: UITableViewCell {
     
     @IBOutlet weak var emailTextField: UITextField!
+    
+    weak var delegate: SendTaskEmailCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,5 +25,27 @@ class SendTaskEmailCell: UITableViewCell {
         let font: UIFont = UIFont.systemFont(ofSize: 12.0, weight: UIFontWeightMedium)
         
         self.emailTextField.attributedPlaceholder = NSAttributedString(string: "Type an email to invite to task", attributes: [NSForegroundColorAttributeName : color, NSFontAttributeName : font])
+        self.emailTextField.delegate = self
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+//        self.emailTextField.delegate = nil
+    }
+}
+
+extension SendTaskEmailCell: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if string == "\n" {
+            return false
+        }
+        
+        return true
+    }
+    
+    @IBAction func textFieldDidChange(_ textField: UITextField) {
+        self.delegate?.sendTaskEmailCell(self, didChangeText: textField.text)
     }
 }
