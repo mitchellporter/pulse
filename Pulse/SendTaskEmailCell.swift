@@ -30,7 +30,7 @@ class SendTaskEmailCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        self.emailTextField.delegate = nil
+        self.emailTextField.alpha = 1.0
     }
 }
 
@@ -39,6 +39,7 @@ extension SendTaskEmailCell: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if string == "\n" {
+            textField.resignFirstResponder()
             return false
         }
         
