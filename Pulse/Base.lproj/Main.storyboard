@@ -774,11 +774,20 @@
                         <outlet property="taskDescriptionLabel" destination="lh6-y6-Iv4" id="oaS-Xy-hU8"/>
                         <outlet property="titleLabel" destination="8OQ-tc-Mi2" id="El1-Vx-qLW"/>
                         <outlet property="updateButton" destination="zSN-35-Vwr" id="TK2-jB-NCA"/>
+                        <segue destination="F9k-4I-kfw" kind="show" identifier="invite" id="kGk-UL-4qo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v2Q-rB-2u8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1954.4000000000001" y="563.56821589205401"/>
+        </scene>
+        <!--assign-->
+        <scene sceneID="ETb-Ok-ZbA">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateTask" referencedIdentifier="assign" id="F9k-4I-kfw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qx4-6k-nXq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2763" y="563"/>
         </scene>
         <!--View Team Member Task View Controller-->
         <scene sceneID="tfA-a4-Dea">

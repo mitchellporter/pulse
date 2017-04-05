@@ -94,6 +94,11 @@ class PassiveAlert: UIView {
             self.view.backgroundColor = appYellow // UIColor("FFBB4A")
             self.titleLabel.text = "An progress update was sent to you"
             self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
+        case .requestSent:
+            self.view.backgroundColor = appYellow
+            self.titleLabel.text = "You have sent a progress update"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
+            self.viewButton.alpha = 0.0
         }
     }
     

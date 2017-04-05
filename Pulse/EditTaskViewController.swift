@@ -272,6 +272,26 @@ class EditTaskViewController: UIViewController {
                 break
             }
         }
+        
+        let alert: UIAlertController = UIAlertController(title: "EDIT TASK", message: "Choose an action.", preferredStyle: .alert)
+        
+        let inviteAction: UIAlertAction = UIAlertAction(title: "Add Assignees", style: .default) { _ in
+            self.performSegue(withIdentifier: "invite", sender: self.task)
+        }
+        
+        let deleteAction: UIAlertAction = UIAlertAction(title: "DELETE TASK", style: .destructive) { _ in
+            // TODO: Call delete service method here.
+        }
+        
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+//            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        alert.addAction(inviteAction)
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {
@@ -294,6 +314,17 @@ class EditTaskViewController: UIViewController {
     @IBAction func cancelButtonPressed(_ sender: UIButton) {
         self.view.endEditing(true)
         self.editingTask = false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        if segue.identifier == "invite" {
+            guard let task: Task = sender as? Task else { return }
+            guard let toVC: CreateTaskAssignViewController = segue.destination as? CreateTaskAssignViewController else { return }
+            
+            toVC.task = task
+        }
     }
 }
 
