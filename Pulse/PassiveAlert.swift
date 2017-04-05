@@ -96,9 +96,21 @@ class PassiveAlert: UIView {
             self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
         case .requestSent:
             self.view.backgroundColor = appYellow
-            self.titleLabel.text = "You have sent a progress update"
+            self.titleLabel.text = "You have requested a progress update"
             self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
             self.viewButton.alpha = 0.0
+        case .requestDisabled:
+            self.view.backgroundColor = appYellow
+            self.titleLabel.text = "Update unavailable until task is accepted"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtHi")
+            self.viewButton.alpha = 0.0
+            break
+        case .reminderComingSoon:
+            self.view.backgroundColor = appDark
+            self.titleLabel.text = "Reminders are coming soon!"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtNeutral")
+            self.viewButton.alpha = 0.0
+            break
         }
     }
     
@@ -125,6 +137,15 @@ class PassiveAlert: UIView {
         case .update:
             guard let update: Update = self.data as? Update else { return }
             NavigationManager.presentUpdateReceived(update: update)
+            break
+        case .requestSent:
+            
+            break
+        case .requestDisabled:
+            
+            break
+        case .reminderComingSoon:
+            
             break
         }
     }

@@ -24,7 +24,12 @@ class AddressBookViewController: UIViewController {
         }
     }
     
-    fileprivate var assignees: Set<CNContact> = Set<CNContact>()
+    fileprivate var assignees: Set<CNContact> = Set<CNContact>() {
+        didSet {
+            let enabled: Bool = assignees.count > 0 ? true : false
+            self.sendButtonEnabled(enabled)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +94,14 @@ class AddressBookViewController: UIViewController {
         }
         OperationQueue.main.addOperation { 
             self.datasource = cnContacts
+        }
+    }
+    
+    fileprivate func sendButtonEnabled(_ enabled: Bool) {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.sendButton.alpha = enabled ? 1.0 : 0.34
+        }) { _ in
+            self.sendButton.isEnabled = enabled
         }
     }
     

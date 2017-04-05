@@ -248,7 +248,7 @@ class ViewTaskViewController: UIViewController {
                     self.backButtonPressed(UIButton())
                     CoreDataStack.shared.saveContext()
                 }, failure: { (error, statusCode) in
-                    // Error
+                    print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
                     
                 })
                 break
@@ -301,6 +301,10 @@ class ViewTaskViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    @IBAction func reminderButtonPressed(_ sender: UIButton) {
+        AlertManager.presentPassiveAlert(of: .reminderComingSoon, with: "")
     }
     
     @IBAction func backButtonPressed(_ sender: UIButton) {

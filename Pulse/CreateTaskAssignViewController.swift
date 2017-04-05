@@ -136,7 +136,7 @@ class CreateTaskAssignViewController: CreateTask {
             
             self.performSegue(withIdentifier: "endCreateFlow", sender: nil)
         }) { (error, statusCode) in
-            // TODO: Handle error
+            print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
         }
     }
     
