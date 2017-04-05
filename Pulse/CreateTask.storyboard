@@ -218,7 +218,7 @@
         <!--Create Task Assign View Controller-->
         <scene sceneID="DMe-Hs-qdO">
             <objects>
-                <viewController id="4rw-ai-A9X" customClass="CreateTaskAssignViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="assign" id="4rw-ai-A9X" customClass="CreateTaskAssignViewController" customModule="Pulse" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lcX-wL-o5b"/>
                         <viewControllerLayoutGuide type="bottom" id="Qz7-bi-w5P"/>
@@ -371,7 +371,7 @@
                         <outlet property="emailButton" destination="322-KY-ugq" id="Lt6-1F-COv"/>
                         <outlet property="nextButton" destination="FXb-5h-ou9" id="eik-7h-sua"/>
                         <outlet property="tableView" destination="IAe-ie-jbu" id="nfq-5r-Tfv"/>
-                        <segue destination="GBR-kb-1bd" kind="unwind" identifier="completeCreateTask" unwindAction="unwindToTaskViewController:" id="ZTg-Ds-NGZ"/>
+                        <segue destination="GBR-kb-1bd" kind="unwind" identifier="endCreateFlow" unwindAction="unwindToTaskViewController:" id="ZTg-Ds-NGZ"/>
                         <segue destination="Md6-Jx-EGB" kind="show" identifier="invite" id="y50-BT-JZu"/>
                     </connections>
                 </viewController>

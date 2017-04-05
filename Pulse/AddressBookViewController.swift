@@ -24,7 +24,12 @@ class AddressBookViewController: UIViewController {
         }
     }
     
-    fileprivate var assignees: Set<CNContact> = Set<CNContact>()
+    fileprivate var assignees: Set<CNContact> = Set<CNContact>() {
+        didSet {
+            let enabled: Bool = assignees.count > 0 ? true : false
+            self.sendButtonEnabled(enabled)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,6 +97,14 @@ class AddressBookViewController: UIViewController {
         }
     }
     
+    fileprivate func sendButtonEnabled(_ enabled: Bool) {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.sendButton.alpha = enabled ? 1.0 : 0.34
+        }) { _ in
+            self.sendButton.isEnabled = enabled
+        }
+    }
+    
     @IBAction func sendButtonPressed(_ sender: UIButton) {
         
 
@@ -137,7 +150,13 @@ extension AddressBookViewController: UITableViewDataSource {
         if let imageData: Data = contact.thumbnailImageData {
             guard let image: UIImage = UIImage(data: imageData) else { return cell }
             cell.avatarImageView.image = image
-         }
+        } else {
+            let randomNumber: Int = (indexPath.row % 6) + 1
+            let avatarString: String = "AvatarRandom\(randomNumber)"
+            if let image: UIImage = UIImage(named: avatarString) {
+                cell.avatarImageView.image = image
+            }
+        }
         cell.delegate = self
         return cell
     }

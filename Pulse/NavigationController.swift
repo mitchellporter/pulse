@@ -73,6 +73,8 @@ extension NavigationController: UINavigationControllerDelegate {
             return FadeTransition()
         } else if (fromVC is AddressBookViewController || toVC is AddressBookViewController) {
             return FadeTransition()
+        } else if (fromVC is EditTaskViewController && toVC is CreateTaskAssignViewController) || (fromVC is CreateTaskAssignViewController && toVC is EditTaskViewController) {
+            return FadeTransition()
         }
         return nil
     }

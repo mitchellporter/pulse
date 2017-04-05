@@ -211,9 +211,15 @@ extension CreateTaskReviewViewController: CreateTaskReviewItemCellDelegate, Crea
         var items = self.items()
         items[indexPath.row] = text
         _ = self.taskDictionary?.updateValue(items, forKey: .items)
+        
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
     
     func taskDescriptionReview(cell: CreateTaskReviewDescriptionCell, didUpdate text: String) {
         _ = self.taskDictionary?.updateValue([text], forKey: .description)
+        
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
 }

@@ -189,7 +189,14 @@ class TaskViewController: UIViewController {
         }
     }
     
-    @IBAction func unwindToTaskViewController(_ segue: UIStoryboardSegue) {}
+    @IBAction func unwindToTaskViewController(_ segue: UIStoryboardSegue) {
+    
+        if segue.identifier == "endCreateFlow" || segue.identifier == "" {
+            let newIndex: IndexPath = IndexPath(row: 2, section: 0)
+            self.headerNavigation(self.headerNavigation, changedSelectedIndex: newIndex, from: self.headerNavigation.selectedIndex)
+            self.headerNavigation.selectedIndex = newIndex
+        }
+    }
 }
 
 extension TaskViewController: HeaderNavigationDelegate {

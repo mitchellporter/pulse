@@ -35,6 +35,7 @@
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
+                                    <action selector="textFieldDidChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="ykh-Ip-yol"/>
                                     <outlet property="delegate" destination="pnl-fw-2Gk" id="Y4x-ff-5PO"/>
                                 </connections>
                             </textField>

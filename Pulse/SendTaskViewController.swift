@@ -49,12 +49,14 @@ class SendTaskViewController: UIViewController {
     }
     
     @IBAction func sendButtonPressed(_ sender: UIButton) {
-        guard let cell: SendTaskEmailCell = self.tableView.cellForRow(at: IndexPath(row: self.emailDatasource.count, section: 0)) as? SendTaskEmailCell else { return }
-        guard let email: String = cell.emailTextField.text else { return }
         guard let task: Task = self.task else { return }
         
-        let dictionary: [String : AnyObject] = ["name" : "" as AnyObject, "email" : email as AnyObject]
-        InviteService.inviteContactsToTask(taskId: task.objectId, contacts: [dictionary], success: { (invite) in
+        var emailArray: [[String : AnyObject]] = []
+        for email in self.emailDatasource {
+            let dictionary: [String : AnyObject] = ["name" : "" as AnyObject, "email" : email as AnyObject]
+            emailArray.append(dictionary)
+        }
+        InviteService.inviteContactsToTask(taskId: task.objectId, contacts: emailArray, success: { (invite) in
             
             self.performSegue(withIdentifier: "endCreateFlow", sender: nil)
             
@@ -80,6 +82,30 @@ class SendTaskViewController: UIViewController {
             toVC.task = task
         }
     }
+    
+    fileprivate func addCellFor(_ text: String, at indexPath: IndexPath) {
+        if self.emailDatasource.count == indexPath.row {
+            
+            self.emailDatasource.append(text)
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [IndexPath(row: self.emailDatasource.count, section: 0)], with: .fade)
+            self.tableView.endUpdates()
+            
+        } else {
+            
+            self.emailDatasource[indexPath.row] = text
+            
+        }
+    }
+    
+    fileprivate func removeCellFor(_ email: String, at indexPath: IndexPath) {
+        if indexPath.row != self.emailDatasource.count {
+            self.emailDatasource.remove(at: indexPath.row)
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.endUpdates()
+        }
+    }
 }
 
 extension SendTaskViewController: UITableViewDataSource, UITableViewDelegate {
@@ -93,7 +119,7 @@ extension SendTaskViewController: UITableViewDataSource, UITableViewDelegate {
         if indexPath.row == self.emailDatasource.count {
             let cell: SendTaskEmailCell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! SendTaskEmailCell
             cell.contentView.backgroundColor = tableView.backgroundColor
-            cell.emailTextField.delegate = self
+            cell.delegate = self
             return cell
         } else if indexPath.row == self.emailDatasource.count + 1 {
             let cell: SendTaskCell = tableView.dequeueReusableCell(withIdentifier: "sendTaskCell", for: indexPath) as! SendTaskCell
@@ -102,6 +128,8 @@ extension SendTaskViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let cell: SendTaskEmailCell = tableView.dequeueReusableCell(withIdentifier: "emailCell", for: indexPath) as! SendTaskEmailCell
         cell.contentView.backgroundColor = tableView.backgroundColor
+        cell.emailTextField.text = self.emailDatasource[indexPath.row]
+        cell.delegate = self
         return cell
     }
     
@@ -113,21 +141,21 @@ extension SendTaskViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension SendTaskViewController: UITextFieldDelegate {
+extension SendTaskViewController: SendTaskEmailCellDelegate {
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if let email: String = textField.text {
-            if email.contains(".") && email.contains("@") {
-                self.sendButtonEnabled(true)
-            } else {
-                self.sendButtonEnabled(false)
+    func sendTaskEmailCell(_ cell: SendTaskEmailCell, didChangeText text: String?) {
+        guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { return }
+        guard let email: String = text else { return }
+        
+        if email.contains(".") && email.contains("@") {
+            self.sendButtonEnabled(true)
+            self.addCellFor(email, at: indexPath)
+        } else {
+            self.sendButtonEnabled(false)
+            
+            if email == "" {
+                self.removeCellFor(email, at: indexPath)
             }
         }
-        
-        if string == "\n" {
-            return false
-        }
-        
-        return true
     }
 }

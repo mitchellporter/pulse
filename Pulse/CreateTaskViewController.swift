@@ -146,7 +146,12 @@ class CreateTaskViewController: CreateTask {
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
         // Pass the current description and items forward.
-        
+        if let firstCell: CreateTaskAddItemCell = self.tableView.cellForRow(at: IndexPath(row: 0, section: 0))  as? CreateTaskAddItemCell  {
+            if firstCell.newItemTextView.text != kCreateTaskAddItemPlaceHolder {
+                self.addNew(item: firstCell.newItemTextView.text)
+                firstCell.newItemTextView.text = ""
+            }
+        }
         self.performSegue(withIdentifier: "date", sender: nil)
     }
     
@@ -160,6 +165,12 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.taskItems.count + 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -188,9 +199,13 @@ extension CreateTaskViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension CreateTaskViewController: CreateTaskItemCellDelegate, CreateTaskAddItemCellDelegate, CreateTaskCellDelegate {
     
+    // Called when text changes in cell
     func taskItem(cell: CreateTaskItemCell, didUpdate text: String) {
         guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { print("No index path for selected cell"); return }
         self.update(item: text, at: indexPath)
+        
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
     
     func taskItem(cell: CreateTaskItemCell, remove item: String) {
@@ -198,8 +213,15 @@ extension CreateTaskViewController: CreateTaskItemCellDelegate, CreateTaskAddIte
         self.removeItem(at: indexPath)
     }
     
+    func addItemCell(cell: CreateTaskAddItemCell, didUpdateItem text: String) {
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+    
     func addItemCell(_ cell: CreateTaskAddItemCell, didUpdateDescription text: String) {
         self.taskDescription = text
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
     }
     
     func addItemCell(_ cell: CreateTaskAddItemCell, addNew item: String) {
