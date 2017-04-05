@@ -291,7 +291,12 @@ class EditTaskViewController: UIViewController {
         }
         
         let deleteAction: UIAlertAction = UIAlertAction(title: "DELETE TASK", style: .destructive) { _ in
-            // TODO: Call delete service method here.
+            guard let task: Task = self.task else { return }
+            TaskService.deleteTask(taskId: task.objectId, success: { 
+                self.backButtonPressed(self.backButton)
+            }) { (error, statusCode) in
+                print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
+            }
         }
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in

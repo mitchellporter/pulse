@@ -135,7 +135,7 @@ extension SendTaskViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == self.emailDatasource.count + 1 {
-            guard let task: Task = self.task else { return }
+//            guard let task: Task = self.task else { return }
             self.performSegue(withIdentifier: "addressBook", sender: task)
         }
     }
@@ -153,8 +153,9 @@ extension SendTaskViewController: SendTaskEmailCellDelegate {
         } else {
             self.sendButtonEnabled(false)
             
-            if email == "" {
+            if email == "" && self.tableView.numberOfRows(inSection: indexPath.section) > 2 {
                 self.removeCellFor(email, at: indexPath)
+                cell.emailTextField.alpha = 0.0
             }
         }
     }
