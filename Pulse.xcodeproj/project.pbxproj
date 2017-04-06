@@ -2161,7 +2161,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				API_BASE_URL = "teamship-api-staging.herokuapp.com";
-				API_PROTOCOL = "http://";
+				API_PROTOCOL = "https://";
 				API_VERSION = v1;
 				APP_DISPLAY_NAME = "Ellroi Staging";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
