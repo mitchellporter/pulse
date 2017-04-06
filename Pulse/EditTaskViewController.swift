@@ -291,13 +291,26 @@ class EditTaskViewController: UIViewController {
         }
         
         let deleteAction: UIAlertAction = UIAlertAction(title: "DELETE TASK", style: .destructive) { _ in
-            guard let task: Task = self.task else { return }
-            TaskService.deleteTask(taskId: task.objectId, success: {
-                AlertManager.presentPassiveAlert(of: .taskDeleted, with: "")
-                self.backButtonPressed(self.backButton)
-            }) { (error, statusCode) in
-                print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
+            
+            let deleteAlert: UIAlertController = UIAlertController(title: "DELETE", message: "Permanently delete this task?", preferredStyle: .alert)
+            
+            let deleteAction: UIAlertAction = UIAlertAction(title: "DELETE", style: .destructive) { _ in
+                
+                guard let task: Task = self.task else { return }
+                TaskService.deleteTask(taskId: task.objectId, success: {
+                    AlertManager.presentPassiveAlert(of: .taskDeleted, with: "")
+                    self.backButtonPressed(self.backButton)
+                }) { (error, statusCode) in
+                    print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
+                }
             }
+            
+            let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in }
+            
+            deleteAlert.addAction(deleteAction)
+            deleteAlert.addAction(cancelAction)
+            
+            self.present(deleteAlert, animated: true, completion: nil)
         }
         
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
