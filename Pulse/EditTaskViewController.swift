@@ -292,7 +292,8 @@ class EditTaskViewController: UIViewController {
         
         let deleteAction: UIAlertAction = UIAlertAction(title: "DELETE TASK", style: .destructive) { _ in
             guard let task: Task = self.task else { return }
-            TaskService.deleteTask(taskId: task.objectId, success: { 
+            TaskService.deleteTask(taskId: task.objectId, success: {
+                AlertManager.presentPassiveAlert(of: .taskDeleted, with: "")
                 self.backButtonPressed(self.backButton)
             }) { (error, statusCode) in
                 print("Error: \(statusCode ?? 000) \(error.localizedDescription)")
