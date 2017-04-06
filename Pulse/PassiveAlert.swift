@@ -111,6 +111,12 @@ class PassiveAlert: UIView {
             self.mascotView.image = #imageLiteral(resourceName: "SherburtNeutral")
             self.viewButton.alpha = 0.0
             break
+        case .taskDeleted:
+            self.view.backgroundColor = appRed
+            self.titleLabel.text = "Your created task has been deleted"
+            self.mascotView.image = #imageLiteral(resourceName: "SherburtNeutral")
+            self.viewButton.alpha = 0.0
+            break
         }
     }
     
@@ -145,6 +151,9 @@ class PassiveAlert: UIView {
             
             break
         case .reminderComingSoon:
+            
+            break
+        case .taskDeleted:
             
             break
         }

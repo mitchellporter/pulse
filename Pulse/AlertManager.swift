@@ -17,6 +17,7 @@ enum PassiveAlertType {
     case requestSent
     case requestDisabled
     case reminderComingSoon
+    case taskDeleted
 }
 
 public typealias AlertCompletion = ()->()
