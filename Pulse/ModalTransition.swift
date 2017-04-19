@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class ModalTransition: AnimatedTransition, UIViewControllerAnimatedTransitioning {
 
     var duration: Double = 0.25
     
@@ -19,6 +19,8 @@ class ModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        self.presenting = self.originVC is TaskViewController ? true : false
+        
         if self.presenting {
             self.present(context: transitionContext)
         } else {
