@@ -93,13 +93,13 @@ class CreateTaskAssignViewController: CreateTask {
     }
     
     private func setupAppearance() {
-        let frame: CGRect = CGRect(x: 0, y: (self.tableView.frame.origin.y), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
-        let topGradient: CAGradientLayer = CAGradientLayer()
-        topGradient.frame = frame
-        topGradient.colors = [createTaskBackgroundColor.cgColor, createTaskBackgroundColor.withAlphaComponent(0.0).cgColor]
-        topGradient.locations = [0.0, 1.0]
-        
-        self.view.layer.addSublayer(topGradient)
+//        let frame: CGRect = CGRect(x: 0, y: (self.tableView.frame.origin.y), width: UIScreen.main.bounds.width, height: self.tableViewTopInset)
+//        let topGradient: CAGradientLayer = CAGradientLayer()
+//        topGradient.frame = frame
+//        topGradient.colors = [createTaskBackgroundColor.cgColor, createTaskBackgroundColor.withAlphaComponent(0.0).cgColor]
+//        topGradient.locations = [0.0, 1.0]
+//        
+//        self.view.layer.addSublayer(topGradient)
         self.view.backgroundColor = createTaskBackgroundColor
         
         self.nextButtonToggle()
@@ -119,7 +119,7 @@ class CreateTaskAssignViewController: CreateTask {
         self.tableView.rowHeight = 58
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
+//        self.tableView.contentInset = UIEdgeInsets(top: self.tableViewTopInset, left: 0, bottom: 0, right: 0)
         self.tableView.backgroundColor = self.view.backgroundColor
         self.tableView.showsVerticalScrollIndicator = false
     }

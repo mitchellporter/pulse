@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateTaskPresentTransition: NSObject, UIViewControllerAnimatedTransitioning {
+class CreateTaskPresentTransition: AnimatedTransition, UIViewControllerAnimatedTransitioning {
 
     var duration: Double = 0.25
     
@@ -19,6 +19,8 @@ class CreateTaskPresentTransition: NSObject, UIViewControllerAnimatedTransitioni
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        self.presenting = self.originVC is TaskViewController ? true : false
+        
         if self.presenting {
             self.present(context: transitionContext)
         } else {

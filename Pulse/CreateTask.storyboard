@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="l6Y-1H-bwV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="l6Y-1H-bwV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -281,7 +281,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IAe-ie-jbu">
-                                <rect key="frame" x="0.0" y="250" width="375" height="417"/>
+                                <rect key="frame" x="0.0" y="292" width="375" height="375"/>
                                 <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Did you know you can assign people tasks who are not even on the app? We’ll even get you progress updates too!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDw-q0-axv">
@@ -349,7 +349,7 @@
                             <constraint firstAttribute="trailing" secondItem="PDw-q0-axv" secondAttribute="trailing" constant="12" id="2Zz-PG-68o"/>
                             <constraint firstItem="PDw-q0-axv" firstAttribute="top" secondItem="3hX-uo-gFw" secondAttribute="bottom" constant="42" id="AhP-tN-be6"/>
                             <constraint firstItem="IAe-ie-jbu" firstAttribute="leading" secondItem="rz6-vP-Ov9" secondAttribute="leading" id="INT-rm-2CW"/>
-                            <constraint firstItem="IAe-ie-jbu" firstAttribute="top" secondItem="NJW-CY-gfl" secondAttribute="bottom" id="Kgk-Qr-Mqf"/>
+                            <constraint firstItem="IAe-ie-jbu" firstAttribute="top" secondItem="NJW-CY-gfl" secondAttribute="bottom" constant="42" id="Kgk-Qr-Mqf"/>
                             <constraint firstItem="NJW-CY-gfl" firstAttribute="top" secondItem="PDw-q0-axv" secondAttribute="bottom" constant="23" id="Nci-3K-SBN"/>
                             <constraint firstItem="Qz7-bi-w5P" firstAttribute="top" secondItem="IAe-ie-jbu" secondAttribute="bottom" id="Ued-uC-SZm"/>
                             <constraint firstAttribute="trailing" secondItem="IAe-ie-jbu" secondAttribute="trailing" id="VJt-VZ-TIO"/>
