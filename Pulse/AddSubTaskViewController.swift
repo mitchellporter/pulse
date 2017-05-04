@@ -76,7 +76,7 @@ extension AddSubTaskViewController: UITableViewDataSource {
             return cell
         }
         guard let cell: CreateTaskItemCell = tableView.dequeueReusableCell(withIdentifier: "CreateItemCell", for: indexPath) as? CreateTaskItemCell else { return tableView.dequeueReusableCell(withIdentifier: "CreateItemCell", for: indexPath) }
-        
+        cell.delegate = self
         cell.load(text: self.items[indexPath.row - 1], at: indexPath)
         return cell
     }
