@@ -56,7 +56,7 @@
                         </connections>
                     </textView>
                 </subviews>
-                <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.12156862745098039" green="0.75686274509803919" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OBk-1G-dJE" secondAttribute="bottom" constant="9" id="4iE-eE-8ka"/>
                     <constraint firstItem="OBk-1G-dJE" firstAttribute="leading" secondItem="xKn-kd-srS" secondAttribute="trailing" constant="18" id="5bR-Wv-9FL"/>

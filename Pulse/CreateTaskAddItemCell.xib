@@ -1,43 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="224" id="KGk-i7-Jjw" customClass="CreateTaskAddItemCell" customModule="Pulse" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="83" id="KGk-i7-Jjw" customClass="CreateTaskAddItemCell" customModule="Pulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="205"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2V-xh-iiZ" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                        <rect key="frame" x="20" y="158" width="34" height="34"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2V-xh-iiZ" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                        <rect key="frame" x="15" y="15" width="39" height="41"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="34" id="36j-l3-uTl"/>
-                            <constraint firstAttribute="width" constant="34" id="uJh-en-66Y"/>
+                            <constraint firstAttribute="height" constant="41" id="36j-l3-uTl"/>
+                            <constraint firstAttribute="width" constant="39" id="uJh-en-66Y"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                        <inset key="contentEdgeInsets" minX="1" minY="0.0" maxX="0.0" maxY="4"/>
-                        <state key="normal" title="+">
+                        <state key="normal" image="FilledButtonShape">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="3"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="17"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -45,7 +40,7 @@
                         </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Give this person a quick high level overview of what you need done." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fiu-lO-BxZ">
-                        <rect key="frame" x="20" y="8" width="337" height="64"/>
+                        <rect key="frame" x="20" y="-129" width="337" height="64"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" white="1" alpha="0.68129280821917804" colorSpace="calibratedWhite"/>
@@ -56,30 +51,28 @@
                         </connections>
                     </textView>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="Add Sub-Task" translatesAutoresizingMaskIntoConstraints="NO" id="Rt0-5Y-Ghp">
-                        <rect key="frame" x="70" y="158" width="287" height="40"/>
+                        <rect key="frame" x="70" y="15" width="287" height="41.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="textColor" white="1" alpha="0.56367722602739723" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                         <connections>
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="4Xg-FS-uV6"/>
                         </connections>
                     </textView>
                 </subviews>
-                <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.12156862745098039" green="0.75686274509803919" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="fiu-lO-BxZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="1RK-pk-lzU"/>
                     <constraint firstAttribute="bottom" secondItem="Rt0-5Y-Ghp" secondAttribute="bottom" constant="7" id="94L-E4-S7O"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="fiu-lO-BxZ" secondAttribute="bottom" constant="125" id="BsF-dX-Dr1"/>
                     <constraint firstItem="fiu-lO-BxZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="COB-Ie-eCe"/>
                     <constraint firstAttribute="trailing" secondItem="fiu-lO-BxZ" secondAttribute="trailing" constant="18" id="DjE-Jo-X61"/>
+                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" secondItem="fiu-lO-BxZ" secondAttribute="bottom" constant="80" id="K1P-25-YIy"/>
                     <constraint firstItem="f2V-xh-iiZ" firstAttribute="top" secondItem="Rt0-5Y-Ghp" secondAttribute="top" id="M4N-PO-g9v"/>
-                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="top" constant="149" id="P0r-Di-UTC"/>
                     <constraint firstAttribute="trailing" secondItem="Rt0-5Y-Ghp" secondAttribute="trailing" constant="18" id="PqQ-CK-uTF"/>
-                    <constraint firstItem="f2V-xh-iiZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Tgr-Jx-IoI"/>
+                    <constraint firstItem="f2V-xh-iiZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Tgr-Jx-IoI"/>
                     <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="leading" secondItem="f2V-xh-iiZ" secondAttribute="trailing" constant="16" id="bQ3-09-4fb"/>
-                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" secondItem="fiu-lO-BxZ" secondAttribute="bottom" constant="86" id="et2-xV-Xql"/>
+                    <constraint firstItem="Rt0-5Y-Ghp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="7" id="ctp-W6-Gml"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -87,7 +80,10 @@
                 <outlet property="newItemTextView" destination="Rt0-5Y-Ghp" id="UFn-8i-gZD"/>
                 <outlet property="textView" destination="fiu-lO-BxZ" id="M7k-3a-a6z"/>
             </connections>
-            <point key="canvasLocation" x="83.5" y="-54.5"/>
+            <point key="canvasLocation" x="83.5" y="-125"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="FilledButtonShape" width="39" height="41"/>
+    </resources>
 </document>
