@@ -271,7 +271,7 @@
                                     <action selector="nextButtonPressed:" destination="ItL-Vd-eyO" eventType="touchUpInside" id="yjk-Wb-A4a"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j1c-so-38x">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="j1c-so-38x">
                                 <rect key="frame" x="0.0" y="45.5" width="375" height="621.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -369,10 +369,16 @@
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="ome-aw-tyh"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-yx-YIk">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMr-yx-YIk" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                 <rect key="frame" x="15" y="22.5" width="22" height="22"/>
                                 <state key="normal" image="BackArrowDark"/>
+                                <connections>
+                                    <action selector="backButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="lrO-7U-JYn"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fE5-aI-afN">
                                 <rect key="frame" x="28" y="107" width="319" height="50.5"/>
@@ -431,6 +437,9 @@
                                                         <color key="value" red="0.58431372549019611" green="0.58431372549019611" blue="0.58431372549019611" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="zcA-gf-RxD"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTx-rY-8yh" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="80" width="141" height="58"/>
@@ -449,6 +458,9 @@
                                                         <color key="value" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="R71-yU-fvU"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TSi-3F-sx8" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="160" width="141" height="58"/>
@@ -467,6 +479,9 @@
                                                         <color key="value" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="Od9-o6-dR8"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -496,6 +511,9 @@
                                                         <color key="value" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="z7x-ve-pA4"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjt-ur-zQV" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="80" width="141" height="58"/>
@@ -514,6 +532,9 @@
                                                         <color key="value" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="KUs-sz-hiC"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kiw-J0-eh3" customClass="Button" customModule="Pulse" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="160" width="141" height="58"/>
@@ -532,6 +553,9 @@
                                                         <color key="value" red="0.58431372550000005" green="0.58431372550000005" blue="0.58431372550000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="dayButtonPressed:" destination="UJs-1G-mGl" eventType="touchUpInside" id="bfr-8f-sGc"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
