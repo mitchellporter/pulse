@@ -37,6 +37,10 @@
 		C13971B11E8AE26D00569A19 /* HeaderNavigationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13971AF1E8AE26D00569A19 /* HeaderNavigationCell.swift */; };
 		C13971B21E8AE26D00569A19 /* HeaderNavigationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C13971B01E8AE26D00569A19 /* HeaderNavigationCell.xib */; };
 		C13971B41E8AEDF900569A19 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C13971B31E8AEDF900569A19 /* Media.xcassets */; };
+		C150FDD81EB7D4F600B658BB /* NameTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C150FDD71EB7D4F600B658BB /* NameTaskViewController.swift */; };
+		C150FDDA1EB7D50500B658BB /* AddSubTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C150FDD91EB7D50500B658BB /* AddSubTaskViewController.swift */; };
+		C150FDDC1EB7D51B00B658BB /* SetUpdatesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C150FDDB1EB7D51B00B658BB /* SetUpdatesViewController.swift */; };
+		C150FDDE1EB7D52B00B658BB /* AddFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C150FDDD1EB7D52B00B658BB /* AddFilesViewController.swift */; };
 		C15474CF1E72077C000DADD2 /* DefaultActionAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15474CE1E72077C000DADD2 /* DefaultActionAlertViewController.swift */; };
 		C1629A8D1E5F592C00EC91B0 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */; };
 		C1629A8E1E5F592C00EC91B0 /* TaskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */; };
@@ -235,6 +239,10 @@
 		C13971AF1E8AE26D00569A19 /* HeaderNavigationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderNavigationCell.swift; sourceTree = "<group>"; };
 		C13971B01E8AE26D00569A19 /* HeaderNavigationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderNavigationCell.xib; sourceTree = "<group>"; };
 		C13971B31E8AEDF900569A19 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		C150FDD71EB7D4F600B658BB /* NameTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NameTaskViewController.swift; sourceTree = "<group>"; };
+		C150FDD91EB7D50500B658BB /* AddSubTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSubTaskViewController.swift; sourceTree = "<group>"; };
+		C150FDDB1EB7D51B00B658BB /* SetUpdatesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetUpdatesViewController.swift; sourceTree = "<group>"; };
+		C150FDDD1EB7D52B00B658BB /* AddFilesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFilesViewController.swift; sourceTree = "<group>"; };
 		C15474CE1E72077C000DADD2 /* DefaultActionAlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultActionAlertViewController.swift; sourceTree = "<group>"; };
 		C1629A8B1E5F592C00EC91B0 /* TaskCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		C1629A8C1E5F592C00EC91B0 /* TaskCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TaskCell.xib; sourceTree = "<group>"; };
@@ -648,6 +656,10 @@
 				C1DA11811E5FA9DB00AF752E /* CreateTaskUpdatesViewController.swift */,
 				C1DA11831E5FA9EB00AF752E /* CreateTaskReviewViewController.swift */,
 				C1DA117F1E5FA9C900AF752E /* CreateTaskAssignViewController.swift */,
+				C150FDD71EB7D4F600B658BB /* NameTaskViewController.swift */,
+				C150FDD91EB7D50500B658BB /* AddSubTaskViewController.swift */,
+				C150FDDB1EB7D51B00B658BB /* SetUpdatesViewController.swift */,
+				C150FDDD1EB7D52B00B658BB /* AddFilesViewController.swift */,
 				C1DA11791E5FA85300AF752E /* CreateTask.storyboard */,
 				C1211E2A1E85DE0100CFC7A6 /* Transitions */,
 			);
@@ -1152,6 +1164,7 @@
 				C1211E311E85F2DD00CFC7A6 /* ModalTransition.swift in Sources */,
 				C1D11C201E79CBEC005D2D18 /* NewTeamPositionViewController.swift in Sources */,
 				C3A3EDD01E7B399B00560678 /* Response+CoreDataClass.swift in Sources */,
+				C150FDDA1EB7D50500B658BB /* AddSubTaskViewController.swift in Sources */,
 				C3DBA95E1E67920900859D4E /* Update+CoreDataClass.swift in Sources */,
 				C3510BA01E60DAFF00EEA4E0 /* Team+CoreDataClass.swift in Sources */,
 				C1AD367A1E68D44100C5A9AA /* AlertController.swift in Sources */,
@@ -1164,9 +1177,11 @@
 				C1C96BA81EA6E9E100E0F11E /* AnimatedTransition.swift in Sources */,
 				C35FC6AF1E64FF5A000875F1 /* DateExtensions.swift in Sources */,
 				C1D11C171E7718C8005D2D18 /* UpdateAlertCommentAnimator.swift in Sources */,
+				C150FDDC1EB7D51B00B658BB /* SetUpdatesViewController.swift in Sources */,
 				C356E4C51E5F758C00E215CF /* PulseAPI.swift in Sources */,
 				C3A3EDD31E7B48AC00560678 /* FeedService.swift in Sources */,
 				C1AD36851E68F0DB00C5A9AA /* Utilities.swift in Sources */,
+				C150FDD81EB7D4F600B658BB /* NameTaskViewController.swift in Sources */,
 				C356E4B91E5F67FA00E215CF /* User+CoreDataClass.swift in Sources */,
 				C1AD36711E689F7900C5A9AA /* CreatedTasksViewController.swift in Sources */,
 				C12127DF1E9074C30073EC0F /* SignInTransition.swift in Sources */,
@@ -1176,6 +1191,7 @@
 				C1D11C151E771763005D2D18 /* UpdateAlertCommentViewController.swift in Sources */,
 				C3510B9D1E60D8F600EEA4E0 /* TeamService.swift in Sources */,
 				C356E4C01E5F6C9D00E215CF /* Item+CoreDataProperties.swift in Sources */,
+				C150FDDE1EB7D52B00B658BB /* AddFilesViewController.swift in Sources */,
 				C3522F821E6F8AAE00C689D9 /* TaskInvitationService.swift in Sources */,
 				C1D11C291E7A0D44005D2D18 /* OnboardingTransition.swift in Sources */,
 				C3DBA95F1E67920900859D4E /* Update+CoreDataProperties.swift in Sources */,

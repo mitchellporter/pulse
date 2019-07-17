@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,26 +24,21 @@
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="FLr-eS-vfC"/>
                         </constraints>
                     </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKn-kd-srS" customClass="Button" customModule="Pulse" customModuleProvider="target">
-                        <rect key="frame" x="20" y="19" width="34" height="34"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKn-kd-srS" customClass="Button" customModule="Pulse" customModuleProvider="target">
+                        <rect key="frame" x="15" y="15" width="39" height="41"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="34" id="2vv-6e-JiW"/>
-                            <constraint firstAttribute="width" constant="34" id="w18-JK-bf3"/>
+                            <constraint firstAttribute="height" constant="41" id="2vv-6e-JiW"/>
+                            <constraint firstAttribute="width" constant="39" id="w18-JK-bf3"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="34"/>
-                        <state key="normal" title="_">
+                        <state key="normal" image="EmptyButtonShape">
                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="17"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="3"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <real key="value" value="0.0"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -52,24 +46,27 @@
                         </connections>
                     </button>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" text="New item" translatesAutoresizingMaskIntoConstraints="NO" id="OBk-1G-dJE">
-                        <rect key="frame" x="72" y="8" width="289" height="40"/>
+                        <rect key="frame" x="72" y="19" width="289" height="33"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         <connections>
                             <outlet property="delegate" destination="f2h-Xa-dq7" id="QRj-BC-rxf"/>
                         </connections>
                     </textView>
                 </subviews>
-                <color key="backgroundColor" red="0.1019607843" green="0.69411764710000001" blue="0.48627450979999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.12156862745098039" green="0.75686274509803919" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OBk-1G-dJE" secondAttribute="bottom" constant="9" id="4iE-eE-8ka"/>
                     <constraint firstItem="OBk-1G-dJE" firstAttribute="leading" secondItem="xKn-kd-srS" secondAttribute="trailing" constant="18" id="5bR-Wv-9FL"/>
+                    <constraint firstItem="OBk-1G-dJE" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Qej-Da-fjT" secondAttribute="top" constant="9" id="7q9-rh-ONw"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="xKn-kd-srS" secondAttribute="bottom" constant="9" id="95f-zv-Poy"/>
                     <constraint firstItem="xKn-kd-srS" firstAttribute="centerY" secondItem="Qej-Da-fjT" secondAttribute="centerY" id="9yg-1h-8Hr"/>
                     <constraint firstItem="Ogr-ME-tsJ" firstAttribute="leading" secondItem="Qej-Da-fjT" secondAttribute="leading" id="CTJ-Nm-RJa"/>
-                    <constraint firstItem="OBk-1G-dJE" firstAttribute="top" secondItem="Qej-Da-fjT" secondAttribute="topMargin" id="IJO-b4-fnh"/>
-                    <constraint firstItem="xKn-kd-srS" firstAttribute="leading" secondItem="Qej-Da-fjT" secondAttribute="leading" constant="20" id="bwy-fU-0hB"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="OBk-1G-dJE" secondAttribute="bottom" id="dbK-EX-zMj"/>
+                    <constraint firstItem="xKn-kd-srS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="Qej-Da-fjT" secondAttribute="top" constant="9" id="VRI-MQ-FtF"/>
+                    <constraint firstItem="xKn-kd-srS" firstAttribute="leading" secondItem="Qej-Da-fjT" secondAttribute="leading" constant="15" id="bwy-fU-0hB"/>
+                    <constraint firstItem="OBk-1G-dJE" firstAttribute="centerY" secondItem="Qej-Da-fjT" secondAttribute="centerY" id="hR8-Ab-SDs"/>
                     <constraint firstItem="Ogr-ME-tsJ" firstAttribute="top" secondItem="Qej-Da-fjT" secondAttribute="top" id="iZu-t2-C3I"/>
                     <constraint firstAttribute="trailing" secondItem="OBk-1G-dJE" secondAttribute="trailing" constant="14" id="tNv-AL-cVw"/>
                     <constraint firstAttribute="bottom" secondItem="Ogr-ME-tsJ" secondAttribute="bottom" id="twA-XB-eKn"/>
@@ -84,4 +81,7 @@
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="EmptyButtonShape" width="39" height="41"/>
+    </resources>
 </document>
